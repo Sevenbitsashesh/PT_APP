@@ -1,6 +1,8 @@
 {
   "name": "Social-Web-App2",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular",
   "id": "bc47d5d5"
 }

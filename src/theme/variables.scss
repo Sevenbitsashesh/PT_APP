@@ -86,3 +86,21 @@ $colors: (
 
 @import "roboto";
 @import "noto-sans";
+ //New Ion Input Style
+ .newionInput {
+  color:blue; 
+  -moz-border-radius: 50px;
+  -webkit-border-radius: 50px;
+  border-radius: 10px;
+  text-align: center;
+  width: 300px;
+ }
+ .error-message, .required {
+   color: red;
+}
+ ion-col {
+border: think solid black;
+ }
+$color: (
+ cornflower: cornflowerblue
+)

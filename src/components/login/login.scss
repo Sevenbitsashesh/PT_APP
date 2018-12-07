@@ -1,0 +1,21 @@
+#message {
+    color: red;
+    }
+    .loginForm  {
+        height: 100%;   
+        width: 100%;
+        position: absolute;
+        flex-direction: column;
+      }
+      .gridLogin {
+        position: relative;
+        top: 50%;
+    border: think solid black;
+      }
+      .loginEmail {
+          --width: 40%;
+      }
+      .LoginContent {
+          background: beige;
+      }
+    

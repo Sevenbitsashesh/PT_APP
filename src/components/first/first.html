@@ -1,0 +1,17 @@
+<ion-slides pager="true" size=100 >
+  <ion-slide id="slide1">
+    <h1>Slide 1</h1>
+  </ion-slide>
+
+  <ion-slide id="slide2">
+    <h1>Slide 2</h1>
+  </ion-slide>
+
+  <ion-slide id="slide3">
+    <h1>Slide 3</h1>
+    <button (click)="set()">
+      <ion-nav [root]="rootPage" #myNav></ion-nav>
+       Start
+    </button>
+  </ion-slide>
+</ion-slides>
