@@ -10,7 +10,8 @@ import { RouterModule } from '@angular/router';
     LoginComponent],
 	imports: [ IonicModule, CommonModule, RouterModule],
 	exports: [FirstComponent,
-	LoginComponent],
+	LoginComponent
+],
 	entryComponents: [LoginComponent, FirstComponent]
 })
 export class ComponentsModule {}

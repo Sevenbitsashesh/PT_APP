@@ -31,6 +31,7 @@ export class LoginComponent {
     };
 
   constructor(public router: Router,private formBuilder: FormBuilder, private loadingController: LoadingController) {
+    this.checklogin();    
     this.loginForm = formBuilder.group({
       email: new FormControl('', Validators.compose([
         Validators.pattern('^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$'),
@@ -52,5 +53,10 @@ export class LoginComponent {
   }
 getLogin() {
   this.presentLoading();
+  this.router.navigate(['/userhome']);
+
+}
+checklogin() {
+  this.router.navigate(['/userhome']);
 }
 }

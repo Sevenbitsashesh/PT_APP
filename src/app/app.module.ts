@@ -14,16 +14,10 @@ import { AppRoutingModule } from './app.routing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FirstComponent } from '../components/first/first';
 import { HttpClientModule } from '@angular/common/http';
-const appRoutes: Routes = [
-  {path: 'login', component: LoginComponent},
-//  {path: 'home', component: HomePage },
-// {path: 'create', component: CreateComponent},
-// { path: 'usertabs', loadChildren: './home/usertabs/usertabs.module#UsertabsPageModule'},
- { path: 'first', component: FirstComponent    },
- { path: 'home', pathMatch: 'full', component: HomePage},
- { path: '', pathMatch: 'full', component: LoginComponent},
- { path: '**', component: HomePage}
-  ];
+import { UserRoutingModule } from '../pages/userhome/user.routing';
+import { UserhomePageModule } from '../pages/userhome/userhome.module';
+//  import {  AngularFireModule } from 'angularfire2';
+// import { config } from '../Configs/firebase_config';
 @NgModule({
   declarations: [
     MyApp,
@@ -35,7 +29,10 @@ const appRoutes: Routes = [
     IonicModule.forRoot(MyApp),
     ComponentsModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes)
+    AppRoutingModule,
+    UserRoutingModule,
+    UserhomePageModule,
+    // AngularFireModule.initializeApp(config)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
