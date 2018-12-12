@@ -50,7 +50,7 @@
               </ion-col>
           </ion-row>
           <ion-row>
-              <ion-col>  <ion-label [(ngModel)]="message" *ngIf="message" id="message">
+              <ion-col>  <ion-label [(ngModel)]="message" *ngIf="message" [ngModelOptions]="{standalone: true}">
                   {{message}}
                 </ion-label></ion-col>
              

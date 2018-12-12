@@ -16,8 +16,9 @@ import { FirstComponent } from '../components/first/first';
 import { HttpClientModule } from '@angular/common/http';
 import { UserRoutingModule } from '../pages/userhome/user.routing';
 import { UserhomePageModule } from '../pages/userhome/userhome.module';
-//  import {  AngularFireModule } from 'angularfire2';
-// import { config } from '../Configs/firebase_config';
+import { AngularFireAuthModule, AngularFireAuth  } from 'angularfire2/auth';
+import { AngularFireModule } from 'angularfire2';
+import { config } from '../Configs/firebase_config';
 @NgModule({
   declarations: [
     MyApp,
@@ -32,7 +33,8 @@ import { UserhomePageModule } from '../pages/userhome/userhome.module';
     AppRoutingModule,
     UserRoutingModule,
     UserhomePageModule,
-    // AngularFireModule.initializeApp(config)
+    AngularFireAuthModule,
+    AngularFireModule.initializeApp(config)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -42,7 +44,8 @@ import { UserhomePageModule } from '../pages/userhome/userhome.module';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    SharedProvider
+    SharedProvider,
+    AngularFireAuth
   ]
 })
 export class AppModule {}

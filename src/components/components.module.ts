@@ -4,11 +4,12 @@ import { LoginComponent } from './login/login';
 import { IonicModule } from 'ionic-angular';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @NgModule({
 	declarations: [FirstComponent,
     LoginComponent],
-	imports: [ IonicModule, CommonModule, RouterModule],
+	imports: [ IonicModule, CommonModule, RouterModule	],
 	exports: [FirstComponent,
 	LoginComponent
 ],

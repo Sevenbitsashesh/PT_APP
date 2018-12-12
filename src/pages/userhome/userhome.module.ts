@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { IonicPageModule, IonicModule } from 'ionic-angular';
 import { UserhomePage } from './userhome';
 import { UserRoutingModule } from './user.routing';
-import { UsertabsComponent } from '../../components/usertabs/usertabs';
+import { UsertabsComponent } from './usertabs'
 
 @NgModule({
   declarations: [

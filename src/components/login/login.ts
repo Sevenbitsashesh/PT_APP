@@ -2,7 +2,8 @@ import { Component, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { LoadingController } from 'ionic-angular';
-
+import { AngularFireAuth } from 'angularfire2/auth';
+import { SharedProvider } from '../../providers/shared/shared';
 
 
 @Component({
@@ -30,8 +31,8 @@ export class LoginComponent {
       ]
     };
 
-  constructor(public router: Router,private formBuilder: FormBuilder, private loadingController: LoadingController) {
-    this.checklogin();    
+  constructor(public router: Router,private formBuilder: FormBuilder, private loadingController: LoadingController, private fireAuth: AngularFireAuth, private sharedService: SharedProvider) {
+    sharedService.checkLogin();
     this.loginForm = formBuilder.group({
       email: new FormControl('', Validators.compose([
         Validators.pattern('^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$'),
@@ -53,10 +54,20 @@ export class LoginComponent {
   }
 getLogin() {
   this.presentLoading();
-  this.router.navigate(['/userhome']);
+  const model = {
+    'email': this.loginForm.get('email').value,
+    'pass': this.loginForm.get('pass').value,
+  };
 
+  this.fireAuth.auth.signInWithEmailAndPassword(model.email , model.pass).then(user => {
+    localStorage.setItem('usermail', model.email);
+    console.log('Logged in');
+    // this.loggedin = true;
+    this.router.navigate(['/userhome']);
+   },
+   err => {
+    this.message = err.message; throw err; }
+   );
 }
-checklogin() {
-  this.router.navigate(['/userhome']);
-}
+
 }
