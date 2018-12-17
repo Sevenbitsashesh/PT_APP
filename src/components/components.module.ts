@@ -5,13 +5,16 @@ import { IonicModule } from 'ionic-angular';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { HometabComponent } from './hometab/hometab';
 
 @NgModule({
 	declarations: [FirstComponent,
-    LoginComponent],
+    LoginComponent,
+    HometabComponent],
 	imports: [ IonicModule, CommonModule, RouterModule	],
 	exports: [FirstComponent,
-	LoginComponent
+	LoginComponent,
+    HometabComponent
 ],
 	entryComponents: [LoginComponent, FirstComponent]
 })

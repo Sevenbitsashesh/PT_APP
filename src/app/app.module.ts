@@ -34,7 +34,8 @@ import { config } from '../Configs/firebase_config';
     UserRoutingModule,
     UserhomePageModule,
     AngularFireAuthModule,
-    AngularFireModule.initializeApp(config)
+    AngularFireModule.initializeApp(config),
+    RouterModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

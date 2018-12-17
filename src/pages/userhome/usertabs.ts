@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { HometabComponent } from '../../components/hometab/hometab';
+import { Router } from '@angular/router';
 /**
  * Generated class for the UsertabsComponent component.
  *
@@ -12,10 +14,12 @@ import { Component } from '@angular/core';
 export class UsertabsComponent {
 
   text: string;
-
-  constructor() {
+  h: any = HometabComponent;
+  constructor(private route: Router) {
     console.log('Hello UsertabsComponent Component');
     this.text = 'Hello World';
   }
-
+goHome() {
+this.route.navigate(['/tabs(tab_home:tab_home)']);
+}
 }

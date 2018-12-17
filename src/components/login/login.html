@@ -35,7 +35,6 @@
             <ion-col>
               <ion-item class="newionInput">
                   <ion-input type="Password" formControlName="pass" placeholder="Password"></ion-input>
-                 
               </ion-item>              
              
             </ion-col>
@@ -67,6 +66,30 @@
               <ion-col>
               </ion-col>
             </ion-row>
+            <ion-row>
+                    <ion-col>
+                    </ion-col>
+                    <ion-col col-8>
+                        <label>
+                            If you forgot password
+                        </label>
+                        <button (click)="createAcc()">reset password</button>
+                    </ion-col>
+                    <ion-col>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row>
+                        <ion-col>
+                        </ion-col>
+                        <ion-col col-8>
+                            <button ion-button (click)="getLogin()">
+                                Sign Up with Google+
+                                 </button>
+                            <button ion-button (click)="createAcc()">Signup with Facebook</button>
+                        </ion-col>
+                        <ion-col>
+                        </ion-col>
+                      </ion-row>
       </ion-grid>
   
   </form>  

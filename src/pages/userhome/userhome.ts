@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { SharedProvider } from '../../providers/shared/shared';
 /**
  * Generated class for the UserhomePage page.
  *
@@ -14,8 +14,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'userhome.html',
 })
 export class UserhomePage {
-
-  constructor() {
+  constructor(private sharedService: SharedProvider) {
+    sharedService.checkLogin();
     console.log('userhome page loaded');
   }
 
@@ -23,4 +23,8 @@ export class UserhomePage {
     console.log('ionViewDidLoad UserhomePage');
   }
 
+  logout() {
+    localStorage.clear();
+    this.sharedService.checkLogin();
+  }
 }

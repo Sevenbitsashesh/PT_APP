@@ -67,7 +67,31 @@ getLogin() {
    },
    err => {
     this.message = err.message; throw err; }
-   );
+   );  
 }
+// Create user in firebase Authentication
+createAcc() {
+  const model = {
+    'email': this.loginForm.get('email').value,
+    'pass': this.loginForm.get('pass').value,
+    'userid': this.loginForm.get('email').value
+  };
+  this.fireAuth.auth.createUserWithEmailAndPassword(model.email , model.pass).then(user => {
+    // this.createUser(model.email , model.pass);
+    this.createUser(model);
+    // this.createUid();
+    this.getLogin();
+  },
+  err => { this.message = err;  throw err;  }
+  );
 
+}
+  // create user in Firestore
+  createUser(model) {
+    const user = {
+      email: model.email,
+      userid: model.userid
+    };
+    // this.sg.addInfo(user);
+  }
 }
