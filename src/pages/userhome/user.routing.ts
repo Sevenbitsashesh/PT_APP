@@ -6,22 +6,25 @@ import { TabHomePageModule } from '../tab-home/tab-home.module';
 import { TabHomePage } from '../tab-home/tab-home';
 import { LoginComponent } from '../../components/login/login';
 import { HometabComponent } from '../../components/hometab/hometab';
+import { TabSearchPageModule } from '../tab-search/tab-search.module';
 
 const routes: Routes = [
-    // {
-    //   path: '',
-    // component: UserhomePage
-    // },
-    {
-        path: 'tabs',
-        component: UserhomePage,
-        children : [
+//     {
+//         path: '',
+//         loadChildren: () => TabHomePageModule
+// },
             {
                 path: 'tab_home',
-                 component: HometabComponent,
-            }
-        ]
-    },
+                //  component: TabHomePage,
+                loadChildren: () => TabHomePageModule
+            },
+            {
+                path: 'tab_search',
+                //  component: TabHomePage,
+                loadChildren: () => TabSearchPageModule
+            },
+            
+        
     // {  
     //         path: 'tab_home',
     //         outlet: 'tab_home',

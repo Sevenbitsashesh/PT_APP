@@ -11,12 +11,13 @@ import { Router } from '@angular/router';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = HomePage;
+  // rootPage:any = HomePage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,private route: Router) {
     AngularFireModule.initializeApp(config);
+    console.log(location.href);
     console.log('main comp');
-    route.navigate(['/home']);
+    this.route.navigate(['/home']);
     platform.ready().then(() => {
       statusBar.styleDefault();
       splashScreen.hide();

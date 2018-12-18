@@ -24,6 +24,6 @@ export class FirstComponent {
   set() {
     localStorage.setItem('firsttime', this.firsttime);
       //  this.nav.push(LoginComponent);
-      this.route.navigate(['/login  ']);
+      this.route.navigate(['/login']);
   }
 }

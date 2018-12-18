@@ -12,11 +12,9 @@ import { Component } from '@angular/core';
 })
 export class HometabComponent {
 
-  text: string;
 
   constructor() {
     console.log('Hello HometabComponent Component');
-    this.text = 'Hello World';
   }
 
 }

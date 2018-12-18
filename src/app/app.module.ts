@@ -39,7 +39,8 @@ import { config } from '../Configs/firebase_config';
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp
+    MyApp,
+    
   ],
   providers: [
     StatusBar,

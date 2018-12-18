@@ -6,6 +6,8 @@ import { UserRoutingModule } from './user.routing';
 import { UsertabsComponent } from './usertabs'
 import { RouterModule } from '@angular/router';
 import { ComponentsModule } from '../../components/components.module';
+import { TabHomePageModule } from '../tab-home/tab-home.module';
+import { TabSearchPageModule } from '../tab-search/tab-search.module';
 
 @NgModule({
   declarations: [
@@ -17,10 +19,12 @@ import { ComponentsModule } from '../../components/components.module';
     CommonModule,
     IonicModule.forRoot(UsertabsComponent),
     UserRoutingModule,
-    ComponentsModule
+    ComponentsModule,
+    TabHomePageModule,
+    TabSearchPageModule
   ],
-  bootstrap: [ UserhomePage ],
-  entryComponents: [UserhomePage],
-  exports: [UserRoutingModule]
+  bootstrap: [],
+  entryComponents: [],
+  exports: []
 })
 export class UserhomePageModule { }
