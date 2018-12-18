@@ -7,6 +7,7 @@ import { TabHomePage } from '../tab-home/tab-home';
 import { LoginComponent } from '../../components/login/login';
 import { HometabComponent } from '../../components/hometab/hometab';
 import { TabSearchPageModule } from '../tab-search/tab-search.module';
+import { TabProfilePageModule } from '../tab-profile/tab-profile.module';
 
 const routes: Routes = [
 //     {
@@ -23,7 +24,11 @@ const routes: Routes = [
                 //  component: TabHomePage,
                 loadChildren: () => TabSearchPageModule
             },
-            
+            {
+                path: 'tab_profile',
+                //  component: TabHomePage,
+                loadChildren: () => TabProfilePageModule
+            },
         
     // {  
     //         path: 'tab_home',

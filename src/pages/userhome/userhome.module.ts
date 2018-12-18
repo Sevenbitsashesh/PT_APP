@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { ComponentsModule } from '../../components/components.module';
 import { TabHomePageModule } from '../tab-home/tab-home.module';
 import { TabSearchPageModule } from '../tab-search/tab-search.module';
+import { TabProfilePageModule } from '../tab-profile/tab-profile.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { TabSearchPageModule } from '../tab-search/tab-search.module';
     UserRoutingModule,
     ComponentsModule,
     TabHomePageModule,
-    TabSearchPageModule
+    TabSearchPageModule,
+    TabProfilePageModule
   ],
   bootstrap: [],
   entryComponents: [],
