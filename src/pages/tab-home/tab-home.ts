@@ -18,8 +18,6 @@ export class TabHomePage {
     
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad TabHomePage');
-  }
+  
 
 }

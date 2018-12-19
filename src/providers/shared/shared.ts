@@ -1,7 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { UserDetails } from 'src/Models/users.details';
+import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/firestore';
+import { configusers } from '../../Models/users_firestore';
+import { Observable } from 'rxjs/Observable';
+// import * as firebase from 'firebase/a';
 /*
   Generated class for the SharedProvider provider.
 
@@ -10,9 +14,12 @@ import { Router } from '@angular/router';
 */
 @Injectable()
 export class SharedProvider {
+  model: UserDetails;
   loggedUser: any;
+  userscollection: AngularFirestoreCollection<UserDetails>;
   constructor(public http: HttpClient, private router: Router) {
-    console.log('Hello SharedProvider Provider');
+    // console.log('Hello SharedProvider Provider');
+  //  this.userscollection = this.database.collection<UserDetails>(configusers.collection_endpoint);
   }
   getLogged() {
     console.log('getlogged', localStorage.getItem('usermail'));

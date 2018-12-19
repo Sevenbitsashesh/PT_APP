@@ -11,7 +11,7 @@ import { ComponentsModule } from '../components/components.module';
 import { LoginComponent } from '../components/login/login';
 import { RouterModule, Routes, RouterOutlet, RouteReuseStrategy } from '@angular/router';
 import { AppRoutingModule } from './app.routing';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { FirstComponent } from '../components/first/first';
 import { HttpClientModule } from '@angular/common/http';
 import { UserRoutingModule } from '../pages/userhome/user.routing';
@@ -19,9 +19,8 @@ import { UserhomePageModule } from '../pages/userhome/userhome.module';
 import { AngularFireAuthModule, AngularFireAuth  } from 'angularfire2/auth';
 import { AngularFireModule } from 'angularfire2';
 import { config } from '../Configs/firebase_config';
-import { UseractivityProvider } from '../providers/useractivity/useractivity';
-import { AngularFirestoreModule} from 'angularfire2/firestore';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFirestoreModule, AngularFirestore} from 'angularfire2/firestore';
+import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
 @NgModule({
   declarations: [
     MyApp,
@@ -40,7 +39,8 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
     AngularFireModule.initializeApp(config),
     RouterModule,
     AngularFirestoreModule,
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    FormsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -52,8 +52,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     SharedProvider,
-    AngularFireAuth,
-    UseractivityProvider
+    AngularFireAuth
   ]
 })
 export class AppModule {}

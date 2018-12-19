@@ -9,6 +9,8 @@ import { ComponentsModule } from '../../components/components.module';
 import { TabHomePageModule } from '../tab-home/tab-home.module';
 import { TabSearchPageModule } from '../tab-search/tab-search.module';
 import { TabProfilePageModule } from '../tab-profile/tab-profile.module';
+import { UseractivityProvider } from '../../providers/useractivity/useractivity';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 @NgModule({
   declarations: [
@@ -23,10 +25,12 @@ import { TabProfilePageModule } from '../tab-profile/tab-profile.module';
     ComponentsModule,
     TabHomePageModule,
     TabSearchPageModule,
-    TabProfilePageModule
+    TabProfilePageModule,
+    AngularFirestoreModule
   ],
   bootstrap: [],
   entryComponents: [],
-  exports: []
+  exports: [],
+  providers: [UseractivityProvider]
 })
 export class UserhomePageModule { }
