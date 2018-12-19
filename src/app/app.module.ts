@@ -20,7 +20,7 @@ import { AngularFireAuthModule, AngularFireAuth  } from 'angularfire2/auth';
 import { AngularFireModule } from 'angularfire2';
 import { config } from '../Configs/firebase_config';
 import { AngularFirestoreModule, AngularFirestore} from 'angularfire2/firestore';
-import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 @NgModule({
   declarations: [
     MyApp,

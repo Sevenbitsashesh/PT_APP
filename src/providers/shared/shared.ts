@@ -6,20 +6,16 @@ import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/fires
 import { configusers } from '../../Models/users_firestore';
 import { Observable } from 'rxjs/Observable';
 // import * as firebase from 'firebase/a';
-/*
-  Generated class for the SharedProvider provider.
 
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class SharedProvider {
   model: UserDetails;
   loggedUser: any;
   userscollection: AngularFirestoreCollection<UserDetails>;
-  constructor(public http: HttpClient, private router: Router) {
+  
+  constructor(public http: HttpClient, private router: Router, public db: AngularFirestore) {
     // console.log('Hello SharedProvider Provider');
-  //  this.userscollection = this.database.collection<UserDetails>(configusers.collection_endpoint);
+   this.userscollection = this.db.collection<UserDetails>(configusers.collection_endpoint);
   }
   getLogged() {
     console.log('getlogged', localStorage.getItem('usermail'));
