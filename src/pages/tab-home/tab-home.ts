@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { SharedProvider } from '../../providers/shared/shared';
+import { UseractivityProvider } from '../../providers/useractivity/useractivity';
 
 
 
@@ -11,8 +13,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class TabHomePage {
 
-  constructor() {
+  constructor(private userActivity: UseractivityProvider) {
     console.log('on home tab');
+    
   }
 
   ionViewDidLoad() {

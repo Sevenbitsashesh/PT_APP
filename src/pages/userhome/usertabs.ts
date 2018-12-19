@@ -24,4 +24,12 @@ export class UsertabsComponent {
 goHome() {
 this.route.navigate(['/tabs(tab_home:tab_home)']);
 }
+logout() {
+  this.sharedService = undefined;
+  localStorage.removeItem('usermail');
+   localStorage.removeItem('username');
+  // this.sharedService.checkLogin();
+  this.route.navigate(['/login']);
+
+}
 }
