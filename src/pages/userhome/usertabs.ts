@@ -18,14 +18,14 @@ export class UsertabsComponent {
   username: any;
   constructor(private route: Router, private sharedService: SharedProvider) {
     console.log('Hello UsertabsComponent Component');
-     this.username = sharedService.getLogged();
+     this.username = localStorage.getItem('username');
      console.log(this.username);
   }
 goHome() {
-this.route.navigate(['/tabs(tab_home:tab_home)']);
+this.route.navigate(['/userhome']);
 }
 logout() {
-  this.sharedService = undefined;
+  this.sharedService= undefined;
   localStorage.removeItem('usermail');
    localStorage.removeItem('username');
   // this.sharedService.checkLogin();

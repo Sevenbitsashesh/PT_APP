@@ -6,6 +6,8 @@ import { SharedProvider } from '../shared/shared';
 import 'rxjs/Rx';
 import { Observable } from 'rxjs';
 import { map, finalize } from 'rxjs/operators';
+import { TweetModel } from '../../Models/tweet_model';
+import { configtweets } from '../../Models/users_firestore';
 @Injectable()
 export class UseractivityProvider {
   model;
@@ -13,7 +15,9 @@ export class UseractivityProvider {
   usercollection;
   usersDoc: AngularFirestoreDocument<UserDetails>;
   uid;
-
+  tweetmodel: TweetModel;
+  tweetscollection: AngularFirestoreCollection<TweetModel>;
+  usersTweets = [];
   constructor(public http: HttpClient, private sharedProvider: SharedProvider, public db: AngularFirestore) {
     console.log('Hello UseractivityProvider Provider');
     this.model = sharedProvider.model;
@@ -21,6 +25,12 @@ export class UseractivityProvider {
     console.log('welcome', this.loggedUser);
     this.getUsername();
   }
+  // Adding user info
+addInfo(model) {
+  this.sharedProvider.saveProfile(model, this.uid);
+  // this.userscollection.add(model);
+  // this.db.collection<UserDetails>
+}
   getUsername() {
     console.log('uid', this.loggedUser);
     // Get Logged in user email
@@ -32,7 +42,7 @@ export class UseractivityProvider {
         localStorage.setItem('username', this.model.userid);
         // Getting Logged user id
          this.uid = change.id;
-          // this.getTweets(this.uid);
+          this.getTweets(this.uid);
   
         // console.log('new', this.uid);
       });
@@ -47,4 +57,23 @@ export class UseractivityProvider {
     //    });
     //   });
     }
+
+    getTweets(uid) {
+
+      // Getting Logged users Tweet
+      this.tweetscollection = this.db.collection('users').doc(uid).collection<TweetModel>(configtweets.collection_endpoint);
+      const observer  = this.tweetscollection.snapshotChanges().
+      pipe(map(docArray => {
+         return docArray.map(data => {
+
+        return ( {tweetcontent: data.payload.doc.data()['tweetcontent'], t_title: data.payload.doc.data()['t_title'],
+        t_date: data.payload.doc.data()['t_date']
+        });
+      });
+    } )
+    ).subscribe(tweets => {
+      [].push.apply(this.usersTweets, tweets);
+      console.log('t:', this.usersTweets);
+    });
+  }
 }

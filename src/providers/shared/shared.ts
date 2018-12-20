@@ -17,6 +17,20 @@ export class SharedProvider {
     // console.log('Hello SharedProvider Provider');
    this.userscollection = this.db.collection<UserDetails>(configusers.collection_endpoint);
   }
+  addInfo(model) {
+    console.log(model);
+     this.userscollection.add(model);
+    if (true ) {
+      this.router.navigate(['/userhome']);
+    }
+  }
+  // Profile data update of user by uid
+  saveProfile(model, uid) {
+    console.log(model, uid);
+     this.db.doc<UserDetails>(`users/${uid}`).set(model).then(saved => {
+      this.router.navigate(['/userhome']);
+     }).catch(error => console.log(error));
+  }
   getLogged() {
     console.log('getlogged', localStorage.getItem('usermail'));
     return localStorage.getItem('usermail');

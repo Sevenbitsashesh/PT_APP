@@ -13,11 +13,15 @@
         Post
       </button>
     </ion-item>
-    <ion-item>
+    <ion-item *ngFor="let tweet of tweets; let i = index">
+      <div>
       <ion-avatar>
           <img src="img/slimer.png">
-          <h2>Title here</h2>
-          <h1>Desc   here</h1>
+          <h1>{{tweet.t_title}}</h1>
+          <h2>{{tweet.tweetcontent}}</h2>
+          <h3>{{i}}</h3>
       </ion-avatar>
+    </div>
     </ion-item>
+  
 </ion-content>

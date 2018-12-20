@@ -92,6 +92,6 @@ createAcc() {
       email: model.email,
       userid: model.userid
     };
-    // this.sg.addInfo(user);
+    // this.us.addInfo(user);
   }
 }

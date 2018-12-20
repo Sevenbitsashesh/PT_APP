@@ -6,16 +6,20 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { HometabComponent } from './hometab/hometab';
+import { ProfileComponent } from './profile/profile';
 
 @NgModule({
 	declarations: [FirstComponent,
     LoginComponent,
-    HometabComponent],
+    HometabComponent,
+    ProfileComponent],
 	imports: [ IonicModule, CommonModule, RouterModule	],
 	exports: [FirstComponent,
 	LoginComponent,
-    HometabComponent
+    HometabComponent,
+    ProfileComponent
 ],
-	entryComponents: [LoginComponent, FirstComponent]
+    entryComponents: [LoginComponent, FirstComponent, ProfileComponent],
+
 })
 export class ComponentsModule {}

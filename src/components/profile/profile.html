@@ -1,0 +1,49 @@
+<div padding>
+<form [formGroup]="myForm">
+    <ion-item>
+        
+            <ion-input type="text" formControlName="username" placeholder="Username"></ion-input> 
+            
+        
+        <div>
+            <ng-container *ngFor="let validation of validation_messages.username">
+                <div class="error-message" *ngIf="myForm.get('username').hasError(validation.type) && myForm.controls['username'].touched">{{validation.message}}</div> 
+              </ng-container>  
+        </div>
+        
+      
+      </ion-item>
+      <ion-item>
+        
+          <ion-input type="mobile" formControlName="mobile"  placeholder="Mobile"></ion-input>
+          <ng-container *ngFor="let validation of validation_messages.mobile">
+              <div class="error-message" *ngIf="myForm.get('mobile').hasError(validation.type) && myForm.controls['mobile'].touched">{{validation.message}}</div>   
+            </ng-container>
+        </ion-item>
+        <ion-item>
+          
+            <ion-input type="Date" formControlName="dob" name="dob"  placeholder="Date of birth"></ion-input>
+          </ion-item>
+        <ion-item>
+            
+              <ion-input type="Email" formControlName="email" name="email"></ion-input>
+            </ion-item>
+                
+                      <ion-item>
+
+                        
+                          <ion-textarea formControlName="address" placeholder="Address"></ion-textarea>
+                          <ng-container *ngFor="let validation of validation_messages.address">
+                            <div class="error-message" *ngIf="myForm.get('address').hasError(validation.type) && myForm.controls['address'].touched">{{validation.message}}</div>
+                          </ng-container>
+                        </ion-item>
+                        <ion-item>
+                          
+                            <ion-textarea formControlName="hobbies" placeholder="hobbies"></ion-textarea>
+                            <ng-container *ngFor="let validation of validation_messages.address">
+                              <div class="error-message" *ngIf="myForm.get('address').hasError(validation.type) && myForm.controls['hobbies'].touched">{{validation.message}}</div>
+                            </ng-container>
+                          </ion-item>
+                                    <button ion-button (click)="saveProfile()" [disabled]="myForm.invalid">Save</button>
+</form>
+</div>
