@@ -14,7 +14,7 @@
       </button>
     </ion-item>
     <ion-item *ngFor="let tweet of tweets; let i = index">
-      <div>
+      <div [style.background-color]="background[i]">
       <ion-avatar>
           <img src="img/slimer.png">
           <h1>{{tweet.t_title}}</h1>

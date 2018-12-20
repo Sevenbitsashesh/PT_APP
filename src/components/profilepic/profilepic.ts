@@ -8,7 +8,7 @@ import { Camera } from '@ionic-native/camera';
   templateUrl: 'profilepic.html'
 })
 export class ProfilepicComponent {
-
+image: string;
   
 
   constructor(private sharedService: SharedProvider, private camera: Camera) {
@@ -34,21 +34,20 @@ export class ProfilepicComponent {
     captureImage() {
   //  console.log('capture photo');
 
-
   this.camera.getPicture({
-    // sourceType: this.camera.PictureSourceType.SAVEDPHOTOALBUM,
-    quality: 100,
-  destinationType: this.camera.DestinationType.FILE_URI,
-  encodingType: this.camera.EncodingType.JPEG,
-  mediaType: this.camera.MediaType.PICTURE
-  }).then((imageData) => {
-    // imageData is either a base64 encoded string or a file URI
-    // If it's base64 (DATA_URL):
-    let base64Image = 'data:image/jpeg;base64,' + imageData;
-   }, (err) => {
-    // Handle error
-   });
-  //  this.profileImg = this.uactivity.myPhoto;
+    // destinationType: this.camera.DestinationType.NATIVE_URI,
+    targetWidth: 320,
+    targetHeight: 320,
+quality: 100,
+sourceType: this.camera.PictureSourceType.CAMERA
+}).then((data) => {
+
+    this.image = "data:image/jpeg;base64," + data;
+
+}, (error) => {
+
+    console.log(error);
+});
     }
     selectPhoto(): void {
 console.log('select photo');
