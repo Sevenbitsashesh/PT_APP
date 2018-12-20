@@ -7,17 +7,20 @@ import { RouterModule } from '@angular/router';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { HometabComponent } from './hometab/hometab';
 import { ProfileComponent } from './profile/profile';
+import { ProfilepicComponent } from './profilepic/profilepic';
 
 @NgModule({
 	declarations: [FirstComponent,
     LoginComponent,
     HometabComponent,
-    ProfileComponent],
+    ProfileComponent,
+    ProfilepicComponent],
 	imports: [ IonicModule, CommonModule, RouterModule	],
 	exports: [FirstComponent,
 	LoginComponent,
     HometabComponent,
-    ProfileComponent
+    ProfileComponent,
+    ProfilepicComponent
 ],
     entryComponents: [LoginComponent, FirstComponent, ProfileComponent],
 

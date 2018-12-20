@@ -5,6 +5,7 @@ import { UserDetails } from 'src/Models/users.details';
 import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/firestore';
 import { configusers } from '../../Models/users_firestore';
 import { Observable } from 'rxjs/Observable';
+import { ToastController, ActionSheetController } from 'ionic-angular';
 // import * as firebase from 'firebase/a';
 
 @Injectable()
@@ -13,7 +14,7 @@ export class SharedProvider {
   loggedUser: any;
   userscollection: AngularFirestoreCollection<UserDetails>;
   
-  constructor(public http: HttpClient, private router: Router, public db: AngularFirestore) {
+  constructor(public http: HttpClient, private router: Router, public db: AngularFirestore, private Toast: ToastController, private actionsheetCtrl: ActionSheetController) {
     // console.log('Hello SharedProvider Provider');
    this.userscollection = this.db.collection<UserDetails>(configusers.collection_endpoint);
   }
@@ -47,4 +48,23 @@ export class SharedProvider {
       this.router.navigate(['/login']);
     }
   }
+  async callToast(msg) {
+    const toast = await this.Toast.create({
+      message: msg,
+      duration: 3000,
+      position: 'top'
+    });
+    toast.present();
+  }
+// ActionsheetController Global Service
+present(buttons: Array<any>) {
+  buttons.push({
+      text: 'Cancel',
+      role: 'cancel',
+  });
+let actionSheet = this.actionsheetCtrl.create({
+      buttons: buttons
+  });
+actionSheet.present();
+}
 }

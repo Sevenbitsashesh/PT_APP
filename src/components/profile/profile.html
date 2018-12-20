@@ -37,13 +37,13 @@
                             <div class="error-message" *ngIf="myForm.get('address').hasError(validation.type) && myForm.controls['address'].touched">{{validation.message}}</div>
                           </ng-container>
                         </ion-item>
-                        <ion-item>
+                        <!-- <ion-item>
                           
                             <ion-textarea formControlName="hobbies" placeholder="hobbies"></ion-textarea>
                             <ng-container *ngFor="let validation of validation_messages.address">
                               <div class="error-message" *ngIf="myForm.get('address').hasError(validation.type) && myForm.controls['hobbies'].touched">{{validation.message}}</div>
                             </ng-container>
-                          </ion-item>
+                          </ion-item> -->
                                     <button ion-button (click)="saveProfile()" [disabled]="myForm.invalid">Save</button>
 </form>
 </div>
