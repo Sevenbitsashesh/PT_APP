@@ -3,18 +3,18 @@
     
     <ion-item padding>
         <ion-label floating>Whats on your mind?</ion-label>
-        <ion-input></ion-input>
+        <ion-input [(ngModel)]="t_title"></ion-input>
       </ion-item>
       <ion-item>
-      <ion-label floating>Description</ion-label> <ion-input></ion-input>
+      <ion-label floating>Description</ion-label> <ion-input [(ngModel)]="tweetcontent"></ion-input>
     </ion-item>
     <ion-item>
-      <button ion-button>
+      <button ion-button (click)="createTweet()">
         Post
       </button>
     </ion-item>
-    <ion-item *ngFor="let tweet of tweets; let i = index">
-      <div [style.background-color]="background[i]">
+    <ion-item *ngFor="let tweet of tweets;">
+      <div [style.background-color]="background[index]">
       <ion-avatar>
           <img src="img/slimer.png">
           <h1>{{tweet.t_title}}</h1>

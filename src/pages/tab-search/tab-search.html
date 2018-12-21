@@ -1,18 +1,29 @@
-<!--
-  Generated template for the TabSearchPage page.
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
+
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>tab/search/</ion-title>
-  </ion-navbar>
-
+  
 </ion-header>
-
-
 <ion-content padding>
+  <div padding>
+      <ion-searchbar showCancelButton [(ngModel)]="search_content" (ionChange)="onInput()" id="search_content">
 
+      </ion-searchbar>
+  </div>
+<div class="divSearchView">
+      <ion-item *ngFor="let user of search">
+          <ion-avatar slot="start">
+            <img [src]="user.profile_pic">
+          </ion-avatar>      
+          <!-- <button ion-button color="white" fill="outline" (click)="searchUser(user.userid)">
+                @{{user.userid}}
+              </button> -->
+              <nav>
+                <a (click)="gotoSearch(user.userid)">
+                  {{user.userid}}
+                  </a>
+              </nav>
+                <router-outlet></router-outlet>
+          </ion-item>
+  
+</div>
 </ion-content>

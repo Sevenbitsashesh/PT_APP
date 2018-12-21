@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { SharedProvider } from '../../providers/shared/shared';
 import { UseractivityProvider } from '../../providers/useractivity/useractivity';
+import { Camera } from '@ionic-native/camera';
 
 
 @Component({
@@ -18,7 +19,7 @@ export class ProfileComponent {
   myForm: FormGroup;
   matching_passwords_group: FormGroup;
   loggedEmail: string;
-
+  profileImg: any;
   validation_messages = {
     'username': [
         { type: 'required', message: 'Username is required' },
@@ -54,11 +55,11 @@ export class ProfileComponent {
 
       this.uactivity.addInfo(model);
     }
-  constructor(private formBuilder: FormBuilder, private sharedService: SharedProvider, private uactivity: UseractivityProvider) {
+  constructor(private formBuilder: FormBuilder, private sharedService: SharedProvider, private uactivity: UseractivityProvider, private camera: Camera) {
     this.loggedEmail = sharedService.getLogged();
-    
+    this.profileImg = uactivity.model.profile_pic;
     this.myForm = formBuilder.group({
-      username: new FormControl('', Validators.compose([
+      username: new FormControl(this.uactivity.model.username, Validators.compose([
         Validators.maxLength(25),
         Validators.minLength(5),
         Validators.pattern('^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]+$'),
@@ -89,5 +90,66 @@ export class ProfileComponent {
     );
     
   }
+
+
+  //* Profile Image  *//
+  actionForProfile() {
+    this.sharedService.present([
+      {
+        text: 'Camera',
+        handler: () => {
+          this.captureImage()
+        }
+      },
+      {
+        text: 'Choose from gallery',
+        handler: () => {
+          this.selectPhoto();
+        }
+      },
+    ]);
+    
+    }
+    captureImage() {
+  //  console.log('capture photo');
+
+  this.camera.getPicture({
+    quality: 20,
+    destinationType: this.camera.DestinationType.DATA_URL,
+    sourceType: this.camera.PictureSourceType.CAMERA,
+    encodingType: this.camera.EncodingType.PNG,
+    saveToPhotoAlbum: true,
+    allowEdit: true
+}).then((imageData) => {
+
+  this.profileImg = imageData;
+  this.uactivity.uploadPhoto(imageData);
+
+}, (error) => {
+
+    console.log(error);
+});
+this.profileImg = this.uactivity.myPhotoURL;
+    }
+    selectPhoto(): void {
+console.log('select photo');
+
+this.camera.getPicture({
+  quality: 20,
+  destinationType: this.camera.DestinationType.DATA_URL,
+  sourceType: this.camera.PictureSourceType.SAVEDPHOTOALBUM,
+  encodingType: this.camera.EncodingType.JPEG || this.camera.EncodingType.PNG,
+  mediaType: this.camera.MediaType.PICTURE
+}).then((imageData) => {
+
+this.profileImg = imageData;
+this.uactivity.uploadPhoto(imageData);
+
+}, (error) => {
+
+  console.log(error);
+});
+this.profileImg = this.uactivity.myPhotoURL;
+    }
 
 }

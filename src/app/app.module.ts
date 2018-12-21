@@ -21,6 +21,8 @@ import { AngularFireModule } from 'angularfire2';
 import { config } from '../Configs/firebase_config';
 import { AngularFirestoreModule, AngularFirestore} from 'angularfire2/firestore';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireStorageModule } from 'angularfire2/storage';
+import { DataProvider } from '../providers/data/data';
 @NgModule({
   declarations: [
     MyApp,
@@ -40,7 +42,8 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
     RouterModule,
     AngularFirestoreModule,
     AngularFireDatabaseModule,
-    FormsModule
+    FormsModule,
+    AngularFireStorageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -52,7 +55,8 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     SharedProvider,
-    AngularFireAuth
+    AngularFireAuth,
+    DataProvider
   ]
 })
 export class AppModule {}

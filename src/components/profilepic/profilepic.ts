@@ -8,7 +8,7 @@ import { Camera } from '@ionic-native/camera';
   templateUrl: 'profilepic.html'
 })
 export class ProfilepicComponent {
-image: string;
+  profileImg: string;
   
 
   constructor(private sharedService: SharedProvider, private camera: Camera) {
@@ -42,7 +42,7 @@ quality: 100,
 sourceType: this.camera.PictureSourceType.CAMERA
 }).then((data) => {
 
-    this.image = "data:image/jpeg;base64," + data;
+    this.profileImg = "data:image/jpeg;base64," + data;
 
 }, (error) => {
 

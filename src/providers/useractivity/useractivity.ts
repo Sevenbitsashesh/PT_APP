@@ -8,6 +8,8 @@ import { Observable } from 'rxjs';
 import { map, finalize } from 'rxjs/operators';
 import { TweetModel } from '../../Models/tweet_model';
 import { configtweets } from '../../Models/users_firestore';
+import { AngularFireStorage } from 'angularfire2/storage';
+import { DataProvider } from '../data/data';
 @Injectable()
 export class UseractivityProvider {
   model;
@@ -18,7 +20,11 @@ export class UseractivityProvider {
   tweetmodel: TweetModel;
   tweetscollection: AngularFirestoreCollection<TweetModel>;
   usersTweets = [];
-  constructor(public http: HttpClient, private sharedProvider: SharedProvider, public db: AngularFirestore) {
+  myPhotoURL: Observable<String>;
+  myPhoto;
+  usersearched;
+  searchModel: Observable<any>;
+  constructor(public http: HttpClient, private sharedProvider: SharedProvider, public db: AngularFirestore,private fstorage: AngularFireStorage, private dataService: DataProvider) {
     console.log('Hello UseractivityProvider Provider');
     this.model = sharedProvider.model;
     this.loggedUser = sharedProvider.loggedUser;
@@ -26,7 +32,7 @@ export class UseractivityProvider {
     this.getUsername();
   }
   // Adding user info
-addInfo(model) {
+addInfo(model) { 
   this.sharedProvider.saveProfile(model, this.uid);
   // this.userscollection.add(model);
   // this.db.collection<UserDetails>
@@ -75,5 +81,74 @@ addInfo(model) {
       [].push.apply(this.usersTweets, tweets);
       console.log('t:', this.usersTweets);
     });
+  }
+  // Upload Photo to firestore
+  public uploadPhoto(profilepic) {
+    const file = 'data:image/jpg;base64,' + profilepic;
+    const fileRef =  this.fstorage.ref('/profile/' + this.generateUUID() + '.jpg');
+    const stor_task = fileRef.putString(file, 'data_url');
+    // const donUrl = stor_task.snapshotChanges().pipe(finalize(() => {
+    //     fileRef.getDownloadURL().subscribe(url => {
+    //       this.myPhoto = url;
+    //       console.log(url);
+    //     });
+    // }));
+    stor_task.snapshotChanges().pipe(
+      finalize(() => {
+        this.myPhotoURL = fileRef.getDownloadURL();
+        this.myPhotoURL.subscribe(url => {
+          if (url) {
+        this.myPhoto = url;
+         this.sharedProvider.saveProfilePic(url, this.uid);
+          }
+        });
+      }
+      )
+    ).subscribe();
+  }
+  //Generate unique uuid for Image
+  private generateUUID(): any {
+    let d = new Date().getTime();
+    const uuid = 'xxxxxxxx-xxxx-4xxx-yxxx'.replace(/[xy]/g, function (c) {
+      const r = (d + Math.random() * 16) % 16 | 0;
+      d = Math.floor(d / 16);
+      return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+    });
+    return uuid;
+  }
+  call() {
+    this.sharedProvider.callToast('hi');
+  }
+  // Tweeet create
+  createTweet(tweetcontent, t_title) {
+    this.tweetmodel = {
+      tweetcontent: tweetcontent,
+      tweetid: Math.random().toString(14),
+      t_title: t_title,
+      t_date: this.sharedProvider.getTodayDate()
+    };
+    const tweetColl = this.db.collection('users').ref.where('email', '==', this.loggedUser);
+    console.log(this.loggedUser);
+    tweetColl.onSnapshot(snap => {
+    snap.forEach(data => {
+      this.tweetscollection.add(this.tweetmodel);
+      
+    }
+    );
+    });
+  }
+  public getAllUsers() {
+    const u = [];
+     this.db.collection('users').get().forEach(data => {
+    console.log(data.forEach(user => {
+      u.push(user.data());
+    }));
+     });
+      return u;
+   //  const us = u.find.name
+  }
+  getSearchUserModel(userid) {
+   return this.sharedProvider.searchUserById(userid);
+    
   }
 }

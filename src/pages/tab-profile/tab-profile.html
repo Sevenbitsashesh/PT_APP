@@ -5,32 +5,7 @@
 <div class="div-profile" padding>
 <div>
     <div padding>
-        <ion-segment [(ngModel)]="profiledata">
-          <ion-segment-button value="profile">
-            Profile
-          </ion-segment-button>
-          <ion-segment-button value="info">
-            Information
-          </ion-segment-button>
-        </ion-segment>
-      </div>
-      
-      <div [ngSwitch]="profiledata">
-        <ion-list *ngSwitchCase="'profile'">
-          <profilepic></profilepic>
-          <profile></profile>
-          
-        </ion-list>
-      
-        <ion-list *ngSwitchCase="'info'">
-          <ion-item>
-            <ion-thumbnail item-start>
-              <img src="img/thumbnail-kitten-1.jpg">
-            </ion-thumbnail>
-            <h2>Luna</h2>
-          </ion-item>
-          
-        </ion-list>
+      <profile></profile>
       </div>
   
 </div>
@@ -42,4 +17,6 @@
   </ion-infinite-scroll>
  
 </div> -->
+
 </div>
+

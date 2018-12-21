@@ -33,4 +33,8 @@ export class TabHomePage {
   var color = Math.floor(0x1000000 * Math.random()).toString(16);
   return "#" + ("000000" + color).slice(-6);
   }
+  // Creating Tweeet
+  createTweet() {
+    this.userActivity.createTweet(this.tweetcontent, this.t_title);
+}
 }

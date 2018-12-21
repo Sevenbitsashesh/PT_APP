@@ -7,13 +7,13 @@ import { configusers } from '../../Models/users_firestore';
 import { Observable } from 'rxjs/Observable';
 import { ToastController, ActionSheetController } from 'ionic-angular';
 // import * as firebase from 'firebase/a';
-
+import { getLocaleDateFormat, DatePipe } from '@angular/common';
 @Injectable()
 export class SharedProvider {
   model: UserDetails;
   loggedUser: any;
   userscollection: AngularFirestoreCollection<UserDetails>;
-  
+  searchModel;
   constructor(public http: HttpClient, private router: Router, public db: AngularFirestore, private Toast: ToastController, private actionsheetCtrl: ActionSheetController) {
     // console.log('Hello SharedProvider Provider');
    this.userscollection = this.db.collection<UserDetails>(configusers.collection_endpoint);
@@ -66,5 +66,31 @@ let actionSheet = this.actionsheetCtrl.create({
       buttons: buttons
   });
 actionSheet.present();
+}
+saveProfilePic(img: any, uid) {
+  const promodel = {
+   'profile_pic': img
+  };
+  this.db.collection('users').doc(`${uid}`).update(promodel).then(snap => {
+    this.callToast('Profile Pic Updated');
+    this.router.navigate(['#/userhome/tab_profile']);
+  });
+}
+getTodayDate() {
+  const pipe = new DatePipe('en-US');
+  const now = Date.now();
+  const today = pipe.transform(now, 'dd-MM-yyyy hh:mm:ss');
+  // const today = getLocaleDateFormat(new Date(), 'dd-MM-yyyy hh:mm:ss', 'en-US');
+  return today;
+}
+public searchUserById(userid) {
+  this.db.collection('users').ref.where('userid', '==', userid).onSnapshot(user => {
+    user.forEach(data => {
+      this.searchModel = data.data();
+      console.log('details', this.searchModel);
+    }
+    );
+  });
+  return this.searchModel;
 }
 }

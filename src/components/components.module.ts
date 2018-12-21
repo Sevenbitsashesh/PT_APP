@@ -8,6 +8,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { HometabComponent } from './hometab/hometab';
 import { ProfileComponent } from './profile/profile';
 import { ProfilepicComponent } from './profilepic/profilepic';
+import { UserprofileComponent } from './userprofile/userprofile';
 
 @NgModule({
 	declarations: [FirstComponent,
