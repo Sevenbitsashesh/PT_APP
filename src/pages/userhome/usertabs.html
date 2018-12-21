@@ -44,7 +44,11 @@
          <ion-header>
            <ion-toolbar>
              <ion-title>@{{username}}</ion-title>
-             <button (click)="logout()">Logout</button>
+             <div class="divNoti">
+                <ion-icon name="notifications" size="large" class="iconNotification"></ion-icon>
+             </div>
+             <button (click)="logout()" class="btnLogout">Logout</button>
+             
            </ion-toolbar>
          </ion-header>
          <div class="divMain">

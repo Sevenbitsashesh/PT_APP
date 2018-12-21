@@ -13,7 +13,7 @@
         Post
       </button>
     </ion-item>
-    <ion-item *ngFor="let tweet of tweets;">
+    <!-- <ion-item *ngFor="let tweet of tweets;">
       <div [style.background-color]="background[index]">
       <ion-avatar>
           <img src="img/slimer.png">
@@ -22,6 +22,42 @@
           <h3>{{i}}</h3>
       </ion-avatar>
     </div>
-    </ion-item>
-  
+    </ion-item> -->
+    <ion-card *ngFor="let tweet of tweets;">
+
+        <ion-item>
+          <ion-avatar item-start>
+            <img src="img/marty-avatar.png">
+          </ion-avatar>
+          <h2>{{tweet.t_title}}</h2>
+          <p>November 5, 1955</p>
+        </ion-item>
+      
+        <img src="img/advance-card-bttf.png">
+      
+        <ion-card-content>
+          <p>{{tweet.tweetcontent}}</p>
+        </ion-card-content>
+      
+        <ion-row>
+          <ion-col>
+            <button ion-button icon-start clear small>
+              <ion-icon name="thumbs-up"></ion-icon>
+              <div>12 Likes</div>
+            </button>
+          </ion-col>
+          <ion-col>
+            <button ion-button icon-start clear small>
+              <ion-icon name="text"></ion-icon>
+              <div>4 Comments</div>
+            </button>
+          </ion-col>
+          <ion-col center text-center>
+            <ion-note>
+              11h ago
+            </ion-note>
+          </ion-col>
+        </ion-row>
+      
+      </ion-card>
 </ion-content>

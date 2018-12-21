@@ -27,7 +27,20 @@ button {
     width: 100%;
 }
 .btnLogout  {
-    position:fixed;
-    right:10px;
-    top:5px;
+    position:absolute;
+    right:0px;
+    top:0px;
+    width: 20%
+}
+.divNoti {
+    height: 100%;
+    width: 50px;
+    background: rebeccapurple;
+    position: absolute;
+    right: 20%;
+    top:0px;
+}
+.iconNotification {
+    height: 100%;
+    width: 100%;
 }

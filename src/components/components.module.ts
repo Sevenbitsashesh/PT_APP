@@ -9,6 +9,7 @@ import { HometabComponent } from './hometab/hometab';
 import { ProfileComponent } from './profile/profile';
 import { ProfilepicComponent } from './profilepic/profilepic';
 import { UserprofileComponent } from './userprofile/userprofile';
+import { NotificationComponent } from './notification/notification';
 
 @NgModule({
 	declarations: [FirstComponent,

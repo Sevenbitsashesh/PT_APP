@@ -12,6 +12,7 @@ import { TabProfilePageModule } from '../tab-profile/tab-profile.module';
 import { UseractivityProvider } from '../../providers/useractivity/useractivity';
 import { AngularFirestoreModule, AngularFirestore } from 'angularfire2/firestore';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { TabViewsPageModule } from '../tab-views/tab-views.module';
 
 @NgModule({
   declarations: [
@@ -26,8 +27,8 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
     ComponentsModule,
     TabHomePageModule,
     TabSearchPageModule,
-    TabProfilePageModule
-    
+    TabProfilePageModule,
+    TabViewsPageModule
   ],
   bootstrap: [],
   entryComponents: [],
