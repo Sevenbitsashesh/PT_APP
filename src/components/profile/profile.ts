@@ -59,14 +59,14 @@ export class ProfileComponent {
     this.loggedEmail = sharedService.getLogged();
     this.profileImg = uactivity.model.profile_pic;
     this.myForm = formBuilder.group({
-      username: new FormControl(this.uactivity.model.username, Validators.compose([
+      username: new FormControl('ashesh', Validators.compose([
         Validators.maxLength(25),
         Validators.minLength(5),
         Validators.pattern('^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]+$'),
         Validators.required
       ])
       ),
-      mobile: new FormControl('', Validators.compose([
+      mobile: new FormControl(this.uactivity.model.mobile, Validators.compose([
         Validators.maxLength(12),
         Validators.minLength(10),
         Validators.pattern('^(0|[1-9][0-9]*)$'),
@@ -77,12 +77,12 @@ export class ProfileComponent {
         Validators.required,
         // Validators.pattern('^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$')
       ])),
-      address: new FormControl('', Validators.compose([
+      address: new FormControl(this.uactivity.model.address, Validators.compose([
         Validators.pattern('^[a-z]{1,100}$')
       ])),
       hobbies: new FormControl('', Validators.compose([
       ])),
-      dob: new FormControl('', Validators.compose([
+      dob: new FormControl(this.uactivity.model.dob, Validators.compose([
       ])),
       gender: new FormControl('Male', Validators.compose([
       ])),

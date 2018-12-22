@@ -24,6 +24,7 @@ export class UseractivityProvider {
   myPhoto;
   usersearched;
   searchModel: Observable<any>;
+  verification;
   constructor(public http: HttpClient, private sharedProvider: SharedProvider, public db: AngularFirestore,private fstorage: AngularFireStorage, private dataService: DataProvider) {
     console.log('Hello UseractivityProvider Provider');
     this.model = sharedProvider.model;
@@ -44,12 +45,16 @@ addInfo(model) {
       snap.forEach(change => {
         // Users Profile data set to model
         this.model = change.data();
+        // Verification Details
+        if(this.model.verified === false) {
+          this.verification = false;
+        }
          console.log('model', this.model);
         localStorage.setItem('username', this.model.userid);
         // Getting Logged user id
          this.uid = change.id;
           this.getTweets(this.uid);
-  
+          
         // console.log('new', this.uid);
       });
       // console.log(this.model.email);
@@ -149,6 +154,10 @@ addInfo(model) {
   }
   getSearchUserModel(userid) {
    return this.sharedProvider.searchUserById(userid);
-    
+  }
+  checkVerification() {
+     if(this.verification == false) {
+      this.sharedProvider.verify();
+     }
   }
 }

@@ -7,6 +7,7 @@ export class UserDetails  {
      address: string;
      gender: string;
      mobile: number;
+     verified? : boolean;
     // hobbies: string[];
      profile_pic: string;
      dob: Date;

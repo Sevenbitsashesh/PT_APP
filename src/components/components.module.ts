@@ -11,6 +11,7 @@ import { ProfilepicComponent } from './profilepic/profilepic';
 import { UserprofileComponent } from './userprofile/userprofile';
 import { NotificationComponent } from './notification/notification';
 
+
 @NgModule({
 	declarations: [FirstComponent,
     LoginComponent,
@@ -22,8 +23,7 @@ import { NotificationComponent } from './notification/notification';
 	LoginComponent,
     HometabComponent,
     ProfileComponent,
-    ProfilepicComponent
-],
+    ProfilepicComponent],
     entryComponents: [LoginComponent, FirstComponent, ProfileComponent],
 
 })

@@ -34,7 +34,6 @@ const routes: Routes = [
                 path: 'tab_views',
                 loadChildren: () => TabViewsPageModule
             }
-        
     // {  
     //         path: 'tab_home',
     //         outlet: 'tab_home',

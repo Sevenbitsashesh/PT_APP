@@ -14,6 +14,7 @@ export class SharedProvider {
   loggedUser: any;
   userscollection: AngularFirestoreCollection<UserDetails>;
   searchModel;
+  verification;
   constructor(public http: HttpClient, private router: Router, public db: AngularFirestore, private Toast: ToastController, private actionsheetCtrl: ActionSheetController) {
     // console.log('Hello SharedProvider Provider');
    this.userscollection = this.db.collection<UserDetails>(configusers.collection_endpoint);
@@ -92,5 +93,9 @@ public searchUserById(userid) {
     );
   });
   return this.searchModel;
+}
+verify() {
+  console.log('not ver');
+    this.router.navigate(['verification']);
 }
 }

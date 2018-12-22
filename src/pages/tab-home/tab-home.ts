@@ -18,8 +18,10 @@ export class TabHomePage {
   background= [];
   constructor(private userActivity: UseractivityProvider) {
     // console.log('on home tab');
+
     this.tweets = userActivity.usersTweets;
     this.getTweet();
+     this.checkVerification();
   }
   getTweet() {
     console.log('data :', this.tweets.length );
@@ -36,5 +38,9 @@ export class TabHomePage {
   // Creating Tweeet
   createTweet() {
     this.userActivity.createTweet(this.tweetcontent, this.t_title);
+}
+checkVerification() {
+   console.log('ver');  
+  this.userActivity.checkVerification();
 }
 }

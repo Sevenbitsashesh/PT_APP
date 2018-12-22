@@ -30,6 +30,5 @@ logout() {
    localStorage.removeItem('username');
   // this.sharedService.checkLogin();
   this.route.navigate(['/login']);
-
 }
 }
