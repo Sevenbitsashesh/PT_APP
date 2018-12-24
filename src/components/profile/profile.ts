@@ -59,7 +59,7 @@ export class ProfileComponent {
     this.loggedEmail = sharedService.getLogged();
     this.profileImg = uactivity.model.profile_pic;
     this.myForm = formBuilder.group({
-      username: new FormControl('ashesh', Validators.compose([
+      username: new FormControl(this.uactivity.model.username, Validators.compose([
         Validators.maxLength(25),
         Validators.minLength(5),
         Validators.pattern('^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]+$'),

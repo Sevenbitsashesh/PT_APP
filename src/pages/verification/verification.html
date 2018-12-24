@@ -1,0 +1,35 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>
+            Verify Mobile
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+        
+<ion-content class="contentVerification">
+                  <div class="mainPhone">
+                        
+                     <div class="divCC">
+                            <ion-input placeholder="91" class="inptCC" ></ion-input>
+                    </div>
+                    
+                    <div class="divMobile">
+                            
+                            <ion-input type="text" maxlength="10" placeholder="999-999-9999" class="inptLine" [(ngModel)]="mobile"></ion-input>
+                    </div>
+                  </div>
+                  <button ion-button (click)="sendOtp()" class="btnSendOtp" [disabled]="disable">
+                        Send An Otp
+
+
+                    
+
+                  </button>
+                  <!-- <div>
+                        <ion-input type="text" placeholder="OTP"></ion-input>
+                      </div>
+                  <button ion-button (click)="sendOtp()">
+                        Verify
+                      </button> -->
+                    </ion-content>

@@ -23,6 +23,7 @@ import { AngularFirestoreModule, AngularFirestore} from 'angularfire2/firestore'
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireStorageModule } from 'angularfire2/storage';
 import { DataProvider } from '../providers/data/data';
+import { AngularFireMessagingModule } from 'angularfire2/messaging';
 @NgModule({
   declarations: [
     MyApp,
@@ -43,7 +44,8 @@ import { DataProvider } from '../providers/data/data';
     AngularFirestoreModule,
     AngularFireDatabaseModule,
     FormsModule,
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    AngularFireMessagingModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

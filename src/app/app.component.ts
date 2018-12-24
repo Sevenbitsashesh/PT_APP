@@ -5,7 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import {  AngularFireModule } from 'angularfire2/';
 import { config } from '../Configs/firebase_config';
 import { HomePage } from '../pages/home/home';
-import { Router } from '@angular/router';
+import { Router } from '@angular/router'; 
 @Component({
   selector: 'ion-app',
   templateUrl: 'app.html'
