@@ -41,6 +41,7 @@ export class TabHomePage {
 }
 checkVerification() {
    console.log('ver');  
-  this.userActivity.checkVerification();
+   //uncommen for going to verify
+  // this.userActivity.checkVerification();
 }
 }

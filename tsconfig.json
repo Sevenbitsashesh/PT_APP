@@ -15,7 +15,7 @@
     "baseUrl": "./"
   },
   "include": [
-    "src/**/*.ts"
+    "src/**/*.ts", "src/providers/firebase-messaging-sw-js/firebase-messaging-sw-js.js"
   ],
   "exclude": [
     "node_modules",

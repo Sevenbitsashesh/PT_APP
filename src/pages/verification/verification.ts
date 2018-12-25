@@ -3,7 +3,6 @@ import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angu
 import { Router } from '@angular/router';
 import { Validators } from '@angular/forms';
 import { AngularFireMessaging } from 'angularfire2/messaging';
-import * as twilio from 'twilio';
 @IonicPage()
 @Component({
   selector: 'page-verification',
@@ -17,9 +16,7 @@ export class VerificationPage {
   sendOtp() {
     
     if(this.checkMobile()) {
-      // this.fireMessaging.
-      //  console.log('otp sent');
-
+    
     }
     
   }
