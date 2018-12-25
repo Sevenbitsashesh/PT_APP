@@ -11,7 +11,10 @@
 .divBottom {
     height: 10%;
     width: 100%;
-     background: royalblue;
+    position: absolute;
+    bottom: 0%;
+    left: 0%;
+     background: rgb(230, 242, 255);
 }
 .spanTab {
     height: 100%;
@@ -24,6 +27,7 @@ button {
     width: 100%;
     border-color: aquamarine;
     border: 20px;
+    background: rgb(230, 242, 255);
 }
 .btnLogout  {
     position:absolute;

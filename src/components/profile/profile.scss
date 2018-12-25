@@ -2,8 +2,10 @@
 .profi-pic {
     height: 100px;
     width: 150px;
-    background: rgb(72, 115, 166);
+    background: rgb(128, 189, 255);
     border-radius: 20px;
+//     position: absolute;
+//    right: 30%;
 }
 .divProfile {
      display: block;
@@ -11,8 +13,8 @@
    margin-right: auto;
    width: 140px;
    height: 100px;
-   background: rgb(72, 115, 166);
-   
+   background: rgb(128, 189, 255);
+   align-content: center;
 }
 // .divEdit {
 //     height: 100px;
@@ -22,24 +24,29 @@
 //     margin-right: auto;
 // }
 .divhead {
-    height: 20%px;
+    height: 20%;
     width: 100%;
-    background: rgb(72, 115, 166);
-    align-content: center;
+    background: skyblue
+    ;
     padding-top: 0px;
     border-radius: 10px 10px 10px 10px;
 }
 .profile-avatar {
     height: 100%;
     width: 100%;   
+
 }
 .profile-button {
     --height: 100%;
     --width: 100%;
-    --background:rgb(64, 73, 150);
+    --background:rgb(128, 189, 255);
 }
 .div-profile {
     height: 100%;
     width: 100%;
-    background: rgb(64, 73, 150);
+    background: rgb(91, 149, 211);
+}
+.divProfileUpdate {
+    background: rgb(102, 176, 255);
+    border-radius: 50px 50px 50px 50px;
 }
