@@ -1,6 +1,3 @@
-usertabs {
-
-}
 .divMain {
     height: 100%;
     width: 100%;
@@ -14,7 +11,7 @@ usertabs {
 .divBottom {
     height: 10%;
     width: 100%;
-    // background: cadetblue;
+     background: royalblue;
 }
 .spanTab {
     height: 100%;
@@ -25,6 +22,8 @@ usertabs {
 button {
     height: 100%;
     width: 100%;
+    border-color: aquamarine;
+    border: 20px;
 }
 .btnLogout  {
     position:absolute;
