@@ -30,6 +30,11 @@
       height: 50px;
   }
   .divMenu {
-      display: block    ;
-      background: fuchsia;
+    
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0%;
+      background: red;
+      z-index: -1;
   }

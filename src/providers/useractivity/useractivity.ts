@@ -23,11 +23,13 @@ export class UseractivityProvider {
   myPhotoURL: Observable<String>;
   myPhoto;
   usersearched;
-  searchModel: Observable<any>;
+  searchModel;
   verification;
+  propic;
   constructor(public http: HttpClient, private sharedProvider: SharedProvider, public db: AngularFirestore,private fstorage: AngularFireStorage, private dataService: DataProvider) {
     console.log('Hello UseractivityProvider Provider');
     this.model = sharedProvider.model;
+    this.searchModel = sharedProvider.searchModel;
     this.loggedUser = sharedProvider.loggedUser;
     console.log('welcome', this.loggedUser);
     this.getUsername();
@@ -153,7 +155,20 @@ addInfo(model) {
    //  const us = u.find.name
   }
   getSearchUserModel(userid) {
-   return this.sharedProvider.searchUserById(userid);
+    
+      this.db.collection('users').ref.where('userid', '==', userid).onSnapshot(user => {
+        let model: any;
+        user.docChanges().forEach(data => {
+          model = data.doc.data();
+          
+           console.log('details', model);
+           this.searchModel = model;
+           return this.searchModel;
+        }
+        );
+      });
+    console.log('searc', this.searchModel);
+    
   }
   checkVerification() {
      if(this.verification == false) {

@@ -13,7 +13,8 @@ export class SharedProvider {
   model: UserDetails;
   loggedUser: any;
   userscollection: AngularFirestoreCollection<UserDetails>;
-  searchModel;
+  searchModel: UserDetails;
+  smodel;
   verification;
   constructor(public http: HttpClient, private router: Router, public db: AngularFirestore, private Toast: ToastController, private actionsheetCtrl: ActionSheetController) {
     // console.log('Hello SharedProvider Provider');
@@ -84,16 +85,7 @@ getTodayDate() {
   // const today = getLocaleDateFormat(new Date(), 'dd-MM-yyyy hh:mm:ss', 'en-US');
   return today;
 }
-public searchUserById(userid) {
-  this.db.collection('users').ref.where('userid', '==', userid).onSnapshot(user => {
-    user.forEach(data => {
-      this.searchModel = data.data();
-      console.log('details', this.searchModel);
-    }
-    );
-  });
-  return this.searchModel;
-}
+
 verify() {
   console.log('not ver');
     this.router.navigate(['verification']);

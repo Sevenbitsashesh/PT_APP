@@ -24,6 +24,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireStorageModule } from 'angularfire2/storage';
 import { DataProvider } from '../providers/data/data';
 import { AngularFireMessagingModule } from 'angularfire2/messaging';
+import { SearchdataProvider } from '../providers/searchdata/searchdata';
 @NgModule({
   declarations: [
     MyApp,
@@ -58,7 +59,8 @@ import { AngularFireMessagingModule } from 'angularfire2/messaging';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     SharedProvider,
     AngularFireAuth,
-    DataProvider
+    DataProvider,
+    SearchdataProvider
   ]
 })
 export class AppModule {}

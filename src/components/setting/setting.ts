@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 
+
 /**
  * Generated class for the SettingComponent component.
  *
@@ -12,11 +13,9 @@ import { Component } from '@angular/core';
 })
 export class SettingComponent {
 
-  text: string;
 
   constructor() {
-    console.log('Hello SettingComponent Component');
-    this.text = 'Hello World';
+    
   }
  
 }

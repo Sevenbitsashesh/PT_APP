@@ -1,34 +1,14 @@
-// 
-.divMain {
+
+.prodivMain {
     height:10%;
     width: 100%;
     align-content: center;
 }
-
-.profile {
-    display: block;
-    margin-right: auto;
-    margin-left: auto;
-    height: 100px;
-    width: 100px;
-    background: cornsilk;
-}
-.info {
+.imgAvatar {
+    height: 100%;
     width: 100%;
-    height: 100px;
-    background: cornflowerblue;
+    border-radius: 50px;
 }
-.divproName {
-    display: block;
-    margin-right: auto;
-    margin-left: auto;
-    height: auto;
-    width: 100%;
-}
-ion-label {
-    color: rgba(1, 82, 82, 0.767);
-}
-
 
 
 // Following Button Css
