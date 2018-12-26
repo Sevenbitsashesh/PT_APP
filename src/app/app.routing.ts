@@ -6,6 +6,8 @@ import { FirstComponent } from '../components/first/first';
 import { UserhomePage } from '../pages/userhome/userhome';
 import { UserhomePageModule } from '../pages/userhome/userhome.module';
 // import { UserhomePageModule } from 'src/pages/userhome/userhome.module';
+
+
 const appRoutes: Routes = [
     {path: 'login', component: LoginComponent},
 
@@ -23,4 +25,6 @@ const appRoutes: Routes = [
         exports: [RouterModule]
     })
     export class AppRoutingModule {
+        
     }
+    export function myFunc(): boolean { return true; }

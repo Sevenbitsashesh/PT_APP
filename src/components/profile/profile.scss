@@ -2,7 +2,7 @@
 .profi-pic {
     height: 100px;
     width: 150px;
-    background: rgb(128, 189, 255);
+    background: #829C73;
     border-radius: 20px;
 //     position: absolute;
 //    right: 30%;
@@ -13,7 +13,7 @@
    margin-right: auto;
    width: 140px;
    height: 100px;
-   background: rgb(128, 189, 255);
+   background: #829C73;
    align-content: center;
 }
 // .divEdit {
@@ -26,7 +26,7 @@
 .divhead {
     height: 20%;
     width: 100%;
-    background: skyblue
+    background: #829C73
     ;
     padding-top: 0px;
     border-radius: 10px 10px 10px 10px;
@@ -39,7 +39,7 @@
 .profile-button {
     --height: 100%;
     --width: 100%;
-    --background:rgb(128, 189, 255);
+    // --background:#829C73;
 }
 .div-profile {
     height: 100%;
@@ -47,6 +47,6 @@
     background: rgb(91, 149, 211);
 }
 .divProfileUpdate {
-    background: rgb(102, 176, 255);
+    background: #AA9C6F;
     border-radius: 50px 50px 50px 50px;
 }

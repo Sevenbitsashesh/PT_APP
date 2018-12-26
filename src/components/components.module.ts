@@ -10,6 +10,7 @@ import { ProfileComponent } from './profile/profile';
 import { ProfilepicComponent } from './profilepic/profilepic';
 import { UserprofileComponent } from './userprofile/userprofile';
 import { NotificationComponent } from './notification/notification';
+import { SettingComponent } from './setting/setting';
 
 
 @NgModule({
@@ -17,13 +18,15 @@ import { NotificationComponent } from './notification/notification';
     LoginComponent,
     HometabComponent,
     ProfileComponent,
-    ProfilepicComponent],
+    ProfilepicComponent,
+    SettingComponent],
 	imports: [ IonicModule, CommonModule, RouterModule	],
 	exports: [FirstComponent,
 	LoginComponent,
     HometabComponent,
     ProfileComponent,
-    ProfilepicComponent],
+    ProfilepicComponent,
+    SettingComponent],
     entryComponents: [LoginComponent, FirstComponent, ProfileComponent],
 
 })
