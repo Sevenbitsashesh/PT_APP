@@ -15,7 +15,6 @@ export class TabSearchPage {
   u: any[];
   search = [];
   search_content: string;
-  searchdata;
   constructor(private uactivity : UseractivityProvider, private route: Router, private dataService: DataProvider) {
     this.u = uactivity.getAllUsers();
     console.log('user coll: ',this.u);
@@ -34,6 +33,7 @@ export class TabSearchPage {
    }
    gotoSearch(userid) {
      this.dataService.changeSearchID(userid);
+     this.uactivity.getSearchUserModel(userid);
       window.location.href = "#/userhome/tab_search/userprofile/{user.userid}";
    }
 }

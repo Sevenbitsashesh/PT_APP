@@ -11,16 +11,13 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable()
 export class DataProvider {
   private searchSource = new BehaviorSubject('');
-  private modelSource = new BehaviorSubject('');
+  
   searchUser = this.searchSource.asObservable();
-  searchModel = this.modelSource.asObservable();
+  
   constructor(public http: HttpClient) {
   }
   changeSearchID(userid: string) {
     this.searchSource.next(userid)
-  }
-  changeSearchModel(smodel) {
-    this.modelSource.next(smodel);
   }
 
 }

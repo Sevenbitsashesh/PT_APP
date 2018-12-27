@@ -10,6 +10,7 @@ import { TweetModel } from '../../Models/tweet_model';
 import { configtweets } from '../../Models/users_firestore';
 import { AngularFireStorage } from 'angularfire2/storage';
 import { DataProvider } from '../data/data';
+import { LoadingController } from 'ionic-angular';
 @Injectable()
 export class UseractivityProvider {
   model;
@@ -23,13 +24,13 @@ export class UseractivityProvider {
   myPhotoURL: Observable<String>;
   myPhoto;
   usersearched;
-  searchModel;
   verification;
-  propic;
-  constructor(public http: HttpClient, private sharedProvider: SharedProvider, public db: AngularFirestore,private fstorage: AngularFireStorage, private dataService: DataProvider) {
+  searchModel: any;
+  searchData;
+  constructor(public http: HttpClient, private sharedProvider: SharedProvider, public db: AngularFirestore,private fstorage: AngularFireStorage, private dataService: DataProvider, private loader: LoadingController) {
     console.log('Hello UseractivityProvider Provider');
     this.model = sharedProvider.model;
-    this.searchModel = sharedProvider.searchModel;
+    // this.searchModel = sharedProvider.searchModel;
     this.loggedUser = sharedProvider.loggedUser;
     console.log('welcome', this.loggedUser);
     this.getUsername();
@@ -154,25 +155,27 @@ addInfo(model) {
       return u;
    //  const us = u.find.name
   }
+  checkVerification() {
+    if(this.verification == false) {
+     this.sharedProvider.verify();
+    }
+ }
   getSearchUserModel(userid) {
-    
-      this.db.collection('users').ref.where('userid', '==', userid).onSnapshot(user => {
+      this.db.collection<UserDetails>('users').ref.where('userid', '==', userid).onSnapshot(user => {      
         let model: any;
         user.docChanges().forEach(data => {
           model = data.doc.data();
           
            console.log('details', model);
-           this.searchModel = model;
-           return this.searchModel;
+            this.searchModel = model;
+           
         }
         );
       });
-    console.log('searc', this.searchModel);
-    
+      
+
+
   }
-  checkVerification() {
-     if(this.verification == false) {
-      this.sharedProvider.verify();
-     }
-  }
+  
+  
 }

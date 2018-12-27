@@ -5,7 +5,7 @@ import { UserDetails } from 'src/Models/users.details';
 import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/firestore';
 import { configusers } from '../../Models/users_firestore';
 import { Observable } from 'rxjs/Observable';
-import { ToastController, ActionSheetController } from 'ionic-angular';
+import { ToastController, ActionSheetController, LoadingController } from 'ionic-angular';
 // import * as firebase from 'firebase/a';
 import { getLocaleDateFormat, DatePipe } from '@angular/common';
 @Injectable()
@@ -16,9 +16,15 @@ export class SharedProvider {
   searchModel: UserDetails;
   smodel;
   verification;
-  constructor(public http: HttpClient, private router: Router, public db: AngularFirestore, private Toast: ToastController, private actionsheetCtrl: ActionSheetController) {
+  loading;
+  constructor(public http: HttpClient, private router: Router, public db: AngularFirestore, private Toast: ToastController, private actionsheetCtrl: ActionSheetController, private loader: LoadingController) {
     // console.log('Hello SharedProvider Provider');
    this.userscollection = this.db.collection<UserDetails>(configusers.collection_endpoint);
+   this.loading = this.loader.create({
+    content: 'Please wait..',
+    duration: 30,
+    dismissOnPageChange: true
+  });
   }
   addInfo(model) {
     console.log(model);
@@ -89,5 +95,11 @@ getTodayDate() {
 verify() {
   console.log('not ver');
     this.router.navigate(['verification']);
+}
+loaderCall() {  
+ return this.loading.present();
+}
+loaderDismiss() {
+this.loading.dismiss();
 }
 }

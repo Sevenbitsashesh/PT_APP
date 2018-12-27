@@ -17,18 +17,22 @@ export class UserprofileComponent {
 
   //searching userid
   userid;
-  searchModel: UserDetails;
   avatar;
   constructor(private dataService: DataProvider, private userActivity: UseractivityProvider) {
     this.dataService.searchUser.subscribe(search => this.userid = search);
     this.searchUser();
   }
   searchUser() {
-    this.searchModel  = this.userActivity.getSearchUserModel(this.userid);
-    if(this.searchModel !== undefined) 
+
+    
+    if(this.userActivity.searchModel !== undefined) 
     {
-      console.log('user view:', this.searchModel);
-    this.avatar = this.searchModel.profile_pic;
+      console.log('user view:', this.userActivity.searchModel);
+    this.avatar = this.userActivity.searchModel['profile_pic'];
     }
+  }
+  reload() {
+     console.log('user view:', this.userActivity.searchModel);
+    this.avatar = this.userActivity.searchModel['profile_pic'];
   }
 }
