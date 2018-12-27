@@ -59,7 +59,7 @@ export class ProfileComponent {
     this.loggedEmail = sharedService.getLogged();
     this.profileImg = uactivity.model.profile_pic;
     this.myForm = formBuilder.group({
-      username: new FormControl(this.uactivity.model.username, Validators.compose([
+      username: new FormControl(this.uactivity.model.userid, Validators.compose([
         Validators.maxLength(25),
         Validators.minLength(5),
         Validators.pattern('^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]+$'),
@@ -139,7 +139,8 @@ this.camera.getPicture({
   destinationType: this.camera.DestinationType.DATA_URL,
   sourceType: this.camera.PictureSourceType.SAVEDPHOTOALBUM,
   encodingType: this.camera.EncodingType.JPEG || this.camera.EncodingType.PNG,
-  mediaType: this.camera.MediaType.PICTURE
+  mediaType: this.camera.MediaType.PICTURE,
+  allowEdit: true
 }).then((imageData) => {
 
 this.profileImg = imageData;

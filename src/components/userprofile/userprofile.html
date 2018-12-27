@@ -1,16 +1,19 @@
 <ion-content>
   <div class="prodivMain">
-    <div class="divProfile">
-      <img [src]="avatar" class="imgAvatar"/> 
-    </div>
-    <div>
-      {{userid}}
+    <div class="divProfile" *ngFor="let item of userModel | async as userModel">
+      <img [src]="item.profile_pic" class="imgAvatar"/> 
     </div>
     
+    
   </div>
- 
+  <div>
+    {{userid}}
+  </div>
 
   <div>
     <button (click)="reload()">Reload</button>
+  </div>
+  <div>
+
   </div>
 </ion-content>

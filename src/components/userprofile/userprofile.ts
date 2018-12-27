@@ -18,6 +18,7 @@ export class UserprofileComponent {
   //searching userid
   userid;
   avatar;
+  userModel;
   constructor(private dataService: DataProvider, private userActivity: UseractivityProvider) {
     this.dataService.searchUser.subscribe(search => this.userid = search);
     this.searchUser();
@@ -27,8 +28,8 @@ export class UserprofileComponent {
     
     if(this.userActivity.searchModel !== undefined) 
     {
-      console.log('user view:', this.userActivity.searchModel);
-    this.avatar = this.userActivity.searchModel['profile_pic'];
+      this.userModel =  this.userActivity.searchModel;
+    // this.avatar = this.userActivity.searchModel['profile_pic'];
     }
   }
   reload() {

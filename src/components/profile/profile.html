@@ -1,7 +1,7 @@
 <div class="divhead" padding>
   
   <div class="divProfile"> 
-    <!-- <button (click)="actionForProfile()" class="profile-button"> -->
+    
       <ion-avatar class="profi-pic" (click)=actionForProfile()>
         
           <!-- <img class="profi-pic" src="https://pbs.twimg.com/profile_images/971635378892386304/fqqp4Sru.jpg"/> -->
@@ -9,10 +9,10 @@
           
           
       </ion-avatar>
-      
-    <!-- </button>  -->
+      <div class="proName"><ion-label>@IAshesh40</ion-label></div>
+    
     </div>
-    <div class="proName"><ion-label>username</ion-label></div>
+    
 <!-- <div class="divEdit">
   <p>
       <ion-button [routerLink]="['/create']" routerLinkActive="router-link-active" >
@@ -22,6 +22,7 @@
 </div> -->
 
 </div>
+
 <div padding class="divProfileUpdate">
 <form [formGroup]="myForm">
     <ion-item>
@@ -68,6 +69,7 @@
                               <div class="error-message" *ngIf="myForm.get('address').hasError(validation.type) && myForm.controls['hobbies'].touched">{{validation.message}}</div>
                             </ng-container>
                           </ion-item> -->
-                                    <button ion-button (click)="saveProfile()" [disabled]="myForm.invalid">Save</button>
+                          <ion-item><button class="btnSave" ion-button (click)="saveProfile()" [disabled]="myForm.invalid">Save</button></ion-item>
+                                    
 </form>
 </div>

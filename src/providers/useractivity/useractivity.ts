@@ -27,6 +27,7 @@ export class UseractivityProvider {
   verification;
   searchModel: any;
   searchData;
+  loading: boolean;
   constructor(public http: HttpClient, private sharedProvider: SharedProvider, public db: AngularFirestore,private fstorage: AngularFireStorage, private dataService: DataProvider, private loader: LoadingController) {
     console.log('Hello UseractivityProvider Provider');
     this.model = sharedProvider.model;
@@ -161,21 +162,21 @@ addInfo(model) {
     }
  }
   getSearchUserModel(userid) {
-      this.db.collection<UserDetails>('users').ref.where('userid', '==', userid).onSnapshot(user => {      
+    this.callLoader();
+       this.db.collection<UserDetails>('users').ref.where('userid', '==', userid).onSnapshot(user => {      
         let model: any;
         user.docChanges().forEach(data => {
           model = data.doc.data();
-          
            console.log('details', model);
             this.searchModel = model;
-           
         }
         );
       });
       
-
-
   }
   
-  
+  callLoader() {
+    this.sharedProvider.loaderCall();
+    this.loading =  false;    
+  }
 }
