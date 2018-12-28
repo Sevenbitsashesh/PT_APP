@@ -161,11 +161,6 @@ addInfo(model) {
      this.sharedProvider.verify();
     }
  }
-  // getSearchUserModel(userid) : Observable<UserDetails[]> {
-  
-  //  return this.db.collection<UserDetails>('users', ref => ref.where('userid', '==', userid)).valueChanges();
-    
-  // }
   
   callLoader() {
     this.sharedProvider.loaderCall();

@@ -18,9 +18,8 @@ export class UserprofileComponent {
 
   //searching userid
   userid;
-  avatar;
   userModel;
-  constructor(private dataService: DataProvider, private userActivity: UseractivityProvider, private requestProvider: RequestProvider) {
+  constructor(private dataService: DataProvider, private userActivity: UseractivityProvider,private requestService: RequestProvider) {
     this.dataService.searchUser.subscribe(search => this.userid = search);
     this.searchUser();
   }
@@ -29,9 +28,7 @@ export class UserprofileComponent {
 this.dataService.getSearchUserModel(this.userid).subscribe(data => {
    this.userModel = data;
 });
-
 // this.userActivity.dismissLoader();
-    
   }
   
 
