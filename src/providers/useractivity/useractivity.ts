@@ -11,6 +11,7 @@ import { configtweets } from '../../Models/users_firestore';
 import { AngularFireStorage } from 'angularfire2/storage';
 import { DataProvider } from '../data/data';
 import { LoadingController } from 'ionic-angular';
+import { FollowingModel } from '../../Models/following';
 @Injectable()
 export class UseractivityProvider {
   model;
@@ -25,9 +26,8 @@ export class UseractivityProvider {
   myPhoto;
   usersearched;
   verification;
-  searchModel: any;
-  searchData;
-  loading: boolean;
+  searchModel;;
+  searchData: UserDetails[];
   constructor(public http: HttpClient, private sharedProvider: SharedProvider, public db: AngularFirestore,private fstorage: AngularFireStorage, private dataService: DataProvider, private loader: LoadingController) {
     console.log('Hello UseractivityProvider Provider');
     this.model = sharedProvider.model;
@@ -161,22 +161,17 @@ addInfo(model) {
      this.sharedProvider.verify();
     }
  }
-  getSearchUserModel(userid) {
-    this.callLoader();
-       this.db.collection<UserDetails>('users').ref.where('userid', '==', userid).onSnapshot(user => {      
-        let model: any;
-        user.docChanges().forEach(data => {
-          model = data.doc.data();
-           console.log('details', model);
-            this.searchModel = model;
-        }
-        );
-      });
-      
-  }
+  // getSearchUserModel(userid) : Observable<UserDetails[]> {
+  
+  //  return this.db.collection<UserDetails>('users', ref => ref.where('userid', '==', userid)).valueChanges();
+    
+  // }
   
   callLoader() {
     this.sharedProvider.loaderCall();
-    this.loading =  false;    
   }
+  dismissLoader() {
+    this.sharedProvider.loaderDismiss();
+  }
+  
 }

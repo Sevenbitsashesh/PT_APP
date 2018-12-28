@@ -44,4 +44,10 @@ checkVerification() {
    //uncommen for going to verify
   // this.userActivity.checkVerification();
 }
+goTop() {
+  console.log('scrolling');
+  window.scroll(0,0);
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
 }

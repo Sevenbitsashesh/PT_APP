@@ -1,19 +1,33 @@
-<ion-content>
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+<ion-content *ngFor="let item of userModel">
   <div class="prodivMain">
-    <div class="divProfile" *ngFor="let item of userModel | async as userModel">
-      <img [src]="item.profile_pic" class="imgAvatar"/> 
+    <div class="divProfile" >
+      <img [src]="item.profile_pic" ngNonBindable class="imgAvatar"/> 
     </div>
     
     
   </div>
   <div>
-    {{userid}}
+    <ion-label class="centerDiv">{{item.userid}}</ion-label> 
   </div>
 
-  <div>
-    <button (click)="reload()">Reload</button>
+  <div class="divFollowMain">
+  <div class="divFollowing">
+    
+    <div class="centerDiv"><button class="btn Following"><ion-label>Following 13K</ion-label></button></div> 
   </div>
-  <div>
+  <div class="divFollowers">
+   <div class="centerDiv"><button class="btn Followers"><ion-label>Followers 13K</ion-label></button></div> 
+  </div>
+  </div>
+  <div class="divStartFollow">
+    <div class="centerDiv">
+        <input type="checkbox" value="Start Follow" class="follow" (click)="follow()"/>
+    </div>
+    
+  </div>
+  <div class="divProfileContent">
 
   </div>
+  
 </ion-content>

@@ -25,6 +25,7 @@ import { AngularFireStorageModule } from 'angularfire2/storage';
 import { DataProvider } from '../providers/data/data';
 import { AngularFireMessagingModule } from 'angularfire2/messaging';
 import { SearchdataProvider } from '../providers/searchdata/searchdata';
+import { RequestProvider } from '../providers/request/request';
 @NgModule({
   declarations: [
     MyApp,
@@ -60,7 +61,8 @@ import { SearchdataProvider } from '../providers/searchdata/searchdata';
     SharedProvider,
     AngularFireAuth,
     DataProvider,
-    SearchdataProvider
+    SearchdataProvider,
+    RequestProvider
   ]
 })
 export class AppModule {}

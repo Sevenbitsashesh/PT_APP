@@ -33,7 +33,6 @@ export class TabSearchPage {
    }
    gotoSearch(userid) {
      this.dataService.changeSearchID(userid);
-     this.uactivity.getSearchUserModel(userid);
       window.location.href = "#/userhome/tab_search/userprofile/{user.userid}";
    }
 }

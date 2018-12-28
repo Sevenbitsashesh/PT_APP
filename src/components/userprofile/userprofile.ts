@@ -1,7 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { DataProvider } from '../../providers/data/data';
 import { UseractivityProvider } from '../../providers/useractivity/useractivity';
-import { UserDetails } from 'src/Models/users.details';
+import { UserDetails } from '../../Models/users.details';
+import { RequestProvider } from '../../providers/request/request';
 
 /**
  * Generated class for the UserprofileComponent component.
@@ -19,21 +20,19 @@ export class UserprofileComponent {
   userid;
   avatar;
   userModel;
-  constructor(private dataService: DataProvider, private userActivity: UseractivityProvider) {
+  constructor(private dataService: DataProvider, private userActivity: UseractivityProvider, private requestProvider: RequestProvider) {
     this.dataService.searchUser.subscribe(search => this.userid = search);
     this.searchUser();
   }
   searchUser() {
+    // this.userActivity.callLoader();
+this.dataService.getSearchUserModel(this.userid).subscribe(data => {
+   this.userModel = data;
+});
 
+// this.userActivity.dismissLoader();
     
-    if(this.userActivity.searchModel !== undefined) 
-    {
-      this.userModel =  this.userActivity.searchModel;
-    // this.avatar = this.userActivity.searchModel['profile_pic'];
-    }
   }
-  reload() {
-     console.log('user view:', this.userActivity.searchModel);
-    this.avatar = this.userActivity.searchModel['profile_pic'];
-  }
+  
+
 }
