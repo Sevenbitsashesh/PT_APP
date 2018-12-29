@@ -20,9 +20,15 @@
    <div class="centerDiv"><button class="btn Followers"><ion-label>Followers 13K</ion-label></button></div> 
   </div>
   </div>
-  <div class="divStartFollow">
+  <div class="divStartFollow" *ngIf="requested">
     <div class="centerDiv">
-        <input type="checkbox" value="Start Follow" class="follow" (click)="follow()"/>
+        <input type="checkbox" value="Start Follow" class="follow" (click)="follow(requested)"/>
+    </div>
+    
+  </div>
+  <div class="divStartFollow" *ngIf="requested">
+    <div class="centerDiv">
+        <input type="checkbox" value="Start Follow" class="follow" (click)="follow(requested)"/>
     </div>
     
   </div>

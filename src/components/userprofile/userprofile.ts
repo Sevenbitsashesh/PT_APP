@@ -3,6 +3,7 @@ import { DataProvider } from '../../providers/data/data';
 import { UseractivityProvider } from '../../providers/useractivity/useractivity';
 import { UserDetails } from '../../Models/users.details';
 import { RequestProvider } from '../../providers/request/request';
+import { RequestModel } from '../../Models/request_model';
 
 /**
  * Generated class for the UserprofileComponent component.
@@ -19,9 +20,12 @@ export class UserprofileComponent {
   //searching userid
   userid;
   userModel;
+  requested;
   constructor(private dataService: DataProvider, private userActivity: UseractivityProvider,private requestService: RequestProvider) {
     this.dataService.searchUser.subscribe(search => this.userid = search);
     this.searchUser();
+    this.requested =  this.requestService.requested;
+    console.log(this.requested);
   }
   searchUser() {
     // this.userActivity.callLoader();
@@ -30,6 +34,8 @@ this.dataService.getSearchUserModel(this.userid).subscribe(data => {
 });
 // this.userActivity.dismissLoader();
   }
-  
+  follow(requested) {
+    console.log(requested);
+  }
 
 }

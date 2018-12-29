@@ -2,6 +2,7 @@ import { Component, Injectable } from '@angular/core';
 import { HometabComponent } from '../../components/hometab/hometab';
 import { Router } from '@angular/router';
 import { SharedProvider } from '../../providers/shared/shared';
+import { DataProvider } from '../../providers/data/data';
 /**
  * Generated class for the UsertabsComponent component.
  *
@@ -16,10 +17,11 @@ import { SharedProvider } from '../../providers/shared/shared';
 export class UsertabsComponent {
 
   username: any;
-  constructor(private route: Router, private sharedService: SharedProvider) {
+  constructor(private route: Router, private sharedService: SharedProvider, private dataService: DataProvider) {
     console.log('Hello UsertabsComponent Component');
      this.username = localStorage.getItem('username');
      console.log(this.username);
+     dataService.changeUserID(this.username);
   }
 goHome() {
 this.route.navigate(['/userhome']);

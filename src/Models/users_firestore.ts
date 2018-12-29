@@ -4,3 +4,9 @@ export const configusers = {
  export const configtweets  = {
      collection_endpoint: 'tweets'
  };
+export const configrequested = {
+    collection_endpoint: 'requested'
+}
+export const configrequests = {
+    collection_endpoint: 'requests'
+}

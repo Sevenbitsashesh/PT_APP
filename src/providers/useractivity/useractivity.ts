@@ -17,7 +17,7 @@ export class UseractivityProvider {
   model;
   loggedUser;
   usercollection;
-  usersDoc: AngularFirestoreDocument<UserDetails>;
+  // usersDoc: AngularFirestoreDocument<UserDetails>;
   uid;
   tweetmodel: TweetModel;
   tweetscollection: AngularFirestoreCollection<TweetModel>;
@@ -91,7 +91,7 @@ addInfo(model) {
       console.log('t:', this.usersTweets);
     });
   }
-  // Upload Photo to firestore
+  // Upload Photo to firestorage
   public uploadPhoto(profilepic) {
     const file = 'data:image/jpg;base64,' + profilepic;
     const fileRef =  this.fstorage.ref('/profile/' + this.generateUUID() + '.jpg');

@@ -10,6 +10,7 @@ import { Camera } from '@ionic-native/camera';
   templateUrl: 'profile.html'
 })
 export class ProfileComponent {
+  userTitle;
   username: string;
   email: string;
   mobile: string;
@@ -56,6 +57,7 @@ export class ProfileComponent {
       this.uactivity.addInfo(model);
     }
   constructor(private formBuilder: FormBuilder, private sharedService: SharedProvider, private uactivity: UseractivityProvider, private camera: Camera) {
+    this.userTitle = uactivity.model.userid;
     this.loggedEmail = sharedService.getLogged();
     this.profileImg = uactivity.model.profile_pic;
     this.myForm = formBuilder.group({
