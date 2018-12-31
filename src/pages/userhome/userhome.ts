@@ -15,10 +15,13 @@ import { SharedProvider } from '../../providers/shared/shared';
   templateUrl: 'userhome.html',
 })
 export class UserhomePage {
+  
   constructor(private sharedService: SharedProvider) {
+    
     sharedService.checkLogin();
     console.log('userhome page loaded');
     console.log(location.href);
+    
   }
 
   ionViewDidLoad() {

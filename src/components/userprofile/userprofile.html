@@ -20,18 +20,21 @@
    <div class="centerDiv"><button class="btn Followers"><ion-label>Followers 13K</ion-label></button></div> 
   </div>
   </div>
-  <div class="divStartFollow" *ngIf="requested">
+  <div class="divStartFollow">
     <div class="centerDiv">
-        <input type="checkbox" value="Start Follow" class="follow" (click)="follow(requested)"/>
+        <!-- <input type="checkbox" value="Start Follow" class="follow" (click)="follow(requested)"/> -->
+        <button ion-button (click)="follow()">Follow</button>
+        <!-- <button ion-button>Follow Back</button> -->
+        <div *ngIf="requests">
+        <button ion-button (click)="accept()">Accept</button>
+        <button ion-button>Reject</button>
+      </div>
+        <!-- <button ion-button>Following</button> -->
+        <button ion-button *ngIf="requested">Cancel Request</button> 
     </div>
     
   </div>
-  <div class="divStartFollow" *ngIf="requested">
-    <div class="centerDiv">
-        <input type="checkbox" value="Start Follow" class="follow" (click)="follow(requested)"/>
-    </div>
-    
-  </div>
+  
   <div class="divProfileContent">
 
   </div>

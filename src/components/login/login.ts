@@ -92,6 +92,6 @@ createAcc() {
       email: model.email,
       userid: model.userid
     };
-    // this.us.addInfo(user);
+     this.sharedService.addInfo(user);
   }
 }

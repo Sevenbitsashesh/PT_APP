@@ -1,3 +1,3 @@
 export class RequestModel {
-    userid: boolean;
+    userid: string;
 }

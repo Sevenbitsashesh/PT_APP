@@ -20,12 +20,18 @@ export class UserprofileComponent {
   //searching userid
   userid;
   userModel;
+  requests;
   requested;
   constructor(private dataService: DataProvider, private userActivity: UseractivityProvider,private requestService: RequestProvider) {
     this.dataService.searchUser.subscribe(search => this.userid = search);
+    
     this.searchUser();
-    this.requested =  this.requestService.requested;
-    console.log(this.requested);
+    this.requestService.requestsValObs.subscribe(requests => {
+      this.requests = requests;
+    });
+    this.requestService.requestedValObs.subscribe(requested => {
+      this.requested = requested;
+    });
   }
   searchUser() {
     // this.userActivity.callLoader();
@@ -34,8 +40,9 @@ this.dataService.getSearchUserModel(this.userid).subscribe(data => {
 });
 // this.userActivity.dismissLoader();
   }
-  follow(requested) {
-    console.log(requested);
+  follow() {
+    this.requestService.request();
   }
 
+  
 }
