@@ -16,6 +16,7 @@ export class DataProvider {
   searchUser = this.searchSource.asObservable();
   private loggedUserId = new BehaviorSubject('');
   loggedUId = this.loggedUserId.asObservable();
+  
   constructor(public http: HttpClient, private shared: SharedProvider) {
   }
   changeSearchID(userid: string) {
@@ -24,6 +25,7 @@ export class DataProvider {
   changeUserID(loggedUserId: string) {
     this.loggedUserId.next(loggedUserId);
   }
+  
   //Search By Userid Observable 
   getSearchUserModel(userid) : Observable<UserDetails[]> {
     return this.shared.db.collection<UserDetails>('users', ref => ref.where('userid', '==', userid)).valueChanges();

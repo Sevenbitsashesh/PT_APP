@@ -27,10 +27,13 @@
         <!-- <button ion-button>Follow Back</button> -->
         <div *ngIf="requests">
         <button ion-button (click)="accept()">Accept</button>
-        <button ion-button>Reject</button>
+        <button ion-button (click)="reject()">Reject</button>
       </div>
-        <!-- <button ion-button>Following</button> -->
-        <button ion-button *ngIf="requested">Cancel Request</button> 
+        <button ion-button>Unfollow</button>
+        <div *ngIf="requested">
+          <button ion-button (click)="cancelRequest()">Cancel Request</button> 
+        </div>
+        
     </div>
     
   </div>

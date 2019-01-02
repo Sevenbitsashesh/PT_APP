@@ -29,7 +29,7 @@ export class TabHomePage {
       this.background.push(this.getRandomColor());
     }
     console.log('back', this.background[0]);
-    // this.background.push();
+     this.background.push();
  }
  getRandomColor() {
   var color = Math.floor(0x1000000 * Math.random()).toString(16);

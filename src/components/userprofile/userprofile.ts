@@ -43,6 +43,13 @@ this.dataService.getSearchUserModel(this.userid).subscribe(data => {
   follow() {
     this.requestService.request();
   }
-
-  
+  cancelRequest() {
+    this.requestService.cancelRequest();
+  }
+  reject() {
+    // this.requestService.cancelRequest();
+  }
+  accept() {
+    this.requestService.accept();
+  }
 }

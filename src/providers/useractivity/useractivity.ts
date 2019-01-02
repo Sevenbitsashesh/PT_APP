@@ -149,9 +149,9 @@ addInfo(model) {
   public getAllUsers() {
     const u = [];
      this.db.collection('users').get().forEach(data => {
-    console.log(data.forEach(user => {
+    data.forEach(user => {
       u.push(user.data());
-    }));
+    });
      });
       return u;
    //  const us = u.find.name

@@ -37,8 +37,13 @@ export class SharedProvider {
   saveProfile(model, uid) {
     console.log(model, uid);
      this.db.doc<UserDetails>(`users/${uid}`).set(model).then(saved => {
+      this.db.collection('followers').add({userid: model.userid}).then(items => {
+        this.db.collection('followings').add({userid: model.userid});
+        console.log('followers/followings added');
       this.router.navigate(['/userhome']);
-     }).catch(error => console.log(error));
+     })
+     })
+      .catch(error => console.log(error));
   }
   getLogged() {
     console.log('getlogged', localStorage.getItem('usermail'));
