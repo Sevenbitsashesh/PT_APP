@@ -37,11 +37,12 @@ export class SharedProvider {
   saveProfile(model, uid) {
     console.log(model, uid);
      this.db.doc<UserDetails>(`users/${uid}`).set(model).then(saved => {
-      this.db.collection('followers').add({userid: model.userid}).then(items => {
-        this.db.collection('followings').add({userid: model.userid});
-        console.log('followers/followings added');
       this.router.navigate(['/userhome']);
-     })
+    //   this.db.collection('followers').add({userid: model.userid}).then(items => {
+    //     this.db.collection('followings').add({userid: model.userid});
+    //     console.log('followers/followings added');
+      
+    //  })
      })
       .catch(error => console.log(error));
   }
