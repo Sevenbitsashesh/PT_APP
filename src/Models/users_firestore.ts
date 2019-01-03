@@ -1,12 +1,11 @@
-export const configusers = {
-    collection_endpoint: 'users'
- };
- export const configtweets  = {
-     collection_endpoint: 'tweets'
- };
-export const configrequested = {
-    collection_endpoint: 'requested'
-}
-export const configrequests = {
-    collection_endpoint: 'requests'
+
+
+
+export const appconfigs = {
+    collection_users: 'users',
+    collection_tweets: 'tweets',
+    collection_requested: 'requested',
+    collection_requests: 'requests',
+    collection_followers: 'followers',
+    collection_followings: 'followings'
 }

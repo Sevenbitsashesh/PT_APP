@@ -7,7 +7,7 @@ import 'rxjs/Rx';
 import { Observable } from 'rxjs';
 import { map, finalize } from 'rxjs/operators';
 import { TweetModel } from '../../Models/tweet_model';
-import { configtweets } from '../../Models/users_firestore';
+import { appconfigs } from '../../Models/users_firestore';
 import { AngularFireStorage } from 'angularfire2/storage';
 import { DataProvider } from '../data/data';
 import { LoadingController } from 'ionic-angular';
@@ -76,7 +76,7 @@ addInfo(model) {
     getTweets(uid) {
 
       // Getting Logged users Tweet
-      this.tweetscollection = this.db.collection('users').doc(uid).collection<TweetModel>(configtweets.collection_endpoint);
+      this.tweetscollection = this.db.collection('users').doc(uid).collection<TweetModel>(appconfigs.collection_tweets);
       const observer  = this.tweetscollection.snapshotChanges().
       pipe(map(docArray => {
          return docArray.map(data => {

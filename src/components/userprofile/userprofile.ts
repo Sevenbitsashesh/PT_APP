@@ -22,6 +22,7 @@ export class UserprofileComponent {
   userModel;
   requests;
   requested;
+  following;
   constructor(private dataService: DataProvider, private userActivity: UseractivityProvider,private requestService: RequestProvider) {
     this.dataService.searchUser.subscribe(search => this.userid = search);
     
@@ -32,10 +33,14 @@ export class UserprofileComponent {
     this.requestService.requestedValObs.subscribe(requested => {
       this.requested = requested;
     });
+    this.requestService.followValObs.subscribe(follow => {
+      this.following = follow;
+    })
   }
   searchUser() {
     // this.userActivity.callLoader();
 this.dataService.getSearchUserModel(this.userid).subscribe(data => {
+  
    this.userModel = data;
 });
 // this.userActivity.dismissLoader();
@@ -47,9 +52,12 @@ this.dataService.getSearchUserModel(this.userid).subscribe(data => {
     this.requestService.cancelRequest();
   }
   reject() {
-    // this.requestService.cancelRequest();
+     this.requestService.reject();
   }
   accept() {
     this.requestService.accept();
+  }
+  unfollow() {
+    this.requestService.unfollow();
   }
 }

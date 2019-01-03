@@ -3,7 +3,7 @@ import { Injectable, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserDetails } from 'src/Models/users.details';
 import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/firestore';
-import { configusers } from '../../Models/users_firestore';
+import { appconfigs } from '../../Models/users_firestore';
 import { Observable } from 'rxjs/Observable';
 import { ToastController, ActionSheetController, LoadingController } from 'ionic-angular';
 // import * as firebase from 'firebase/a';
@@ -19,7 +19,7 @@ export class SharedProvider {
   loading;
   constructor(public http: HttpClient, private router: Router, public db: AngularFirestore, private Toast: ToastController, private actionsheetCtrl: ActionSheetController, private loader: LoadingController) {
     // console.log('Hello SharedProvider Provider');
-   this.userscollection = this.db.collection<UserDetails>(configusers.collection_endpoint);
+   this.userscollection = this.db.collection<UserDetails>(appconfigs.collection_users);
    this.loading = this.loader.create({
     content: 'Please wait..',
     duration: 30,
@@ -37,19 +37,20 @@ export class SharedProvider {
   saveProfile(model, uid) {
     console.log(model, uid);
      this.db.doc<UserDetails>(`users/${uid}`).set(model).then(saved => {
-      this.addFollow(model.userid);      
+      this.addFollow(uid);      
       this.router.navigate(['/userhome']);   
      })
       .catch(error => console.log(error));
   }
   // Adding Default Followers/Follwings Collection if not exist
-  addFollow(user) {
-    this.db.collection('followers').ref.where('userid','==', user).get().then(follow => {
-      if(follow.size !== 0) {
-        this.db.collection('followers').add({userid: user}).then(items => {
-          this.db.collection('followings').ref.where('userid','==', user).get().then(follow => {
-            if(follow.size !== 0) {
-              this.db.collection('followings').add({userid: user}).then(success => {                
+  addFollow(uid) {
+    this.db.collection('followers').ref.where('docid','==', uid).get().then(follow => {
+      
+      if(follow.size === 0) {
+        this.db.collection('followers').add({docid: uid}).then(items => {
+          this.db.collection('followings').ref.where('docid','==', uid).get().then(follow => {
+            if(follow.size === 0) {
+              this.db.collection('followings').add({docid: uid}).then(success => {                
               })
             }
           
