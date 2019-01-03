@@ -166,12 +166,18 @@ cancelRequest() {
   
 }
 accept() {
-  console.log('request accepted');
+  
 
-    this.shared.db.collection(`followers`).ref.where('userid','==',this.loggedUid).get().then(data => {
-      data.forEach(items => {
-        this.shared.db.collection(`followers/${items.id}/follow`).add({user: this.userid}).then(added => {
-          
+    this.shared.db.collection(`followers`).ref.where('userid','==',this.loggedUid).get().then(dataFlr => {
+      dataFlr.forEach(itemFlr => {
+        itemFlr.ref.collection('follow').add({user: this.userid}).then(followers => {
+          this.shared.db.collection(`followings`).ref.where('userid','==',this.userid).get().then(dataFlw => {
+              dataFlw.forEach(itemFlw => {
+                itemFlw.ref.collection('follow').add({user: this.loggedUid}).then(added => {
+                  this.shared.callToast('Request Accepted')
+                })
+              })
+          })
         })
       })
     })

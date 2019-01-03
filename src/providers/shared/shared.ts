@@ -37,14 +37,26 @@ export class SharedProvider {
   saveProfile(model, uid) {
     console.log(model, uid);
      this.db.doc<UserDetails>(`users/${uid}`).set(model).then(saved => {
-      this.router.navigate(['/userhome']);
-    //   this.db.collection('followers').add({userid: model.userid}).then(items => {
-    //     this.db.collection('followings').add({userid: model.userid});
-    //     console.log('followers/followings added');
-      
-    //  })
+      this.addFollow(model.userid);      
+      this.router.navigate(['/userhome']);   
      })
       .catch(error => console.log(error));
+  }
+  // Adding Default Followers/Follwings Collection if not exist
+  addFollow(user) {
+    this.db.collection('followers').ref.where('userid','==', user).get().then(follow => {
+      if(follow.size !== 0) {
+        this.db.collection('followers').add({userid: user}).then(items => {
+          this.db.collection('followings').ref.where('userid','==', user).get().then(follow => {
+            if(follow.size !== 0) {
+              this.db.collection('followings').add({userid: user}).then(success => {                
+              })
+            }
+          
+        })
+      })
+      }
+    })
   }
   getLogged() {
     console.log('getlogged', localStorage.getItem('usermail'));
