@@ -13,6 +13,8 @@ import { NotificationComponent } from './notification/notification';
 import { SettingComponent } from './setting/setting';
 
 
+
+
 @NgModule({
 	declarations: [FirstComponent,
     LoginComponent,

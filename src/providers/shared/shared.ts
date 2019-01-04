@@ -53,7 +53,6 @@ export class SharedProvider {
               this.db.collection('followings').add({docid: uid}).then(success => {                
               })
             }
-          
         })
       })
       }

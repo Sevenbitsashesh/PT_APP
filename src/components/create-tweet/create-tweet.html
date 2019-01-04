@@ -1,0 +1,19 @@
+<ion-item padding>
+  <ion-label floating>Whats on your mind?</ion-label>
+  <ion-input [(ngModel)]="t_title"></ion-input>
+</ion-item>
+<ion-item>
+<ion-label floating>Description</ion-label> <ion-input [(ngModel)]="tweetcontent"></ion-input>
+
+</ion-item>
+<ion-item>
+<img src=".././../assets/imgs/attach.svg" class="imgAttach" (click)="select()"/>
+<!-- <img [src]="imageUrl"> -->
+<!-- <div class="header" *ngIf="imageUrl" [style.background-image]="imageUrl"></div> -->
+
+</ion-item>
+<ion-item>
+  <button ion-button (click)="createTweet()">
+    Post
+  </button>
+</ion-item>

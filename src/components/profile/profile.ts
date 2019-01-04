@@ -3,6 +3,8 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { SharedProvider } from '../../providers/shared/shared';
 import { UseractivityProvider } from '../../providers/useractivity/useractivity';
 import { Camera } from '@ionic-native/camera';
+import { ImageProvider } from '../../providers/image/image';
+import { DataProvider } from '../../providers/data/data';
 
 
 @Component({
@@ -56,7 +58,7 @@ export class ProfileComponent {
 
       this.uactivity.addInfo(model);
     }
-  constructor(private formBuilder: FormBuilder, private sharedService: SharedProvider, private uactivity: UseractivityProvider, private camera: Camera) {
+  constructor(private formBuilder: FormBuilder, private sharedService: SharedProvider, private uactivity: UseractivityProvider, private imageService: ImageProvider, private dataService: DataProvider) {
     this.userTitle = uactivity.model.userid;
     this.loggedEmail = sharedService.getLogged();
     this.profileImg = uactivity.model.profile_pic;
@@ -100,7 +102,7 @@ export class ProfileComponent {
       {
         text: 'Camera',
         handler: () => {
-          this.captureImage()
+          this.captureImage();
         }
       },
       {
@@ -113,46 +115,41 @@ export class ProfileComponent {
     
     }
     captureImage() {
-  //  console.log('capture photo');
+   console.log('capture photo');
 
-  this.camera.getPicture({
-    quality: 20,
-    destinationType: this.camera.DestinationType.DATA_URL,
-    sourceType: this.camera.PictureSourceType.CAMERA,
-    encodingType: this.camera.EncodingType.PNG,
-    saveToPhotoAlbum: true,
-    allowEdit: true
-}).then((imageData) => {
+   this.imageService.capturePhoto().then((imageData) => {
 
-  this.profileImg = imageData;
-  this.uactivity.uploadPhoto(imageData);
+              this.profileImg = imageData;
+              // this.uactivity.uploadPhoto(imageData);
+              this.imageService.uploadPhoto(imageData,'profile');
+              this.dataService.imageUrlObs.subscribe(url => {
+                if(url) {
+                  this.uactivity.saveprofilePic(url);
+                }
+              })
+                       
+            }, (error) => {
 
-}, (error) => {
-
-    console.log(error);
-});
-this.profileImg = this.uactivity.myPhotoURL;
+                console.log(error);
+            });
+            this.profileImg = this.uactivity.myPhotoURL;
     }
     selectPhoto(): void {
-console.log('select photo');
-
-this.camera.getPicture({
-  quality: 20,
-  destinationType: this.camera.DestinationType.DATA_URL,
-  sourceType: this.camera.PictureSourceType.SAVEDPHOTOALBUM,
-  encodingType: this.camera.EncodingType.JPEG || this.camera.EncodingType.PNG,
-  mediaType: this.camera.MediaType.PICTURE,
-  allowEdit: true
-}).then((imageData) => {
-
-this.profileImg = imageData;
-this.uactivity.uploadPhoto(imageData);
-
-}, (error) => {
-
-  console.log(error);
-});
-this.profileImg = this.uactivity.myPhotoURL;
+        console.log('select photo');
+      this.imageService.selectPhoto().then((imageData) => {
+        this.profileImg = imageData;
+          
+        this.imageService.uploadPhoto(imageData,'profile'); 
+            this.dataService.imageUrlObs.subscribe(url => {
+              if(url) {
+                this.uactivity.saveprofilePic(url);
+              }
+            })
+        }, (error) => {        
+          console.log(error);
+        });
+        this.profileImg = this.uactivity.myPhotoURL;
     }
+
 
 }

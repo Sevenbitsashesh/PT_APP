@@ -82,13 +82,13 @@ addInfo(model) {
          return docArray.map(data => {
 
         return ( {tweetcontent: data.payload.doc.data()['tweetcontent'], t_title: data.payload.doc.data()['t_title'],
-        t_date: data.payload.doc.data()['t_date']
+        t_date: data.payload.doc.data()['t_date'],t_image: data.payload.doc.data()['t_image']
         });
       });
     } )
     ).subscribe(tweets => {
       [].push.apply(this.usersTweets, tweets);
-      console.log('t:', this.usersTweets);
+      // console.log('t:', this.usersTweets);
     });
   }
   // Upload Photo to firestorage
@@ -96,12 +96,7 @@ addInfo(model) {
     const file = 'data:image/jpg;base64,' + profilepic;
     const fileRef =  this.fstorage.ref('/profile/' + this.generateUUID() + '.jpg');
     const stor_task = fileRef.putString(file, 'data_url');
-    // const donUrl = stor_task.snapshotChanges().pipe(finalize(() => {
-    //     fileRef.getDownloadURL().subscribe(url => {
-    //       this.myPhoto = url;
-    //       console.log(url);
-    //     });
-    // }));
+   
     stor_task.snapshotChanges().pipe(
       finalize(() => {
         this.myPhotoURL = fileRef.getDownloadURL();
@@ -129,11 +124,13 @@ addInfo(model) {
     this.sharedProvider.callToast('hi');
   }
   // Tweeet create
-  createTweet(tweetcontent, t_title) {
+  createTweet(tweetcontent, t_title, t_image) {
+    
     this.tweetmodel = {
       tweetcontent: tweetcontent,
       tweetid: Math.random().toString(14),
       t_title: t_title,
+      t_image: t_image,
       t_date: this.sharedProvider.getTodayDate()
     };
     const tweetColl = this.db.collection('users').ref.where('email', '==', this.loggedUser);
@@ -168,5 +165,8 @@ addInfo(model) {
   dismissLoader() {
     this.sharedProvider.loaderDismiss();
   }
-  
+  saveprofilePic(url) {
+    // console.log('profile pic changed',url);
+      this.sharedProvider.saveProfilePic(url,this.uid);
+  }
 }

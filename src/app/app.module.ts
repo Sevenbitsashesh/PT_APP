@@ -26,6 +26,9 @@ import { DataProvider } from '../providers/data/data';
 import { AngularFireMessagingModule } from 'angularfire2/messaging';
 import { RequestProvider } from '../providers/request/request';
 import { FollowProvider } from '../providers/follow/follow';
+import { ImageProvider } from '../providers/image/image';
+import { TweetsProvider } from '../providers/tweets/tweets';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -62,7 +65,9 @@ import { FollowProvider } from '../providers/follow/follow';
     AngularFireAuth,
     DataProvider,
     RequestProvider,
-    FollowProvider
+    FollowProvider,
+    ImageProvider,
+    TweetsProvider
   ]
 })
 export class AppModule {}

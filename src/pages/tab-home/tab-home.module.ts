@@ -4,6 +4,8 @@ import { TabHomePage } from './tab-home';
 import { Routes, RouterModule } from '@angular/router';
 import { VerificationPageModule } from '../verification/verification.module';
 import { VerificationPage } from '../verification/verification';
+import { CreateTweetComponent } from '../../components/create-tweet/create-tweet';
+import { TweetslistComponent } from '../../components/tweetslist/tweetslist';
 const routes: Routes = [
   {
     path: '',
@@ -18,7 +20,9 @@ const routes: Routes = [
 ]
 @NgModule({
   declarations: [
-    TabHomePage
+    TabHomePage,
+    CreateTweetComponent,
+    TweetslistComponent
   ],
   imports: [
     IonicPageModule.forChild(TabHomePage),
