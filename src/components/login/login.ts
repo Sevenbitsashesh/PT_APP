@@ -90,7 +90,9 @@ createAcc() {
   createUser(model) {
     const user = {
       email: model.email,
-      userid: model.userid
+      userid: model.userid,
+      profile_pic: 'https://firebasestorage.googleapis.com/v0/b/my-social-a5d83.appspot.com/o/profiles%2Fdownload.png?alt'
+      + '=media&token=04d24821-a4ab-4a03-915c-dd97a6ca2a26'
     };
      this.sharedService.addInfo(user);
   }

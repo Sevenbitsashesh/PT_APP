@@ -36,7 +36,7 @@ export class SharedProvider {
   // Profile data update of user by uid
   saveProfile(model, uid) {
     console.log(model, uid);
-     this.db.doc<UserDetails>(`users/${uid}`).set(model).then(saved => {
+     this.db.doc<UserDetails>(`users/${uid}`).update(model).then(saved => {
       this.addFollow(uid);      
       this.router.navigate(['/userhome']);   
      })

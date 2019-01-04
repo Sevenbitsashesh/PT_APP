@@ -9,7 +9,7 @@ export class UserDetails  {
      mobile: number;
      verified? : boolean;
     // hobbies: string[];
-     profile_pic: string;
+     profile_pic?: string;
      dob: Date;
 }
 // export interface SomeType {

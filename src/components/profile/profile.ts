@@ -49,8 +49,8 @@ export class ProfileComponent {
         'address': this.myForm.get('address').value,
         'mobile': this.myForm.get('mobile').value,
          'gender': this.myForm.get('gender').value,
-         'profile_pic': 'https://firebasestorage.googleapis.com/v0/b/my-social-a5d83.appspot.com/o/profiles%2Fdownload.png?alt'
-         + '=media&token=04d24821-a4ab-4a03-915c-dd97a6ca2a26',
+        //  'profile_pic': 'https://firebasestorage.googleapis.com/v0/b/my-social-a5d83.appspot.com/o/profiles%2Fdownload.png?alt'
+        //  + '=media&token=04d24821-a4ab-4a03-915c-dd97a6ca2a26',
         'dob': this.myForm.get('dob').value
       };
 
