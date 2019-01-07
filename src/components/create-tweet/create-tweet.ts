@@ -16,16 +16,21 @@ export class CreateTweetComponent {
     
   }
   createTweet() {
+    console.log('click')
     if(this.imageUrl) {
       this.imageService.uploadPhoto(this.imageUrl,'tweets');
+      console.log('click')
       this.dataService.imageUrlObs.subscribe(url => {
         if(url) {
           console.log('my tweet url',url);
           this.userActivity.createTweet(this.tweetcontent,this.t_title,url);      
         }
+        
       })
     }
-    
+    else {
+      this.userActivity.createTweet(this.tweetcontent,this.t_title,'https://firebasestorage.googleapis.com/v0/b/my-social-a5d83.appspot.com/o/tweets%2Ftwitter_cover.jpg?alt=media&token=c8814650-1412-4a4f-9266-cfe3d11d9b9a');      
+    }
   }
   select() {
     this.imageService.selectPhoto().then((imageData) => {

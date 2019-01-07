@@ -2,22 +2,35 @@ import { Component } from '@angular/core';
 import { UseractivityProvider } from '../../providers/useractivity/useractivity';
 import { FollowProvider } from '../../providers/follow/follow';
 
+
 @Component({
   selector: 'tweetslist',
   templateUrl: 'tweetslist.html'
 })
 export class TweetslistComponent {
   tweetcontent;
-  tweets: any;
+  tweets: any[];
   t_title;
   background= [];
+  users = [];
   constructor(private userActivity: UseractivityProvider, private followService: FollowProvider) {
     
-    this.tweets = userActivity.usersTweets;
-    this.getTweet();
+    
+    // this.getTweet();
     followService.userFollowingsObs.subscribe(items => {
-      console.log(items);
-    })
+     this.users = items;
+        });
+        this.users.forEach(i => {
+      
+          this.userActivity.getTweets(i);
+          // console.log(this.userActivity.usersTweets);
+          this.tweets = userActivity.usersTweets; 
+       })
+         
+      
+      
+      
+    
   }
   getTweet() {
     console.log('data :', this.tweets.length );

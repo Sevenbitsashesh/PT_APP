@@ -8,7 +8,7 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable()
 export class FollowProvider {
   loggedUid;
-  users: any[] = [];
+  users = [];
   private userfollowings = new BehaviorSubject([]);
   userFollowingsObs = this.userfollowings.asObservable();
   constructor(public http: HttpClient, private shared: SharedProvider, private dataService: DataProvider) {
@@ -25,9 +25,9 @@ export class FollowProvider {
                 f.forEach(followings => {
                   
                   followings.ref.get().then(flrs => {
-                    this.users.push(flrs.data()['user']);
-                    // console.log(this.users);
-
+                    
+                     console.log();
+                      this.users.push(flrs.data()['user']);
                    this.changeFollowings(this.users);
                    
                   })
@@ -44,5 +44,8 @@ getRef(docid) {
 }
 changeFollowings(users: any[]) {
 this.userfollowings.next(users);
+}
+getTweet() {
+  
 }
 }

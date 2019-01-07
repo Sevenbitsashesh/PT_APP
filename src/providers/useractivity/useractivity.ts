@@ -21,7 +21,7 @@ export class UseractivityProvider {
   uid;
   tweetmodel: TweetModel;
   tweetscollection: AngularFirestoreCollection<TweetModel>;
-  usersTweets = [];
+  usersTweets: TweetModel[] = [];
   myPhotoURL: Observable<String>;
   myPhoto;
   usersearched;
@@ -57,7 +57,7 @@ addInfo(model) {
         localStorage.setItem('username', this.model.userid);
         // Getting Logged user id
          this.uid = change.id;
-          this.getTweets(this.uid);
+          
           
         // console.log('new', this.uid);
       });
@@ -72,25 +72,52 @@ addInfo(model) {
     //    });
     //   });
     }
-
     getTweets(uid) {
 
       // Getting Logged users Tweet
-      this.tweetscollection = this.db.collection('users').doc(uid).collection<TweetModel>(appconfigs.collection_tweets);
-      const observer  = this.tweetscollection.snapshotChanges().
-      pipe(map(docArray => {
-         return docArray.map(data => {
-
-        return ( {tweetcontent: data.payload.doc.data()['tweetcontent'], t_title: data.payload.doc.data()['t_title'],
-        t_date: data.payload.doc.data()['t_date'],t_image: data.payload.doc.data()['t_image']
-        });
-      });
-    } )
-    ).subscribe(tweets => {
-      [].push.apply(this.usersTweets, tweets);
-      // console.log('t:', this.usersTweets);
-    });
+      console.log('for',uid);
+      this.sharedProvider.userscollection.doc<UserDetails>(uid).get().subscribe(user => {
+        
+        const tweetsRef = this.db.collection('users').doc(uid).collection<TweetModel>(appconfigs.collection_tweets);
+     
+        tweetsRef.valueChanges().subscribe((tweets) => {
+  
+          
+          tweets.forEach(t => {
+            console.log('t:',t);
+            t.t_user_pic = user.data()['profile_pic'];
+            t.t_user = user.data()['userid'];
+           this.usersTweets.push(t);
+          
+          })
+          
+      });    
+      })
+      
+        
+        
+      
   }
+  //   getTweets(uid) {
+
+  //     // Getting Logged users Tweet
+  //     console.log('for',uid);
+  //     this.tweetscollection = this.db.collection('users').doc(uid).collection<TweetModel>(appconfigs.collection_tweets);
+  //     const observer  = this.tweetscollection.snapshotChanges().
+  //     pipe(map(docArray => {
+  //        return docArray.map(data => {
+
+  //       return ( {tweetcontent: data.payload.doc.data()['tweetcontent'], t_title: data.payload.doc.data()['t_title'],
+  //       t_date: data.payload.doc.data()['t_date'],t_image: data.payload.doc.data()['t_image']
+  //       });
+  //     });
+  //   } )
+  //   ).subscribe(tweets => {
+  //     this.usersTweets = tweets;
+  //     // [].push.apply(this.usersTweets, tweets);
+  //     console.log('t:', this.usersTweets);
+  //   });
+  // }
   // Upload Photo to firestorage
   public uploadPhoto(profilepic) {
     const file = 'data:image/jpg;base64,' + profilepic;
@@ -134,11 +161,14 @@ addInfo(model) {
       t_date: this.sharedProvider.getTodayDate()
     };
     const tweetColl = this.db.collection('users').ref.where('email', '==', this.loggedUser);
+    
     console.log(this.loggedUser);
     tweetColl.onSnapshot(snap => {
     snap.forEach(data => {
-      this.tweetscollection.add(this.tweetmodel);
       
+      this.tweetscollection = this.db.collection('users').doc(data.id).collection<TweetModel>(appconfigs.collection_tweets);  
+      this.tweetscollection.add(this.tweetmodel);
+      console.log('tweet uploaded');
     }
     );
     });
@@ -169,4 +199,5 @@ addInfo(model) {
     // console.log('profile pic changed',url);
       this.sharedProvider.saveProfilePic(url,this.uid);
   }
+  
 }
