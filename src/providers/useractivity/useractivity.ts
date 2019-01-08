@@ -12,6 +12,7 @@ import { AngularFireStorage } from 'angularfire2/storage';
 import { DataProvider } from '../data/data';
 import { LoadingController } from 'ionic-angular';
 import { FollowingModel } from '../../Models/following';
+import firebase from 'firebase';
 @Injectable()
 export class UseractivityProvider {
   model;
@@ -21,13 +22,14 @@ export class UseractivityProvider {
   uid;
   tweetmodel: TweetModel;
   tweetscollection: AngularFirestoreCollection<TweetModel>;
-  usersTweets: TweetModel[] = [];
+  usersTweets = [];
   myPhotoURL: Observable<String>;
   myPhoto;
   usersearched;
   verification;
   searchModel;;
   searchData: UserDetails[];
+  hide = false;
   constructor(public http: HttpClient, private sharedProvider: SharedProvider, public db: AngularFirestore,private fstorage: AngularFireStorage, private dataService: DataProvider, private loader: LoadingController) {
     console.log('Hello UseractivityProvider Provider');
     this.model = sharedProvider.model;
@@ -72,31 +74,58 @@ addInfo(model) {
     //    });
     //   });
     }
+// getTweets(uid) {
+//   console.log(uid);
+  
+//   this.sharedProvider.db.collection('users').doc(uid).collection<TweetModel>('tweets').ref.get().then(data => {
+    
+//     data.forEach(items => {
+//       if(this.usersTweets.find(tweet => tweet.t_title == (items.data()['t_title'])) === undefined) {
+        
+        
+//         console.log('called',items.data());
+//         this.usersTweets.push(items.data());
+//       }
+        
+      
+      
+//     })
+//   })
+  
+// }
+
     getTweets(uid) {
 
       // Getting Logged users Tweet
       console.log('for',uid);
       this.sharedProvider.userscollection.doc<UserDetails>(uid).get().subscribe(user => {
+        const tweetsRef = this.db.collection('users').doc(uid).collection<TweetModel>(appconfigs.collection_tweets);     
+        tweetsRef.snapshotChanges().
+            pipe(map(docArray => {
+         return docArray.map(data => {
+
+        return ( {tweetcontent: data.payload.doc.data()['tweetcontent'], t_title: data.payload.doc.data()['t_title'],
+        t_date: data.payload.doc.data()['t_date'],t_image: data.payload.doc.data()['t_image'],t_user: 'a',t_user_pic: ''
+        });
+      });
+    } ))
         
-        const tweetsRef = this.db.collection('users').doc(uid).collection<TweetModel>(appconfigs.collection_tweets);
-     
-        tweetsRef.valueChanges().subscribe((tweets) => {
-  
-          
-          tweets.forEach(t => {
-            console.log('t:',t);
-            t.t_user_pic = user.data()['profile_pic'];
-            t.t_user = user.data()['userid'];
-           this.usersTweets.push(t);
-          
-          })
-          
+        .subscribe(data => {
+          data.forEach(items => {
+            
+            if(this.usersTweets.find(tweet => tweet.t_title == items.t_title) === undefined) {
+             items.t_user = user.data()['userid'];
+             items.t_user_pic = user.data()['profile_pic'];
+            console.log(items.t_user);
+            this.usersTweets.push(items);
+            this.hide = true;
+          }
+        })
+        
+        })
+       
       });    
-      })
-      
-        
-        
-      
+            
   }
   //   getTweets(uid) {
 

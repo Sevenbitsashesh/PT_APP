@@ -32,4 +32,13 @@ goTop() {
   document.body.scrollTop = 0;
   document.documentElement.scrollTop = 0;
 }
+doRefresh(event) {
+    
+  setTimeout(() => {
+    console.log('event called');
+    window.location.reload;
+           event.complete();
+    
+  },3000)
+}
 }

@@ -13,24 +13,22 @@ export class TweetslistComponent {
   t_title;
   background= [];
   users = [];
+  showing;
   constructor(private userActivity: UseractivityProvider, private followService: FollowProvider) {
     
-    
+    // this.matProgress.
     // this.getTweet();
     followService.userFollowingsObs.subscribe(items => {
      this.users = items;
+     
         });
         this.users.forEach(i => {
-      
+          
           this.userActivity.getTweets(i);
           // console.log(this.userActivity.usersTweets);
           this.tweets = userActivity.usersTweets; 
+          this.showing = this.userActivity.hide; 
        })
-         
-      
-      
-      
-    
   }
   getTweet() {
     console.log('data :', this.tweets.length );
@@ -44,4 +42,5 @@ export class TweetslistComponent {
   var color = Math.floor(0x1000000 * Math.random()).toString(16);
   return "#" + ("000000" + color).slice(-6);
   }
+  
 }

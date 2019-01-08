@@ -1,6 +1,13 @@
 
 <ion-content padding class="contentMain">
-    
+        <ion-refresher (ionRefresh)="doRefresh($event)">
+                <ion-refresher-content
+                pullingIcon="arrow-dropdown"
+                pullingText="Pull to refresh"
+                refreshingSpinner="circles"
+                refreshingText="Refreshing...">
+              </ion-refresher-content>
+            </ion-refresher>
     <create-tweet></create-tweet>
     <tweetslist></tweetslist>
     

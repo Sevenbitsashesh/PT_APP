@@ -1,3 +1,8 @@
+
+<div [hidden]=showing >
+  
+<img class="tweetMain"   src="../../assets/imgs/loader.gif">
+</div>
 <ion-card *ngFor="let tweet of tweets;">
 
         <ion-item >
@@ -11,7 +16,7 @@
 
         </ion-item>
 
-        <img [src]=tweet.t_image>
+        <img [src]=tweet.t_image *ngIf="tweet.t_image">
       
         <ion-card-content>
           <p>{{tweet.tweetcontent}}</p>

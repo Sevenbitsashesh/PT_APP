@@ -6,4 +6,5 @@ export interface TweetModel {
     t_date: string;
     t_user?: string;
     t_user_pic?: string;
+    docid?: string;
 }
