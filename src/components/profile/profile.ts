@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { SharedProvider } from '../../providers/shared/shared';
 import { UseractivityProvider } from '../../providers/useractivity/useractivity';
-import { Camera } from '@ionic-native/camera';
 import { ImageProvider } from '../../providers/image/image';
 import { DataProvider } from '../../providers/data/data';
+import { UserDetails } from 'src/Models/users.details';
 
 
 @Component({
@@ -12,7 +12,7 @@ import { DataProvider } from '../../providers/data/data';
   templateUrl: 'profile.html'
 })
 export class ProfileComponent {
-  userTitle;
+  
   username: string;
   email: string;
   mobile: string;
@@ -20,9 +20,9 @@ export class ProfileComponent {
   dob: string;
   gender: string;
   myForm: FormGroup;
-  matching_passwords_group: FormGroup;
   loggedEmail: string;
   profileImg: any;
+  userModel: UserDetails;
   validation_messages = {
     'username': [
         { type: 'required', message: 'Username is required' },
@@ -58,10 +58,14 @@ export class ProfileComponent {
 
       this.uactivity.addInfo(model);
     }
+  
   constructor(private formBuilder: FormBuilder, private sharedService: SharedProvider, private uactivity: UseractivityProvider, private imageService: ImageProvider, private dataService: DataProvider) {
-    this.userTitle = uactivity.model.userid;
-    this.loggedEmail = sharedService.getLogged();
-    this.profileImg = uactivity.model.profile_pic;
+    
+    this.userModel = uactivity.model;
+    
+    
+    this.loggedEmail = this.userModel.email;
+    this.profileImg = this.userModel.profile_pic;
     this.myForm = formBuilder.group({
       username: new FormControl(this.uactivity.model.userid, Validators.compose([
         Validators.maxLength(25),

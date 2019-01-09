@@ -1,15 +1,15 @@
 <div class="divhead" padding>
   
   <div class="divProfile"> 
-    
+      
       <ion-avatar class="profi-pic" (click)=actionForProfile()>
         
           <!-- <img class="profi-pic" src="https://pbs.twimg.com/profile_images/971635378892386304/fqqp4Sru.jpg"/> -->
-          <img src={{profileImg}} class="profi-pic"/>
+          <img src={{userModel.profile_pic}} class="profi-pic"/>
           
           
       </ion-avatar>
-      <div class="proName"><ion-label>@{{userTitle}}</ion-label></div>
+      <div class="proName"><ion-label>{{userModel.firstname + userModel.lastname }}</ion-label></div>
     
     </div>
     

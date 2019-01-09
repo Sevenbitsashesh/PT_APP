@@ -27,6 +27,7 @@ goHome() {
 this.route.navigate(['/userhome']);
 }
 logout() {
+  
   this.sharedService= undefined;
   localStorage.removeItem('usermail');
    localStorage.removeItem('username');

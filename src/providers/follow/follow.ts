@@ -45,7 +45,7 @@ getRef(docid) {
 changeFollowings(users: any[]) {
 this.userfollowings.next(users);
 }
-getTweet() {
-  
+getFollowers(docid) {
+  // this.shared.db.collection('users').ref.
 }
 }

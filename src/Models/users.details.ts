@@ -11,6 +11,8 @@ export class UserDetails  {
     // hobbies: string[];
      profile_pic?: string;
      dob: Date;
+     fname: string;
+     lname: string;
 }
 // export interface SomeType {
 //     count: number;

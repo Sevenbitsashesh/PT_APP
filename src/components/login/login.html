@@ -1,10 +1,29 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Login</ion-title>
+    <ion-toolbar>Login</ion-toolbar>
   </ion-navbar>
 </ion-header>
 
-<ion-content align="center" class="LoginContent">
+   <ion-content align="center" class="LoginContent">
+        <ion-segment [(ngModel)]="login" color="primary">
+                <ion-segment-button value="signin">
+                  Sign In
+                </ion-segment-button>
+                <ion-segment-button value="signup">
+                  Sign Up
+                </ion-segment-button>
+              </ion-segment>
+              <div [ngSwitch]="login">
+                    
+              <signin *ngSwitchCase="'signin'"></signin>
+                
+                        <signup *ngSwitchCase="'signup'"></signup>
+                
+            </div>
+            
+   </ion-content>
+
+<!-- <ion-content align="center" class="LoginContent">
   <form [formGroup]="loginForm">
    
       <ion-grid align="center">
@@ -90,7 +109,7 @@
       </ion-grid>
   
   </form>  
-    </ion-content>  
+    </ion-content>   -->
   
      <router-outlet>
       

@@ -11,6 +11,8 @@ import { ProfilepicComponent } from './profilepic/profilepic';
 import { UserprofileComponent } from './userprofile/userprofile';
 import { NotificationComponent } from './notification/notification';
 import { SettingComponent } from './setting/setting';
+import { SigninComponent } from './signin/signin';
+import { SignupComponent } from './signup/signup';
 
 
 
@@ -21,14 +23,18 @@ import { SettingComponent } from './setting/setting';
     HometabComponent,
     ProfileComponent,
     ProfilepicComponent,
-    SettingComponent],
+    SettingComponent,
+    SigninComponent,
+    SignupComponent],
 	imports: [ IonicModule, CommonModule, RouterModule	],
 	exports: [FirstComponent,
 	LoginComponent,
     HometabComponent,
     ProfileComponent,
     ProfilepicComponent,
-    SettingComponent],
+    SettingComponent,
+    SigninComponent,
+    SignupComponent],
     entryComponents: [LoginComponent, FirstComponent, ProfileComponent],
 
 })
