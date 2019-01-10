@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { SharedProvider } from '../shared/shared';
 import { DataProvider } from '../data/data';
 import { BehaviorSubject } from 'rxjs';
+import { appconfigs } from '../../Models/users_firestore';
 
 
 @Injectable()
@@ -19,14 +20,13 @@ export class FollowProvider {
       this.shared.db.collection('users').ref.where('userid','==',this.loggedUid).get().then(userdocs => {
         userdocs.forEach(user => {
           console.log('logged user',user.id);
-          this.getRef(user.id).get().then(follows => {
+          this.getRefFlwing(user.id).get().then(follows => {
             follows.forEach(items => {
               items.ref.collection('follow').get().then(f => {
+                
                 f.forEach(followings => {
                   
-                  followings.ref.get().then(flrs => {
-                    
-                     console.log();
+                  followings.ref.get().then(flrs => {                    
                       this.users.push(flrs.data()['user']);
                    this.changeFollowings(this.users);
                    
@@ -39,13 +39,16 @@ export class FollowProvider {
       })
     });
 }
-getRef(docid) {
-  return this.shared.db.collection('followings').ref.where('docid','==',docid);
+getRefFlwing(docid) {
+  return this.shared.db.collection(appconfigs.collection_followings).ref.where('docid','==',docid);
+}
+getRefFlwrs(docid) {
+  return this.shared.db.collection(appconfigs.collection_followers).ref.where('docid','==',docid);
 }
 changeFollowings(users: any[]) {
 this.userfollowings.next(users);
 }
 getFollowers(docid) {
-  // this.shared.db.collection('users').ref.
+   this.shared.userscollection.doc(docid).collection('')
 }
 }

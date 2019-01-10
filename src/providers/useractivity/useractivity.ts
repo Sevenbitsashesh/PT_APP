@@ -11,7 +11,7 @@ import { appconfigs } from '../../Models/users_firestore';
 import { AngularFireStorage } from 'angularfire2/storage';
 import { DataProvider } from '../data/data';
 import { LoadingController } from 'ionic-angular';
-import { FollowingModel } from '../../Models/following';
+
 import firebase from 'firebase';
 @Injectable()
 export class UseractivityProvider {

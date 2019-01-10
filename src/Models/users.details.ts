@@ -1,6 +1,6 @@
 
 export class UserDetails  {
-    // userid: string;
+    userid: string;
     username: string;
     password: string;
     email: string;
@@ -13,6 +13,12 @@ export class UserDetails  {
      dob: Date;
      fname: string;
      lname: string;
+     followers?: FollowingModel[];
+    followings?: FollowingModel[]
+}
+export class FollowingModel {
+    user: string;
+
 }
 // export interface SomeType {
 //     count: number;

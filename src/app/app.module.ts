@@ -29,6 +29,8 @@ import { FollowProvider } from '../providers/follow/follow';
 import { ImageProvider } from '../providers/image/image';
 import { TweetsProvider } from '../providers/tweets/tweets';
 import { LoginProvider } from '../providers/login/login';
+import { UserfollowProvider } from '../providers/userfollow/userfollow';
+import { RefProvider } from '../providers/ref/ref';
 
 @NgModule({
   declarations: [
@@ -69,7 +71,9 @@ import { LoginProvider } from '../providers/login/login';
     FollowProvider,
     ImageProvider,
     TweetsProvider,
-    LoginProvider
+    LoginProvider,
+    UserfollowProvider,
+    RefProvider
   ]
 })
 export class AppModule {}

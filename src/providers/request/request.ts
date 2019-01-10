@@ -7,7 +7,7 @@ import { RequestModel } from '../../Models/request_model';
 import { appconfigs } from '../../Models/users_firestore';
 import { map } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
-import { FollowingModel } from '../../Models/following';
+
 
 
 
@@ -265,7 +265,8 @@ unfollow() {
                         })
                     })
                   })
-              })               
+              })
+
             })
           })
           

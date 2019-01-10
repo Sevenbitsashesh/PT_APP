@@ -18,6 +18,8 @@ export class DataProvider {
   loggedUId = this.loggedUserId.asObservable();
   private imageUrl = new BehaviorSubject('');
   imageUrlObs = this.imageUrl.asObservable();
+  private userModel = new BehaviorSubject([]);
+  userModelObs = this.userModel.asObservable();
   constructor(public http: HttpClient, private shared: SharedProvider) {
   }
   changeSearchID(userid: string) {
@@ -28,6 +30,9 @@ export class DataProvider {
   }
   changeImageData(imageUrl: string) {
     this.imageUrl.next(imageUrl);
+  }
+  changeUserModel(userModel: UserDetails[]) {
+    this.userModel.next(userModel);
   }
   //Search By Userid Observable 
   getSearchUserModel(userid) : Observable<UserDetails[]> {

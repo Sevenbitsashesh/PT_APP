@@ -2,22 +2,22 @@
 <ion-content *ngFor="let item of userModel">
   <div class="prodivMain">
     <div class="divProfile" >
-      <img [src]="item.profile_pic" ngNonBindable class="imgAvatar"/> 
+      <img [src]=item.profile_pic ngNonBindable class="imgAvatar"/> 
     </div>
     
     
   </div>
   <div>
-    <ion-label class="centerDiv">{{item.userid}}</ion-label> 
+    <ion-label class="centerDiv ">{{item.userid}}</ion-label> 
   </div>
 
   <div class="divFollowMain">
   <div class="divFollowing">
     
-    <div class="centerDiv"><button class="btn Following"><ion-label>Following 13K</ion-label></button></div> 
+    <div class="centerDiv"><button class="btn Following"><ion-label>Following {{item.followings.length}}</ion-label></button></div> 
   </div>
   <div class="divFollowers">
-   <div class="centerDiv"><button class="btn Followers"><ion-label>Followers 13K</ion-label></button></div> 
+   <div class="centerDiv"><button class="btn Followers"><ion-label>Followers {{item.followers.length}}</ion-label></button></div> 
   </div>
   </div>
   <div class="divStartFollow">
