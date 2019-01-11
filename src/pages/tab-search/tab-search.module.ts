@@ -3,6 +3,7 @@ import { IonicPageModule } from 'ionic-angular';
 import { TabSearchPage } from './tab-search';
 import { Routes, RouterModule } from '@angular/router';
 import { UserprofileComponent } from '../../components/userprofile/userprofile';
+import { FeedsComponent } from '../../components/feeds/feeds';
 
 const routes: Routes = [
   {
@@ -17,7 +18,8 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     TabSearchPage,
-    UserprofileComponent
+    UserprofileComponent,
+    FeedsComponent
   ],
   imports: [
     IonicPageModule.forChild(TabSearchPage),

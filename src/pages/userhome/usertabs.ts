@@ -34,4 +34,10 @@ logout() {
   // this.sharedService.checkLogin();
   this.route.navigate(['/login']);
 }
+openNav() {
+  document.getElementById("mySidenav").style.width = '50%';
+}
+closeNav() {
+  document.getElementById("mySidenav").style.width = "0px";
+}
 }

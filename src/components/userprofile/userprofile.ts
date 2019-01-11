@@ -7,6 +7,7 @@ import { RequestModel } from '../../Models/request_model';
 import { UserfollowProvider } from '../../providers/userfollow/userfollow';
 import { Observable } from 'rxjs';
 
+
 /**
  * Generated class for the UserprofileComponent component.
  *
@@ -25,8 +26,6 @@ export class UserprofileComponent {
   requests;
   requested;
   following;
-  $flrs;
-  flwings;
   constructor(private userActivity: UseractivityProvider, private dataService: DataProvider,private requestService: RequestProvider, private userFlwService: UserfollowProvider) {
     this.dataService.searchUser.subscribe(search => this.userid = search);
     
@@ -44,15 +43,30 @@ export class UserprofileComponent {
   }
   searchUser() {
     // this.userActivity.callLoader();
-this.dataService.getSearchUserModel(this.userid).subscribe(data => {
+    
+      return this.dataService.getSearchUserModel(this.userid)      
+    
+    .subscribe(data => {
   
  
-    this.userModel = data;
-    this.dataService.changeUserModel(this.userModel);
+      this.userModel = data;
+      this.dataService.changeUserModel(this.userModel);
+        // this.flwrs = this.userModel[0].followers.length;
+        // this.flwings = this.userModel[0].followings.length;
+      
     
+  });
+
+//  .subscribe(data => {
+  
+ 
+//     this.userModel = data;
+//     this.dataService.changeUserModel(this.userModel);
+//     this.flwrs = this.userModel[0].followers.length;
+//     this.flwings = this.userModel[0].followings.length;
     
   
-});
+// });
 // this.userActivity.dismissLoader();
   }
   follow() {

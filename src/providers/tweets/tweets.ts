@@ -1,17 +1,33 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { DataProvider } from '../data/data';
+import { SharedProvider } from '../shared/shared';
+import { TweetModel } from '../../Models/tweet_model';
 
-/*
-  Generated class for the TweetsProvider provider.
 
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class TweetsProvider {
-
-  constructor(public http: HttpClient) {
-    console.log('Hello TweetsProvider Provider');
+  userid;
+  tweets: TweetModel;
+  constructor(public http: HttpClient,private shared: SharedProvider, private dataService: DataProvider) {
+    dataService.searchUser.subscribe(user => {
+      this.userid = user;
+     
+    });
+    this.getTweets();
   }
-
+  // Start From here 
+  getTweets() {
+    this.shared.db.collection('users').ref.where('userid','==',this.userid).onSnapshot(data => {
+      data.forEach(item => {
+        item.ref.collection('tweets').get().then(tweets => {
+        
+          // console.log(tweets.size);
+          tweets.forEach(tweet => {
+            // this.tweets = tweet;    
+          })
+        })
+      })
+    })
+  }
 }

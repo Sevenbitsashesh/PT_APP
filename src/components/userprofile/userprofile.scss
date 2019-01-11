@@ -1,141 +1,79 @@
 
 .prodivMain {
-    height:20%;
+    float: left;
+    height:25%;
+    width: 40%;
+    // background: rgb(65, 121, 116);
+}
+.divProfileImg {
+    height: 100%;
     width: 100%;
-    background: #446845;
+    // background: saddlebrown;
 }
 .imgAvatar {
-    height: 100%;
     width: 100%;
+    height: 100%;
     border-radius: 50px;
+    // image-resolution: 200dpi;
 }
-.divFollowMain {
-    width: 100%;
-    height: 50px;
-    // background: gray;
-}
-.divFollowing {
-    width: 50%;
-    height: 100%;
-    // background: rebeccapurple;
+.divFollow {
+    padding: 10px;
+    width: 60%;
+    
+    
     float: left;
-}
-.divFollowers {
-    width: 50%;
-    height: 100%;
     // background: red;
-    float: left;
 }
-.btn {
+.divprofileName {
     width: 100%;
-    height: 100%;
-    border-radius: 30px;
+    height: 10%;
+    // background: rebeccapurple; 
+    clear: both;
 }
-.centerDiv {
-    // position: absolute;
-    glyph-orientation-horizontal: 50%;
-}
-.divStartFollow {
-    width: 100%;
-    background: #446845;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Loading Button for CSS
-// .buttonload {
-//     background-color: #4CAF50; /* Green background */
-//     border: none; /* Remove borders */
-//     color: white; /* White text */
-//     padding: 12px 16px; /* Some padding */
-//     font-size: 16px; /* Set a font size */
-//     width: 100%;
-//   } 
-//   .fa {
-//     margin-left: -12px;
-//     margin-right: 8px;
-//   }
-// Following Button Css
-/* Chrome, Safari, Opera */
-@-webkit-keyframes follow-animation {
-    from {background: white; color: #3399FF; width: 85px; left: 50px;}
-    to {background: #2EB82E; border-color: #2EB82E; color: #ffffff; width: 120px; left: 35px;}
-  }
-  @-webkit-keyframes unfollow-animation {
-    from {background: #2EB82E; color: #ffffff; width: 120px; left: 35px;}
-    to {background: white; border-color: #3399FF; color: #3399FF; width: 85px; left: 50px;}
-  }
-  
-  /* Standard syntax */
-  @keyframes follow-animation {
-    from {background: white; color: #3399FF; width: 85px; left: 50px;}
-    to {background: #2EB82E; border-color: #2EB82E; color: #ffffff; width: 120px; left: 35px;}
-  }
-  @keyframes unfollow-animation {
-    from {background: #2EB82E; color: #ffffff; width: 120px; left: 35px;}
-    to {background: white; border-color: #3399FF; color: #3399FF; width: 85px; left: 50px;}
-  }
-  
-  .follow {
-    -webkit-appearance: none;
-    position: absolute;
-    right: 50%;
-  }
-  
-  .follow:after {
-    color: #3399FF;
-    font-family: "Helvetica";
-    font-size: 10pt;
-    background-color: #ffffff;
-    border: 1px solid;
-    border-color: #3399FF;
-    border-radius: 3px;
-    // position: absolute;
-    top: 50px;
-    left: 50px;	
-    cursor: hand;
-    // display: inline-block;
+.profileName {
+    height: 30%;
+    width: 40%;
     text-align: center;
-    padding: 5px 15px;
-  
-  
-    content: '+ Follow';
-    -webkit-animation: unfollow-animation 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    -webkit-animation-fill-mode:forwards;
-    animation: unfollow-animation 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    animation-fill-mode:forwards;
-  }
-  
-  .follow:checked:after {
-    content: 'Following';
-    -webkit-animation: follow-animation 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    -webkit-animation-fill-mode:forwards;
-    animation: follow-animation 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    animation-fill-mode:forwards;
-  }	
+    // background: red;
+    
+}
+.buttonFF {
+    margin: 5px;   
+    border: 2px;
+    background: rebeccapurple;
+    -webkit-text-fill-color: aqua;
+    height: 20px;
+    width: 100%;
+}
+.slider-main {
+    height: 100%;
+    width: 100%;
+    background: bisque;
+}
+.slider-menu {
+    width: 100%;
+}
+.slider-btn {
+    border-bottom: 2px solid; /* Green */
+    border-bottom-color: rebeccapurple;
+    width: 33%;
+    float: left;
+    padding-left: 10px;
+    height: 30px;
+    text-decoration: none;
+}
 
-  .divProfileContent {
-      padding: 10px;
-      width: 100%;
-      background: #3399FF;
-      height: 20%;
-  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

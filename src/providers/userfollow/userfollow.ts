@@ -36,7 +36,7 @@ export class UserfollowProvider {
           data.forEach(flwings => {
             this.refService.getRefFlw(flwings.id,'followings')
             .subscribe(followings => {
-              // this.userModel[0].followers = followings;
+              this.userModel[0].followings = followings;
               
               this.dataService.changeUserModel(this.userModel);
             });
@@ -47,7 +47,8 @@ export class UserfollowProvider {
           data2.forEach(flwrs => {
             this.refService.getRefFlw(flwrs.id,'followers')
             .subscribe(followers => {
-              // this.userModel[0].followers = followers;
+              this.userModel[0].followers = followers;
+              this.dataService.changeUserModel(this.userModel);
             })
           })
         });        

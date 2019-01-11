@@ -31,6 +31,8 @@ import { TweetsProvider } from '../providers/tweets/tweets';
 import { LoginProvider } from '../providers/login/login';
 import { UserfollowProvider } from '../providers/userfollow/userfollow';
 import { RefProvider } from '../providers/ref/ref';
+import { CollectionProvider } from '../providers/collection/collection';
+
 
 @NgModule({
   declarations: [
@@ -73,7 +75,8 @@ import { RefProvider } from '../providers/ref/ref';
     TweetsProvider,
     LoginProvider,
     UserfollowProvider,
-    RefProvider
+    RefProvider,
+    CollectionProvider
   ]
 })
 export class AppModule {}
