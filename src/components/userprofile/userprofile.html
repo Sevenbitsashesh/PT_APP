@@ -10,8 +10,8 @@
   </div>
   <div class="divFollow">
     
-    <button class="buttonFF">Followers</button>
-    <button class="buttonFF">Followings</button>
+    <button class="buttonFF">Followers {{item.followers.length}}</button>
+    <button class="buttonFF">Followings {{item.followings.length}}</button>
     <div class="centerDiv">
       <!-- <input type="checkbox" value="Start Follow" class="follow" (click)="follow(requested)"/> -->
       <button ion-button (click)="follow()" *ngIf="!following">Follow</button>
@@ -31,29 +31,31 @@
     <ion-label class="profileName">{{item.userid}}</ion-label> 
   </div>
   <div class="slider-menu">
+      <div class="slider-menu-s3">
+          <button class="slider-btn" (click)="sliderChange(0)">Feed</button>
+                  </div>
     <div class="slider-menu-s1">
-<button class="slider-btn">Collection</button>
+<button class="slider-btn" (click)="sliderChange(1)">Collection</button>
     </div>
     <div class="slider-menu-s2">
-<button class="slider-btn">Secrets</button>
+<button class="slider-btn" (click)="sliderChange(3)">Secrets</button>
       </div>
-      <div class="slider-menu-s3">
-<button class="slider-btn">Feed</button>
-        </div>
+      
   </div>
   <div class="slider-main">
-    <ion-slides>
+    <ion-slides >
+        <ion-slide>
+            <feeds></feeds>
+          </ion-slide>
       <ion-slide>
         
       </ion-slide>
 
-  <ion-slide style="background-color: silver">
+  <ion-slide>
     <h2>Secrets</h2>
   </ion-slide>
 
-  <ion-slide style="background-color: cornflowerblue">
-    <feeds></feeds>
-  </ion-slide>
+  
     </ion-slides>
     <!-- <ion-label>Collection</ion-label>
     <ion-label>Secrets</ion-label>

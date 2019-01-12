@@ -196,7 +196,12 @@ addInfo(model) {
     snap.forEach(data => {
       
       this.tweetscollection = this.db.collection('users').doc(data.id).collection<TweetModel>(appconfigs.collection_tweets);  
-      this.tweetscollection.add(this.tweetmodel);
+      this.tweetscollection.add(this.tweetmodel).then(tweeted => {
+        console.log(tweeted.id);
+        this.sharedProvider.db.collection('liked').ref.add({tweet: tweeted.id}).then(data => {
+          tweeted.set({liked: data.id},{merge: true})
+        })
+      });
       console.log('tweet uploaded');
     }
     );

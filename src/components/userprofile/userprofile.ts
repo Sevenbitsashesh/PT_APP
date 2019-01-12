@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { DataProvider } from '../../providers/data/data';
 import { UseractivityProvider } from '../../providers/useractivity/useractivity';
 import { UserDetails } from '../../Models/users.details';
@@ -6,6 +6,7 @@ import { RequestProvider } from '../../providers/request/request';
 import { RequestModel } from '../../Models/request_model';
 import { UserfollowProvider } from '../../providers/userfollow/userfollow';
 import { Observable } from 'rxjs';
+import { Slides } from 'ionic-angular';
 
 
 /**
@@ -19,7 +20,7 @@ import { Observable } from 'rxjs';
   templateUrl: 'userprofile.html'
 })
 export class UserprofileComponent {
-
+  @ViewChild(Slides) slides: Slides;
   //searching userid  
   userid;
   userModel: UserDetails[];
@@ -83,5 +84,9 @@ export class UserprofileComponent {
   }
   unfollow() {
     this.requestService.unfollow();
+  }
+  sliderChange(s) {
+    
+    this.slides.slideTo(s,500);
   }
 }

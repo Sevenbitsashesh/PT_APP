@@ -1,3 +1,28 @@
-feeds {
-
+.main-gallary {
+    height: 100%;
+    width: 100%;
+    background: burlywood;
+}
+.gallary-row {
+    width:100%;
+    height: 20%;
+    // background: brown;
+    // padding-top: 0%;
+    top:  0%;
+    // bottom: 50%;
+    padding-top: 5px;
+    position: absolute;
+}
+.gallary-col {
+width: 30%;
+height: 100%;
+background: white;
+float: left;
+margin-left: 10px;
+margin-bottom: 10px;
+color: gold;
+}
+.gallary-col-img {
+    height: 100%;
+    width: 100%;
 }

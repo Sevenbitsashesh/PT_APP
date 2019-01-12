@@ -12,10 +12,10 @@ import { TweetsProvider } from '../../providers/tweets/tweets';
 export class FeedsComponent {
 
   
-  userModel;
+  tweetModel;
   constructor(private tweetService: TweetsProvider) {
-  
+  this.tweetModel = this.tweetService.tweets;
     
   }
-
+  
 }

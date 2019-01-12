@@ -22,7 +22,7 @@ export class CreateTweetComponent {
       console.log('click')
       this.dataService.imageUrlObs.subscribe(url => {
         if(url) {
-          console.log('my tweet url',url);
+          // console.log('my tweet url',url);
           this.userActivity.createTweet(this.tweetcontent,this.t_title,url);      
         }
         

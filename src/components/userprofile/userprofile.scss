@@ -38,13 +38,28 @@
     
 }
 .buttonFF {
+    display: inline-block;
+    font: inherit;
+    background: none;
+    border: none;
+    color: inherit;
+    padding: 0;
+    cursor: pointer;
+
     margin: 5px;   
-    border: 2px;
-    background: rebeccapurple;
-    -webkit-text-fill-color: aqua;
+    // border: 2px;
+    background: red;
+    -webkit-text-fill-color: rgb(223, 196, 172);
     height: 20px;
     width: 100%;
+
+   
 }
+
+.buttonFF:focus{
+    outline: 0.5rem auto #4d90fe;
+}
+
 .slider-main {
     height: 100%;
     width: 100%;
@@ -56,11 +71,12 @@
 .slider-btn {
     border-bottom: 2px solid; /* Green */
     border-bottom-color: rebeccapurple;
-    width: 33%;
+    width: 30%;
     float: left;
     padding-left: 10px;
     height: 30px;
     text-decoration: none;
+    margin-left: 10px;
 }
 
 

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { UseractivityProvider } from '../../providers/useractivity/useractivity';
 import { FollowProvider } from '../../providers/follow/follow';
-
-
+import { LikeProvider } from '../../providers/like/like';
+ 
 @Component({
   selector: 'tweetslist',
   templateUrl: 'tweetslist.html'
@@ -14,7 +14,7 @@ export class TweetslistComponent {
   background= [];
   users = [];
   showing;
-  constructor(private userActivity: UseractivityProvider, private followService: FollowProvider) {
+  constructor(private userActivity: UseractivityProvider, private followService: FollowProvider, private likeService : LikeProvider) {
     
     // this.matProgress.
     // this.getTweet();
@@ -42,5 +42,7 @@ export class TweetslistComponent {
   var color = Math.floor(0x1000000 * Math.random()).toString(16);
   return "#" + ("000000" + color).slice(-6);
   }
-  
+  onLike(s) {
+    s.target.classLists.remove('button-like')
+  }
 }

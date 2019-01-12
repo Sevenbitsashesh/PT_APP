@@ -32,6 +32,7 @@ import { LoginProvider } from '../providers/login/login';
 import { UserfollowProvider } from '../providers/userfollow/userfollow';
 import { RefProvider } from '../providers/ref/ref';
 import { CollectionProvider } from '../providers/collection/collection';
+import { LikeProvider } from '../providers/like/like';
 
 
 @NgModule({
@@ -76,7 +77,8 @@ import { CollectionProvider } from '../providers/collection/collection';
     LoginProvider,
     UserfollowProvider,
     RefProvider,
-    CollectionProvider
+    CollectionProvider,
+    LikeProvider
   ]
 })
 export class AppModule {}
