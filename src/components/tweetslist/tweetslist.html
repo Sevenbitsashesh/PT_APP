@@ -1,4 +1,9 @@
 
+   
+
+
+
+
 <div [hidden]=showing >
   
 <img class="tweetMain"   src="../../assets/imgs/loader.gif">
@@ -24,15 +29,14 @@
       
         <ion-row>
           <ion-col>
-             
-                  <ion-icon name="egg"></ion-icon>
-                  
+            <a> <img class="main-likes" *ngIf=tweet.like src="../../assets/icon/liked.svg"></a>
+            <a> <img class="main-likes" *ngIf=!tweet.like src="../../assets/icon/unliked.svg" (click)="onLike(tweet.likeDoc)"></a>
+            Likes {{tweet.liked.length}}
 
-              
           </ion-col>
           <ion-col>
             <button ion-button icon-start clear small>
-              <ion-icon name="text"></ion-icon>
+              
               <div>4 Retweets</div>
             </button>
           </ion-col>

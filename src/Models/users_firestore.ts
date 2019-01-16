@@ -8,5 +8,7 @@ export const appconfigs = {
     collection_requests: 'requests',
     collection_followers: 'followers',
     collection_followings: 'followings',
-    collection_follow: 'follow'
+    collection_follow: 'follow',
+    collection_liked: 'liked',
+    collection_by: 'by'
 }

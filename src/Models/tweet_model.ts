@@ -7,4 +7,11 @@ export interface TweetModel {
     t_user?: string;
     t_user_pic?: string;
     docid?: string;
+    likeDoc?: string;
+    liked?: LikeModel[],
+    like?: boolean,
+    
+}
+export class LikeModel {
+    user: string;
 }

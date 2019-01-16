@@ -6,7 +6,7 @@ import { SharedProvider } from '../shared/shared';
 import 'rxjs/Rx';
 import { Observable } from 'rxjs';
 import { map, finalize } from 'rxjs/operators';
-import { TweetModel } from '../../Models/tweet_model';
+import { TweetModel, LikeModel } from '../../Models/tweet_model';
 import { appconfigs } from '../../Models/users_firestore';
 import { AngularFireStorage } from 'angularfire2/storage';
 import { DataProvider } from '../data/data';
@@ -102,23 +102,37 @@ addInfo(model) {
         const tweetsRef = this.db.collection('users').doc(uid).collection<TweetModel>(appconfigs.collection_tweets);     
         tweetsRef.snapshotChanges().
             pipe(map(docArray => {
-         return docArray.map(data => {
-
-        return ( {tweetcontent: data.payload.doc.data()['tweetcontent'], t_title: data.payload.doc.data()['t_title'],
-        t_date: data.payload.doc.data()['t_date'],t_image: data.payload.doc.data()['t_image'],t_user: 'a',t_user_pic: ''
-        });
+         return docArray.map(data => { 
+           
+        return ( 
+          {tweetid: data.payload.doc.id, tweetcontent: data.payload.doc.data()['tweetcontent'], t_title: data.payload.doc.data()['t_title'],
+        t_date: data.payload.doc.data()['t_date'],t_image: data.payload.doc.data()['t_image'],t_user: 'a',t_user_pic: '', likeDoc: data.payload.doc.data()['likeDoc'], liked: [] = [], like: false
+        }
+        );
       });
     } ))
         
         .subscribe(data => {
+          
           data.forEach(items => {
             
             if(this.usersTweets.find(tweet => tweet.t_title == items.t_title) === undefined) {
              items.t_user = user.data()['userid'];
-             items.t_user_pic = user.data()['profile_pic'];
-            console.log(items.t_user);
+             items.t_user_pic = user.data()['profile_pic'];    
+                      
+            console.log(items.tweetid);
+            
+            if(items.likeDoc !== undefined) {
+                this.getLikes(items.likeDoc).subscribe(dataLikes => {
+                  dataLikes.forEach(itemsLikes => {
+                    
+                    items.liked.push(itemsLikes.payload.doc.data()['user']);                    
+                  })
+                })
+            }
             this.usersTweets.push(items);
             this.hide = true;
+                console.log('t:', this.usersTweets);
           }
         })
         
@@ -233,5 +247,8 @@ addInfo(model) {
     // console.log('profile pic changed',url);
       this.sharedProvider.saveProfilePic(url,this.uid);
   }
-  
+  getLikes(docid) {
+    console.log(docid);
+   return this.sharedProvider.db.collection(appconfigs.collection_liked + '/' + docid + '/' + appconfigs.collection_by).snapshotChanges();
+  }
 }
