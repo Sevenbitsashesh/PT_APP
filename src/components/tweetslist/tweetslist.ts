@@ -28,15 +28,17 @@ export class TweetslistComponent {
           this.tweets = userActivity.usersTweets;           
           this.showing = this.userActivity.hide; 
           this.tweets.forEach(tweet => {
-            tweet.liked.forEach(users => {              
+            tweet.liked.forEach(users => {                            
               likeService.getLoggedU().get().then(user => {  
                 user.forEach(u => {
 
-                  if(users.user === u.id) {
-                     tweet.like = true;
+                  if(users === u.id) {
+                    tweet.like = true;
+                    console.log('true',tweet.t_title);
                   }
                   else {
                     tweet.like = false;
+                    console.log('false',tweet.t_title);
                   }
                 })
               })
@@ -65,7 +67,14 @@ export class TweetslistComponent {
           console.log('liked succes', success.id);
         })
       })
-    })
-     
+    })     
   }
+  onUnLike(likeDoc) {
+    this.likeService.getLoggedU().get().then(users => {
+      users.forEach(user => {
+        this.likeService.giveUnLike(likeDoc,user.id);
+    })
+  })
+}
+
 }

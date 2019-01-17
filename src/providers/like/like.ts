@@ -10,18 +10,27 @@ import { LikeModel } from '../../Models/tweet_model';
 export class LikeProvider {
   userid;
   constructor(public http: HttpClient, private shared: SharedProvider, private uactivity: UseractivityProvider, private dataService: DataProvider) {
-    dataService.searchUser.subscribe(user => {
+    dataService.loggedUId.subscribe(user => {
       this.userid = user;
     });
   //  shared.db.collection('liked').ref.where('user','==',this.userid).
   }
  
   getLoggedU() {
-    console.log('f', this.userid);
+    console.log('f',this.userid);
        return this.shared.db.collection('users').ref.where('userid','==',this.userid); 
   }
   giveLike(likeDoc,uid) {
     
     return this.shared.db.collection<LikeModel>('liked' + '/' + likeDoc +'/' + 'by').ref.add({user: uid});
+  }
+  giveUnLike(likeDoc, uid) {
+    return this.shared.db.collection<LikeModel>('liked' + '/' + likeDoc +'/' + 'by').ref.where('user','==',uid).get().then(data => {
+      data.forEach(items => {
+        items.ref.delete().then(success => {
+          console.log('unliked')
+        });
+      })
+    })
   }
 }

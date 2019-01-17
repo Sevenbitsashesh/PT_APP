@@ -29,9 +29,9 @@
       
         <ion-row>
           <ion-col>
-            <a> <img class="main-likes" *ngIf=tweet.like src="../../assets/icon/liked.svg"></a>
+            <a> <img class="main-likes" *ngIf=tweet.like src="../../assets/icon/liked.svg" (click)=onUnLike(tweet.likeDoc)></a>
             <a> <img class="main-likes" *ngIf=!tweet.like src="../../assets/icon/unliked.svg" (click)="onLike(tweet.likeDoc)"></a>
-            Likes {{tweet.liked.length}}
+            Likes {{tweet.liked.length-1}}
 
           </ion-col>
           <ion-col>

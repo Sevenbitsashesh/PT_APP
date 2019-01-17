@@ -124,6 +124,8 @@ addInfo(model) {
             
             if(items.likeDoc !== undefined) {
                 this.getLikes(items.likeDoc).subscribe(dataLikes => {
+                  items.liked = [];
+                  
                   dataLikes.forEach(itemsLikes => {
                     
                     items.liked.push(itemsLikes.payload.doc.data()['user']);                    
