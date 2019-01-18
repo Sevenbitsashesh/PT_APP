@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
-import { SharedProvider } from '../../providers/shared/shared';
-import { DataProvider } from '../../providers/data/data';
-import { UseractivityProvider } from '../../providers/useractivity/useractivity';
 import { TweetsProvider } from '../../providers/tweets/tweets';
+
 
 
 @Component({
@@ -11,11 +9,9 @@ import { TweetsProvider } from '../../providers/tweets/tweets';
 })
 export class FeedsComponent {
 
-  
   tweetModel;
   constructor(private tweetService: TweetsProvider) {
-  this.tweetModel = this.tweetService.tweets;
-    
+      this.tweetModel = this.tweetService.tweets;
   }
   
 }

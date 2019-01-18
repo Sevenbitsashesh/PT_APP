@@ -60,14 +60,12 @@ export class SharedProvider {
     })
   }
   getLogged() {
-    console.log('getlogged', localStorage.getItem('usermail'));
+    // console.log('getlogged', localStorage.getItem('usermail'));
     return localStorage.getItem('usermail');
   }
   // Checking Login
   checkLogin() {
-    this.firebaseAuth.idToken.subscribe(token => {
-      console.log('token',token);
-    });
+    
     if (localStorage.getItem('usermail') !== null ) {
       // setting login user
        this.loggedUser = this.getLogged();

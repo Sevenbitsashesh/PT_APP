@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, Input, ViewChild, AfterViewInit, AfterViewChecked } from '@angular/core';
 import { DataProvider } from '../../providers/data/data';
 import { UseractivityProvider } from '../../providers/useractivity/useractivity';
 import { UserDetails } from '../../Models/users.details';
@@ -7,19 +7,15 @@ import { RequestModel } from '../../Models/request_model';
 import { UserfollowProvider } from '../../providers/userfollow/userfollow';
 import { Observable } from 'rxjs';
 import { Slides } from 'ionic-angular';
+import { FeedsComponent } from '../feeds/feeds';
 
 
-/**
- * Generated class for the UserprofileComponent component.
- *
- * See https://angular.io/api/core/Component for more info on Angular
- * Components.
- */
+
 @Component({
   selector: 'userprofile',
   templateUrl: 'userprofile.html'
 })
-export class UserprofileComponent {
+export class UserprofileComponent{
   @ViewChild(Slides) slides: Slides;
   //searching userid  
   userid;
@@ -29,7 +25,7 @@ export class UserprofileComponent {
   following;
   constructor(private userActivity: UseractivityProvider, private dataService: DataProvider,private requestService: RequestProvider, private userFlwService: UserfollowProvider) {
     this.dataService.searchUser.subscribe(search => this.userid = search);
-    
+   
     this.searchUser();
     this.requestService.requestsValObs.subscribe(requests => {
       this.requests = requests;
@@ -41,6 +37,7 @@ export class UserprofileComponent {
       this.following = follow;
     });
     userFlwService.getFollow();
+    
   }
   searchUser() {
     // this.userActivity.callLoader();

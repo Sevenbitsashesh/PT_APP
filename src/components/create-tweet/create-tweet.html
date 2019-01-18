@@ -1,6 +1,7 @@
 <ion-item padding>
   <ion-label floating>Whats on your mind?</ion-label>
   <ion-input [(ngModel)]="t_title"></ion-input>
+  
 </ion-item>
 <ion-item>
 <ion-label floating>Description</ion-label> <ion-input [(ngModel)]="tweetcontent"></ion-input>
@@ -13,7 +14,7 @@
 
 </ion-item>
 <ion-item>
-  <button ion-button (click)="createTweet()">
-    Post
+  <button ion-button (click)="createTweet()" class="btn-tweet">
+    Tweet
   </button>
 </ion-item>

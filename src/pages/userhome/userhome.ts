@@ -15,13 +15,11 @@ export class UserhomePage {
     
     sharedService.checkLogin();
     console.log('userhome page loaded');
-    console.log(location.href);
+    // console.log(location.href);
     
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad UserhomePage');
-  }
+  
 
   logout() {
     localStorage.clear();

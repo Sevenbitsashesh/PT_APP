@@ -55,7 +55,7 @@ addInfo(model) {
         if(this.model.verified === false) {
           this.verification = false;
         }
-         console.log('model', this.model);
+        //  console.log('model', this.model);
         localStorage.setItem('username', this.model.userid);
         // Getting Logged user id
          this.uid = change.id;
@@ -148,20 +148,16 @@ addInfo(model) {
       // Getting Logged users Tweet
       console.log('for',uid);
       this.tweetscollection = this.db.collection('users').doc(uid).collection<TweetModel>(appconfigs.collection_tweets);
-      const observer  = this.tweetscollection.snapshotChanges().
+      return this.tweetscollection.snapshotChanges().
       pipe(map(docArray => {
          return docArray.map(data => {
 
-        return ( {tweetcontent: data.payload.doc.data()['tweetcontent'], t_title: data.payload.doc.data()['t_title'],
-        t_date: data.payload.doc.data()['t_date'],t_image: data.payload.doc.data()['t_image']
+        return ( {tweetid: data.payload.doc.id, tweetcontent: data.payload.doc.data()['tweetcontent'], t_title: data.payload.doc.data()['t_title'],
+        t_date: data.payload.doc.data()['t_date'],t_image: data.payload.doc.data()['t_image'],t_user: '',t_user_pic: '', likeDoc: data.payload.doc.data()['likeDoc'], liked: [] = [], like: false
         });
       });
     } )
-    ).subscribe(tweets => {
-      this.usersTweets = tweets;
-      // [].push.apply(this.usersTweets, tweets);
-      console.log('t:', this.usersTweets);
-    });
+    );
   }
   // Upload Photo to firestorage
   public uploadPhoto(profilepic) {
@@ -214,8 +210,9 @@ addInfo(model) {
       this.tweetscollection = this.db.collection('users').doc(data.id).collection<TweetModel>(appconfigs.collection_tweets);  
       this.tweetscollection.add(this.tweetmodel).then(tweeted => {
         console.log(tweeted.id);
-        this.sharedProvider.db.collection('liked').ref.add({tweet: tweeted.id}).then(data => {
-          tweeted.set({liked: data.id},{merge: true})
+        
+        this.sharedProvider.db.collection('liked').ref.add({docid: data.id}).then(data => {
+          tweeted.set({likeDoc: data.id},{merge: true});
         })
       });
       console.log('tweet uploaded');
@@ -231,7 +228,6 @@ addInfo(model) {
     });
      });
       return u;
-   //  const us = u.find.name
   }
   checkVerification() {
     if(this.verification == false) {
@@ -250,7 +246,10 @@ addInfo(model) {
       this.sharedProvider.saveProfilePic(url,this.uid);
   }
   getLikes(docid) {
-    console.log(docid);
+    // console.log(docid);
    return this.sharedProvider.db.collection(appconfigs.collection_liked + '/' + docid + '/' + appconfigs.collection_by).snapshotChanges();
+  }
+  getUserData(docid) {
+    return this.sharedProvider.db.doc<UserDetails>(`users/${docid}/`).snapshotChanges();
   }
 }

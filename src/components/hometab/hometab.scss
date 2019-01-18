@@ -9,9 +9,14 @@
   zoom: 1.4;
 }
 .active {
-  color: rebeccapurple;
+  color: orange;
 }
 .link {
   padding: 30px 30px 15px 30px;
   // background: rebeccapurple;
+}
+.tab-icon {
+  height: 25%;
+  width: 25%;
+  filter: saturate(9);
 }

@@ -4,7 +4,7 @@
 
 
 
-<div [hidden]=showing >
+<div [hidden]=true >
   
 <img class="tweetMain"   src="../../assets/imgs/loader.gif">
 </div>
@@ -31,7 +31,7 @@
           <ion-col>
             <a> <img class="main-likes" *ngIf=tweet.like src="../../assets/icon/liked.svg" (click)=onUnLike(tweet.likeDoc)></a>
             <a> <img class="main-likes" *ngIf=!tweet.like src="../../assets/icon/unliked.svg" (click)="onLike(tweet.likeDoc)"></a>
-            Likes {{tweet.liked.length-1}}
+            Likes {{tweet.liked.length}}
 
           </ion-col>
           <ion-col>

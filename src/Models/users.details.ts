@@ -14,7 +14,7 @@ export class UserDetails  {
      fname: string;
      lname: string;
      followers?: FollowingModel[];
-    followings?: FollowingModel[];
+    followings?: FollowingModel[]; 
 }
 export class FollowingModel {
     user: string;

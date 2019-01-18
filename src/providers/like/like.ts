@@ -13,11 +13,11 @@ export class LikeProvider {
     dataService.loggedUId.subscribe(user => {
       this.userid = user;
     });
-  //  shared.db.collection('liked').ref.where('user','==',this.userid).
+  
   }
  
   getLoggedU() {
-    console.log('f',this.userid);
+    // console.log('f',this.userid);
        return this.shared.db.collection('users').ref.where('userid','==',this.userid); 
   }
   giveLike(likeDoc,uid) {
@@ -33,4 +33,5 @@ export class LikeProvider {
       })
     })
   }
+
 }
