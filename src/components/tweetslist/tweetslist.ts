@@ -27,7 +27,7 @@ export class TweetslistComponent {
           // console.log(this.userActivity.usersTweets);
           this.tweets = userActivity.usersTweets;           
           this.showing = this.userActivity.hide; 
-          this.tweets.forEach(tweet => {
+          this.tweets.forEach(tweet => {            
             tweet.liked.forEach(users => {                            
               likeService.getLoggedU().get().then(user => {  
                 user.forEach(u => {

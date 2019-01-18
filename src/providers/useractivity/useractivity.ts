@@ -94,75 +94,75 @@ addInfo(model) {
   
 // }
 
-    getTweets(uid) {
-
-      // Getting Logged users Tweet
-      console.log('for',uid);
-      this.sharedProvider.userscollection.doc<UserDetails>(uid).get().subscribe(user => {
-        const tweetsRef = this.db.collection('users').doc(uid).collection<TweetModel>(appconfigs.collection_tweets);     
-        tweetsRef.snapshotChanges().
-            pipe(map(docArray => {
-         return docArray.map(data => { 
-           
-        return ( 
-          {tweetid: data.payload.doc.id, tweetcontent: data.payload.doc.data()['tweetcontent'], t_title: data.payload.doc.data()['t_title'],
-        t_date: data.payload.doc.data()['t_date'],t_image: data.payload.doc.data()['t_image'],t_user: 'a',t_user_pic: '', likeDoc: data.payload.doc.data()['likeDoc'], liked: [] = [], like: false
-        }
-        );
-      });
-    } ))
-        
-        .subscribe(data => {
-          
-          data.forEach(items => {
-            
-            if(this.usersTweets.find(tweet => tweet.t_title == items.t_title) === undefined) {
-             items.t_user = user.data()['userid'];
-             items.t_user_pic = user.data()['profile_pic'];    
-                      
-            console.log(items.tweetid);
-            
-            if(items.likeDoc !== undefined) {
-                this.getLikes(items.likeDoc).subscribe(dataLikes => {
-                  items.liked = [];
-                  
-                  dataLikes.forEach(itemsLikes => {
-                    
-                    items.liked.push(itemsLikes.payload.doc.data()['user']);                    
-                  })
-                })
-            }
-            this.usersTweets.push(items);
-            this.hide = true;
-                console.log('t:', this.usersTweets);
-          }
-        })
-        
-        })
-       
-      });    
-            
-  }
   //   getTweets(uid) {
 
   //     // Getting Logged users Tweet
   //     console.log('for',uid);
-  //     this.tweetscollection = this.db.collection('users').doc(uid).collection<TweetModel>(appconfigs.collection_tweets);
-  //     const observer  = this.tweetscollection.snapshotChanges().
-  //     pipe(map(docArray => {
-  //        return docArray.map(data => {
-
-  //       return ( {tweetcontent: data.payload.doc.data()['tweetcontent'], t_title: data.payload.doc.data()['t_title'],
-  //       t_date: data.payload.doc.data()['t_date'],t_image: data.payload.doc.data()['t_image']
-  //       });
+  //     this.sharedProvider.userscollection.doc<UserDetails>(uid).get().subscribe(user => {
+  //       const tweetsRef = this.db.collection('users').doc(uid).collection<TweetModel>(appconfigs.collection_tweets);     
+  //       tweetsRef.snapshotChanges().
+  //           pipe(map(docArray => {
+  //        return docArray.map(data => { 
+           
+  //       return ( 
+  //         {tweetid: data.payload.doc.id, tweetcontent: data.payload.doc.data()['tweetcontent'], t_title: data.payload.doc.data()['t_title'],
+  //       t_date: data.payload.doc.data()['t_date'],t_image: data.payload.doc.data()['t_image'],t_user: 'a',t_user_pic: '', likeDoc: data.payload.doc.data()['likeDoc'], liked: [] = [], like: false
+  //       }
+  //       );
   //     });
-  //   } )
-  //   ).subscribe(tweets => {
-  //     this.usersTweets = tweets;
-  //     // [].push.apply(this.usersTweets, tweets);
-  //     console.log('t:', this.usersTweets);
-  //   });
+  //   } ))
+        
+  //       .subscribe(data => {
+          
+  //         data.forEach(items => {
+            
+  //           if(this.usersTweets.find(tweet => tweet.t_title == items.t_title) === undefined) {
+  //            items.t_user = user.data()['userid'];
+  //            items.t_user_pic = user.data()['profile_pic'];    
+                      
+  //           console.log(items.tweetid);
+            
+  //           if(items.likeDoc !== undefined) {
+  //               this.getLikes(items.likeDoc).subscribe(dataLikes => {
+  //                 items.liked = [];
+                  
+  //                 dataLikes.forEach(itemsLikes => {
+                    
+  //                   items.liked.push(itemsLikes.payload.doc.data()['user']);                    
+  //                 })
+  //               })
+  //           }
+  //           this.usersTweets.push(items);
+  //           this.hide = true;
+  //               console.log('t:', this.usersTweets);
+  //         }
+  //       })
+        
+  //       })
+       
+  //     });    
+            
   // }
+    getTweets(uid) {
+
+      // Getting Logged users Tweet
+      console.log('for',uid);
+      this.tweetscollection = this.db.collection('users').doc(uid).collection<TweetModel>(appconfigs.collection_tweets);
+      const observer  = this.tweetscollection.snapshotChanges().
+      pipe(map(docArray => {
+         return docArray.map(data => {
+
+        return ( {tweetcontent: data.payload.doc.data()['tweetcontent'], t_title: data.payload.doc.data()['t_title'],
+        t_date: data.payload.doc.data()['t_date'],t_image: data.payload.doc.data()['t_image']
+        });
+      });
+    } )
+    ).subscribe(tweets => {
+      this.usersTweets = tweets;
+      // [].push.apply(this.usersTweets, tweets);
+      console.log('t:', this.usersTweets);
+    });
+  }
   // Upload Photo to firestorage
   public uploadPhoto(profilepic) {
     const file = 'data:image/jpg;base64,' + profilepic;
