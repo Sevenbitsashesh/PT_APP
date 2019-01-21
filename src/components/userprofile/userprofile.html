@@ -17,15 +17,15 @@
     
     <div class="centerDiv">
       <!-- <input type="checkbox" value="Start Follow" class="follow" (click)="follow(requested)"/> -->
-      <button ion-button (click)="follow()" *ngIf="!following">Follow</button>
+      <button class="buttonFF follow-btn" (click)="follow()" *ngIf="!following">Follow</button>
       <!-- <button ion-button>Follow Back</button> -->
       <div *ngIf="requests">
-      <button ion-button (click)="accept()">Accept</button>
-      <button ion-button (click)="reject()">Reject</button>
+      <button class="buttonFF follow-btn" (click)="accept()">Accept</button>
+      <button class="buttonFF follow-btn" (click)="reject()">Reject</button>
     </div>
-      <button ion-button *ngIf="following" (click)="unfollow()">Unfollow</button>
+      <button class="buttonFF follow-btn" *ngIf="following" (click)="unfollow()">Unfollow</button>
       <div *ngIf="requested">
-        <button ion-button (click)="cancelRequest()">Cancel Request</button> 
+        <button class="buttonFF follow-btn" (click)="cancelRequest()">Cancel Request</button> 
       </div>
       
   </div>

@@ -48,14 +48,14 @@
 
     margin: 5px;   
     // border: 2px;
-    background: red;
+    background: gray;
     -webkit-text-fill-color: rgb(223, 196, 172);
     height: 20px;
-    width: 100%;
-
-   
+    width: 70%;
 }
-
+.follow-btn {
+background: #4d90fe;
+}
 .buttonFF:focus{
     outline: 0.5rem auto #4d90fe;
 }

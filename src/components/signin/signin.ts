@@ -46,5 +46,7 @@ export class SigninComponent {
   this.loginService.getLogin(model);
   
   }
-
+  signinFb() {
+    this.loginService.getSocialAuth();
+  }
 }
