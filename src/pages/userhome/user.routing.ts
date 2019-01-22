@@ -9,6 +9,10 @@ import { HometabComponent } from '../../components/hometab/hometab';
 import { TabSearchPageModule } from '../tab-search/tab-search.module';
 import { TabProfilePageModule } from '../tab-profile/tab-profile.module';
 import { TabViewsPageModule } from '../tab-views/tab-views.module';
+export function getHomeModule() { return TabHomePageModule; }
+export function getSearchModule() { return TabSearchPageModule; }
+export function getProfileModule() { return TabProfilePageModule; }
+export function getViewModule() { return TabViewsPageModule; }
 
 const routes: Routes = [
 //     {
@@ -18,21 +22,21 @@ const routes: Routes = [
             {
                 path: 'tab_home',
                 //  component: TabHomePage,
-                loadChildren: () => TabHomePageModule
+                loadChildren:  getHomeModule
             },
             {
                 path: 'tab_search',
                 //  component: TabHomePage,
-                loadChildren: () => TabSearchPageModule
+                loadChildren: getSearchModule
             },
             {
                 path: 'tab_profile',
                 //  component: TabHomePage,
-                loadChildren: () => TabProfilePageModule
+                loadChildren: getProfileModule
             },
             {
                 path: 'tab_views',
-                loadChildren: () => TabViewsPageModule
+                loadChildren: getViewModule
             }
     // {  
     //         path: 'tab_home',

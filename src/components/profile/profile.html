@@ -24,7 +24,16 @@
 </div>
 
 <div padding class="divProfileUpdate">
-<form [formGroup]="myForm">
+    <div class="main-follow">
+     20 Followers
+      </div> 
+      <div class="main-follow">
+         20 Followings
+          </div> 
+          <div class="main-follow">
+             20 Tweets
+              </div> 
+<!-- <form [formGroup]="myForm">
     <ion-item>
         
             <ion-input type="text" formControlName="username" placeholder="Username"></ion-input> 
@@ -62,14 +71,29 @@
                             <div class="error-message" *ngIf="myForm.get('address').hasError(validation.type) && myForm.controls['address'].touched">{{validation.message}}</div>
                           </ng-container>
                         </ion-item>
-                        <!-- <ion-item>
+                        
+                          <ion-item><button class="btnSave" ion-button (click)="saveProfile()" [disabled]="myForm.invalid">Save</button></ion-item>
+                                    
+</form> -->
+<div class="profile-segment-main">
+    <ion-segment>
+        <ion-segment-button value="feeds">
+            Feeds
+        </ion-segment-button>
+        <ion-segment-button value="profile">
+          Profile
+        </ion-segment-button>
+    </ion-segment>
+  </div>
+  <div class="profile-segment">
+        
+  </div>
+</div>
+
+<!-- <ion-item>
                           
                             <ion-textarea formControlName="hobbies" placeholder="hobbies"></ion-textarea>
                             <ng-container *ngFor="let validation of validation_messages.address">
                               <div class="error-message" *ngIf="myForm.get('address').hasError(validation.type) && myForm.controls['hobbies'].touched">{{validation.message}}</div>
                             </ng-container>
                           </ion-item> -->
-                          <ion-item><button class="btnSave" ion-button (click)="saveProfile()" [disabled]="myForm.invalid">Save</button></ion-item>
-                                    
-</form>
-</div>

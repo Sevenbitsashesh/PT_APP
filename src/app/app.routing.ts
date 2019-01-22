@@ -7,6 +7,7 @@ import { UserhomePage } from '../pages/userhome/userhome';
 import { UserhomePageModule } from '../pages/userhome/userhome.module';
 // import { UserhomePageModule } from 'src/pages/userhome/userhome.module';
 import {  } from '@auth0/angular-jwt';
+export function getTestModule() { return UserhomePageModule; }
 
 const appRoutes: Routes = [
     {path: 'login', component: LoginComponent},
@@ -15,7 +16,8 @@ const appRoutes: Routes = [
    { path: 'home', pathMatch: 'full', component: HomePage},
    { path: '', pathMatch: 'full', component: LoginComponent},
    { path: 'userhome', component: UserhomePage, 
-   loadChildren: () => UserhomePageModule 
+//    loadChildren: () => UserhomePageModule 
+loadChildren: getTestModule
     }
     ];
     @NgModule({

@@ -10,11 +10,13 @@
 <ion-item>
 <img src=".././../assets/imgs/attach.svg" class="imgAttach" (click)="select()"/>
 <!-- <img [src]="imageUrl"> -->
-<!-- <div class="header" *ngIf="imageUrl" [style.background-image]="imageUrl"></div> -->
+<div class="imgAttach" *ngIf="imageUrl" [style.background-image]="getImgUrl()"></div>
 
 </ion-item>
 <ion-item>
   <button ion-button (click)="createTweet()" class="btn-tweet">
-    Tweet
+    <!-- <ion-label>Create Tweet</ion-label> -->
+     <ion-spinner name="bubbles"></ion-spinner>
+
   </button>
 </ion-item>

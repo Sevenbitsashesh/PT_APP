@@ -12,9 +12,11 @@ export class CreateTweetComponent {
   tweetcontent;
   t_title;
   imageUrl;
-  constructor(private userActivity: UseractivityProvider, private imageService: ImageProvider, private dataService: DataProvider) {
+  constructor(private userActivity: UseractivityProvider, private imageService: ImageProvider, private dataService: DataProvider, private sani: DomSanitizer) {
     
   }
+  
+  // Create tweet document 
   createTweet() {
     console.log('click')
     if(this.imageUrl) {
@@ -35,12 +37,14 @@ export class CreateTweetComponent {
   select() {
     this.imageService.selectPhoto().then((imageData) => {
       this.imageUrl = imageData;
-      console.log('image selected');
-      
+      console.log('image selected');      
       }, (error) => {        
         console.log(error);
       });
    
+  }
+  getImgUrl() {
+   return this.sani.bypassSecurityTrustStyle(`linear-gradient(rgba(29, 29, 29, 0), rgba(16, 16, 23, 0.5)), url(${this.imageUrl})`);
   }
   
 }

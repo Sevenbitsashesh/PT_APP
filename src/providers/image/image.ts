@@ -8,18 +8,20 @@ import { AngularFireStorage } from 'angularfire2/storage';
 import { finalize } from 'rxjs/operators';
 
 
+
 @Injectable()
 export class ImageProvider {
   imageUrl;
   
   constructor(public http: HttpClient, private camera: Camera, private dataService: DataProvider, private uactivity: UseractivityProvider, private fstorage: AngularFireStorage) {
+      
   }
   selectPhoto() {
     
     
    return this.camera.getPicture({
       quality: 20,
-      destinationType: this.camera.DestinationType.DATA_URL,
+      destinationType: this.camera.DestinationType.FILE_URI,
       sourceType: this.camera.PictureSourceType.SAVEDPHOTOALBUM,
       encodingType: this.camera.EncodingType.JPEG || this.camera.EncodingType.PNG,
       mediaType: this.camera.MediaType.PICTURE,
@@ -29,8 +31,9 @@ export class ImageProvider {
         }
   capturePhoto() {
     return this.camera.getPicture({
+      correctOrientation: true,
       quality: 20,
-      destinationType: this.camera.DestinationType.DATA_URL,
+      destinationType: this.camera.DestinationType.FILE_URI,
       sourceType: this.camera.PictureSourceType.CAMERA,
       encodingType: this.camera.EncodingType.PNG,
       saveToPhotoAlbum: true,
@@ -56,6 +59,7 @@ export class ImageProvider {
       )
     ).subscribe();
   }
+ 
   //Generate unique uuid for Image
   private generateUUID(): any {
     let d = new Date().getTime();

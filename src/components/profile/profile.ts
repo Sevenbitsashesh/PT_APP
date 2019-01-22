@@ -5,6 +5,7 @@ import { UseractivityProvider } from '../../providers/useractivity/useractivity'
 import { ImageProvider } from '../../providers/image/image';
 import { DataProvider } from '../../providers/data/data';
 import { UserDetails } from 'src/Models/users.details';
+import { ProfiledataProvider } from '../../providers/profiledata/profiledata';
 
 
 @Component({
@@ -59,7 +60,7 @@ export class ProfileComponent {
       this.uactivity.addInfo(model);
     }
   
-  constructor(private formBuilder: FormBuilder, private sharedService: SharedProvider, private uactivity: UseractivityProvider, private imageService: ImageProvider, private dataService: DataProvider) {
+  constructor(private formBuilder: FormBuilder, private sharedService: SharedProvider, private uactivity: UseractivityProvider, private imageService: ImageProvider, private dataService: DataProvider, private profileService: ProfiledataProvider) {
     
     this.userModel = uactivity.model;
     
@@ -116,7 +117,6 @@ export class ProfileComponent {
         }
       },
     ]);
-    
     }
     captureImage() {
    console.log('capture photo');
@@ -131,7 +131,6 @@ export class ProfileComponent {
                   this.uactivity.saveprofilePic(url);
                 }
               })
-                       
             }, (error) => {
 
                 console.log(error);
@@ -154,6 +153,4 @@ export class ProfileComponent {
         });
         this.profileImg = this.uactivity.myPhotoURL;
     }
-
-
 }

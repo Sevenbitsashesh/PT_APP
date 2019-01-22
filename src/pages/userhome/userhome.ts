@@ -24,5 +24,6 @@ export class UserhomePage {
   logout() {
     localStorage.clear();
     this.sharedService.checkLogin();
+    this.sharedService = null;
   }
 }

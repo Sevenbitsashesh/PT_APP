@@ -16,11 +16,12 @@ export class MyApp {
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,private route: Router) {
     AngularFireModule.initializeApp(config);
     // console.log(location.href);
+    
     console.log('main comp');
     AngularFireModule.initializeApp(config);
     this.route.navigate(['/home']);
     platform.ready().then(() => {
-      statusBar.styleDefault();
+      statusBar.show();
       splashScreen.hide();
     });
   }

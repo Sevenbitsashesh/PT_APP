@@ -32,6 +32,8 @@ import { UserfollowProvider } from '../providers/userfollow/userfollow';
 import { RefProvider } from '../providers/ref/ref';
 import { CollectionProvider } from '../providers/collection/collection';
 import { LikeProvider } from '../providers/like/like';
+import { ProfiledataProvider } from '../providers/profiledata/profiledata';
+import { AuthProvider } from '../providers/auth/auth';
 
 
 
@@ -78,7 +80,9 @@ import { LikeProvider } from '../providers/like/like';
     UserfollowProvider,
     RefProvider,
     CollectionProvider,
-    LikeProvider
+    LikeProvider,
+    ProfiledataProvider,
+    AuthProvider
   ]
 })
 export class AppModule {}
