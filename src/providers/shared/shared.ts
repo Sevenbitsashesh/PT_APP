@@ -9,6 +9,7 @@ import { ToastController, ActionSheetController, LoadingController } from 'ionic
 // import * as firebase from 'firebase/a';
 import { getLocaleDateFormat, DatePipe } from '@angular/common';
 import { AngularFireAuth } from 'angularfire2/auth';
+
 @Injectable()
 export class SharedProvider {
   model: UserDetails;
@@ -124,4 +125,8 @@ loaderCall() {
 loaderDismiss() {
 this.loading.dismiss();
 }
+userExist(userid) {
+  return this.userscollection.ref.where('userid','==',userid);
+}
+
 }

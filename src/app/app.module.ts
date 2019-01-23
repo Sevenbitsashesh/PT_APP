@@ -34,6 +34,8 @@ import { CollectionProvider } from '../providers/collection/collection';
 import { LikeProvider } from '../providers/like/like';
 import { ProfiledataProvider } from '../providers/profiledata/profiledata';
 import { AuthProvider } from '../providers/auth/auth';
+import { StorageProvider } from '../providers/storage/storage';
+import {  NgbModule, NgbProgressbarModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -58,7 +60,8 @@ import { AuthProvider } from '../providers/auth/auth';
     AngularFireDatabaseModule,
     FormsModule,
     AngularFireStorageModule,
-    AngularFireMessagingModule
+    AngularFireMessagingModule,
+    NgbModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -82,7 +85,8 @@ import { AuthProvider } from '../providers/auth/auth';
     CollectionProvider,
     LikeProvider,
     ProfiledataProvider,
-    AuthProvider
+    AuthProvider,
+    StorageProvider
   ]
 })
 export class AppModule {}

@@ -2,7 +2,7 @@
    
     <ion-grid align="center">
       <ion-row>
-          <ion-col col-3>
+          <ion-col col-2>
             </ion-col>
         <ion-col>
           
@@ -11,7 +11,7 @@
             </ion-item>
           
         </ion-col>
-        <ion-col col-3>
+        <ion-col col-2>
           </ion-col>
       </ion-row>
       <ion-row>
@@ -22,14 +22,14 @@
           </ion-col>
       </ion-row>
       <ion-row>
-          <ion-col col-3>
+          <ion-col col-2>
             </ion-col>
           <ion-col>
             <ion-item class="newionInput">
                 <ion-input type="Password" formControlName="pass" name="pass" placeholder="Password"></ion-input>
             </ion-item>                           
           </ion-col>
-          <ion-col col-3>
+          <ion-col col-2>
             </ion-col>
         </ion-row>
         <ion-row>
@@ -40,8 +40,8 @@
             </ion-col>
         </ion-row>
         <ion-row>
-            <ion-col>  <ion-label [(ngModel)]="message" *ngIf="message" [ngModelOptions]="{standalone: true}">
-                {{message}}
+            <ion-col>  <ion-label *ngIf="msg">
+                {{msg}}
               </ion-label></ion-col>
         </ion-row>
         <ion-row>

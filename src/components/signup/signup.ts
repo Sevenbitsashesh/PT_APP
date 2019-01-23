@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoadingController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -40,9 +40,12 @@ export class SignupComponent {
     ],
     'lname': [
       { type: 'required', message: 'Please Enter Lastname' }
+    ],
+    'userid': [
+      { type: 'pattern', message: 'Enter Valid Userid' }
     ]
   };
-  constructor(private formBuilder: FormBuilder, public router: Router, private loadingController: LoadingController, private fireAuth: AngularFireAuth, private sharedService: SharedProvider, private loginProvider: LoginProvider) {
+  constructor(private loginProvider: LoginProvider, private formBuilder: FormBuilder, public router: Router, private loadingController: LoadingController, private fireAuth: AngularFireAuth, private sharedService: SharedProvider) {
     console.log(this.signed);
     this.signupForm = formBuilder.group({
       email: new FormControl('', Validators.compose([
@@ -59,6 +62,12 @@ export class SignupComponent {
     lname: new FormControl('', Validators.compose([
       Validators.required
     ])),
+    userid: new FormControl('', Validators.compose([
+      Validators.maxLength(25),
+        Validators.minLength(5),
+        Validators.pattern('^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]+$'),
+        Validators.required
+    ]))
     });    
   }
 // Create user in firebase Authentication
@@ -66,11 +75,20 @@ createAcc() {
   const model = {
     'email': this.signupForm.get('email').value,
     'pass': this.signupForm.get('pass').value,
-    'userid': this.signupForm.get('email').value,
+    'userid': this.signupForm.get('userid').value,
     'fname': this.signupForm.get('fname').value,
     'lname': this.signupForm.get('lname').value
   };
-  this.loginProvider.createAcc(model);
-
+  this.sharedService.userExist(model.userid).get().then(u => {
+    if(u.size > 0) {
+      this.message = "Userid already taken."
+    }
+    else {
+      this.loginProvider.createAcc(model);
+    }
+  })
+  
 }
+
+
 }

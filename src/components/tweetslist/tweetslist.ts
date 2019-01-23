@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { UseractivityProvider } from '../../providers/useractivity/useractivity';
 import { FollowProvider } from '../../providers/follow/follow';
 import { LikeProvider } from '../../providers/like/like';
-import { TweetModel, LikeModel } from 'src/Models/tweet_model';
+import { TweetModel, LikeModel } from '../../Models/tweet_model';
  
 @Component({
   selector: 'tweetslist',

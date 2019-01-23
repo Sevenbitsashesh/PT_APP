@@ -9,7 +9,7 @@ import { appconfigs } from '../../Models/users_firestore';
 @Injectable()
 export class FollowProvider {
   loggedUid;
-  users = [];
+  users = [];  
   private userfollowings = new BehaviorSubject([]);
   userFollowingsObs = this.userfollowings.asObservable();
   constructor(public http: HttpClient, private shared: SharedProvider, private dataService: DataProvider) {
@@ -19,6 +19,7 @@ export class FollowProvider {
       console.log('checking followings for',this.loggedUid);
       this.shared.db.collection('users').ref.where('userid','==',this.loggedUid).get().then(userdocs => {
         userdocs.forEach(user => {
+          this.users.push(user.id);
           console.log('logged user',user.id);
           this.getRefFlwing(user.id).get().then(follows => {
             follows.forEach(items => {
@@ -26,7 +27,8 @@ export class FollowProvider {
                 
                 f.forEach(followings => {
                   
-                  followings.ref.get().then(flrs => {                    
+                  followings.ref.get().then(flrs => {     
+                    
                       this.users.push(flrs.data()['user']);
                    this.changeFollowings(this.users);
                    

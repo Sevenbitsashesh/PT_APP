@@ -21,7 +21,7 @@ export class ImageProvider {
     
    return this.camera.getPicture({
       quality: 20,
-      destinationType: this.camera.DestinationType.FILE_URI,
+      destinationType: this.camera.DestinationType.DATA_URL,
       sourceType: this.camera.PictureSourceType.SAVEDPHOTOALBUM,
       encodingType: this.camera.EncodingType.JPEG || this.camera.EncodingType.PNG,
       mediaType: this.camera.MediaType.PICTURE,
@@ -32,7 +32,7 @@ export class ImageProvider {
   capturePhoto() {
     return this.camera.getPicture({
       correctOrientation: true,
-      quality: 20,
+      quality: 30,
       destinationType: this.camera.DestinationType.FILE_URI,
       sourceType: this.camera.PictureSourceType.CAMERA,
       encodingType: this.camera.EncodingType.PNG,
@@ -40,6 +40,7 @@ export class ImageProvider {
       allowEdit: true
   })
   }
+ 
         // Upload Photo to firestorage
   public uploadPhoto(profilepic,location) {
     const file = 'data:image/jpg;base64,' + profilepic;

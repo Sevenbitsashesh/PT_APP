@@ -22,21 +22,20 @@ export class UseractivityProvider {
   uid;
   tweetmodel: TweetModel;
   tweetscollection: AngularFirestoreCollection<TweetModel>;
-  usersTweets = [];
+  
   myPhotoURL: Observable<String>;
   myPhoto;
-  usersearched;
   verification;
-  searchModel;;
-  searchData: UserDetails[];
-  hide = false;
+  
+  
+  
   constructor(public http: HttpClient, private sharedProvider: SharedProvider, public db: AngularFirestore,private fstorage: AngularFireStorage, private dataService: DataProvider, private loader: LoadingController) {
     console.log('Hello UseractivityProvider Provider');
     this.model = sharedProvider.model;
     // this.searchModel = sharedProvider.searchModel;
     this.loggedUser = sharedProvider.loggedUser;
     console.log('welcome', this.loggedUser);
-    this.getUsername();
+    this.getUserModel();
   }
   // Adding user info
 addInfo(model) { 
@@ -44,7 +43,7 @@ addInfo(model) {
   // this.userscollection.add(model);
   // this.db.collection<UserDetails>
 }
-  getUsername() {
+  getUserModel() {
     console.log('uid', this.loggedUser);
     // Get Logged in user email
     this.db.collection('users').ref.where('email', '==', this.loggedUser).onSnapshot(snap => {
@@ -55,94 +54,19 @@ addInfo(model) {
         if(this.model.verified === false) {
           this.verification = false;
         }
-        //  console.log('model', this.model);
+        
         localStorage.setItem('username', this.model.userid);
         // Getting Logged user id
          this.uid = change.id;
           
           
-        // console.log('new', this.uid);
+        
       });
-      // console.log(this.model.email);
-      // Setting Username
-      // localStorage.setItem('username', this.model.username);
+      
     });
-    // getting users document id
-    // this.db.collection('users').ref.get().then((snapshot) => {
-    //   snapshot.docs.forEach(doc => {
-    //      // console.log(doc.id);
-    //    });
-    //   });
-    }
-// getTweets(uid) {
-//   console.log(uid);
-  
-//   this.sharedProvider.db.collection('users').doc(uid).collection<TweetModel>('tweets').ref.get().then(data => {
     
-//     data.forEach(items => {
-//       if(this.usersTweets.find(tweet => tweet.t_title == (items.data()['t_title'])) === undefined) {
-        
-        
-//         console.log('called',items.data());
-//         this.usersTweets.push(items.data());
-//       }
-        
-      
-      
-//     })
-//   })
-  
-// }
+    }
 
-  //   getTweets(uid) {
-
-  //     // Getting Logged users Tweet
-  //     console.log('for',uid);
-  //     this.sharedProvider.userscollection.doc<UserDetails>(uid).get().subscribe(user => {
-  //       const tweetsRef = this.db.collection('users').doc(uid).collection<TweetModel>(appconfigs.collection_tweets);     
-  //       tweetsRef.snapshotChanges().
-  //           pipe(map(docArray => {
-  //        return docArray.map(data => { 
-           
-  //       return ( 
-  //         {tweetid: data.payload.doc.id, tweetcontent: data.payload.doc.data()['tweetcontent'], t_title: data.payload.doc.data()['t_title'],
-  //       t_date: data.payload.doc.data()['t_date'],t_image: data.payload.doc.data()['t_image'],t_user: 'a',t_user_pic: '', likeDoc: data.payload.doc.data()['likeDoc'], liked: [] = [], like: false
-  //       }
-  //       );
-  //     });
-  //   } ))
-        
-  //       .subscribe(data => {
-          
-  //         data.forEach(items => {
-            
-  //           if(this.usersTweets.find(tweet => tweet.t_title == items.t_title) === undefined) {
-  //            items.t_user = user.data()['userid'];
-  //            items.t_user_pic = user.data()['profile_pic'];    
-                      
-  //           console.log(items.tweetid);
-            
-  //           if(items.likeDoc !== undefined) {
-  //               this.getLikes(items.likeDoc).subscribe(dataLikes => {
-  //                 items.liked = [];
-                  
-  //                 dataLikes.forEach(itemsLikes => {
-                    
-  //                   items.liked.push(itemsLikes.payload.doc.data()['user']);                    
-  //                 })
-  //               })
-  //           }
-  //           this.usersTweets.push(items);
-  //           this.hide = true;
-  //               console.log('t:', this.usersTweets);
-  //         }
-  //       })
-        
-  //       })
-       
-  //     });    
-            
-  // }
     getTweets(uid) {
 
       // Getting Logged users Tweet
@@ -188,9 +112,7 @@ addInfo(model) {
     });
     return uuid;
   }
-  call() {
-    this.sharedProvider.callToast('hi');
-  }
+
   // Tweeet create
   createTweet(tweetcontent, t_title, t_image) {
     

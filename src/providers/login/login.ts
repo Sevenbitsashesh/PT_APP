@@ -23,6 +23,7 @@ export class LoginProvider {
       this.router.navigate(['/userhome']);
     }).catch(error => {
       this.message = error;
+      
     });
   }
   // Create user in firebase Authentication
@@ -67,5 +68,8 @@ createAcc(model) {
   }
   checkLogin() {
     return this.fireAuth.authState;
+  }
+  userExist(userid) {
+    return this.sharedService.userscollection.ref.where('userid','==',userid);
   }
 }

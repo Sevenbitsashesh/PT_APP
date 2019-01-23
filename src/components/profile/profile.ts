@@ -4,7 +4,7 @@ import { SharedProvider } from '../../providers/shared/shared';
 import { UseractivityProvider } from '../../providers/useractivity/useractivity';
 import { ImageProvider } from '../../providers/image/image';
 import { DataProvider } from '../../providers/data/data';
-import { UserDetails } from 'src/Models/users.details';
+import { UserDetails } from '../../Models/users.details';
 import { ProfiledataProvider } from '../../providers/profiledata/profiledata';
 
 
@@ -24,6 +24,7 @@ export class ProfileComponent {
   loggedEmail: string;
   profileImg: any;
   userModel: UserDetails;
+  // userid: string;
   validation_messages = {
     'username': [
         { type: 'required', message: 'Username is required' },
@@ -46,14 +47,13 @@ export class ProfileComponent {
       ]
     };
     saveProfile() {
+      // this.userModel.userid = this.myForm.get('username').value;
       const model = {
         'userid': this.myForm.get('username').value,
         'email': this.myForm.get('email').value,
         'address': this.myForm.get('address').value,
         'mobile': this.myForm.get('mobile').value,
-         'gender': this.myForm.get('gender').value,
-        //  'profile_pic': 'https://firebasestorage.googleapis.com/v0/b/my-social-a5d83.appspot.com/o/profiles%2Fdownload.png?alt'
-        //  + '=media&token=04d24821-a4ab-4a03-915c-dd97a6ca2a26',
+         'gender': this.myForm.get('gender').value,        
         'dob': this.myForm.get('dob').value
       };
 

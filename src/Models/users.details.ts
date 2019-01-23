@@ -1,3 +1,4 @@
+import { TweetModel } from "./tweet_model";
 
 export class UserDetails  {
     userid: string;
@@ -15,6 +16,7 @@ export class UserDetails  {
      lname: string;
      followers?: FollowingModel[];
     followings?: FollowingModel[]; 
+    tweets?: TweetModel[];
 }
 export class FollowingModel {
     user: string;

@@ -8,15 +8,23 @@
 
 </ion-item>
 <ion-item>
-<img src=".././../assets/imgs/attach.svg" class="imgAttach" (click)="select()"/>
-<!-- <img [src]="imageUrl"> -->
-<div class="imgAttach" *ngIf="imageUrl" [style.background-image]="getImgUrl()"></div>
-
+<img src="../../assets/imgs/attach.svg" class="imgAttach" (click)="select()"/>
+  
+</ion-item>
+<ion-item *ngIf="progress < 100">
+    <p><ngb-progressbar showValue="true" type="success" [value]=progress></ngb-progressbar></p>     
+</ion-item>
+<ion-item *ngIf="progress < 100">
+    <button ion-button (click)="cancelUpload()">Cancel Upload</button>
+</ion-item>
+<ion-item>
+    <img [src]=imageUrl class="imgAttact" *ngIf="imageUrl">
 </ion-item>
 <ion-item>
   <button ion-button (click)="createTweet()" class="btn-tweet">
+    Tweet
     <!-- <ion-label>Create Tweet</ion-label> -->
-     <ion-spinner name="bubbles"></ion-spinner>
+     <!-- <ion-spinner name="bubbles"></ion-spinner> -->
 
   </button>
 </ion-item>

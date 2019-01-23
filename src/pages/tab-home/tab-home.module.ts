@@ -6,6 +6,8 @@ import { VerificationPageModule } from '../verification/verification.module';
 import { VerificationPage } from '../verification/verification';
 import { CreateTweetComponent } from '../../components/create-tweet/create-tweet';
 import { TweetslistComponent } from '../../components/tweetslist/tweetslist';
+import { NgbProgressbarModule } from '@ng-bootstrap/ng-bootstrap';
+
 const routes: Routes = [
   {
     path: '',
@@ -27,7 +29,8 @@ const routes: Routes = [
   imports: [
     IonicPageModule.forChild(TabHomePage),
     RouterModule.forChild(routes),
-    VerificationPageModule
+    VerificationPageModule,
+    NgbProgressbarModule
   ],
 })
 export class TabHomePageModule {}

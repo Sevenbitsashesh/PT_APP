@@ -13,6 +13,7 @@ export class SigninComponent {
   loginForm: FormGroup;
   email;
   pass;
+  msg;
   validation_messages = {
     'email': [
       {type: 'required', message: 'Email is required'},
@@ -37,13 +38,14 @@ export class SigninComponent {
     });
   }
   getLogin() {
-    // this.sharedService.loaderCall();
+    
     
   const model = {
     'email': this.loginForm.get('email').value,
     'pass': this.loginForm.get('pass').value,
   };
   this.loginService.getLogin(model);
+  this.msg =  this.loginService.message;
   
   }
   signinFb() {

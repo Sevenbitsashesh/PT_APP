@@ -1,8 +1,28 @@
 <!-- parent to child interaction -->
 <form [formGroup]="signupForm">
     <ion-grid align="center">
+            <ion-row>
+                    <ion-col col-2>
+                      </ion-col>
+                  <ion-col>
+                    
+                      <ion-item class="newionInput" >
+                          <ion-input type="name" formControlName="userid"  placeholder="Userid" class="loginEmail"></ion-input>
+                          
+                      </ion-item>               
+                  </ion-col>
+                  <ion-col col-2>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                        <ion-col class="required">
+                                <ng-container *ngFor="let validation of validation_messages.userid">
+                                        <div class="error-message" *ngIf="signupForm.get('userid').hasError(validation.type) && signupForm.controls['userid'].touched">{{validation.message}}</div>   
+                                      </ng-container>
+                        </ion-col>
+                    </ion-row>
         <ion-row>
-            <ion-col col-3>
+            <ion-col col-2>
               </ion-col>
           <ion-col>
             
@@ -10,11 +30,11 @@
                   <ion-input type="name" formControlName="fname"  placeholder="First Name" class="loginEmail"></ion-input>
               </ion-item>            
           </ion-col>
-          <ion-col col-3>
+          <ion-col col-2>
             </ion-col>
         </ion-row>
         <ion-row>
-            <ion-col col-3>
+            <ion-col col-2>
               </ion-col>
           <ion-col>
             
@@ -22,11 +42,11 @@
                   <ion-input type="name" formControlName="lname"  placeholder="Last Name" class="loginEmail"></ion-input>
               </ion-item>            
           </ion-col>
-          <ion-col col-3>
+          <ion-col col-2>
             </ion-col>
         </ion-row>
             <ion-row>
-                <ion-col col-3>
+                <ion-col col-2>
                   </ion-col>
               <ion-col>
                 
@@ -35,7 +55,7 @@
                   </ion-item>
                 
               </ion-col>
-              <ion-col col-3>
+              <ion-col col-2>
                 </ion-col>
             </ion-row>
             <ion-row>
@@ -46,14 +66,14 @@
                 </ion-col>
             </ion-row>
             <ion-row>
-                <ion-col col-3>
+                <ion-col col-2>
                   </ion-col>
                 <ion-col>
                   <ion-item class="newionInput">
                       <ion-input type="Password" formControlName="pass" placeholder="Password"></ion-input>
                   </ion-item>                           
                 </ion-col>
-                <ion-col col-3>
+                <ion-col col-2>
                   </ion-col>
               </ion-row>
               <ion-row>
@@ -64,7 +84,7 @@
                   </ion-col>
               </ion-row>
               <ion-row>
-                  <ion-col>  <ion-label [(ngModel)]="message" *ngIf="message" [ngModelOptions]="{standalone: true}">
+                  <ion-col>  <ion-label  *ngIf="message" >
                       {{message}}
                     </ion-label></ion-col>
               </ion-row>
