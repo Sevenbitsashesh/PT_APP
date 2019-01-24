@@ -5,26 +5,27 @@
 </ion-item>
 <ion-item>
 <ion-label floating>Description</ion-label> <ion-input [(ngModel)]="tweetcontent"></ion-input>
-
 </ion-item>
 <ion-item>
-<img src="../../assets/imgs/attach.svg" class="imgAttach" (click)="select()"/>
+<img src="../../assets/icon/_ionicons_svg_ios-attach.svg" class="imgAttach" (click)="select()"/>
+
   
 </ion-item>
 <ion-item *ngIf="progress < 100">
-    <p><ngb-progressbar showValue="true" type="success" [value]=progress></ngb-progressbar></p>     
+    
+    <progressbar [progress]="progress"></progressbar>
+
 </ion-item>
 <ion-item *ngIf="progress < 100">
     <button ion-button (click)="cancelUpload()">Cancel Upload</button>
 </ion-item>
-<ion-item>
-    <img [src]=imageUrl class="imgAttact" *ngIf="imageUrl">
+<ion-item *ngIf="imageUrl">
+    <!-- <img src='https://firebasestorage.googleapis.com/v0/b/my-social-a5d83.appspot.com/o/tweets%2Ftwitter_cover.jpg?alt=media&token=c8814650-1412-4a4f-9266-cfe3d11d9b9a' class="selectedImg"> -->
+    <img [src]=imageUrl class="selectedImg">
+    <img src="../../assets/icon/_ionicons_svg_ios-close-circle.svg" class="img-delete" (click)="deleteImage()">
 </ion-item>
 <ion-item>
   <button ion-button (click)="createTweet()" class="btn-tweet">
     Tweet
-    <!-- <ion-label>Create Tweet</ion-label> -->
-     <!-- <ion-spinner name="bubbles"></ion-spinner> -->
-
   </button>
 </ion-item>

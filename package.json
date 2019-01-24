@@ -33,7 +33,6 @@
     "@ionic/angular": "0.0.2-29",
     "@ionic/pro": "2.0.3",
     "@ionic/storage": "2.2.0",
-    "@ng-bootstrap/ng-bootstrap": "^1.1.2",
     "angularfire2": "^5.0.0-rc.11",
     "cordova": "^8.1.2",
     "cordova-android": "7.1.4",

@@ -106,7 +106,7 @@ request() {
                 console.log('mid',user.id);                
             this.getRef(user.id,appconfigs.collection_requested).add({docid: doc.id }).then(r => {
 
-              this.shared.callToast('Request Sent successfully');
+              this.shared.callToast('Request Sent');
             })
               
             
@@ -146,6 +146,7 @@ cancelRequest() {
             requests.docs.forEach(i => {
               i.ref.delete();
               // console.log('deleting',i.id);
+              this.shared.callToast('Request Cancelled');
             })
           })
         })
@@ -200,7 +201,8 @@ delete() {
               requested.docs.forEach(i2 => {
                 i2.ref.delete();
               })
-              console.log('deleting',requests.size,requested.size);
+              this.shared.callToast('Request Rejected');
+              // console.log('deleting',requests.size,requested.size);
             })
           })
         })
@@ -250,7 +252,7 @@ unfollow() {
         followerRef.forEach(f => {
           
           f.ref.collection('follow').where('user','==',items.id).get().then(flrs => {
-                flrs.docs.forEach(followers => {
+                flrs.docs.forEach(followers => {                  
                   // console.log('deleting',followers.id);
                   followers.ref.delete();
                 })
@@ -261,12 +263,13 @@ unfollow() {
                     f2.ref.collection('follow').where('user','==',items2.id).get().then(flwing => {
                         flwing.forEach(followings => {
                           // console.log('deleting',followings.id);
-                          followings.ref.delete();
+                          followings.ref.delete(); 
+                          this.shared.callToast('Unfollowed');                         
                         })
                     })
                   })
               })
-
+              
             })
           })
           

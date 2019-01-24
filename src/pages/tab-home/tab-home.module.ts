@@ -6,7 +6,8 @@ import { VerificationPageModule } from '../verification/verification.module';
 import { VerificationPage } from '../verification/verification';
 import { CreateTweetComponent } from '../../components/create-tweet/create-tweet';
 import { TweetslistComponent } from '../../components/tweetslist/tweetslist';
-import { NgbProgressbarModule } from '@ng-bootstrap/ng-bootstrap';
+import { ProgressbarComponent } from '../../components/progressbar/progressbar';
+
 
 const routes: Routes = [
   {
@@ -24,13 +25,13 @@ const routes: Routes = [
   declarations: [
     TabHomePage,
     CreateTweetComponent,
-    TweetslistComponent
+    TweetslistComponent,
+    ProgressbarComponent
   ],
   imports: [
     IonicPageModule.forChild(TabHomePage),
     RouterModule.forChild(routes),
-    VerificationPageModule,
-    NgbProgressbarModule
+    VerificationPageModule
   ],
 })
 export class TabHomePageModule {}

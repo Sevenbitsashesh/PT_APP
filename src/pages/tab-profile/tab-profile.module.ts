@@ -6,6 +6,7 @@ import { ComponentsModule } from '../../components/components.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Camera, CameraOptions } from '@ionic-native/camera';
+
 const routes: Routes = [
   {
     path: '',
@@ -22,7 +23,7 @@ const routes: Routes = [
     ComponentsModule,
     ReactiveFormsModule,
     FormsModule,
-    CommonModule,
+    CommonModule
   ],
   providers: [Camera]
 })

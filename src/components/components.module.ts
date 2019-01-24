@@ -13,6 +13,8 @@ import { NotificationComponent } from './notification/notification';
 import { SettingComponent } from './setting/setting';
 import { SigninComponent } from './signin/signin';
 import { SignupComponent } from './signup/signup';
+import { FeedsComponent } from './feeds/feeds';
+
 
 
 
@@ -26,7 +28,8 @@ import { SignupComponent } from './signup/signup';
     ProfilepicComponent,
     SettingComponent,
     SigninComponent,
-    SignupComponent],
+    SignupComponent,
+    FeedsComponent],
 	imports: [ IonicModule, CommonModule, RouterModule	],
 	exports: [FirstComponent,
 	LoginComponent,
@@ -35,8 +38,9 @@ import { SignupComponent } from './signup/signup';
     ProfilepicComponent,
     SettingComponent,
     SigninComponent,
-    SignupComponent],
+    SignupComponent,
+    FeedsComponent],
     entryComponents: [LoginComponent, FirstComponent, ProfileComponent],
-
+    
 })
 export class ComponentsModule {}

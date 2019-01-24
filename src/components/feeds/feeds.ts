@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { TweetsProvider } from '../../providers/tweets/tweets';
 
 
@@ -9,7 +9,7 @@ import { TweetsProvider } from '../../providers/tweets/tweets';
 })
 export class FeedsComponent {
 
-  tweetModel;
+  @Input('tweetModel') tweetModel;
   constructor(private tweetService: TweetsProvider) {
       this.tweetModel = this.tweetService.tweets;
   }

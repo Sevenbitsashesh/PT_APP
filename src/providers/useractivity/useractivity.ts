@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFirestoreCollection, AngularFirestoreDocument, AngularFirestore } from 'angularfire2/firestore';
-import { UserDetails } from '../../Models/users.details';
+import { UserDetails, FollowingModel } from '../../Models/users.details';
 import { SharedProvider } from '../shared/shared';
 import 'rxjs/Rx';
 import { Observable } from 'rxjs';
@@ -126,21 +126,26 @@ addInfo(model) {
     const tweetColl = this.db.collection('users').ref.where('email', '==', this.loggedUser);
     
     console.log(this.loggedUser);
-    tweetColl.onSnapshot(snap => {
-    snap.forEach(data => {
-      
-      this.tweetscollection = this.db.collection('users').doc(data.id).collection<TweetModel>(appconfigs.collection_tweets);  
-      this.tweetscollection.add(this.tweetmodel).then(tweeted => {
-        console.log(tweeted.id);
-        this.sharedProvider.callToast('Tweet Uploaded');
-        this.sharedProvider.db.collection('liked').ref.add({docid: data.id}).then(data => {
-          tweeted.set({likeDoc: data.id},{merge: true});
-        })
-      });
-      console.log('tweet uploaded');
-    }
-    );
-    });
+   
+     return new Promise(() => {
+      tweetColl.onSnapshot(snap => {
+        snap.forEach(data => {
+          
+          this.tweetscollection = this.db.collection('users').doc(data.id).collection<TweetModel>(appconfigs.collection_tweets);  
+          this.tweetscollection.add(this.tweetmodel).then(tweeted => {
+            console.log(tweeted.id);
+            this.sharedProvider.callToast('Tweet Uploaded');
+            this.sharedProvider.db.collection('liked').ref.add({docid: data.id}).then(data => {
+              tweeted.set({likeDoc: data.id},{merge: true});
+            })
+          });
+          console.log('tweet uploaded');
+        }
+        );
+        });
+     }) 
+    
+   
   }
   public getAllUsers() {
     const u = [];
@@ -173,5 +178,11 @@ addInfo(model) {
   }
   getUserData(docid) {
     return this.sharedProvider.db.doc<UserDetails>(`users/${docid}/`).snapshotChanges();
+  }
+  getFollowers(uid) {
+   return this.sharedProvider.db.collection<FollowingModel>('followers').ref.where('docid','==',uid);
+  }
+  getFollowings(uid) {
+    return this.sharedProvider.db.collection<FollowingModel>('followings').ref.where('docid','==',uid);
   }
 }

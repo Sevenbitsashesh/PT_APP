@@ -28,4 +28,7 @@ export class StorageProvider {
       
       return this.storage.ref('/'+ loc +'/' + this.generateUUID() + '.jpg');
     }
+    deleteFile(path) {
+      this.storage.ref('data:image/jpg;base64,' + path).delete();
+    }
 }

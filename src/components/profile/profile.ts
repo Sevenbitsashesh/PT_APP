@@ -6,6 +6,7 @@ import { ImageProvider } from '../../providers/image/image';
 import { DataProvider } from '../../providers/data/data';
 import { UserDetails } from '../../Models/users.details';
 import { ProfiledataProvider } from '../../providers/profiledata/profiledata';
+import { TweetModel } from 'Models/tweet_model';
 
 
 @Component({
@@ -23,7 +24,9 @@ export class ProfileComponent {
   myForm: FormGroup;
   loggedEmail: string;
   profileImg: any;
-  userModel: UserDetails;
+  // userModel: UserDetails;
+  userModel = new UserDetails();
+  tweets: TweetModel[];
   // userid: string;
   validation_messages = {
     'username': [
@@ -62,9 +65,7 @@ export class ProfileComponent {
   
   constructor(private formBuilder: FormBuilder, private sharedService: SharedProvider, private uactivity: UseractivityProvider, private imageService: ImageProvider, private dataService: DataProvider, private profileService: ProfiledataProvider) {
     
-    this.userModel = uactivity.model;
-    
-    
+    this.getProfileData();
     this.loggedEmail = this.userModel.email;
     this.profileImg = this.userModel.profile_pic;
     this.myForm = formBuilder.group({
@@ -99,7 +100,15 @@ export class ProfileComponent {
     );
     
   }
-
+  getProfileData() {
+    this.userModel = this.uactivity.model;
+    this.userModel.tweets = [];
+    this.userModel.followers = [];
+    this.userModel.followings = [];
+    this.userModel.tweets = this.profileService.tweets;    
+    this.userModel.followers = this.profileService.Flwrs;
+    this.userModel.followings = this.profileService.Flwings;
+  }
 
   //* Profile Image  *//
   actionForProfile() {
@@ -153,4 +162,5 @@ export class ProfileComponent {
         });
         this.profileImg = this.uactivity.myPhotoURL;
     }
+    
 }

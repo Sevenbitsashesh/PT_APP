@@ -3,8 +3,8 @@ create-tweet {
 }
 
 .imgAttach {
-    height: 40px;
-    width: 40px;
+    height: 30px;
+    width: 30px;
 }
 .btn-tweet {
     height: 10%;
@@ -12,6 +12,11 @@ create-tweet {
     background: orange;
 }
 .selectedImg {
-height: 80%;
-width: 30%;
+height: 100px;
+width: 100px;
+}
+.img-delete {
+width: 20px;
+height: 20px;
+
 }

@@ -35,7 +35,9 @@ import { LikeProvider } from '../providers/like/like';
 import { ProfiledataProvider } from '../providers/profiledata/profiledata';
 import { AuthProvider } from '../providers/auth/auth';
 import { StorageProvider } from '../providers/storage/storage';
-import {  NgbModule, NgbProgressbarModule } from '@ng-bootstrap/ng-bootstrap';
+
+
+
 
 
 
@@ -60,13 +62,11 @@ import {  NgbModule, NgbProgressbarModule } from '@ng-bootstrap/ng-bootstrap';
     AngularFireDatabaseModule,
     FormsModule,
     AngularFireStorageModule,
-    AngularFireMessagingModule,
-    NgbModule
+    AngularFireMessagingModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
-    
+    MyApp
   ],
   providers: [
     StatusBar,
