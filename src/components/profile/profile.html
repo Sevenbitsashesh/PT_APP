@@ -1,34 +1,37 @@
-<div class="divhead" padding>
-  
-  <div class="divProfile"> 
-      
-      <ion-avatar class="profi-pic" (click)=actionForProfile()>
-        
-          <!-- <img class="profi-pic" src="https://pbs.twimg.com/profile_images/971635378892386304/fqqp4Sru.jpg"/> -->
-          <img src={{userModel.profile_pic}} class="profi-pic"/>
-          
-          
-      </ion-avatar>
-      <div class="proName"><ion-label>{{   userModel.firstname + ' ' + userModel.lastname }}</ion-label></div>
-    
-    </div>
-    
-<!-- <div class="divEdit">
-  <p>
-      <ion-button [routerLink]="['/create']" routerLinkActive="router-link-active" >
-        Edit Profiles
-      </ion-button>
-    </p>
-</div> -->
 
-</div>
+  <div class="divhead" padding>
+  
+    <div class="divProfile"> 
+        
+        <ion-avatar class="profi-pic" (click)=actionForProfile()>
+          
+            <!-- <img class="profi-pic" src="https://pbs.twimg.com/profile_images/971635378892386304/fqqp4Sru.jpg"/> -->
+            <img src={{userModel.profile_pic}} class="profi-pic"/>
+            
+            
+        </ion-avatar>
+        <div class="proName"><ion-label>{{   userModel.firstname + ' ' + userModel.lastname }}</ion-label></div>
+      
+      </div>
+      
+  <!-- <div class="divEdit">
+    <p>
+        <ion-button [routerLink]="['/create']" routerLinkActive="router-link-active" >
+          Edit Profiles
+        </ion-button>
+      </p>
+  </div> -->
+  
+  </div>
+
+
 
 <div padding class="divProfileUpdate">
     <div class="main-follow">
-     {{userModel.followers.length}} Followers
+     <a> {{userModel.followers.length}} Followers</a>     
       </div> 
       <div class="main-follow">
-         {{userModel.followings.length}} Followings
+        <a> {{userModel.followings.length}} Followings</a>
           </div> 
           <div class="main-follow">
              {{userModel.tweets.length}} Tweets
@@ -36,7 +39,7 @@
 
 <div class="profile-segment-main">
     <ion-segment [(ngModel)]="profileSegment">
-        <ion-segment-button value="feeds" checked>
+        <ion-segment-button value="feeds">
             Feeds
         </ion-segment-button>
         <ion-segment-button value="profile">
@@ -46,11 +49,11 @@
   </div>
   <div class="profile-segment" [ngSwitch]="profileSegment">
       
-          <div *ngSwitchCase="'feeds'">
+          <div *ngSwitchCase="'feeds'" checked>
             <feeds [tweetModel]=userModel.tweets></feeds>
             </div>
             <div *ngSwitchCase="'profile'">
-              <!-- <form [formGroup]="myForm">
+              <form [formGroup]="myForm">
         <ion-item>
             
                 <ion-input type="text" formControlName="username" placeholder="Username"></ion-input> 
@@ -91,7 +94,7 @@
                             
                               <ion-item><button class="btnSave" ion-button (click)="saveProfile()" [disabled]="myForm.invalid">Save</button></ion-item>
                                         
-    </form> -->
+    </form>
             </div>
       
         
@@ -106,3 +109,4 @@
                               <div class="error-message" *ngIf="myForm.get('address').hasError(validation.type) && myForm.controls['hobbies'].touched">{{validation.message}}</div>
                             </ng-container>
                           </ion-item> -->
+                    

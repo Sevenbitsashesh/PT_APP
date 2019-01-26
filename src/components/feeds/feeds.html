@@ -1,13 +1,13 @@
 
-<div class="main-gallary" >
+<div class="main-feed" >
     
-<div class="gallary-row">
+<div class="feed-row">
     
     
- <div class="gallary-col" *ngFor="let item of tweetModel" [ngStyle]="{ 'background-image': 'url(' + item.t_image + ')'}">
+ <div class="feed-col" *ngFor="let item of tweetModel" >
         
-                        <p>{{item.t_title}}</p>
-                        <!-- <img class="gallary-col-img" [src]=item.t_image> -->
+                        <!-- <p>{{item.t_title}}</p> -->
+                        <img class="gallary-col-img" [src]=item.t_image>
                
     
 </div>

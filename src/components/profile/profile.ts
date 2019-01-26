@@ -161,6 +161,5 @@ export class ProfileComponent {
           console.log(error);
         });
         this.profileImg = this.uactivity.myPhotoURL;
-    }
-    
+    }    
 }

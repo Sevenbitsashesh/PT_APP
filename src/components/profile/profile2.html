@@ -1,0 +1,112 @@
+<ion-content>
+    <div class="divhead" padding>
+    
+      <div class="divProfile"> 
+          
+          <ion-avatar class="profi-pic" (click)=actionForProfile()>
+            
+              <!-- <img class="profi-pic" src="https://pbs.twimg.com/profile_images/971635378892386304/fqqp4Sru.jpg"/> -->
+              <img src={{userModel.profile_pic}} class="profi-pic"/>
+              
+              
+          </ion-avatar>
+          <div class="proName"><ion-label>{{   userModel.firstname + ' ' + userModel.lastname }}</ion-label></div>
+        
+        </div>
+        
+    <!-- <div class="divEdit">
+      <p>
+          <ion-button [routerLink]="['/create']" routerLinkActive="router-link-active" >
+            Edit Profiles
+          </ion-button>
+        </p>
+    </div> -->
+    
+    </div>
+  </ion-content>
+  
+  
+  <div padding class="divProfileUpdate">
+      <div class="main-follow">
+       {{userModel.followers.length}} Followers
+        </div> 
+        <div class="main-follow">
+           {{userModel.followings.length}} Followings
+            </div> 
+            <div class="main-follow">
+               {{userModel.tweets.length}} Tweets
+                </div> 
+  
+  <div class="profile-segment-main">
+      <ion-segment [(ngModel)]="profileSegment">
+          <ion-segment-button value="feeds" checked>
+              Feeds
+          </ion-segment-button>
+          <ion-segment-button value="profile">
+            Profile
+          </ion-segment-button>
+      </ion-segment>
+    </div>
+    <div class="profile-segment" [ngSwitch]="profileSegment">
+        
+            <div *ngSwitchCase="'feeds'" checked>
+              <feeds [tweetModel]=userModel.tweets></feeds>
+              </div>
+              <div *ngSwitchCase="'profile'">
+                <!-- <form [formGroup]="myForm">
+          <ion-item>
+              
+                  <ion-input type="text" formControlName="username" placeholder="Username"></ion-input> 
+                  
+              
+              <div>
+                  <ng-container *ngFor="let validation of validation_messages.username">
+                      <div class="error-message" *ngIf="myForm.get('username').hasError(validation.type) && myForm.controls['username'].touched">{{validation.message}}</div> 
+                    </ng-container>  
+              </div>
+              
+            
+            </ion-item>
+            <ion-item>
+              
+                <ion-input type="mobile" formControlName="mobile"  placeholder="Mobile"></ion-input>
+                <ng-container *ngFor="let validation of validation_messages.mobile">
+                    <div class="error-message" *ngIf="myForm.get('mobile').hasError(validation.type) && myForm.controls['mobile'].touched">{{validation.message}}</div>   
+                  </ng-container>
+              </ion-item>
+              <ion-item>
+                
+                  <ion-input type="Date" formControlName="dob" name="dob"  placeholder="Date of birth"></ion-input>
+                </ion-item>
+              <ion-item>
+                  
+                    <ion-input type="Email" formControlName="email" name="email"></ion-input>
+                  </ion-item>
+                      
+                            <ion-item>
+      
+                              
+                                <ion-textarea formControlName="address" placeholder="Address"></ion-textarea>
+                                <ng-container *ngFor="let validation of validation_messages.address">
+                                  <div class="error-message" *ngIf="myForm.get('address').hasError(validation.type) && myForm.controls['address'].touched">{{validation.message}}</div>
+                                </ng-container>
+                              </ion-item>
+                              
+                                <ion-item><button class="btnSave" ion-button (click)="saveProfile()" [disabled]="myForm.invalid">Save</button></ion-item>
+                                          
+      </form> -->
+              </div>
+        
+          
+    </div>
+    
+  </div>
+  
+  <!-- <ion-item>
+                            
+                              <ion-textarea formControlName="hobbies" placeholder="hobbies"></ion-textarea>
+                              <ng-container *ngFor="let validation of validation_messages.address">
+                                <div class="error-message" *ngIf="myForm.get('address').hasError(validation.type) && myForm.controls['hobbies'].touched">{{validation.message}}</div>
+                              </ng-container>
+                            </ion-item> -->
+                      
