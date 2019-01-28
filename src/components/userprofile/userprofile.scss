@@ -1,8 +1,8 @@
 
 .prodivMain {
     float: left;
-    height:25%;
-    width: 40%;
+    height:15%;
+    width: 30%;
     // background: rgb(65, 121, 116);
 }
 .divProfileImg {
@@ -17,8 +17,8 @@
     // image-resolution: 200dpi;
 }
 .divFollow {
-    padding: 10px;
-    width: 60%;
+    padding: 5px;
+    width: 70%;
     
     
     float: left;
@@ -29,12 +29,10 @@
     height: 10%;
     // background: rebeccapurple; 
     clear: both;
+    font-weight: 800;
 }
 .profileName {
-    height: 30%;
-    width: 40%;
-    text-align: center;
-    // background: red;
+    text-decoration-style: solid;
     
 }
 .buttonFF {
@@ -45,7 +43,7 @@
     color: inherit;
     padding: 0;
     cursor: pointer;
-
+    font-weight: 800;
     margin: 5px;   
     // border: 2px;
     background: gray;
@@ -60,26 +58,49 @@ background: #4d90fe;
     outline: 0.5rem auto #4d90fe;
 }
 
+//slider-m
 .slider-main {
-    height: 100%;
+    height: auto;
     width: 100%;
-    background: bisque;
+    // background: silver;
 }
 .slider-menu {
-    width: 100%;
+    width: 100%; 
+       
 }
 .slider-btn {
-    border-bottom: 2px solid; /* Green */
-    border-bottom-color: rebeccapurple;
-    width: 30%;
+    
+    width: 15%;
     float: left;
-    padding-left: 10px;
-    height: 30px;
+    
+    height: 40px;
     text-decoration: none;
-    margin-left: 10px;
+    margin-left: 15%;
+    // margin-top: 5%;
+    
+    // background: rebeccapurple;
+
 }
-
-
+.slider-btn-grid {
+    background-image: url('../../assets/icon/grid.svg');
+    background-repeat: no-repeat;
+    // position: absolute;
+    // right: 50%;
+    height: 100%;
+    width: 100%;    
+}
+.slider-btn-menu {
+    background-image: url('../../assets/icon/menu.svg');
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;   
+}
+.slider-btn-flwings {
+    background-image: url('../../assets/icon/friends.svg');
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;   
+}
 
 
 

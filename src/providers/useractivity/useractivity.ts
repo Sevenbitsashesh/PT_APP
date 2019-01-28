@@ -185,4 +185,7 @@ addInfo(model) {
   getFollowings(uid) {
     return this.sharedProvider.db.collection<FollowingModel>('followings').ref.where('docid','==',uid);
   }
+  saveBio(bioText) {
+    this.sharedProvider.saveBio(bioText);
+  }
 }

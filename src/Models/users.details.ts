@@ -17,6 +17,7 @@ export class UserDetails  {
      followers?: FollowingModel[];
     followings?: FollowingModel[]; 
     tweets?: TweetModel[];
+    bio: string
 }
 export class FollowingModel {
     user: string;

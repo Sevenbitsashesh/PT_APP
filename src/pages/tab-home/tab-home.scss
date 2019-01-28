@@ -12,3 +12,75 @@
     width: 100%;
     background: #F4F4E9;
 }
+.img-logout {
+    height: 30%;
+    width: 10%;
+    // position: absolute;
+    left: 50%;    
+}
+.btnLogout  {
+    position:absolute;
+    right:0px;
+    top:0px;
+    width: 20%;
+    background: #829C73;
+}
+.divNoti {
+    height: 100%;
+    width: 50px;
+    // background: blueviolet;
+    position: absolute;
+    right: 0%;
+    top:0px;
+    color:rebeccapurple;
+    border-radius: 10px;
+}
+.iconNotification {
+    height: 100%;
+    width: 100%;
+    // filter: invert(50%);
+    fill: black;
+}
+// Sidebar Css
+.sidenav {
+    height: 100%;
+    width: 0px;
+    position: fixed;
+    z-index: 1;
+    top: 0%;
+    left: 0;
+    background-color: rgb(107, 168, 88);
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    bottom: 0%;
+    background-image: url('../../assets/imgs/profile-background.png');
+    overflow: scroll;
+}
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+    
+  }
+  
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }
+  #mySidenav button {
+      height: 50px;
+      width: 100%;
+  }
+// Sidebar Css
+.lbl-notification {
+    height: 20px;
+    width: 20px;
+    background: #829C73;
+    position: absolute;
+    right: 0%;
+    border-radius: 5px;
+    text-align: center;
+}

@@ -128,5 +128,13 @@ this.loading.dismiss();
 userExist(userid) {
   return this.userscollection.ref.where('userid','==',userid);
 }
-
+saveBio(bioText) {
+  this.userscollection.ref.where('email','==',this.loggedUser).get().then(d => {
+    d.docs.forEach(e => {
+      e.ref.set({bio: bioText},{merge: true}).then(() => {
+        this.callToast('Bio Saved');
+      });
+    })
+  });
+}
 }

@@ -41,4 +41,13 @@ doRefresh(event) {
     
   },3000)
 }
+openNav() {
+  document.getElementById("mySidenav").style.width = '50%';
+
+}
+closeNav() {
+  document.getElementById("mySidenav").style.width = "0px";
+
+}
+
 }

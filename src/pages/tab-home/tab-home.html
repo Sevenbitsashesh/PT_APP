@@ -1,5 +1,29 @@
-
+<!-- <ion-header>
+           <ion-toolbar>
+             <ion-title>@{{username}}</ion-title>
+             <span style="font-size:30px;cursor:pointer" (click)="openNav()">&#9776;</span>
+             <div class="divNoti">
+                
+                        <div class="lbl-notification">
+                                1
+                        </div>
+                
+                <img class="iconNotification" src="../../assets/icon/noti.svg">
+             </div>
+                      
+           </ion-toolbar>
+         </ion-header> -->
 <ion-content padding class="contentMain">
+                <div id="mySidenav" class="sidenav">
+                                <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
+                                <button ion-button>Home</button>
+                                <button ion-button>Search</button>
+                                <button ion-button>Profile</button>
+                                <button ion-button>My Sales</button>
+                                <button ion-button>NewsFeed</button>
+                                <button ion-button>Settings</button>
+                                <button ion-button>Logout <img src="../../assets/icon/logout.svg" class="img-logout" (click)="logout()"></button>
+                              </div>
         <ion-refresher (ionRefresh)="doRefresh($event)">
                 <ion-refresher-content
                 pullingIcon="arrow-dropdown"

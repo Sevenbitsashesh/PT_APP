@@ -23,7 +23,13 @@
   </div> -->
   
   </div>
+<div class="bio-main">
+<textarea class="input-bio" [(ngModel)]="bio" (change)="changeBio(bio);" [maxlength]="150"></textarea>
+<ion-label class="bio-length">{{bio.length}}/150</ion-label>
 
+
+
+</div>
 
 
 <div padding class="divProfileUpdate">

@@ -3,12 +3,8 @@ import { HometabComponent } from '../../components/hometab/hometab';
 import { Router } from '@angular/router';
 import { SharedProvider } from '../../providers/shared/shared';
 import { DataProvider } from '../../providers/data/data';
-/**
- * Generated class for the UsertabsComponent component.
- *
- * See https://angular.io/api/core/Component for more info on Angular
- * Components.
- */
+import { UseractivityProvider } from '../../providers/useractivity/useractivity';
+
 @Component({
   selector: 'usertabs',
   templateUrl: 'usertabs.html'
@@ -17,7 +13,7 @@ import { DataProvider } from '../../providers/data/data';
 export class UsertabsComponent {
 
   username: any;
-  constructor(private route: Router, private sharedService: SharedProvider, private dataService: DataProvider) {
+  constructor(private route: Router, private sharedService: SharedProvider, private dataService: DataProvider, private uactivity: UseractivityProvider) {
     console.log('Hello UsertabsComponent Component');
      this.username = localStorage.getItem('username');
      console.log(this.username);
@@ -34,10 +30,5 @@ logout() {
   // this.sharedService.checkLogin();
   this.route.navigate(['/login']);
 }
-openNav() {
-  document.getElementById("mySidenav").style.width = '50%';
-}
-closeNav() {
-  document.getElementById("mySidenav").style.width = "0px";
-}
+
 }

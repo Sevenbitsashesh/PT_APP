@@ -7,6 +7,7 @@ import { DataProvider } from '../../providers/data/data';
 import { UserDetails } from '../../Models/users.details';
 import { ProfiledataProvider } from '../../providers/profiledata/profiledata';
 import { TweetModel } from 'Models/tweet_model';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -28,6 +29,8 @@ export class ProfileComponent {
   userModel = new UserDetails();
   tweets: TweetModel[];
   // userid: string;
+  bio: string;
+  bioLength;
   validation_messages = {
     'username': [
         { type: 'required', message: 'Username is required' },
@@ -68,6 +71,7 @@ export class ProfileComponent {
     this.getProfileData();
     this.loggedEmail = this.userModel.email;
     this.profileImg = this.userModel.profile_pic;
+    this.bio = this.userModel.bio;
     this.myForm = formBuilder.group({
       username: new FormControl(this.uactivity.model.userid, Validators.compose([
         Validators.maxLength(25),
@@ -98,7 +102,13 @@ export class ProfileComponent {
       ])),
         }
     );
-    
+   
+    console.log(this.userModel.bio);
+  }
+  changeBio(bioText: string) {
+    this.uactivity.saveBio(bioText);
+    // event.target.el
+    // this.userModel.bio = 
   }
   getProfileData() {
     this.userModel = this.uactivity.model;
@@ -162,4 +172,5 @@ export class ProfileComponent {
         });
         this.profileImg = this.uactivity.myPhotoURL;
     }    
+    
 }

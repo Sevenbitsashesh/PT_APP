@@ -17,11 +17,11 @@
           </ion-avatar>
           
           <h2>{{tweet.t_title}}</h2>
-          <p>{{tweet.t_date}}</p>
+          
 
         </ion-item>
 
-        <img [src]=tweet.t_image *ngIf="tweet.t_image">
+        <img class="tweetImg" [src]=tweet.t_image *ngIf="tweet.t_image">
       
         <ion-card-content>
           <p>{{tweet.tweetcontent}}</p>
@@ -42,7 +42,7 @@
           </ion-col>
           <ion-col center text-center>
             <ion-note>
-              11h ago
+              <p>{{tweet.t_date}}</p>
             </ion-note>
           </ion-col>
         </ion-row>

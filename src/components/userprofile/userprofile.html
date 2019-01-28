@@ -31,19 +31,26 @@
   </div>
   </div>
   <div class="divprofileName">
-    <ion-label class="profileName">{{item.userid}}</ion-label> 
+      <ion-label class="profileName">{{item.userid}}</ion-label>
+    <ion-label class="profileName">
+        
+        Love Life Laugh continues...
+    </ion-label> 
   </div>
   <div class="slider-menu">
-      <div class="slider-menu-s3">
-          <button class="slider-btn" (click)="sliderChange(0)">Feed</button>
+      <div class="slider-btn">
+          <div class="slider-btn-grid" (click)="sliderChange(0)">
+
+          </div>
+              </div>
+              <div class="slider-btn" >
+                  <div class="slider-btn-menu" (click)="sliderChange(1)">
+
                   </div>
-    <div class="slider-menu-s1">
-<button class="slider-btn" (click)="sliderChange(1)">Collection</button>
-    </div>
-    <div class="slider-menu-s2">
-<button class="slider-btn" (click)="sliderChange(3)">Secrets</button>
-      </div>
-      
+              </div>    
+    <div class="slider-btn" (click)="sliderChange(2)"> 
+        <div class="slider-btn-flwings"></div>
+    </div>      
   </div>
   <div class="slider-main">
     <ion-slides >

@@ -25,25 +25,7 @@
     display: inline-block;
 }
 
-.btnLogout  {
-    position:absolute;
-    right:0px;
-    top:0px;
-    width: 20%;
-    background: #829C73;
-}
-.divNoti {
-    height: 100%;
-    width: 50px;
-    background: #829C73;
-    position: absolute;
-    right: 20%;
-    top:0px;
-}
-.iconNotification {
-    height: 100%;
-    width: 100%;
-}
+
 .divMenu {
     background: red;
     height: 100%;
@@ -53,29 +35,3 @@
 }
 
 
-// Sidebar Css
-
-.sidenav {
-    height: 95%;
-    width: 0px;
-    position: fixed;
-    z-index: 1;
-    top: 10%;
-    left: 0;
-    background-color: #111;
-    overflow-x: hidden;
-    transition: 0.5s;
-    padding-top: 60px;
-}
-.sidenav .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
-  }
-  
-  @media screen and (max-height: 450px) {
-    .sidenav {padding-top: 15px;}
-    .sidenav a {font-size: 18px;}
-  }

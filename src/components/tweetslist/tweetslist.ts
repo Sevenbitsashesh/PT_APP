@@ -62,7 +62,8 @@ export class TweetslistComponent {
                   
                   // console.log(t);
                   this.tweets.push(t);   
-                
+                  
+                  // tweets.sort((a,b) => new Date(b.t_date).getTime() - new Date(a.t_date).getTime());
                 
                            
               }
