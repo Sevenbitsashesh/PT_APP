@@ -17,22 +17,20 @@ import firebase from 'firebase';
 export class UseractivityProvider {
   model;
   loggedUser;
-  usercollection;
-  // usersDoc: AngularFirestoreDocument<UserDetails>;
+  usercollection;  
   uid;
   tweetmodel: TweetModel;
-  tweetscollection: AngularFirestoreCollection<TweetModel>;
-  
+  tweetscollection: AngularFirestoreCollection<TweetModel>;  
   myPhotoURL: Observable<String>;
   myPhoto;
   verification;
   
   
   
-  constructor(public http: HttpClient, private sharedProvider: SharedProvider, public db: AngularFirestore,private fstorage: AngularFireStorage, private dataService: DataProvider, private loader: LoadingController) {
-    console.log('Hello UseractivityProvider Provider');
+  constructor(private sharedProvider: SharedProvider, public db: AngularFirestore,private fstorage: AngularFireStorage, private dataService: DataProvider, private loader: LoadingController) {
+    // console.log('Hello UseractivityProvider Provider');
     this.model = sharedProvider.model;
-    // this.searchModel = sharedProvider.searchModel;
+    
     this.loggedUser = sharedProvider.loggedUser;
     console.log('welcome', this.loggedUser);
     this.getUserModel();
@@ -40,8 +38,7 @@ export class UseractivityProvider {
   // Adding user info
 addInfo(model) { 
   this.sharedProvider.saveProfile(model, this.uid);
-  // this.userscollection.add(model);
-  // this.db.collection<UserDetails>
+  
 }
   getUserModel() {
     console.log('uid', this.loggedUser);
@@ -57,7 +54,7 @@ addInfo(model) {
         
         localStorage.setItem('username', this.model.userid);
         // Getting Logged user id
-         this.uid = change.id;
+         this.uid = change.id ;
           
           
         
@@ -70,7 +67,7 @@ addInfo(model) {
     getTweets(uid) {
 
       // Getting Logged users Tweet
-      console.log('for',uid);
+      // console.log('for',uid);
       this.tweetscollection = this.db.collection('users').doc(uid).collection<TweetModel>(appconfigs.collection_tweets);
       return this.tweetscollection.snapshotChanges().
       pipe(map(docArray => {
@@ -83,39 +80,11 @@ addInfo(model) {
     } )
     );
   }
-  // Upload Photo to firestorage
-  public uploadPhoto(profilepic) {
-    const file = 'data:image/jpg;base64,' + profilepic;
-    const fileRef =  this.fstorage.ref('/profile/' + this.generateUUID() + '.jpg');
-    const stor_task = fileRef.putString(file, 'data_url');
-   
-    stor_task.snapshotChanges().pipe(
-      finalize(() => {
-        this.myPhotoURL = fileRef.getDownloadURL();
-        this.myPhotoURL.subscribe(url => {
-          if (url) {
-        this.myPhoto = url;
-         this.sharedProvider.saveProfilePic(url, this.uid);
-          }
-        });
-      }
-      )
-    ).subscribe();
-  }
-  //Generate unique uuid for Image
-  private generateUUID(): any {
-    let d = new Date().getTime();
-    const uuid = 'xxxxxxxx-xxxx-4xxx-yxxx'.replace(/[xy]/g, function (c) {
-      const r = (d + Math.random() * 16) % 16 | 0;
-      d = Math.floor(d / 16);
-      return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
-    });
-    return uuid;
-  }
+  
+  
 
   // Tweeet create
   createTweet(tweetcontent, t_title, t_image) {
-    
     this.tweetmodel = {
       tweetcontent: tweetcontent,
       tweetid: Math.random().toString(14),
@@ -137,15 +106,13 @@ addInfo(model) {
             this.sharedProvider.callToast('Tweet Uploaded');
             this.sharedProvider.db.collection('liked').ref.add({docid: data.id}).then(data => {
               tweeted.set({likeDoc: data.id},{merge: true});
-            })
+            });
           });
           console.log('tweet uploaded');
         }
         );
         });
-     }) 
-    
-   
+     });       
   }
   public getAllUsers() {
     const u = [];
@@ -160,8 +127,7 @@ addInfo(model) {
     if(this.verification == false) {
      this.sharedProvider.verify();
     }
- }
-  
+ }  
   callLoader() {
     this.sharedProvider.loaderCall();
   }

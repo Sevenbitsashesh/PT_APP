@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { SharedProvider } from '../../providers/shared/shared';
 import { UseractivityProvider } from '../../providers/useractivity/useractivity';
+import { AuthProvider } from '../../providers/auth/auth';
 
 
 
@@ -13,10 +14,8 @@ import { UseractivityProvider } from '../../providers/useractivity/useractivity'
 })
 export class TabHomePage {
   
-  constructor() {
-    // console.log('on home tab');
-
-    
+  constructor(private authService: AuthProvider) {
+    // console.log('on home tab');    
      this.checkVerification();
   }
   
@@ -48,25 +47,16 @@ openNav() {
   }
   else {
     document.getElementById("mySidenav").style.width = '50%';
-  }
-  
+  }  
 }
 closeNav() {
   document.getElementById("mySidenav").style.width = "0px";
   
 }
-gotoHome(event) {
-  var btns = document.getElementsByClassName('active');
-  console.log(btns.length);
-  for(let item=0; item < btns.length; item++) {
-    btns.item(item).classList.remove('active');
-    
-  }
-  event.target.classList.add('active');
-  // var btns = document.getElementsByClassName('spanTab');
-  // document.getElementById('spanTab')    
-}
 clickedContent() {
   document.getElementById("mySidenav").style.width = '0%';
+}
+logout() {
+  this.authService.changeLogout(true);
 }
 }

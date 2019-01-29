@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { SharedProvider } from '../../providers/shared/shared';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { LoginProvider } from '../../providers/login/login';
+import { AuthProvider } from '../../providers/auth/auth';
 
 
 @Component({
@@ -24,8 +25,8 @@ export class SigninComponent {
       { type: 'pattern', message: 'Minimum 8 and should include at least special charater'}
     ]
   };
-  constructor(private sharedService: SharedProvider, private formBuilder: FormBuilder, private loginService: LoginProvider) {
-    sharedService.checkLogin();
+  constructor(private formBuilder: FormBuilder,private authService: AuthProvider) {
+    
     this.loginForm = formBuilder.group({
       email: new FormControl('', Validators.compose([
         Validators.pattern('^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$'),
@@ -37,18 +38,24 @@ export class SigninComponent {
       ]))
     });
   }
-  getLogin() {
-    
-    
-  const model = {
-    'email': this.loginForm.get('email').value,
-    'pass': this.loginForm.get('pass').value,
-  };
-  this.loginService.getLogin(model);
-  this.msg =  this.loginService.message;
   
-  }
+  getLogin() {        
+    const model = {
+      'email': this.loginForm.get('email').value,
+      'pass': this.loginForm.get('pass').value,
+    };
+    this.authService.signInEmail(model.email,model.pass).then(cred => {
+      
+  
+    })
+    }
   signinFb() {
-    this.loginService.getSocialAuth();
+    // this.loginService.getSocialAuth();
+  }
+  getLogged() {
+    console.log(this.authService.currentUser());
+  }
+  signOut() {
+    this.authService.signOut();
   }
 }

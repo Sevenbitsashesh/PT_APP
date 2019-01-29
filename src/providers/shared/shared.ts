@@ -14,13 +14,11 @@ import { AngularFireAuth } from 'angularfire2/auth';
 export class SharedProvider {
   model: UserDetails;
   loggedUser: any;
-  userscollection: AngularFirestoreCollection<UserDetails>;
-  searchModel: UserDetails;
-  smodel;
+  userscollection: AngularFirestoreCollection<UserDetails>;  
   verification;
   loading;
-  constructor(public http: HttpClient, private router: Router, public db: AngularFirestore, private Toast: ToastController, private actionsheetCtrl: ActionSheetController, private loader: LoadingController, public firebaseAuth: AngularFireAuth) {
-    // console.log('Hello SharedProvider Provider');
+  constructor(private router: Router, public db: AngularFirestore, private Toast: ToastController, private actionsheetCtrl: ActionSheetController, private loader: LoadingController, public firebaseAuth: AngularFireAuth) {
+    
    this.userscollection = this.db.collection<UserDetails>(appconfigs.collection_users);
    this.loading = this.loader.create({
     content: 'Please wait..',
@@ -31,9 +29,9 @@ export class SharedProvider {
   addInfo(model) {
     console.log(model);
      this.userscollection.add(model);
-    if (true ) {
-      this.router.navigate(['/userhome']);
-    }
+    // if (true ) {
+    //   this.router.navigate(['/userhome']);
+    // }
   }
   // Profile data update of user by uid
   saveProfile(model, uid) {
@@ -66,8 +64,6 @@ export class SharedProvider {
   }
   // Checking Login
   checkLogin() {
-     
-
     if (localStorage.getItem('usermail') !== null ) {
       // setting login user
        this.loggedUser = this.getLogged();

@@ -11,19 +11,11 @@ import { SharedProvider } from '../../providers/shared/shared';
 })
 export class UserhomePage {
   
-  constructor(private sharedService: SharedProvider) {
-    
+  constructor(private sharedService: SharedProvider) {    
     sharedService.checkLogin();
-    console.log('userhome page loaded');
-    // console.log(location.href);
-    
   }
 
   
 
-  logout() {
-    localStorage.clear();
-    this.sharedService.checkLogin();
-    this.sharedService = null;
-  }
+  
 }
