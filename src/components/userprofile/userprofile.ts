@@ -23,7 +23,7 @@ export class UserprofileComponent{
   requests;
   requested;
   following;
-  constructor(private userActivity: UseractivityProvider, private dataService: DataProvider,private requestService: RequestProvider, private userFlwService: UserfollowProvider) {
+  constructor(private userActivity: UseractivityProvider, private dataService: DataProvider,private userFlwService: UserfollowProvider, private requestService: RequestProvider) {
     this.dataService.searchUser.subscribe(search => this.userid = search);
    
     this.searchUser();

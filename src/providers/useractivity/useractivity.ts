@@ -74,8 +74,8 @@ addInfo(model) {
       this.tweetscollection = this.db.collection('users').doc(uid).collection<TweetModel>(appconfigs.collection_tweets);
       return this.tweetscollection.snapshotChanges().
       pipe(map(docArray => {
-         return docArray.map(data => {
-
+        let sorted;
+         return docArray.map(data => {          
         return ( {tweetid: data.payload.doc.id, tweetcontent: data.payload.doc.data()['tweetcontent'], t_title: data.payload.doc.data()['t_title'],
         t_date: data.payload.doc.data()['t_date'],t_image: data.payload.doc.data()['t_image'],t_user: '',t_user_pic: '', likeDoc: data.payload.doc.data()['likeDoc'], liked: [] = [], like: false
         });

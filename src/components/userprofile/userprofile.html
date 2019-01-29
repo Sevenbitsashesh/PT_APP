@@ -1,4 +1,13 @@
 <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+
+<ion-header *ngFor="let item of userModel">
+  <ion-toolbar>
+    <div class="profilename-head"><ion-title>{{item.firstname + ' ' + item.lastname}}</ion-title></div>
+  <div class="more-menu"><a> <img src="../../assets/icon/more.svg" ></a></div>
+    
+             
+  </ion-toolbar>
+</ion-header>
 <ion-content *ngFor="let item of userModel">
   <div class="prodivMain">
     <div class="divProfileImg">
@@ -31,11 +40,11 @@
   </div>
   </div>
   <div class="divprofileName">
-      <ion-label class="profileName">{{item.userid}}</ion-label>
-    <ion-label class="profileName">
+      <ion-label class="profileName">@{{item.userid}}</ion-label>
+    <textarea readonly class="profileName">
+        {{item.bio}}
         
-        Love Life Laugh continues...
-    </ion-label> 
+    </textarea> 
   </div>
   <div class="slider-menu">
       <div class="slider-btn">
@@ -53,7 +62,7 @@
     </div>      
   </div>
   <div class="slider-main">
-    <ion-slides >
+    <ion-slides class="ion-slides-all">
         <ion-slide>
             <feeds></feeds>
           </ion-slide>

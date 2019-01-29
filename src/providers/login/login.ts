@@ -20,7 +20,7 @@ export class LoginProvider {
       // })
       localStorage.setItem('usermail', model.email);
       
-      this.router.navigate(['/userhome']);
+      // this.router.navigate(['/userhome'],{queryParams: {tokenid: auth.user.reauthenticateWithCredential().}});
     }).catch(error => {
       this.message = error;
       

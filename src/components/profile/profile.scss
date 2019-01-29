@@ -49,7 +49,7 @@
 }
 .divProfileUpdate {
     position: absolute;
-    top: 60%;
+    top: 55%;
     left: 0%;
     height: auto;
     width: 100%;
@@ -96,9 +96,9 @@
      left: 0%;
  }
 .input-bio {
-    height: 100%;
+    height: auto;
     width: 100%;
-    border-width: 0px red;
+    border-width: 0px ;
     background: #DEDFBF;
     font-weight: 500;
     padding: 10px;
@@ -106,4 +106,10 @@
 }
 .input-bio:focus {
     height: 80px;    
+}
+ion-item ion-input{
+    background: rgb(205, 230, 230);
+    margin: 10px;
+    // border-radius: 20%;
+    color: blueviolet;
 }

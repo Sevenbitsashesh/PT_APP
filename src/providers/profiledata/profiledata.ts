@@ -17,7 +17,7 @@ export class ProfiledataProvider {
   }
   getProfile() {
     
-    this.getUser().onSnapshot(data => {
+    this.getUser().get().then(data => {
       
       data.forEach(items => {
         //Get Tweets data
@@ -61,9 +61,7 @@ export class ProfiledataProvider {
   getUser() {
     return this.shared.db.collection<UserDetails>('users').ref.where('email','==',this.shared.loggedUser);
   }
-  getTweets(did) {
-    return this.shared.db.collection<TweetModel>(`users/${did}/tweets`);
-  }
+  
   getFollow(did,ref) {
     return this.shared.db.collection(`${ref}/${did}/follow`).snapshotChanges();
   }

@@ -42,12 +42,31 @@ doRefresh(event) {
   },3000)
 }
 openNav() {
-  document.getElementById("mySidenav").style.width = '50%';
-
+  let width = document.getElementById("mySidenav").style.width;
+  if(width === '50%') {
+    document.getElementById("mySidenav").style.width = '0%';
+  }
+  else {
+    document.getElementById("mySidenav").style.width = '50%';
+  }
+  
 }
 closeNav() {
   document.getElementById("mySidenav").style.width = "0px";
-
+  
 }
-
+gotoHome(event) {
+  var btns = document.getElementsByClassName('active');
+  console.log(btns.length);
+  for(let item=0; item < btns.length; item++) {
+    btns.item(item).classList.remove('active');
+    
+  }
+  event.target.classList.add('active');
+  // var btns = document.getElementsByClassName('spanTab');
+  // document.getElementById('spanTab')    
+}
+clickedContent() {
+  document.getElementById("mySidenav").style.width = '0%';
+}
 }
