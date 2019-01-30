@@ -9,6 +9,7 @@ import { ToastController, ActionSheetController, LoadingController } from 'ionic
 import { DatePipe } from '@angular/common';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AuthProvider } from '../../providers/auth/auth';
+import { tap } from 'rxjs/operators';
 
 @Injectable()
 export class SharedProvider {
@@ -24,6 +25,7 @@ export class SharedProvider {
     duration: 5000,
     dismissOnPageChange: true
   });
+  
   }
   addInfo(model) {
     console.log(model);
@@ -65,25 +67,27 @@ export class SharedProvider {
   checkLogin() {
     if (localStorage.getItem('usermail') !== null ) {
       // setting login user
-       this.loggedUser = this.getLogged();
+       this.loggedUser = this.authService.currentUser().email;
         // this.loggedUser = this.loggedUser.toLowerCase();
       //  this.router.navigateByUrl('tabs/(home_tab:home_tab)');
+      console.log('logged');
        this.router.navigate(['/userhome']);
+      
     } else {
+      console.log('not logged');
       this.router.navigate(['/login']);
     }
   }
-  getCred() {
-    this.authService.user.subscribe(user => {
-    if(user.email) {
-      this.loggedUser = user.email;
-      console.log(user.email);
-      // this.router.navigate(['/userhome']);
+  getCred() {    
+    if(this.authService.currentUser() !== null) {      
+      console.log('logged');
+      this.loggedUser = this.authService.currentUser().email;
+      this.router.navigate(['/userhome']);
     }
     else {
+      console.log('not logged');
       this.router.navigate(['/login']);
     }
-    });
   }
   async callToast(msg) {
     const toast = await this.Toast.create({

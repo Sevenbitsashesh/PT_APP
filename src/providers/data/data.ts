@@ -38,9 +38,4 @@ export class DataProvider {
   getSearchUserModel(userid) : Observable<UserDetails[]> {
     return this.shared.db.collection<UserDetails>('users', ref => ref.where('userid', '==', userid)).valueChanges();
    }
-   
-  
-
-   
-  
 }

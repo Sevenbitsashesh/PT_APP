@@ -16,7 +16,7 @@ export class TabHomePage {
   
   constructor(private authService: AuthProvider) {
     
-     this.checkVerification();
+    //  this.checkVerification();
   }
   
  

@@ -12,7 +12,7 @@ export function getTestModule() { return UserhomePageModule; }
 const appRoutes: Routes = [
     {path: 'login', component: LoginComponent},
 
-   { path: 'first', component: FirstComponent    },
+   { path: 'first', component: FirstComponent },
    { path: 'home', pathMatch: 'full', component: HomePage},
    { path: '', pathMatch: 'full', component: LoginComponent},
    { path: 'userhome', component: UserhomePage, 

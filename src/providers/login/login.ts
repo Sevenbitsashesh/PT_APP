@@ -10,21 +10,21 @@ import * as firebase from 'firebase/app';
 export class LoginProvider {
   message: string;
   constructor(public http: HttpClient, private fireAuth: AngularFireAuth, private sharedService: SharedProvider, private router: Router) {
-      sharedService.checkLogin();           
+      // sharedService.checkLogin();           
   }
   getLogin(model) {
     
-    this.sharedService.firebaseAuth.auth.signInWithEmailAndPassword(model.email,model.pass).then(auth => {      
-      // ().then(token => {
-      //   console.log('token',token);
-      // })
-      localStorage.setItem('usermail', model.email);
+    // this.sharedService.firebaseAuth.auth.signInWithEmailAndPassword(model.email,model.pass).then(auth => {      
+    //   // ().then(token => {
+    //   //   console.log('token',token);
+    //   // })
+    //   localStorage.setItem('usermail', model.email);
       
-      // this.router.navigate(['/userhome'],{queryParams: {tokenid: auth.user.reauthenticateWithCredential().}});
-    }).catch(error => {
-      this.message = error;
+    //   // this.router.navigate(['/userhome'],{queryParams: {tokenid: auth.user.reauthenticateWithCredential().}});
+    // }).catch(error => {
+    //   this.message = error;
       
-    });
+    // });
   }
   // Create user in firebase Authentication
 createAcc(model) {

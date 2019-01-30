@@ -12,7 +12,7 @@ export class FollowProvider {
   users = [];  
   private userfollowings = new BehaviorSubject([]);
   userFollowingsObs = this.userfollowings.asObservable();
-  constructor(public http: HttpClient, private shared: SharedProvider, private dataService: DataProvider) {
+  constructor(private shared: SharedProvider, private dataService: DataProvider) {
     //Get Followig Users
     this.dataService.loggedUId.subscribe(data => {  
       this.loggedUid = data;

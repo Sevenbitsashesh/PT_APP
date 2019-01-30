@@ -26,6 +26,7 @@ export class SignupComponent {
   lname;
   message;
   signupForm: FormGroup;
+  formBuilder= new FormBuilder();
   validation_messages = {
     'email': [
       {type: 'required', message: 'Email is required'},
@@ -45,9 +46,9 @@ export class SignupComponent {
       { type: 'pattern', message: 'Enter Valid Userid' }
     ]
   };
-  constructor(private loginProvider: LoginProvider, private formBuilder: FormBuilder, public router: Router, private loadingController: LoadingController, private fireAuth: AngularFireAuth, private sharedService: SharedProvider) {
+  constructor(private loginProvider: LoginProvider, public router: Router, private sharedService: SharedProvider) {
     console.log(this.signed);
-    this.signupForm = formBuilder.group({
+    this.signupForm = this.formBuilder.group({
       email: new FormControl('', Validators.compose([
         Validators.pattern('^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$'),
         Validators.required

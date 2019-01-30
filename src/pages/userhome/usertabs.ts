@@ -11,14 +11,8 @@ import { UseractivityProvider } from '../../providers/useractivity/useractivity'
 })
 @Injectable()
 export class UsertabsComponent {
-
-  
   constructor(private dataService: DataProvider) {
-    // console.log('Hello UsertabsComponent Component');
-     
-     
+    // console.log('Hello UsertabsComponent Component');          
      dataService.changeUserID(localStorage.getItem('username'));
   }
-
-
 }

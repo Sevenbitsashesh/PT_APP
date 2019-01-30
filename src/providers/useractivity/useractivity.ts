@@ -27,10 +27,12 @@ export class UseractivityProvider {
   
   
   
-  constructor(private sharedProvider: SharedProvider, public db: AngularFirestore,private fstorage: AngularFireStorage, private dataService: DataProvider, private loader: LoadingController, private authService: AuthProvider) {
+  constructor( private authService: AuthProvider, private sharedProvider: SharedProvider, public db: AngularFirestore,private fstorage: AngularFireStorage, private dataService: DataProvider, private loader: LoadingController) {
     // console.log('Hello UseractivityProvider Provider');
+    
     this.model = sharedProvider.model;
     this.loggedUser = authService.userDetails.email;
+
     console.log('welcome', this.loggedUser);
     this.getUserModel();
   }
@@ -59,10 +61,11 @@ addInfo(model) {
   getUserModel() {
     
     // Get Logged in user email
-    this.db.collection('users').ref.where('email', '==', this.loggedUser).onSnapshot(snap => {
+    this.db.collection('users').ref.where('email', '==', this.loggedUser).get().then(snap => {
       snap.forEach(change => {
         // Users Profile data set to model
         this.model = change.data();
+        console.log(this.model);
         // Verification Details
         // if(this.model.verified === false) {
         //   this.verification = false;
@@ -70,7 +73,7 @@ addInfo(model) {
         
         localStorage.setItem('username', this.model.userid);
         // Getting Logged user id
-         this.uid = change.id ;
+         this.uid = change.id;
       });      
     });    
     }

@@ -13,7 +13,7 @@ export class LoginComponent {
   
   
   constructor(private authService: AuthProvider) {
-    // sharedService.checkLogin();        
+    authService.checkLogin();        
   }
   
 

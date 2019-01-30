@@ -13,8 +13,8 @@ import { ActivatedRoute } from '@angular/router';
 export class UserhomePage {
   
   constructor(private sharedService: SharedProvider) {    
-    sharedService.getCred();  
-    // sharedService.checkLogin();       
+    // sharedService.getCred();  
+    sharedService.checkLogin();       
   }
 
   
