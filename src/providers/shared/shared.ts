@@ -6,18 +6,17 @@ import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/fires
 import { appconfigs } from '../../Models/users_firestore';
 import { Observable } from 'rxjs/Observable';
 import { ToastController, ActionSheetController, LoadingController } from 'ionic-angular';
-// import * as firebase from 'firebase/a';
-import { getLocaleDateFormat, DatePipe } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { AuthProvider } from '../../providers/auth/auth';
 
 @Injectable()
 export class SharedProvider {
   model: UserDetails;
   loggedUser: any;
   userscollection: AngularFirestoreCollection<UserDetails>;  
-  verification;
   loading;
-  constructor(private router: Router, public db: AngularFirestore, private Toast: ToastController, private actionsheetCtrl: ActionSheetController, private loader: LoadingController, public firebaseAuth: AngularFireAuth) {
+  constructor(private router: Router, public db: AngularFirestore, private Toast: ToastController, private actionsheetCtrl: ActionSheetController, private loader: LoadingController, private authService: AuthProvider) {
     
    this.userscollection = this.db.collection<UserDetails>(appconfigs.collection_users);
    this.loading = this.loader.create({
@@ -68,11 +67,23 @@ export class SharedProvider {
       // setting login user
        this.loggedUser = this.getLogged();
         // this.loggedUser = this.loggedUser.toLowerCase();
-       // this.router.navigateByUrl('/tabs/(home_tab:home_tab)');
+      //  this.router.navigateByUrl('tabs/(home_tab:home_tab)');
        this.router.navigate(['/userhome']);
     } else {
       this.router.navigate(['/login']);
     }
+  }
+  getCred() {
+    this.authService.user.subscribe(user => {
+    if(user.email) {
+      this.loggedUser = user.email;
+      console.log(user.email);
+      // this.router.navigate(['/userhome']);
+    }
+    else {
+      this.router.navigate(['/login']);
+    }
+    });
   }
   async callToast(msg) {
     const toast = await this.Toast.create({

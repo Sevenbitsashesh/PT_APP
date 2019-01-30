@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { SharedProvider } from '../../providers/shared/shared';
+import { ActivatedRoute } from '@angular/router';
 
 
 
@@ -12,7 +13,8 @@ import { SharedProvider } from '../../providers/shared/shared';
 export class UserhomePage {
   
   constructor(private sharedService: SharedProvider) {    
-    sharedService.checkLogin();
+    sharedService.getCred();  
+    // sharedService.checkLogin();       
   }
 
   

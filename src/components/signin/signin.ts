@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SharedProvider } from '../../providers/shared/shared';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { LoginProvider } from '../../providers/login/login';
@@ -9,12 +9,13 @@ import { AuthProvider } from '../../providers/auth/auth';
   selector: 'signin',
   templateUrl: 'signin.html'
 })
-export class SigninComponent {
+export class SigninComponent implements OnInit {
 
   loginForm: FormGroup;
   email;
   pass;
   msg;
+  formBuilder =new FormBuilder;
   validation_messages = {
     'email': [
       {type: 'required', message: 'Email is required'},
@@ -25,9 +26,8 @@ export class SigninComponent {
       { type: 'pattern', message: 'Minimum 8 and should include at least special charater'}
     ]
   };
-  constructor(private formBuilder: FormBuilder,private authService: AuthProvider) {
-    
-    this.loginForm = formBuilder.group({
+  ngOnInit() {
+    this.loginForm = this.formBuilder.group({
       email: new FormControl('', Validators.compose([
         Validators.pattern('^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$'),
         Validators.required
@@ -38,6 +38,10 @@ export class SigninComponent {
       ]))
     });
   }
+  constructor(private authService: AuthProvider) {
+    
+    
+  }
   
   getLogin() {        
     const model = {
@@ -47,7 +51,7 @@ export class SigninComponent {
     this.authService.signInEmail(model.email,model.pass).then(cred => {
       
   
-    })
+    });
     }
   signinFb() {
     // this.loginService.getSocialAuth();

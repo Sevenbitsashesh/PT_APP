@@ -13,6 +13,7 @@ import { DataProvider } from '../data/data';
 import { LoadingController } from 'ionic-angular';
 
 import firebase from 'firebase';
+import { AuthProvider } from '../../providers/auth/auth';
 @Injectable()
 export class UseractivityProvider {
   model;
@@ -21,49 +22,58 @@ export class UseractivityProvider {
   uid;
   tweetmodel: TweetModel;
   tweetscollection: AngularFirestoreCollection<TweetModel>;  
-  myPhotoURL: Observable<String>;
-  myPhoto;
+  myPhotoURL: Observable<String>;  
   verification;
   
   
   
-  constructor(private sharedProvider: SharedProvider, public db: AngularFirestore,private fstorage: AngularFireStorage, private dataService: DataProvider, private loader: LoadingController) {
+  constructor(private sharedProvider: SharedProvider, public db: AngularFirestore,private fstorage: AngularFireStorage, private dataService: DataProvider, private loader: LoadingController, private authService: AuthProvider) {
     // console.log('Hello UseractivityProvider Provider');
     this.model = sharedProvider.model;
-    
-    this.loggedUser = sharedProvider.loggedUser;
+    this.loggedUser = authService.userDetails.email;
     console.log('welcome', this.loggedUser);
     this.getUserModel();
   }
   // Adding user info
 addInfo(model) { 
-  this.sharedProvider.saveProfile(model, this.uid);
-  
+  this.sharedProvider.saveProfile(model, this.uid);  
 }
+  // getUserModel() {
+  //   console.log('uid', this.loggedUser);
+  //   // Get Logged in user email
+  //   this.db.collection('users').ref.where('email', '==', this.loggedUser).onSnapshot(snap => {
+  //     snap.forEach(change => {
+  //       // Users Profile data set to model
+  //       this.model = change.data();
+  //       // Verification Details
+  //       // if(this.model.verified === false) {
+  //       //   this.verification = false;
+  //       // }
+        
+  //       localStorage.setItem('username', this.model.userid);
+  //       // Getting Logged user id
+  //        this.uid = change.id ;
+  //     });      
+  //   });    
+  //   }
   getUserModel() {
-    console.log('uid', this.loggedUser);
+    
     // Get Logged in user email
     this.db.collection('users').ref.where('email', '==', this.loggedUser).onSnapshot(snap => {
       snap.forEach(change => {
         // Users Profile data set to model
         this.model = change.data();
         // Verification Details
-        if(this.model.verified === false) {
-          this.verification = false;
-        }
+        // if(this.model.verified === false) {
+        //   this.verification = false;
+        // }
         
         localStorage.setItem('username', this.model.userid);
         // Getting Logged user id
          this.uid = change.id ;
-          
-          
-        
-      });
-      
-    });
-    
+      });      
+    });    
     }
-
     getTweets(uid) {
 
       // Getting Logged users Tweet

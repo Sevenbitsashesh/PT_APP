@@ -5,6 +5,7 @@ import * as firebase from 'firebase/app';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
 import { DataProvider } from '../../providers/data/data';
+import { Credentials } from '../../Models/credentials';
 
 @Injectable()
 export class AuthProvider {
@@ -12,14 +13,18 @@ export class AuthProvider {
   userDetails: firebase.User = null;
   logOutSub = new BehaviorSubject('');
   logOutObs = this.logOutSub.asObservable();
+  
   constructor(private fauth: AngularFireAuth, private router: Router) {
     this.user = fauth.authState;
     
     this.user.subscribe(
       (user) => {
         if (user) {
+          
           this.userDetails = user;
-          console.log('Logged In User:',this.userDetails.email);
+   
+
+          console.log('Logged In User:',this.userDetails);
           router.navigate(['/userhome']);
 
           // console.log(this.userDetails);
@@ -50,4 +55,5 @@ export class AuthProvider {
       });
     }
   }
+  
 }
