@@ -128,6 +128,7 @@ getuserExist() : Observable<boolean>{
   
 }
 userExist(control: AbstractControl) {
-
+  // return this.http.get<User[]>(this.url + '?email=' + userEmail).toPromise();
+// this.http.get<UserDetails[]>(this.)
 }
 }
