@@ -35,6 +35,8 @@ import { LikeProvider } from '../providers/like/like';
 import { ProfiledataProvider } from '../providers/profiledata/profiledata';
 import { AuthProvider } from '../providers/auth/auth';
 import { StorageProvider } from '../providers/storage/storage';
+import { ApiProvider } from '../providers/api/api';
+
 
 
 
@@ -86,7 +88,8 @@ import { StorageProvider } from '../providers/storage/storage';
     LikeProvider,
     ProfiledataProvider,
     AuthProvider,
-    StorageProvider
+    StorageProvider,
+    ApiProvider
   ]
 })
 export class AppModule {}

@@ -32,6 +32,7 @@ export class DataProvider {
     this.imageUrl.next(imageUrl);
   }
   changeUserModel(userModel: UserDetails[]) {
+    console.log(userModel);
     this.userModel.next(userModel);
   }
   //Search By Userid Observable 

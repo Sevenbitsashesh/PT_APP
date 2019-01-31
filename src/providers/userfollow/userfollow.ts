@@ -22,6 +22,7 @@ export class UserfollowProvider {
       userDetail.forEach(i =>{ 
         this.userModel.push(i);
         console.log(this.userModel);        
+        
       });
       
     });
@@ -37,8 +38,8 @@ export class UserfollowProvider {
             this.refService.getRefFlw(flwings.id,'followings')
             .subscribe(followings => {
               this.userModel[0].followings = followings;
-              
-              this.dataService.changeUserModel(this.userModel);
+              // console.log('calling');
+              // this.dataService.changeUserModel(this.userModel);
             });
           })
         });
@@ -48,6 +49,7 @@ export class UserfollowProvider {
             this.refService.getRefFlw(flwrs.id,'followers')
             .subscribe(followers => {
               this.userModel[0].followers = followers;
+              console.log('calling');
               this.dataService.changeUserModel(this.userModel);
             })
           })

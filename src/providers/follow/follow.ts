@@ -17,18 +17,19 @@ export class FollowProvider {
     this.dataService.loggedUId.subscribe(data => {  
       this.loggedUid = data;
       console.log('checking followings for',this.loggedUid);
-      this.shared.db.collection('users').ref.where('userid','==',this.loggedUid).get().then(userdocs => {
+      this.shared.db.collection('users').ref.where('email','==',this.loggedUid).get().then(userdocs => {
         userdocs.forEach(user => {
           this.users.push(user.id);
           console.log('logged user',user.id);
           this.getRefFlwing(user.id).get().then(follows => {
+            console.log('counting');
             follows.forEach(items => {
               items.ref.collection('follow').get().then(f => {
                 
                 f.forEach(followings => {
                   
                   followings.ref.get().then(flrs => {     
-                    
+                    console.log(flrs.data()['user']);
                       this.users.push(flrs.data()['user']);
                    this.changeFollowings(this.users);
                    
@@ -40,6 +41,7 @@ export class FollowProvider {
         })
       })
     });
+    
 }
 getRefFlwing(docid) {
   return this.shared.db.collection(appconfigs.collection_followings).ref.where('docid','==',docid);

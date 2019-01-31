@@ -13,6 +13,6 @@ import { UseractivityProvider } from '../../providers/useractivity/useractivity'
 export class UsertabsComponent {
   constructor(private dataService: DataProvider) {
     // console.log('Hello UsertabsComponent Component');          
-     dataService.changeUserID(localStorage.getItem('username'));
+     dataService.changeUserID(localStorage.getItem('usermail'));
   }
 }

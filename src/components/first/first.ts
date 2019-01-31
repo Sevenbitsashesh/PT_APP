@@ -20,6 +20,9 @@ export class FirstComponent {
   firsttime = "load";
    // @ViewChild('myNav') nav: NavController
   constructor(private route: Router) {
+    if(localStorage.getItem('firsttime') == 'load') {
+      this.route.navigate(['/login']);
+    }
   }
   set() {
     localStorage.setItem('firsttime', this.firsttime);

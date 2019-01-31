@@ -15,7 +15,7 @@ import { AuthProvider } from '../../providers/auth/auth';
 export class TabHomePage {
   
   constructor(private authService: AuthProvider) {
-    
+    authService.checkLogin('tab_home');
     //  this.checkVerification();
   }
   

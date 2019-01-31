@@ -14,11 +14,13 @@ const appRoutes: Routes = [
 
    { path: 'first', component: FirstComponent },
    { path: 'home', pathMatch: 'full', component: HomePage},
-   { path: '', pathMatch: 'full', component: LoginComponent},
+   
    { path: 'userhome', component: UserhomePage, 
+   
 //    loadChildren: () => UserhomePageModule 
 loadChildren: getTestModule
-    }
+    },
+    { path: '', pathMatch: 'full', component: LoginComponent},
     ];
     @NgModule({
         imports: [RouterModule.forRoot(appRoutes)],

@@ -59,7 +59,7 @@ export class ProfiledataProvider {
     })
   }
   getUser() {
-    return this.shared.db.collection<UserDetails>('users').ref.where('email','==',this.shared.loggedUser);
+    return this.shared.db.collection<UserDetails>('users').ref.where('email','==',this.uactivity.loggedUser);
   }
   
   getFollow(did,ref) {

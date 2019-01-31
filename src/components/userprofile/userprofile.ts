@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild, AfterViewInit, AfterViewChecked } from '@angular/core';
+import { Component, Input, ViewChild, AfterViewInit, AfterViewChecked, DoCheck, OnInit, OnChanges, AfterContentInit, AfterContentChecked, OnDestroy } from '@angular/core';
 import { DataProvider } from '../../providers/data/data';
 import { UseractivityProvider } from '../../providers/useractivity/useractivity';
 import { UserDetails } from '../../Models/users.details';
@@ -8,6 +8,7 @@ import { UserfollowProvider } from '../../providers/userfollow/userfollow';
 import { Observable } from 'rxjs';
 import { Slides } from 'ionic-angular';
 import { FeedsComponent } from '../feeds/feeds';
+import { ApiProvider } from '../../providers/api/api';
 
 
 
@@ -15,7 +16,7 @@ import { FeedsComponent } from '../feeds/feeds';
   selector: 'userprofile',
   templateUrl: 'userprofile.html'
 })
-export class UserprofileComponent{
+export class UserprofileComponent {
   @ViewChild(Slides) slides: Slides;
   //searching userid  
   userid;
@@ -23,8 +24,12 @@ export class UserprofileComponent{
   requests;
   requested;
   following;
-  constructor(private userActivity: UseractivityProvider, private dataService: DataProvider,private userFlwService: UserfollowProvider, private requestService: RequestProvider) {
-    this.dataService.searchUser.subscribe(search => this.userid = search);
+  constructor(private userActivity: UseractivityProvider, private dataService: DataProvider,private userFlwService: UserfollowProvider, private requestService: RequestProvider, private api: ApiProvider) {
+    
+    this.dataService.searchUser.subscribe(search => {
+      this.userid = search
+    }
+      );
    
     this.searchUser();
     this.requestService.requestsValObs.subscribe(requests => {
@@ -35,11 +40,10 @@ export class UserprofileComponent{
     });
     this.requestService.followValObs.subscribe(follow => {
       this.following = follow;
-    });
-    userFlwService.getFollow();
-    
+    })  ;
+    this.userFlwService.getFollow();  
   }
-  searchUser() {
+    searchUser() {
     // this.userActivity.callLoader();
     
       return this.dataService.getSearchUserModel(this.userid)      
@@ -82,8 +86,7 @@ export class UserprofileComponent{
   unfollow() {
     this.requestService.unfollow();
   }
-  sliderChange(s) {
-    
+  sliderChange(s) {  
     this.slides.slideTo(s,500);
   }
 }

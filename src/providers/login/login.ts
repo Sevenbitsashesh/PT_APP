@@ -12,20 +12,7 @@ export class LoginProvider {
   constructor(public http: HttpClient, private fireAuth: AngularFireAuth, private sharedService: SharedProvider, private router: Router) {
       // sharedService.checkLogin();           
   }
-  getLogin(model) {
-    
-    // this.sharedService.firebaseAuth.auth.signInWithEmailAndPassword(model.email,model.pass).then(auth => {      
-    //   // ().then(token => {
-    //   //   console.log('token',token);
-    //   // })
-    //   localStorage.setItem('usermail', model.email);
-      
-    //   // this.router.navigate(['/userhome'],{queryParams: {tokenid: auth.user.reauthenticateWithCredential().}});
-    // }).catch(error => {
-    //   this.message = error;
-      
-    // });
-  }
+
   // Create user in firebase Authentication
 createAcc(model) {
   this.sharedService.loaderCall();
@@ -34,9 +21,7 @@ createAcc(model) {
     this.createUser(model);
     // this.createUid();
     // this.getLogin();
-  },
-  err => { this.message = err;  throw err;  }
-  );
+  })
 
 }
   // create user in Firestore

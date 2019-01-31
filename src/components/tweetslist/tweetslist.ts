@@ -21,6 +21,7 @@ export class TweetslistComponent {
     // this.getTweet();
     followService.userFollowingsObs.subscribe(items => {
      this.users = items;
+     console.log(items);
      this.showing = false; 
       this.users.forEach(i => { 
         this.userActivity.getUserData(i).subscribe(userData => {

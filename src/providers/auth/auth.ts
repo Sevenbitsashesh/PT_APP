@@ -18,23 +18,8 @@ export class AuthProvider {
   checkLoginObs = this.checkLoginSub.asObservable();
   constructor(private fauth: AngularFireAuth, private router: Router) {
     this.user = fauth.authState;
-    
-    this.user.subscribe(
-      (user) => {
-        if (user) {
-          
-          this.userDetails = user;          
-          console.log('Logged In User:',this.userDetails);
-          router.navigate(['/userhome']);
-
-          // console.log(this.userDetails);
-        }
-        else {
-          this.userDetails = null;
-          router.navigate(['/login']);
-        } 
-      }
-    );
+    this.checkLogin('current');
+   
   }
   signInEmail(email,pass) {
     return this.fauth.auth.signInWithEmailAndPassword(email,pass);
@@ -52,18 +37,30 @@ export class AuthProvider {
     if(bool) {
       this.signOut().then(() => {        
         console.log('sign out success');
-        localStorage.clear();
-        this.router.navigate(['/login'])
+        localStorage.removeItem('username');
+        localStorage.removeItem('usermail');
+        window.location.reload();
+        // this.router.navigate(['/login']);
       });
     }
   }
-  checkLogin() {
-    console.log(firebase.auth().currentUser);
-    if(firebase.auth().currentUser !== null) {
-      this.router.navigate(['/userhome']);
-    }
-    else {
-      this.router.navigate(['/login']);
-    }
+  checkLogin(from) {
+    console.log('checking',from);
+    this.user.subscribe(
+      (user) => {
+        if (user) {
+          
+          this.userDetails = user;          
+          // console.log('Logged In User:',this.userDetails);
+          this.router.navigate(['/userhome']);
+
+          // console.log(this.userDetails);
+        }
+        else {
+          this.userDetails = null;
+          this.router.navigate(['/login']);
+        } 
+      }
+    );
   }
 }

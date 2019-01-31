@@ -65,13 +65,14 @@ addInfo(model) {
       snap.forEach(change => {
         // Users Profile data set to model
         this.model = change.data();
-        console.log(this.model);
+        // console.log(this.model);
         // Verification Details
         // if(this.model.verified === false) {
         //   this.verification = false;
         // }
         
         localStorage.setItem('username', this.model.userid);
+        localStorage.setItem('usermail', this.model.email);
         // Getting Logged user id
          this.uid = change.id;
       });      
@@ -165,6 +166,6 @@ addInfo(model) {
     return this.sharedProvider.db.collection<FollowingModel>('followings').ref.where('docid','==',uid);
   }
   saveBio(bioText) {
-    this.sharedProvider.saveBio(bioText);
+    // this.sharedProvider.saveBio(bioText);
   }
 }

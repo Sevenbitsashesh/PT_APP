@@ -39,7 +39,7 @@ export class SigninComponent implements OnInit {
     });
   }
   constructor(private authService: AuthProvider) {
-    authService.checkLogin();
+    authService.checkLogin('signin');
     
   }
   
@@ -49,8 +49,9 @@ export class SigninComponent implements OnInit {
       'pass': this.loginForm.get('pass').value,
     };
     this.authService.signInEmail(model.email,model.pass).then(cred => {
-      localStorage.setItem('usermail',model.email);
-  
+      localStorage.setItem('usermail',model.email);      
+    }).catch(error => {
+      this.msg = error;
     });
     }
   signinFb() {

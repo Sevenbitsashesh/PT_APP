@@ -18,7 +18,7 @@ export class SharedProvider {
   userscollection: AngularFirestoreCollection<UserDetails>;  
   loading;
   constructor(private router: Router, public db: AngularFirestore, private Toast: ToastController, private actionsheetCtrl: ActionSheetController, private loader: LoadingController, private authService: AuthProvider) {
-    
+  //  this.loggedUser = authService.userDetails.email;
    this.userscollection = this.db.collection<UserDetails>(appconfigs.collection_users);
    this.loading = this.loader.create({
     content: 'Please wait..',
@@ -62,32 +62,6 @@ export class SharedProvider {
   getLogged() {
     // console.log('getlogged', localStorage.getItem('usermail'));
     return localStorage.getItem('usermail');
-  }
-  // Checking Login
-  checkLogin() {
-    if (localStorage.getItem('usermail') !== null ) {
-      // setting login user
-       this.loggedUser = this.authService.currentUser().email;
-        // this.loggedUser = this.loggedUser.toLowerCase();
-      //  this.router.navigateByUrl('tabs/(home_tab:home_tab)');
-      console.log('logged');
-       this.router.navigate(['/userhome']);
-      
-    } else {
-      console.log('not logged');
-      this.router.navigate(['/login']);
-    }
-  }
-  getCred() {    
-    if(this.authService.currentUser() !== null) {      
-      console.log('logged');
-      this.loggedUser = this.authService.currentUser().email;
-      this.router.navigate(['/userhome']);
-    }
-    else {
-      console.log('not logged');
-      this.router.navigate(['/login']);
-    }
   }
   async callToast(msg) {
     const toast = await this.Toast.create({
@@ -139,13 +113,13 @@ this.loading.dismiss();
 userExist(userid) {
   return this.userscollection.ref.where('userid','==',userid);
 }
-saveBio(bioText) {
-  this.userscollection.ref.where('email','==',this.loggedUser).get().then(d => {
-    d.docs.forEach(e => {
-      e.ref.set({bio: bioText},{merge: true}).then(() => {
-        this.callToast('Bio Saved');
-      });
-    })
-  });
-}
+// saveBio(bioText) {
+//   this.userscollection.ref.where('email','==',this.loggedUser).get().then(d => {
+//     d.docs.forEach(e => {
+//       e.ref.set({bio: bioText},{merge: true}).then(() => {
+//         this.callToast('Bio Saved');
+//       });
+//     })
+//   });
+// }
 }
