@@ -7,11 +7,10 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { SharedProvider } from '../providers/shared/shared';
 import { ComponentsModule } from '../components/components.module';
-import { LoginComponent } from '../components/login/login';
-import { RouterModule, Routes, RouterOutlet, RouteReuseStrategy } from '@angular/router';
+import { RouterModule} from '@angular/router';
 import { AppRoutingModule } from './app.routing';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { FirstComponent } from '../components/first/first';
+
 import { HttpClientModule } from '@angular/common/http';
 import { UserRoutingModule } from '../pages/userhome/user.routing';
 import { UserhomePageModule } from '../pages/userhome/userhome.module';
@@ -28,15 +27,16 @@ import { FollowProvider } from '../providers/follow/follow';
 import { ImageProvider } from '../providers/image/image';
 import { TweetsProvider } from '../providers/tweets/tweets';
 import { LoginProvider } from '../providers/login/login';
-import { UserfollowProvider } from '../providers/userfollow/userfollow';
+
 import { RefProvider } from '../providers/ref/ref';
 import { CollectionProvider } from '../providers/collection/collection';
 import { LikeProvider } from '../providers/like/like';
 import { ProfiledataProvider } from '../providers/profiledata/profiledata';
 import { AuthProvider } from '../providers/auth/auth';
 import { StorageProvider } from '../providers/storage/storage';
-import { ApiProvider } from '../providers/api/api';
 import { UserProvider } from '../providers/user/user';
+import { UserdetailsProvider } from '../providers/userdetails/userdetails';
+
 
 
 
@@ -83,15 +83,14 @@ import { UserProvider } from '../providers/user/user';
     ImageProvider,
     TweetsProvider,
     LoginProvider,
-    UserfollowProvider,
     RefProvider,
     CollectionProvider,
     LikeProvider,
     ProfiledataProvider,
     AuthProvider,
     StorageProvider,
-    ApiProvider,
-    UserProvider
+    UserProvider,
+    UserdetailsProvider
   ]
 })
 export class AppModule {}

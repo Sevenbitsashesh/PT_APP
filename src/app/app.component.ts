@@ -15,7 +15,7 @@ export class MyApp {
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,private route: Router) {
     AngularFireModule.initializeApp(config);
-    // console.log(location.href);
+    
     
     console.log('main comp');
     AngularFireModule.initializeApp(config);

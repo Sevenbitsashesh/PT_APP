@@ -5,18 +5,12 @@ import { LoadingController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { SharedProvider } from '../../providers/shared/shared';
 import { LoginProvider } from '../../providers/login/login';
-import { ApiProvider } from '../../providers/api/api';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AngularFirestoreCollection } from 'angularfire2/firestore';
 import { UserDetails } from 'Models/users.details';
+import { AuthProvider } from '../../providers/auth/auth';
 
-/**
- * Generated class for the SignupComponent component.
- *
- * See https://angular.io/api/core/Component for more info on Angular
- * Components.
- */
 
 @Component({
   selector: 'signup',
@@ -52,7 +46,7 @@ export class SignupComponent {
       { match: 'matched', message: 'Userid Already in taken'}
     ]
   };
-  constructor(private loginProvider: LoginProvider, public router: Router, private apiService: ApiProvider, private http: HttpClient) {
+  constructor(private loginProvider: LoginProvider, public router: Router, private http: HttpClient, private authService: AuthProvider) {
     console.log(this.signed);
     this.signupForm = this.formBuilder.group({
       email: new FormControl('', Validators.compose([
@@ -81,20 +75,23 @@ export class SignupComponent {
 // Create user in firebase Authentication
 createAcc() {
   const model = {
+    'name': this.signupForm.get('fname').value,
     'email': this.signupForm.get('email').value,
-    'pass': this.signupForm.get('pass').value,
-    'userid': this.signupForm.get('userid').value,
-    'fname': this.signupForm.get('fname').value,
-    'lname': this.signupForm.get('lname').value
+    'password': this.signupForm.get('pass').value,
+    'c_password': this.signupForm.get('pass').value,
+    'user_name': this.signupForm.get('userid').value,
+    // 'fname': this.signupForm.get('fname').value,
+    // 'lname': this.signupForm.get('lname').value
   };
-  this.loginProvider.userExist(model.userid).get().then(u => {
-    if(u.size > 0) {
-      this.message = "Userid already taken."
-    }
-    else {
-      this.loginProvider.createAcc(model);
-    }
-  })
+  this.authService.signUp(model);
+  // this.loginProvider.userExist(model.userid).get().then(u => {
+  //   if(u.size > 0) {
+  //     this.message = "Userid already taken."
+  //   }
+  //   else {
+  //     this.loginProvider.createAcc(model);
+  //   }
+  // })
   
 }
 // : Observable<ValidationErrors | null>

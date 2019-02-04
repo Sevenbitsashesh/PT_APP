@@ -2,6 +2,7 @@ import { TweetModel } from "./tweet_model";
 
 export class UserDetails  {
     userid: string;
+    id?: string;
     username: string;
     password: string;
     email: string;

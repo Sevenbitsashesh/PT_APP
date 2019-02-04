@@ -61,8 +61,9 @@ export class SharedProvider {
   }
   getLogged() {
     // console.log('getlogged', localStorage.getItem('usermail'));
-    return localStorage.getItem('usermail');
+    return localStorage.getItem('swaToken');
   }
+  
   async callToast(msg) {
     const toast = await this.Toast.create({
       message: msg,

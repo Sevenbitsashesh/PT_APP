@@ -4,11 +4,10 @@ import { UseractivityProvider } from '../../providers/useractivity/useractivity'
 import { UserDetails } from '../../Models/users.details';
 import { RequestProvider } from '../../providers/request/request';
 import { RequestModel } from '../../Models/request_model';
-import { UserfollowProvider } from '../../providers/userfollow/userfollow';
 import { Observable } from 'rxjs';
 import { Slides } from 'ionic-angular';
 import { FeedsComponent } from '../feeds/feeds';
-import { ApiProvider } from '../../providers/api/api';
+
 
 
 
@@ -24,7 +23,7 @@ export class UserprofileComponent {
   requests;
   requested;
   following;
-  constructor(private userActivity: UseractivityProvider, private dataService: DataProvider,private userFlwService: UserfollowProvider, private requestService: RequestProvider, private api: ApiProvider) {
+  constructor(private userActivity: UseractivityProvider, private dataService: DataProvider) {
     
     this.dataService.searchUser.subscribe(search => {
       this.userid = search
@@ -32,19 +31,11 @@ export class UserprofileComponent {
       );
    
     this.searchUser();
-    this.requestService.requestsValObs.subscribe(requests => {
-      this.requests = requests;
-    });
-    this.requestService.requestedValObs.subscribe(requested => {
-      this.requested = requested;
-    });
-    this.requestService.followValObs.subscribe(follow => {
-      this.following = follow;
-    })  ;
-    this.userFlwService.getFollow();  
+   
+    
   }
     searchUser() {
-    // this.userActivity.callLoader();
+    
     
       return this.dataService.getSearchUserModel(this.userid)      
     
@@ -53,39 +44,14 @@ export class UserprofileComponent {
  
       this.userModel = data;
       this.dataService.changeUserModel(this.userModel);
-        // this.flwrs = this.userModel[0].followers.length;
-        // this.flwings = this.userModel[0].followings.length;
+
       
     
   });
 
-//  .subscribe(data => {
-  
+
+  }
  
-//     this.userModel = data;
-//     this.dataService.changeUserModel(this.userModel);
-//     this.flwrs = this.userModel[0].followers.length;
-//     this.flwings = this.userModel[0].followings.length;
-    
-  
-// });
-// this.userActivity.dismissLoader();
-  }
-  follow() {
-    this.requestService.request();
-  }
-  cancelRequest() {
-    this.requestService.cancelRequest();
-  }
-  reject() {
-     this.requestService.reject();
-  }
-  accept() {
-    this.requestService.accept();
-  }
-  unfollow() {
-    this.requestService.unfollow();
-  }
   sliderChange(s) {  
     this.slides.slideTo(s,500);
   }

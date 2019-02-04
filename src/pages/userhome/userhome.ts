@@ -16,7 +16,7 @@ export class UserhomePage {
   constructor(private authService: AuthProvider) {    
     // sharedService.getCred();  
     // sharedService.checkLogin();       
-    authService.checkLogin('userhome');
+    authService.checkLogin();
   }
 
   

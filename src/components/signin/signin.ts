@@ -40,7 +40,7 @@ export class SigninComponent implements OnInit {
     });
   }
   constructor(private authService: AuthProvider) {
-    authService.checkLogin('signin');
+    authService.checkLogin();
     
   }
   
