@@ -36,6 +36,7 @@ import { ProfiledataProvider } from '../providers/profiledata/profiledata';
 import { AuthProvider } from '../providers/auth/auth';
 import { StorageProvider } from '../providers/storage/storage';
 import { ApiProvider } from '../providers/api/api';
+import { UserProvider } from '../providers/user/user';
 
 
 
@@ -89,7 +90,8 @@ import { ApiProvider } from '../providers/api/api';
     ProfiledataProvider,
     AuthProvider,
     StorageProvider,
-    ApiProvider
+    ApiProvider,
+    UserProvider
   ]
 })
 export class AppModule {}

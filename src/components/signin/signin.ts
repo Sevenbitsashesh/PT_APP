@@ -5,6 +5,7 @@ import { LoginProvider } from '../../providers/login/login';
 import { AuthProvider } from '../../providers/auth/auth';
 
 
+
 @Component({
   selector: 'signin',
   templateUrl: 'signin.html'
@@ -48,17 +49,22 @@ export class SigninComponent implements OnInit {
       'email': this.loginForm.get('email').value,
       'pass': this.loginForm.get('pass').value,
     };
-    this.authService.signInEmail(model.email,model.pass).then(cred => {
-      localStorage.setItem('usermail',model.email);      
-    }).catch(error => {
-      this.msg = error;
-    });
+    this.authService.signInEmail(model.email,model.pass)
+    // .then(cred => {
+    //   localStorage.setItem('usermail',model.email);      
+    // }).catch(error => {
+    //   this.msg = error;
+    // });
+    
+    
+    
     }
   signinFb() {
-    // this.loginService.getSocialAuth();
+    
   }
   getLogged() {
-    console.log(this.authService.currentUser());
+    // console.log(this.authService.currentUser());
+    this.authService.getDetails();
   }
   signOut() {
     this.authService.signOut();
