@@ -40,7 +40,7 @@ export class SigninComponent implements OnInit {
     });
   }
   constructor(private authService: AuthProvider) {
-    authService.checkLogin();
+    // authService.checkLogin();
     
   }
   
@@ -50,23 +50,9 @@ export class SigninComponent implements OnInit {
       'pass': this.loginForm.get('pass').value,
     };
     this.authService.signInEmail(model.email,model.pass)
-    // .then(cred => {
-    //   localStorage.setItem('usermail',model.email);      
-    // }).catch(error => {
-    //   this.msg = error;
-    // });
-    
+  
     
     
     }
-  signinFb() {
-    
-  }
-  getLogged() {
-    // console.log(this.authService.currentUser());
-    this.authService.getDetails();
-  }
-  signOut() {
-    this.authService.signOut();
-  }
+ 
 }

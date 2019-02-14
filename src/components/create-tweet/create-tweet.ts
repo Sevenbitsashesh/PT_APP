@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UseractivityProvider } from '../../providers/useractivity/useractivity';
+
 import { ImageProvider } from '../../providers/image/image';
 import { DataProvider } from '../../providers/data/data';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -17,7 +17,7 @@ export class CreateTweetComponent {
   imageUrl;
   progress: number;
   uploadTask: AngularFireUploadTask;
-  constructor(private userActivity: UseractivityProvider, private imageService: ImageProvider, private dataService: DataProvider, private storeService: StorageProvider) {
+  constructor(private imageService: ImageProvider, private dataService: DataProvider, private storeService: StorageProvider) {
     
   }
   getUrl() {
@@ -28,12 +28,12 @@ export class CreateTweetComponent {
       
         if(this.imageUrl) {
           console.log('my tweet url',this.imageUrl);
-          this.userActivity.createTweet(this.tweetcontent,this.t_title,this.imageUrl).then(promise => {
+          // this.userActivity.createTweet(this.tweetcontent,this.t_title,this.imageUrl).then(promise => {
                       
-          });
+          // });
         }
         else {
-          this.userActivity.createTweet(this.tweetcontent,this.t_title,'https://firebasestorage.googleapis.com/v0/b/my-social-a5d83.appspot.com/o/tweets%2Ftwitter_cover.jpg?alt=media&token=c8814650-1412-4a4f-9266-cfe3d11d9b9a');      
+          // this.userActivity.createTweet(this.tweetcontent,this.t_title,'https://firebasestorage.googleapis.com/v0/b/my-social-a5d83.appspot.com/o/tweets%2Ftwitter_cover.jpg?alt=media&token=c8814650-1412-4a4f-9266-cfe3d11d9b9a');      
         }
 
   }

@@ -1,13 +1,10 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { SharedProvider } from '../../providers/shared/shared';
-import { UseractivityProvider } from '../../providers/useractivity/useractivity';
 import { ImageProvider } from '../../providers/image/image';
 import { DataProvider } from '../../providers/data/data';
 import { UserDetails } from '../../Models/users.details';
-import { ProfiledataProvider } from '../../providers/profiledata/profiledata';
-import { TweetModel } from 'Models/tweet_model';
-import { Observable } from 'rxjs';
+import { UserProvider } from '../../providers/user/user';
 
 
 @Component({
@@ -15,22 +12,21 @@ import { Observable } from 'rxjs';
   templateUrl: 'profile.html'
 })
 export class ProfileComponent {
-  
-  username: string;
-  email: string;
-  mobile: string;
-  address: string;
-  dob: string;
-  gender: string;
-  myForm: FormGroup;
-  loggedEmail: string;
-  profileImg: any;
-  // userModel: UserDetails;
-  userModel = new UserDetails();
-  tweets: TweetModel[];
   // userid: string;
-  bio: string;
-  bioLength;
+  // username: string;
+  // email: string;
+  // mobile: string;
+  // address: string;
+  // dob: string;
+  // gender: string;  
+  // loggedEmail: string;
+  // profileImg: any;
+  // tweets: TweetModel[];
+  // bio: string;
+  // bioLength;
+  userModel = new UserDetails();
+  myForm: FormGroup;
+  
   validation_messages = {
     'username': [
         { type: 'required', message: 'Username is required' },
@@ -63,114 +59,112 @@ export class ProfileComponent {
         'dob': this.myForm.get('dob').value
       };
 
-      this.uactivity.addInfo(model);
+      // this.uactivity.addInfo(model);
     }
   
-  constructor(private formBuilder: FormBuilder, private sharedService: SharedProvider, private uactivity: UseractivityProvider, private imageService: ImageProvider, private dataService: DataProvider, private profileService: ProfiledataProvider) {
-    
-    this.getProfileData();
-    this.loggedEmail = this.userModel.email;
-    this.profileImg = this.userModel.profile_pic;
-    this.bio = this.userModel.bio;
+  constructor(private formBuilder: FormBuilder, private imageService: ImageProvider, private dataService: DataProvider, private userService: UserProvider) {
+    userService.getUserData().subscribe(userData => {
+      this.userModel = userData['success'];
+     console.log(userData['success']);
+//      console.log(this.userModel);
+
+
+
+      // this.loggedEmail = this.userModel.email;
+    // this.profileImg = this.userModel.profile_pic;
+    // this.bio = this.userModel.bio;
     this.myForm = formBuilder.group({
-      username: new FormControl(this.uactivity.model.userid, Validators.compose([
+      username: new FormControl(this.userModel.user_name, Validators.compose([
         Validators.maxLength(25),
         Validators.minLength(5),
         Validators.pattern('^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]+$'),
         Validators.required
       ])
       ),
-      mobile: new FormControl(this.uactivity.model.mobile, Validators.compose([
+      mobile: new FormControl(this.userModel.mobile, Validators.compose([
         Validators.maxLength(12),
         Validators.minLength(10),
         Validators.pattern('^(0|[1-9][0-9]*)$'),
         Validators.required
       ])
       ),
-      email: new FormControl({value: this.loggedEmail, disabled : true}, Validators.compose([
+      email: new FormControl({value: this.userModel.email, disabled : true}, Validators.compose([
         Validators.required,
         // Validators.pattern('^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$')
       ])),
-      address: new FormControl(this.uactivity.model.address, Validators.compose([
+      address: new FormControl(this.userModel.address, Validators.compose([
         Validators.pattern('^[a-z]{1,100}$')
       ])),
-      hobbies: new FormControl('', Validators.compose([
+      hobbies: new FormControl(this.userModel.interest, Validators.compose([
       ])),
-      dob: new FormControl(this.uactivity.model.dob, Validators.compose([
+      dob: new FormControl(this.userModel.dob, Validators.compose([
       ])),
-      gender: new FormControl('Male', Validators.compose([
-      ])),
+      gender: new FormControl(this.userModel.gender, Validators.compose([
+      ]))
         }
     );
+    });
+    
+    
    
-    console.log(this.userModel.bio);
+    // console.log(this.userModel.bio);
   }
   changeBio(bioText: string) {
-    this.uactivity.saveBio(bioText);
-    // event.target.el
-    // this.userModel.bio = 
+    // this.uactivity.saveBio(bioText);    
   }
-  getProfileData() {
-    this.userModel = this.uactivity.model;
-    this.userModel.tweets = [];
-    this.userModel.followers = [];
-    this.userModel.followings = [];
-    this.userModel.tweets = this.profileService.tweets;    
-    this.userModel.followers = this.profileService.Flwrs;
-    this.userModel.followings = this.profileService.Flwings;
-  }
+  
 
   //* Profile Image  *//
   actionForProfile() {
-    this.sharedService.present([
-      {
-        text: 'Camera',
-        handler: () => {
-          this.captureImage();
-        }
-      },
-      {
-        text: 'Choose from gallery',
-        handler: () => {
-          this.selectPhoto();
-        }
-      },
-    ]);
+    // this.sharedService.present([
+    //   {
+    //     text: 'Camera',
+    //     handler: () => {
+    //       // this.captureImage();
+    //     }
+    //   },
+    //   {
+    //     text: 'Choose from gallery',
+    //     handler: () => {
+    //       // this.selectPhoto();
+    //     }
+    //   },
+    // ]);
     }
-    captureImage() {
-   console.log('capture photo');
+  //   captureImage() {
+  //  console.log('capture photo');
 
-   this.imageService.capturePhoto().then((imageData) => {
+  //  this.imageService.capturePhoto().then((imageData) => {
 
-              this.profileImg = imageData;
-              // this.uactivity.uploadPhoto(imageData);
-              this.imageService.uploadPhoto(imageData,'profile');
-              this.dataService.imageUrlObs.subscribe(url => {
-                if(url) {
-                  this.uactivity.saveprofilePic(url);
-                }
-              })
-            }, (error) => {
+  //             this.profileImg = imageData;
+  //             // this.uactivity.uploadPhoto(imageData);
+  //             this.imageService.uploadPhoto(imageData,'profile');
+  //             this.dataService.imageUrlObs.subscribe(url => {
+  //               if(url) {
+  //                 this.uactivity.saveprofilePic(url);
+  //               }
+  //             })
+  //           }, (error) => {
 
-                console.log(error);
-            });
-            this.profileImg = this.uactivity.myPhotoURL;
-    }
-    selectPhoto(): void {
-        console.log('select photo');
-      this.imageService.selectPhoto().then((imageData) => {
-        this.profileImg = imageData;
+  //               console.log(error);
+  //           });
+  //           this.profileImg = this.uactivity.myPhotoURL;
+  //   }
+  //   selectPhoto(): void {
+  //       console.log('select photo');
+  //     this.imageService.selectPhoto().then((imageData) => {
+  //       this.profileImg = imageData;
           
-        this.imageService.uploadPhoto(imageData,'profile'); 
-            this.dataService.imageUrlObs.subscribe(url => {
-              if(url) {
-                this.uactivity.saveprofilePic(url);
-              }
-            })
-        }, (error) => {        
-          console.log(error);
-        });
-        this.profileImg = this.uactivity.myPhotoURL;
-    }    
+  //       this.imageService.uploadPhoto(imageData,'profile'); 
+  //           this.dataService.imageUrlObs.subscribe(url => {
+  //             if(url) {
+  //               this.uactivity.saveprofilePic(url);
+  //             }
+  //           })
+  //       }, (error) => {        
+  //         console.log(error);
+  //       });
+  //       this.profileImg = this.uactivity.myPhotoURL;
+  //   }    
     
 }

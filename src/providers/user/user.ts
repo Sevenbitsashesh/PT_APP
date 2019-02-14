@@ -6,12 +6,18 @@ import { API_URL } from '../../Models/api_url';
 
 @Injectable()
 export class UserProvider {
-  
+  guid =localStorage.getItem('swaGuid');
+  token =localStorage.getItem('swaToken');
   constructor(public http: HttpClient) {
     // http.get('/users')
   }
-  getUser(guid): Observable<UserDetails> {
-    return this.http.post<UserDetails>(API_URL+'/users',{'guid': guid},{'headers' : {'Authorization': 'Bearer '}});
+  getUserData(): Observable<any> {
+    return this.http.post(API_URL+'GetUserDetail',{'PublicGuid': this.guid},{headers : {  'Accept' : 'application/json',
+      'Content-Type' : 'application/json','Authorization': 'Bearer '+this.token}});
+  }
+  updateUserData(Models: UserDetails) {
+    return this.http.post(API_URL+'UpdateDeatail',Models,{headers: {'Accept' : 'application/json',
+    'Content-Type' : 'application/json','Authorization': 'Bearer '+this.token}});
   }
  
   

@@ -15,11 +15,11 @@ import { tap } from 'rxjs/operators';
 export class SharedProvider {
   model: UserDetails;
   loggedUser: any;
-  userscollection: AngularFirestoreCollection<UserDetails>;  
+  // userscollection: AngularFirestoreCollection<UserDetails>;  
   loading;
-  constructor(private router: Router, public db: AngularFirestore, private Toast: ToastController, private actionsheetCtrl: ActionSheetController, private loader: LoadingController, private authService: AuthProvider) {
+  constructor(private router: Router, private Toast: ToastController, private actionsheetCtrl: ActionSheetController, private loader: LoadingController) {
   //  this.loggedUser = authService.userDetails.email;
-   this.userscollection = this.db.collection<UserDetails>(appconfigs.collection_users);
+  //  this.userscollection = this.db.collection<UserDetails>(appconfigs.collection_users);
    this.loading = this.loader.create({
     content: 'Please wait..',
     duration: 5000,
@@ -29,7 +29,7 @@ export class SharedProvider {
   }
   addInfo(model) {
     console.log(model);
-     this.userscollection.add(model);
+    //  this.userscollection.add(model);
     // if (true ) {
     //   this.router.navigate(['/userhome']);
     // }
@@ -37,27 +37,27 @@ export class SharedProvider {
   // Profile data update of user by uid
   saveProfile(model, uid) {
     console.log(model, uid);
-     this.db.doc<UserDetails>(`users/${uid}`).update(model).then(saved => {
-      this.addFollow(uid);      
-      this.router.navigate(['/userhome']);   
-     })
-      .catch(error => console.log(error));
+    //  this.db.doc<UserDetails>(`users/${uid}`).update(model).then(saved => {
+    //   this.addFollow(uid);      
+    //   this.router.navigate(['/userhome']);   
+    //  })
+    //   .catch(error => console.log(error));
   }
   // Adding Default Followers/Follwings Collection if not exist
   addFollow(uid) {
-    this.db.collection('followers').ref.where('docid','==', uid).get().then(follow => {
+    // this.db.collection('followers').ref.where('docid','==', uid).get().then(follow => {
       
-      if(follow.size === 0) {
-        this.db.collection('followers').add({docid: uid}).then(items => {
-          this.db.collection('followings').ref.where('docid','==', uid).get().then(follow => {
-            if(follow.size === 0) {
-              this.db.collection('followings').add({docid: uid}).then(success => {                
-              })
-            }
-        })
-      })
-      }
-    })
+    //   if(follow.size === 0) {
+    //     this.db.collection('followers').add({docid: uid}).then(items => {
+    //       this.db.collection('followings').ref.where('docid','==', uid).get().then(follow => {
+    //         if(follow.size === 0) {
+    //           this.db.collection('followings').add({docid: uid}).then(success => {                
+    //           })
+    //         }
+    //     })
+    //   })
+    //   }
+    // })
   }
   getLogged() {
     // console.log('getlogged', localStorage.getItem('usermail'));
@@ -88,10 +88,10 @@ saveProfilePic(img: any, uid) {
   const promodel = {
    'profile_pic': img
   };
-  this.db.collection('users').doc(`${uid}`).update(promodel).then(snap => {
-    this.callToast('Profile Pic Updated');
-    this.router.navigate(['#/userhome/tab_profile']);
-  });
+  // this.db.collection('users').doc(`${uid}`).update(promodel).then(snap => {
+  //   this.callToast('Profile Pic Updated');
+  //   this.router.navigate(['#/userhome/tab_profile']);
+  // });
 }
 getTodayDate() {
   const pipe = new DatePipe('en-US');
@@ -112,7 +112,7 @@ loaderDismiss() {
 this.loading.dismiss();
 }
 userExist(userid) {
-  return this.userscollection.ref.where('userid','==',userid);
+  // return this.userscollection.ref.where('userid','==',userid);
 }
 // saveBio(bioText) {
 //   this.userscollection.ref.where('email','==',this.loggedUser).get().then(d => {

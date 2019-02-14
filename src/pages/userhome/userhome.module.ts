@@ -9,7 +9,6 @@ import { ComponentsModule } from '../../components/components.module';
 import { TabHomePageModule } from '../tab-home/tab-home.module';
 import { TabSearchPageModule } from '../tab-search/tab-search.module';
 import { TabProfilePageModule } from '../tab-profile/tab-profile.module';
-import { UseractivityProvider } from '../../providers/useractivity/useractivity';
 import { AngularFirestoreModule, AngularFirestore } from 'angularfire2/firestore';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { TabViewsPageModule } from '../tab-views/tab-views.module';
@@ -33,6 +32,6 @@ import { TabViewsPageModule } from '../tab-views/tab-views.module';
   bootstrap: [],
   entryComponents: [],
   exports: [],
-  providers: [UseractivityProvider]
+  providers: []
 })
 export class UserhomePageModule { }

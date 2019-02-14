@@ -6,11 +6,11 @@
         <ion-avatar class="profi-pic" (click)=actionForProfile()>
           
             <!-- <img class="profi-pic" src="https://pbs.twimg.com/profile_images/971635378892386304/fqqp4Sru.jpg"/> -->
-            <img src={{userModel.profile_pic}} class="profi-pic"/>
+            <img src='https://firebasestorage.googleapis.com/v0/b/my-social-a5d83.appspot.com/o/profiles%2Fdownload.png?alt=media&token=04d24821-a4ab-4a03-915c-dd97a6ca2a26' class="profi-pic"/>
             
             
         </ion-avatar>
-        <div class="proName"><ion-label>{{   userModel.firstname + ' ' + userModel.lastname }}</ion-label></div>
+        <div class="proName"><ion-label class="profile-name">{{   userModel.name }}</ion-label></div>
       
       </div>
       
@@ -24,8 +24,8 @@
   
   </div>
 <div class="bio-main">
-<textarea class="input-bio" [(ngModel)]="bio" (change)="changeBio(bio);" [maxlength]="150"></textarea>
-<ion-label class="bio-length">{{bio.length}}/150</ion-label>
+<textarea class="input-bio" [(ngModel)]="bio" (change)="changeBio(bio);" [maxlength]="150" placeholder="Write Your bio Here"></textarea>
+<ion-label class="bio-length">20/150</ion-label>
 
 
 
@@ -34,13 +34,13 @@
 
 <div padding class="divProfileUpdate">
     <div class="main-follow">
-     <a> {{userModel.followers.length}} Followers</a>     
+     <!-- <a> {{userModel.followers.length}} Followers</a>      -->
       </div> 
       <div class="main-follow">
-        <a> {{userModel.followings.length}} Followings</a>
+        <!-- <a> {{userModel.followings.length}} Followings</a> -->
           </div> 
           <div class="main-follow">
-             {{userModel.tweets.length}} Tweets
+             <!-- {{userModel.tweets.length}} Tweets -->
               </div> 
 
 <div class="profile-segment-main">
@@ -56,7 +56,7 @@
   <div class="profile-segment" [ngSwitch]="profileSegment">
       
           <div *ngSwitchCase="'feeds'" checked>
-            <feeds [tweetModel]=userModel.tweets></feeds>
+            <!-- <feeds [tweetModel]=userModel.tweets></feeds> -->
             </div>
             <div *ngSwitchCase="'profile'">
               <form [formGroup]="myForm">

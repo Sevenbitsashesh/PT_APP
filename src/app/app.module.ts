@@ -23,19 +23,15 @@ import { AngularFireStorageModule } from 'angularfire2/storage';
 import { DataProvider } from '../providers/data/data';
 import { AngularFireMessagingModule } from 'angularfire2/messaging';
 import { RequestProvider } from '../providers/request/request';
-import { FollowProvider } from '../providers/follow/follow';
 import { ImageProvider } from '../providers/image/image';
 import { TweetsProvider } from '../providers/tweets/tweets';
 import { LoginProvider } from '../providers/login/login';
 
 import { RefProvider } from '../providers/ref/ref';
-import { CollectionProvider } from '../providers/collection/collection';
-import { LikeProvider } from '../providers/like/like';
-import { ProfiledataProvider } from '../providers/profiledata/profiledata';
 import { AuthProvider } from '../providers/auth/auth';
 import { StorageProvider } from '../providers/storage/storage';
 import { UserProvider } from '../providers/user/user';
-import { UserdetailsProvider } from '../providers/userdetails/userdetails';
+
 
 
 
@@ -79,18 +75,13 @@ import { UserdetailsProvider } from '../providers/userdetails/userdetails';
     AngularFireAuth,
     DataProvider,
     RequestProvider,
-    FollowProvider,
     ImageProvider,
     TweetsProvider,
     LoginProvider,
     RefProvider,
-    CollectionProvider,
-    LikeProvider,
-    ProfiledataProvider,
     AuthProvider,
     StorageProvider,
-    UserProvider,
-    UserdetailsProvider
+    UserProvider
   ]
 })
 export class AppModule {}

@@ -19,15 +19,15 @@ export class TweetsProvider {
   }
   // Start From here 
   getTweets() {
-    this.shared.db.collection('users').ref.where('userid','==',this.userid).onSnapshot(data => {
-      data.forEach(item => {
-        this.shared.db.collection<TweetModel>(`users/${item.id}/tweets`).snapshotChanges().subscribe(tweets => {
-          tweets.forEach(tweet => {
-            this.tweets.push(tweet.payload.doc.data());
-            console.log(this.tweets);
-          })
-        })
-    })
-  })
+  //   this.shared.db.collection('users').ref.where('userid','==',this.userid).onSnapshot(data => {
+  //     data.forEach(item => {
+  //       this.shared.db.collection<TweetModel>(`users/${item.id}/tweets`).snapshotChanges().subscribe(tweets => {
+  //         tweets.forEach(tweet => {
+  //           this.tweets.push(tweet.payload.doc.data());
+  //           console.log(this.tweets);
+  //         })
+  //       })
+  //   })
+  // })
 }
 }

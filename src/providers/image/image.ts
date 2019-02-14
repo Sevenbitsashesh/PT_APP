@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Camera } from '@ionic-native/camera';
 import { Observable } from 'rxjs';
 import { DataProvider } from '../data/data';
-import { UseractivityProvider } from '../useractivity/useractivity';
 import { AngularFireStorage } from 'angularfire2/storage';
 import { finalize } from 'rxjs/operators';
 
@@ -13,7 +12,7 @@ import { finalize } from 'rxjs/operators';
 export class ImageProvider {
   imageUrl;
   
-  constructor(public http: HttpClient, private camera: Camera, private dataService: DataProvider, private uactivity: UseractivityProvider, private fstorage: AngularFireStorage) {
+  constructor(public http: HttpClient, private camera: Camera, private dataService: DataProvider, private fstorage: AngularFireStorage) {
       
   }
   selectPhoto() {

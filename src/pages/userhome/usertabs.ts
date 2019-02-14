@@ -3,7 +3,6 @@ import { HometabComponent } from '../../components/hometab/hometab';
 import { Router } from '@angular/router';
 import { SharedProvider } from '../../providers/shared/shared';
 import { DataProvider } from '../../providers/data/data';
-import { UseractivityProvider } from '../../providers/useractivity/useractivity';
 
 @Component({
   selector: 'usertabs',
@@ -13,6 +12,6 @@ import { UseractivityProvider } from '../../providers/useractivity/useractivity'
 export class UsertabsComponent {
   constructor(private dataService: DataProvider) {
     // console.log('Hello UsertabsComponent Component');          
-     dataService.changeUserID(localStorage.getItem('usermail'));
+    //  dataService.changeUserID(localStorage.getItem('swaGuid'));
   }
 }

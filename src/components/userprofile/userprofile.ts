@@ -1,6 +1,5 @@
 import { Component, Input, ViewChild, AfterViewInit, AfterViewChecked, DoCheck, OnInit, OnChanges, AfterContentInit, AfterContentChecked, OnDestroy } from '@angular/core';
 import { DataProvider } from '../../providers/data/data';
-import { UseractivityProvider } from '../../providers/useractivity/useractivity';
 import { UserDetails } from '../../Models/users.details';
 import { RequestProvider } from '../../providers/request/request';
 import { RequestModel } from '../../Models/request_model';
@@ -23,7 +22,7 @@ export class UserprofileComponent {
   requests;
   requested;
   following;
-  constructor(private userActivity: UseractivityProvider, private dataService: DataProvider) {
+  constructor(private dataService: DataProvider) {
     
     this.dataService.searchUser.subscribe(search => {
       this.userid = search
@@ -37,17 +36,17 @@ export class UserprofileComponent {
     searchUser() {
     
     
-      return this.dataService.getSearchUserModel(this.userid)      
+  //     return this.dataService.getSearchUserModel(this.userid)      
     
-    .subscribe(data => {
+  //   .subscribe(data => {
   
  
-      this.userModel = data;
-      this.dataService.changeUserModel(this.userModel);
+  //     this.userModel = data;
+  //     this.dataService.changeUserModel(this.userModel);
 
       
     
-  });
+  // });
 
 
   }

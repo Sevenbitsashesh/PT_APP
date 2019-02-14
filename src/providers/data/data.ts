@@ -36,7 +36,7 @@ export class DataProvider {
     this.userModel.next(userModel);
   }
   //Search By Userid Observable 
-  getSearchUserModel(userid) : Observable<UserDetails[]> {
-    return this.shared.db.collection<UserDetails>('users', ref => ref.where('userid', '==', userid)).valueChanges();
-   }
+  // getSearchUserModel(userid) : Observable<UserDetails[]> {
+  //   return this.shared.db.collection<UserDetails>('users', ref => ref.where('userid', '==', userid)).valueChanges();
+  //  }
 }

@@ -55,6 +55,6 @@ createAcc(model) {
     return this.fireAuth.authState;
   }
   userExist(userid) {
-    return this.sharedService.userscollection.ref.where('userid','==',userid);
+    // return this.sharedService.userscollection.ref.where('userid','==',userid);
   }
 }

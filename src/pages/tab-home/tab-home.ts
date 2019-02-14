@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { SharedProvider } from '../../providers/shared/shared';
-import { UseractivityProvider } from '../../providers/useractivity/useractivity';
+
 import { AuthProvider } from '../../providers/auth/auth';
 
 
@@ -15,7 +15,7 @@ import { AuthProvider } from '../../providers/auth/auth';
 export class TabHomePage {
   
   constructor(private authService: AuthProvider) {
-    authService.checkLogin('tab_home');
+    // authService.checkLogin();
     //  this.checkVerification();
   }
   
@@ -56,7 +56,5 @@ closeNav() {
 clickedContent() {
   document.getElementById("mySidenav").style.width = '0%';
 }
-logout() {
-  this.authService.changeLogout(true);
-}
+
 }

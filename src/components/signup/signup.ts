@@ -8,7 +8,6 @@ import { LoginProvider } from '../../providers/login/login';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AngularFirestoreCollection } from 'angularfire2/firestore';
-import { UserDetails } from 'Models/users.details';
 import { AuthProvider } from '../../providers/auth/auth';
 
 
@@ -46,8 +45,7 @@ export class SignupComponent {
       { match: 'matched', message: 'Userid Already in taken'}
     ]
   };
-  constructor(private loginProvider: LoginProvider, public router: Router, private http: HttpClient, private authService: AuthProvider) {
-    console.log(this.signed);
+  constructor(private authService: AuthProvider) {    
     this.signupForm = this.formBuilder.group({
       email: new FormControl('', Validators.compose([
         Validators.pattern('^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$'),
@@ -75,7 +73,7 @@ export class SignupComponent {
 // Create user in firebase Authentication
 createAcc() {
   const model = {
-    'name': this.signupForm.get('fname').value,
+    'name': this.signupForm.get('fname').value +' '+ this.signupForm.get('lname').value,
     'email': this.signupForm.get('email').value,
     'password': this.signupForm.get('pass').value,
     'c_password': this.signupForm.get('pass').value,
@@ -94,38 +92,5 @@ createAcc() {
   // })
   
 }
-// : Observable<ValidationErrors | null>
-getuserExist() : Observable<boolean>{
-  // this.loginProvider.userExist(this.signupForm.get('userid').value).get().then(
-  //   da => {
-  //     if(da.size > 0) {
-  //       this.message = 'Userid Already Taken';
-  //     }
-  //     else this.message = '';
-  //   }
-  // )
-  // this.http.
-  let obs = new Observable<boolean>(sub => {
-    
-    this.loginProvider.userExist(this.signupForm.get('userid').value).get().then(
-        da => {
-          if(da.size > 0) {
-            sub.next(true);
-          }
-          else {
-            sub.next(false);
-          }
-        }
-        
-      );
-  });  
-  return obs;
-  
-  // return this.loginProvider.userExist(this.signupForm.get('userid').value));
-  
-}
-userExist(control: AbstractControl) {
-  // return this.http.get<User[]>(this.url + '?email=' + userEmail).toPromise();
-// this.http.get<UserDetails[]>(this.)
-}
+
 }
