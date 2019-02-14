@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { SharedProvider } from '../../providers/shared/shared';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { LoginProvider } from '../../providers/login/login';
-import { AuthProvider } from '../../providers/auth/auth';
+import { AuthProvider, TokenPayload } from '../../providers/auth/auth';
+import { Router } from '@angular/router';
 
 
 
@@ -27,6 +28,8 @@ export class SigninComponent implements OnInit {
       { type: 'pattern', message: 'Minimum 8 and should include at least special charater'}
     ]
   };
+  
+
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
       email: new FormControl('', Validators.compose([
@@ -39,17 +42,27 @@ export class SigninComponent implements OnInit {
       ]))
     });
   }
-  constructor(private authService: AuthProvider) {
+  
+  constructor(private authService: AuthProvider, private router: Router) {
     // authService.checkLogin();
     
   }
   
   getLogin() {        
-    const model = {
-      'email': this.loginForm.get('email').value,
-      'pass': this.loginForm.get('pass').value,
-    };
-    this.authService.signInEmail(model.email,model.pass)
+    // const model = {
+    //   'email': this.loginForm.get('email').value,
+    //   'pass': this.loginForm.get('pass').value,
+    // };
+   const credentials: TokenPayload = {
+      email: this.loginForm.get('email').value,
+      password: this.loginForm.get('pass').value
+    }
+    this.authService.signInEmail(credentials).subscribe(() => {
+      this.router.navigate(['/userhome']);
+    }, (err) => {
+      
+      this.msg = err['error']['message'];
+    })
   
     
     

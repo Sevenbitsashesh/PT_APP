@@ -1,25 +1,36 @@
 import { TweetModel } from "./tweet_model";
 
 export class UserDetails  {
-    id?: string;
-    user_name: string;
+    _id: string;
     email: string;
     name: string;
-     address: string;
-     gender: string;
-     mobile: number;
-    //  verified? : boolean;
-    interest?: string[];
-    profile_img?: string;
-     dob: Date;
-    //  fname: string;
-    //  lname: string;
-    //  followers?: FollowingModel[];
-    // followings?: FollowingModel[]; 
-    // tweets?: TweetModel[];
-    bio?: string;
-    // status?: boolean;
-    publicguid?: string; 
+    exp: number;
+    iat: number;
+    // id?: string;
+    // name: string;
+    //  address: string;
+    //  gender: string;
+    //  mobile: number;
+    // //  verified? : boolean;
+    // interest?: string[];
+    // profile_img?: string;
+    //  dob: Date;
+    // //  fname: string;
+    // //  lname: string;
+    // //  followers?: FollowingModel[];
+    // // followings?: FollowingModel[]; 
+    // // tweets?: TweetModel[];
+    // bio?: string;
+    // // status?: boolean;
+    // publicguid?: string; 
+}
+export interface TokenResponse {
+token: string;
+}
+export interface TokenPayload {
+    email: string;
+    password: string;
+    user_name: string;
 }
 export class FollowingModel {
     user: string;

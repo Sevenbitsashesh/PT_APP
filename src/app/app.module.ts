@@ -31,6 +31,7 @@ import { RefProvider } from '../providers/ref/ref';
 import { AuthProvider } from '../providers/auth/auth';
 import { StorageProvider } from '../providers/storage/storage';
 import { UserProvider } from '../providers/user/user';
+import { AuthguardProvider } from '../providers/authguard/authguard';
 
 
 
@@ -81,7 +82,8 @@ import { UserProvider } from '../providers/user/user';
     RefProvider,
     AuthProvider,
     StorageProvider,
-    UserProvider
+    UserProvider,
+    AuthguardProvider
   ]
 })
 export class AppModule {}

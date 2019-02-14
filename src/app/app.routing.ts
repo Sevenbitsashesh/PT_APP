@@ -7,6 +7,7 @@ import { UserhomePage } from '../pages/userhome/userhome';
 import { UserhomePageModule } from '../pages/userhome/userhome.module';
 // import { UserhomePageModule } from 'src/pages/userhome/userhome.module';
 import {  } from '@auth0/angular-jwt';
+import { AuthguardProvider } from '../providers/authguard/authguard';
 export function getTestModule() { return UserhomePageModule; }
 
 const appRoutes: Routes = [
@@ -15,7 +16,7 @@ const appRoutes: Routes = [
    { path: 'first', component: FirstComponent },
    { path: 'home', pathMatch: 'full', component: HomePage},
    
-   { path: 'userhome', component: UserhomePage, 
+   { path: 'userhome', component: UserhomePage, canActivate: [AuthguardProvider]  ,
    
 //    loadChildren: () => UserhomePageModule 
 loadChildren: getTestModule
