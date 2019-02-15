@@ -20,6 +20,8 @@ export interface TokenPayload {
   email: string;
   password: string;
   user_name?: string;
+  fname?: string;
+  lname?: string;
 };
 @Injectable()
 export class AuthProvider {
@@ -44,19 +46,19 @@ export class AuthProvider {
   //  return this.http.post( LOCAL_API_URL+'users/authenticate',{email: cred.email, password: cred.password},{headers: {'Content-Type': 'application/json','Accept': 'application/json'}});
     return this.request('post','login',cred);
   }
-  signUp(model) {
-    this.http.post('http://api.veridoceducation.com/api/register',model,{headers: {'Content-Type': 'application/json','Accept': 'application/json'}}).subscribe(suc => {
-      localStorage.setItem('swaToken',suc['success']['token']);
-      // this.signInEmail(model.email,model.password);
-    });      
+  signUp(cred: TokenPayload) {
+    return this.request("post","register",cred);
+    // this.http.post('http://api.veridoceducation.com/api/register',model,{headers: {'Content-Type': 'application/json','Accept': 'application/json'}}).subscribe(suc => {
+    //   localStorage.setItem('swaToken',suc['success']['token']);      
+    // });      
   }
   private request(method: 'post'|'get', type: 'login'|'register'|'profile', user?: TokenPayload): Observable<any> {
     let base;
-
+console.log(user);
     if (method === 'post') {
       // base = this.http.post(`/api/${type}`, user);
       console.log('calling');
-      base = this.http.post( API_URL+'users/authenticate',{email: user.email, password: user.password},{headers: {'Content-Type': 'application/json','Accept': 'application/json'}});
+      base = this.http.post( LOCAL_API_URL+type,user,{headers: {'Content-Type': 'application/json','Accept': 'application/json'}});
     } else {
       base = this.http.get(`/api/${type}`, { headers: { Authorization: `Bearer ${this.getToken()}` }});
     }

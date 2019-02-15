@@ -73,10 +73,11 @@ export class SignupComponent {
 // Create user in firebase Authentication
 createAcc() {
   const model = {
-    'name': this.signupForm.get('fname').value +' '+ this.signupForm.get('lname').value,
+    'fname': this.signupForm.get('fname').value,
+    'lname': this.signupForm.get('lname').value,
     'email': this.signupForm.get('email').value,
     'password': this.signupForm.get('pass').value,
-    'c_password': this.signupForm.get('pass').value,
+    // 'c_password': this.signupForm.get('pass').value,
     'user_name': this.signupForm.get('userid').value,
     // 'fname': this.signupForm.get('fname').value,
     // 'lname': this.signupForm.get('lname').value

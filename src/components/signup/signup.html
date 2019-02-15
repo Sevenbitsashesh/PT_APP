@@ -7,7 +7,7 @@
                   <ion-col>
                     
                       <ion-item class="newionInput" >
-                          <ion-input type="name" formControlName="userid"  placeholder="Userid" class="loginEmail" (change)="userExist()"></ion-input>
+                          <ion-input type="name" formControlName="userid"  placeholder="Userid" class="loginEmail"></ion-input>
                           
                       </ion-item>               
                   </ion-col>
@@ -105,12 +105,12 @@
                             <label>
                                 If you forgot password
                             </label>
-                            <button (click)="createAcc()">reset password</button>
+                            <button (click)="resetPassword()">reset password</button>
                         </ion-col>
                         <ion-col>
                         </ion-col>
                       </ion-row>
-                      <ion-row>
+                      <!-- <ion-row>
                             <ion-col>
                             </ion-col>
                             <ion-col col-8>
@@ -121,6 +121,6 @@
                             </ion-col>
                             <ion-col>
                             </ion-col>
-                          </ion-row>
+                          </ion-row> -->
           </ion-grid>
 </form>
