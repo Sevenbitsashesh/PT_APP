@@ -56,7 +56,7 @@ export class AuthProvider {
     if (method === 'post') {
       // base = this.http.post(`/api/${type}`, user);
       console.log('calling');
-      base = this.http.post( LOCAL_API_URL+'users/authenticate',{email: user.email, password: user.password},{headers: {'Content-Type': 'application/json','Accept': 'application/json'}});
+      base = this.http.post( API_URL+'users/authenticate',{email: user.email, password: user.password},{headers: {'Content-Type': 'application/json','Accept': 'application/json'}});
     } else {
       base = this.http.get(`/api/${type}`, { headers: { Authorization: `Bearer ${this.getToken()}` }});
     }
@@ -93,14 +93,17 @@ export class AuthProvider {
   }
   checkLogin() {
   
-    // if(this.isLoggedIn()) {
-    //   this.router.navigate(['/userhome']);
-    // }
-    // else
-    // this.router.navigate(['/login']);
-    
-
-    
+    if(this.getToken()) {
+      this.router.navigate(['/userhome']);
+    }
+    else
+    this.router.navigate(['/login']);
+  }
+  logout() {
+    console.log(this.token);
+    this.token = '';
+    window.localStorage.removeItem('swa-token');
+    this.router.navigateByUrl('/login');
   }
   getDetails(token,guid) {
     console.log(token,guid);

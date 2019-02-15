@@ -11,9 +11,10 @@ import { AuthProvider } from '../../providers/auth/auth';
 export class LoginComponent {
 
   
-  
-  constructor(private authService: AuthProvider) {
-    
+  login;
+  constructor(private authService: AuthProvider) {    
+    authService.checkLogin();
+    this.login = "signin";
   }
   
 

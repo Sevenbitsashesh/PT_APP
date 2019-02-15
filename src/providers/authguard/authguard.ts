@@ -4,7 +4,7 @@ import { CanActivate, Router } from '@angular/router';
 import { AuthProvider } from '../../providers/auth/auth';
 
 @Injectable()
-export class AuthguardProvider implements CanActivate {
+export class AuthguardProvider  {
 
   constructor(public http: HttpClient, private auth: AuthProvider, private router: Router) {
 
@@ -15,6 +15,7 @@ canActivate() {
     this.router.navigateByUrl('/login');
     return false;
   }
+  
   return true;
 }
 }

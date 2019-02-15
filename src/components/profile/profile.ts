@@ -74,7 +74,7 @@ export class ProfileComponent {
     // this.profileImg = this.userModel.profile_pic;
     // this.bio = this.userModel.bio;
     this.myForm = formBuilder.group({
-      username: new FormControl(this.userModel.user_name, Validators.compose([
+      username: new FormControl('', Validators.compose([
         Validators.maxLength(25),
         Validators.minLength(5),
         Validators.pattern('^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]+$'),

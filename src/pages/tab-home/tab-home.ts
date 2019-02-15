@@ -15,8 +15,7 @@ import { AuthProvider } from '../../providers/auth/auth';
 export class TabHomePage {
   
   constructor(private authService: AuthProvider) {
-    // authService.checkLogin();
-    //  this.checkVerification();
+    
   }
   
  
@@ -56,5 +55,7 @@ closeNav() {
 clickedContent() {
   document.getElementById("mySidenav").style.width = '0%';
 }
-
+logout() {
+  this.authService.logout();
+}
 }
