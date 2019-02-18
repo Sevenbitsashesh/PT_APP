@@ -2,11 +2,12 @@ import { HttpClient, HttpHeaders, } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { API_URL,LOCAL_API_URL } from '../../Models/api_url';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { toBase64String } from '@angular/compiler/src/output/source_map';
 
 export class UserDetails  {
-  _id: string;
+  id: string;
   email: string;
   name: string;
   exp: number;
@@ -26,16 +27,25 @@ export interface TokenPayload {
 @Injectable()
 export class AuthProvider {
   private token: string;
+  currentUserSubject: BehaviorSubject<UserDetails>;
+  public currentUser: Observable<UserDetails>;
   constructor(private router: Router, private http: HttpClient) {
-    // this.checkLogin();    
+    this.currentUserSubject = new BehaviorSubject<UserDetails>(JSON.parse(localStorage.getItem('swaUser')));
+        this.currentUser = this.currentUserSubject.asObservable(); 
   }
-  private saveToken(token: string): void {
-    localStorage.setItem('swa-token', token);
-    this.token = token;
+  public get currentUserValue(): UserDetails {
+    return this.currentUserSubject.value;
+}
+  private saveToken(user: UserDetails): void {
+    console.log(user);
+    localStorage.setItem('swaUser',JSON.stringify(user));
+    this.currentUserSubject.next(user);
+    
   }
   private getToken(): string {
-    if (!this.token) {
-      this.token = localStorage.getItem('swa-token');
+    if (localStorage.getItem('swaUser')) {
+      this.token = JSON.parse(localStorage.getItem('swaUser')).token;
+      
     }
     return this.token;
   }
@@ -44,7 +54,7 @@ export class AuthProvider {
     
     
   //  return this.http.post( LOCAL_API_URL+'users/authenticate',{email: cred.email, password: cred.password},{headers: {'Content-Type': 'application/json','Accept': 'application/json'}});
-    return this.request('post','login',cred);
+    return this.request('post','authenticate',cred);
   }
   signUp(cred: TokenPayload) {
     return this.request("post","register",cred);
@@ -52,21 +62,23 @@ export class AuthProvider {
     //   localStorage.setItem('swaToken',suc['success']['token']);      
     // });      
   }
-  private request(method: 'post'|'get', type: 'login'|'register'|'profile', user?: TokenPayload): Observable<any> {
+  private request(method: 'post'|'get', type: 'authenticate'|'register'|'profile', user?: TokenPayload): Observable<any> {
     let base;
-console.log(user);
+// console.log(user,type,method);
     if (method === 'post') {
-      // base = this.http.post(`/api/${type}`, user);
-      console.log('calling');
-      base = this.http.post( LOCAL_API_URL+type,user,{headers: {'Content-Type': 'application/json','Accept': 'application/json'}});
+      
+      
+      base = this.http.post( LOCAL_API_URL+'users/'+type,user,{headers: {'Content-Type': 'application/json','Accept': 'application/json','Authorization': 'Basic Og=='}});
     } else {
       base = this.http.get(`/api/${type}`, { headers: { Authorization: `Bearer ${this.getToken()}` }});
     }
-
+    
     const request = base.pipe(
-      map((data: TokenResponse) => {
-        if (data.token) {
-          this.saveToken(data.token);
+      map((data: UserDetails) => {
+        // console.log(data);
+        if (data) {
+          
+          this.saveToken(data);
         }
         return data;
       })
@@ -78,8 +90,9 @@ console.log(user);
     const token = this.getToken();
     let payload;
     if (token) {
-      payload = token.split('.')[1];
+      payload = token.split('.')[1];      
       payload = window.atob(payload);
+      
       return JSON.parse(payload);
     } else {
       return null;
@@ -87,6 +100,7 @@ console.log(user);
   }
   public isLoggedIn(): boolean {  
     const user = this.getUserDetails();
+    this.currentUserSubject.next(user);
     if (user) {
       return user.exp > Date.now() / 1000;
     } else {
@@ -102,13 +116,13 @@ console.log(user);
     this.router.navigate(['/login']);
   }
   logout() {
-    console.log(this.token);
+    // console.log(this.token);
     this.token = '';
-    window.localStorage.removeItem('swa-token');
+    window.localStorage.removeItem('swaUser');
     this.router.navigateByUrl('/login');
   }
   getDetails(token,guid) {
-    console.log(token,guid);
+    // console.log(token,guid);
     this.http.post('http://api.veridoceducation.com/api/GetUserDetail',{'PublicGuid': guid},{headers: {'Content-Type': ' application/json','Accept': 'application/json',  'Authorization' : `Bearer `+token }}).subscribe(suc => {
       this.router.navigate(['/userhome']);
       });    

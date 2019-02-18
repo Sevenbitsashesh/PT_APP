@@ -82,7 +82,9 @@ createAcc() {
     // 'fname': this.signupForm.get('fname').value,
     // 'lname': this.signupForm.get('lname').value
   };
-  this.authService.signUp(model);
+  this.authService.signUp(model).subscribe(user => {
+    console.log(user);
+  });
   // this.loginProvider.userExist(model.userid).get().then(u => {
   //   if(u.size > 0) {
   //     this.message = "Userid already taken."

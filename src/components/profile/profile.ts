@@ -3,8 +3,9 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { SharedProvider } from '../../providers/shared/shared';
 import { ImageProvider } from '../../providers/image/image';
 import { DataProvider } from '../../providers/data/data';
-import { UserDetails } from '../../Models/users.details';
+
 import { UserProvider } from '../../providers/user/user';
+import { AuthProvider, UserDetails } from '../../providers/auth/auth';
 
 
 @Component({
@@ -24,7 +25,7 @@ export class ProfileComponent {
   // tweets: TweetModel[];
   // bio: string;
   // bioLength;
-  userModel = new UserDetails();
+  userModel: UserDetails;
   myForm: FormGroup;
   
   validation_messages = {
@@ -62,11 +63,11 @@ export class ProfileComponent {
       // this.uactivity.addInfo(model);
     }
   
-  constructor(private formBuilder: FormBuilder, private imageService: ImageProvider, private dataService: DataProvider, private userService: UserProvider) {
-    userService.getUserData().subscribe(userData => {
-      this.userModel = userData['success'];
-     console.log(userData['success']);
-//      console.log(this.userModel);
+  constructor(private formBuilder: FormBuilder, private imageService: ImageProvider, private dataService: DataProvider,private authService: AuthProvider, private userService: UserProvider) {
+    authService.currentUserSubject.subscribe(user => {
+      this.userModel = user;
+      console.log(this.userModel.exp);
+      
 
 
 
@@ -81,7 +82,7 @@ export class ProfileComponent {
         Validators.required
       ])
       ),
-      mobile: new FormControl(this.userModel.mobile, Validators.compose([
+      mobile: new FormControl('', Validators.compose([
         Validators.maxLength(12),
         Validators.minLength(10),
         Validators.pattern('^(0|[1-9][0-9]*)$'),
@@ -92,14 +93,14 @@ export class ProfileComponent {
         Validators.required,
         // Validators.pattern('^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$')
       ])),
-      address: new FormControl(this.userModel.address, Validators.compose([
+      address: new FormControl('', Validators.compose([
         Validators.pattern('^[a-z]{1,100}$')
       ])),
-      hobbies: new FormControl(this.userModel.interest, Validators.compose([
+      hobbies: new FormControl('', Validators.compose([
       ])),
-      dob: new FormControl(this.userModel.dob, Validators.compose([
+      dob: new FormControl('', Validators.compose([
       ])),
-      gender: new FormControl(this.userModel.gender, Validators.compose([
+      gender: new FormControl('', Validators.compose([
       ]))
         }
     );

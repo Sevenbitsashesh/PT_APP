@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UserDetails } from '../../Models/users.details'
 import { Observable } from 'rxjs';
-import { API_URL } from '../../Models/api_url';
+import { API_URL, LOCAL_API_URL } from '../../Models/api_url';
 
 @Injectable()
 export class UserProvider {
@@ -12,7 +12,7 @@ export class UserProvider {
     // http.get('/users')
   }
   getUserData(): Observable<any> {
-    return this.http.post(API_URL+'GetUserDetail',{'PublicGuid': this.guid},{headers : {  'Accept' : 'application/json',
+    return this.http.post(LOCAL_API_URL+'GetUserDetail',{'PublicGuid': this.guid},{headers : {  'Accept' : 'application/json',
       'Content-Type' : 'application/json','Authorization': 'Bearer '+this.token}});
   }
   updateUserData(Models: UserDetails) {

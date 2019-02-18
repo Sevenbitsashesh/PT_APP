@@ -2,6 +2,7 @@
 <ion-header>
            <ion-toolbar>
              <!-- <ion-title>@{{username}}</ion-title> -->
+             
              <span style="font-size:30px;cursor:pointer" (click)="openNav()">&#9776;</span>
              <div class="divNoti">
                 
@@ -16,6 +17,7 @@
          </ion-header>
          <div id="mySidenav" class="sidenav">
           <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
+          <label>{{currentUser.id}}</label>
           <button ion-button>Home</button>
           <button ion-button>Search</button>
           <button ion-button>Profile</button>

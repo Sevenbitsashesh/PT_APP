@@ -32,6 +32,7 @@ import { AuthProvider } from '../providers/auth/auth';
 import { StorageProvider } from '../providers/storage/storage';
 import { UserProvider } from '../providers/user/user';
 import { AuthguardProvider } from '../providers/authguard/authguard';
+import { TweetProvider } from '../providers/tweet/tweet';
 
 
 
@@ -83,7 +84,8 @@ import { AuthguardProvider } from '../providers/authguard/authguard';
     AuthProvider,
     StorageProvider,
     UserProvider,
-    AuthguardProvider
+    AuthguardProvider,
+    TweetProvider
   ]
 })
 export class AppModule {}

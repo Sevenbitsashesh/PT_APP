@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { SharedProvider } from '../../providers/shared/shared';
 
-import { AuthProvider } from '../../providers/auth/auth';
+import { AuthProvider, UserDetails } from '../../providers/auth/auth';
+import { Subscription } from 'rxjs';
+
 
 
 
@@ -12,12 +14,19 @@ import { AuthProvider } from '../../providers/auth/auth';
   selector: 'page-tab-home',
   templateUrl: 'tab-home.html',
 })
-export class TabHomePage {
-  
+export class TabHomePage implements OnDestroy {
+  currentUser: UserDetails;
+    currentUserSubscription: Subscription;
   constructor(private authService: AuthProvider) {
-    
-  }
+    this.currentUserSubscription = this.authService.currentUser.subscribe(user => {
+      // console.log(user);
+      this.currentUser = user;
+  });
   
+  }
+  ngOnDestroy() {
+    this.currentUserSubscription.unsubscribe();
+  }
  
 checkVerification() {
    console.log('ver');  

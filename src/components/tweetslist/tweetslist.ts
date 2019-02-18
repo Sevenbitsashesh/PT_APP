@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { TweetModel, LikeModel } from '../../Models/tweet_model';
+import { TweetProvider } from '../../providers/tweet/tweet';
+import { LOCAL_API_URL } from 'Models/api_url';
  
 @Component({
   selector: 'tweetslist',
@@ -12,13 +14,10 @@ export class TweetslistComponent {
   background= [];
   users = [];
   showing;
-  constructor() {
-    
-
-      
-      
-
+  constructor(private tweetService: TweetProvider) {
+    // tweetService.getTweetById()
   }
+
   getTweet() {
     console.log('data :', this.tweets.length );
     for (let index = 0; index < this.tweets.length; index++) {
