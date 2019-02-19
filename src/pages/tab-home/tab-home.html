@@ -17,7 +17,11 @@
          </ion-header>
          <div id="mySidenav" class="sidenav">
           <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
-          <label>{{currentUser.id}}</label>
+          
+          <div class="sidebar-profile-div">
+                <!-- <label>{{currentUser.fname}}</label> -->
+                <img src="https://firebasestorage.googleapis.com/v0/b/my-social-a5d83.appspot.com/o/profile%2F13ad8f49-70ac-40b9-b480.jpg?alt=media&token=50f1888a-9f74-4276-b2eb-6d065599d871" class="sidebar-profile-img"/>
+          </div>
           <button ion-button>Home</button>
           <button ion-button>Search</button>
           <button ion-button>Profile</button>

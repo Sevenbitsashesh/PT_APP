@@ -66,7 +66,7 @@ export class ProfileComponent {
   constructor(private formBuilder: FormBuilder, private imageService: ImageProvider, private dataService: DataProvider,private authService: AuthProvider, private userService: UserProvider) {
     authService.currentUserSubject.subscribe(user => {
       this.userModel = user;
-      console.log(this.userModel.exp);
+    //   console.log(this.userModel.exp);
       
 
 
@@ -89,7 +89,7 @@ export class ProfileComponent {
         Validators.required
       ])
       ),
-      email: new FormControl({value: this.userModel.email, disabled : true}, Validators.compose([
+      email: new FormControl({value: '', disabled : true}, Validators.compose([
         Validators.required,
         // Validators.pattern('^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$')
       ])),

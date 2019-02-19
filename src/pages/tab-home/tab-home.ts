@@ -2,8 +2,9 @@ import { Component, OnDestroy } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { SharedProvider } from '../../providers/shared/shared';
 
-import { AuthProvider, UserDetails } from '../../providers/auth/auth';
+import { AuthProvider, UserDetails, TokenPayload } from '../../providers/auth/auth';
 import { Subscription } from 'rxjs';
+import { UserProvider } from '../../providers/user/user';
 
 
 
@@ -16,16 +17,21 @@ import { Subscription } from 'rxjs';
 })
 export class TabHomePage implements OnDestroy {
   currentUser: UserDetails;
+  authDetails: TokenPayload;
     currentUserSubscription: Subscription;
-  constructor(private authService: AuthProvider) {
+  constructor(private authService: AuthProvider, private userService: UserProvider) {
     this.currentUserSubscription = this.authService.currentUser.subscribe(user => {
-      // console.log(user);
+      console.log(user);
       this.currentUser = user;
+      this.authDetails = authService.getUserDetails();
+      userService.getUserData(this.currentUser).subscribe(u => {
+        console.log('response');
+      })
   });
   
   }
   ngOnDestroy() {
-    this.currentUserSubscription.unsubscribe();
+    // this.currentUserSubscription.unsubscribe();
   }
  
 checkVerification() {
@@ -65,6 +71,8 @@ clickedContent() {
   document.getElementById("mySidenav").style.width = '0%';
 }
 logout() {
-  this.authService.logout();
+  this.authService.logout().then(() => {
+    console.log('Logged out Success');
+  });
 }
 }
