@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserDetails } from '../../Models/users.details';
+// import { UserDetails } from '../../Models/users.details';
 import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/firestore';
 import { appconfigs } from '../../Models/users_firestore';
 import { Observable } from 'rxjs/Observable';
@@ -13,7 +13,7 @@ import { tap } from 'rxjs/operators';
 
 @Injectable()
 export class SharedProvider {
-  model: UserDetails;
+  // model: UserDetails;
   loggedUser: any;
   // userscollection: AngularFirestoreCollection<UserDetails>;  
   loading;

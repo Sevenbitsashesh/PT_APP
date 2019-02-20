@@ -10,12 +10,12 @@ export class TweetsProvider {
   userid;
   tweets: TweetModel[] = [];
   constructor(public http: HttpClient,private shared: SharedProvider, private dataService: DataProvider) {
-    dataService.searchUser.subscribe(user => {
-      this.userid = user;
-      this.tweets = [];
-         this.getTweets();
+    // dataService.searchUser.subscribe(user => {
+    //   this.userid = user;
+    //   this.tweets = [];
+    //      this.getTweets();
 
-    });
+    // });
   }
   // Start From here 
   getTweets() {

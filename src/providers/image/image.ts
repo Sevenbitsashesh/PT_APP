@@ -51,7 +51,7 @@ export class ImageProvider {
         fileRef.getDownloadURL()
         .subscribe(url => {
           if (url) {
-        this.dataService.changeImageData(url);
+        // this.dataService.changeImageData(url);
         
           }
         });

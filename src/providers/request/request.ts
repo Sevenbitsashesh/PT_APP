@@ -23,18 +23,14 @@ export class RequestProvider {
   loggedUid;
   constructor(public http: HttpClient, private shared: SharedProvider, private dataService: DataProvider) {
     //Logged user from data provider
-    this.dataService.loggedUId.subscribe(data => {  
-      this.loggedUid = data;
-    });
+    // this.dataService.loggedUId.subscribe(data => {  
+    //   this.loggedUid = data;
+    // });
 
     //Requests and Requested 
-    this.dataService.searchUser.subscribe(data => {
-    this.userid = data;
-      
-
-
-    
-    });
+    // this.dataService.searchUser.subscribe(data => {
+    // this.userid = data;    
+    // });
   }
   getRef(doc,ref) {
     

@@ -66,7 +66,7 @@ export class ProfileComponent {
   constructor(private formBuilder: FormBuilder, private imageService: ImageProvider, private dataService: DataProvider,private authService: AuthProvider, private userService: UserProvider) {
     authService.currentUserSubject.subscribe(user => {
       this.userModel = user;
-    //   console.log(this.userModel.exp);
+      
       
 
 

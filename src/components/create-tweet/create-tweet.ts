@@ -21,7 +21,7 @@ export class CreateTweetComponent {
     
   }
   getUrl() {
-    return this.dataService.imageUrlObs;
+    // return this.dataService.imageUrlObs;
   }
   // Create tweet document 
   createTweet() {

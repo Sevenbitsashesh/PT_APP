@@ -1,42 +1,24 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { UserDetails } from '../../Models/users.details';
-import { SharedProvider } from '../shared/shared';
 
-/*
-  Generated class for the DataProvider provider.
 
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
+import { UserProvider } from '../../providers/user/user';
+import { AuthProvider, UserDetails, TokenPayload } from '../../providers/auth/auth';
+
+
+// export class User {
+//   currentUser: UserDetails;
+//   userInfo: UserInfo;
+// };
+
 @Injectable()
-export class DataProvider {
-  private searchSource = new BehaviorSubject('');
-  searchUser = this.searchSource.asObservable();
-  private loggedUserId = new BehaviorSubject('');
-  loggedUId = this.loggedUserId.asObservable();
-  private imageUrl = new BehaviorSubject('');
-  imageUrlObs = this.imageUrl.asObservable();
-  private userModel = new BehaviorSubject([]);
-  userModelObs = this.userModel.asObservable();
-  constructor(public http: HttpClient, private shared: SharedProvider) {
+export class DataProvider {  
+  constructor(private authService: AuthProvider, private userService: UserProvider) {
+    this.changeUserModel();
+    
   }
-  changeSearchID(userid: string) {
-    this.searchSource.next(userid);
+  changeUserModel() {
+    console.log(this.authService.currentUserValue.email);
   }
-  changeUserID(loggedUserId: string) {
-    this.loggedUserId.next(loggedUserId);
-  }
-  changeImageData(imageUrl: string) {
-    this.imageUrl.next(imageUrl);
-  }
-  changeUserModel(userModel: UserDetails[]) {
-    console.log(userModel);
-    this.userModel.next(userModel);
-  }
-  //Search By Userid Observable 
-  // getSearchUserModel(userid) : Observable<UserDetails[]> {
-  //   return this.shared.db.collection<UserDetails>('users', ref => ref.where('userid', '==', userid)).valueChanges();
-  //  }
+  
 }

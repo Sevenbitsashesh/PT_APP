@@ -1,6 +1,6 @@
 import { Component, Input, ViewChild, AfterViewInit, AfterViewChecked, DoCheck, OnInit, OnChanges, AfterContentInit, AfterContentChecked, OnDestroy } from '@angular/core';
 import { DataProvider } from '../../providers/data/data';
-import { UserDetails } from '../../Models/users.details';
+// import { UserDetails } from '../../Models/users.details';
 import { RequestProvider } from '../../providers/request/request';
 import { RequestModel } from '../../Models/request_model';
 import { Observable } from 'rxjs';
@@ -18,16 +18,16 @@ export class UserprofileComponent {
   @ViewChild(Slides) slides: Slides;
   //searching userid  
   userid;
-  userModel: UserDetails[];
+  // userModel: UserDetails[];
   requests;
   requested;
   following;
   constructor(private dataService: DataProvider) {
     
-    this.dataService.searchUser.subscribe(search => {
-      this.userid = search
-    }
-      );
+    // this.dataService.searchUser.subscribe(search => {
+    //   this.userid = search
+    // }
+    //   );
    
     this.searchUser();
    

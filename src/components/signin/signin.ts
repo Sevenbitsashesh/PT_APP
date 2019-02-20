@@ -53,14 +53,14 @@ export class SigninComponent implements OnInit {
     //   'email': this.loginForm.get('email').value,
     //   'pass': this.loginForm.get('pass').value,
     // };
-   const credentials: TokenPayload = {
+   const credentials = {
       email: this.loginForm.get('email').value,
       password: this.loginForm.get('pass').value
     }
     this.authService.signInEmail(credentials).subscribe(() => {
       this.router.navigate(['/userhome']);
     }, (err) => {
-      
+      if(err) 
       this.msg = err['error']['message'];
     })
   

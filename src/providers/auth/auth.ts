@@ -55,7 +55,7 @@ this.currentUserSubject = new BehaviorSubject<UserDetails>(JSON.parse(localStora
   signInEmail(cred) {
     return this.request('post','authenticate',cred);
   }
-  signUp(cred: TokenPayload) {
+  signUp(cred) {
     return this.request("post","register",cred);
    
   }
@@ -63,9 +63,9 @@ this.currentUserSubject = new BehaviorSubject<UserDetails>(JSON.parse(localStora
     let base;
 // console.log(user,type,method);
     if (method === 'post') {
-      base = this.http.post( LOCAL_API_URL+'users/'+type,user,{headers: {'Content-Type': 'application/json','Accept': 'application/json','Authorization': 'Basic Og=='}});
+      base = this.http.post( API_URL+'users/'+type,user,{headers: {'Content-Type': 'application/json','Accept': 'application/json','Authorization': 'Basic Og=='}});
     } else {
-      base = this.http.get(`/api/${type}`, { headers: { Authorization: `Bearer ${this.getToken()}` }});
+      base = this.http.get(`/users/${type}`, { headers: { Authorization: `Bearer ${this.getToken()}` }});
     }
     
     const request = base.pipe(
@@ -121,10 +121,4 @@ this.currentUserSubject = new BehaviorSubject<UserDetails>(JSON.parse(localStora
     
   }
   
-  // getDetails(token,guid) {
-  //   // console.log(token,guid);
-  //   this.http.post('http://api.veridoceducation.com/api/GetUserDetail',{'PublicGuid': guid},{headers: {'Content-Type': ' application/json','Accept': 'application/json',  'Authorization' : `Bearer `+token }}).subscribe(suc => {
-  //     this.router.navigate(['/userhome']);
-  //     });    
-  // }
 }
