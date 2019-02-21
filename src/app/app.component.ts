@@ -17,7 +17,7 @@ export class MyApp {
     AngularFireModule.initializeApp(config);
     
     
-    console.log('main comp');
+    // console.log('main comp');
     AngularFireModule.initializeApp(config);
     this.route.navigate(['/home']);
     platform.ready().then(() => {

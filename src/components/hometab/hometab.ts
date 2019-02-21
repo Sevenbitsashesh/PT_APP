@@ -16,11 +16,11 @@ export class HometabComponent {
 
 
   constructor(private router: Router) {
-    console.log('Hello HometabComponent Component');
+    // console.log('Hello HometabComponent Component');
   }
   gotoHome(event) {
     var btns = document.getElementsByClassName('active');
-    console.log(btns.length);
+    // console.log(btns.length);
     for(let item=0; item < btns.length; item++) {
       btns.item(item).classList.remove('active');
       

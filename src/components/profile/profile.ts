@@ -6,6 +6,7 @@ import { DataProvider } from '../../providers/data/data';
 
 import { UserProvider } from '../../providers/user/user';
 import { AuthProvider, UserDetails } from '../../providers/auth/auth';
+import { UserInfo } from '../../Models/users_info';
 
 
 @Component({
@@ -25,9 +26,9 @@ export class ProfileComponent {
   // tweets: TweetModel[];
   // bio: string;
   // bioLength;
-  userModel: UserDetails;
+  userModel: UserInfo;
   myForm: FormGroup;
-  
+  userDetail: UserDetails;
   validation_messages = {
     'username': [
         { type: 'required', message: 'Username is required' },
@@ -64,25 +65,19 @@ export class ProfileComponent {
     }
   
   constructor(private formBuilder: FormBuilder, private imageService: ImageProvider, private dataService: DataProvider,private authService: AuthProvider, private userService: UserProvider) {
-    authService.currentUserSubject.subscribe(user => {
-      this.userModel = user;
-      
-      
-
-
-
-      // this.loggedEmail = this.userModel.email;
-    // this.profileImg = this.userModel.profile_pic;
-    // this.bio = this.userModel.bio;
+   
+    this.userModel =  dataService.u;
+    // this.userDetail = dataService.
+   
     this.myForm = formBuilder.group({
-      username: new FormControl('', Validators.compose([
+      username: new FormControl(this.userModel.display_name, Validators.compose([
         Validators.maxLength(25),
         Validators.minLength(5),
         Validators.pattern('^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]+$'),
         Validators.required
       ])
       ),
-      mobile: new FormControl('', Validators.compose([
+      mobile: new FormControl(this.userModel.mobile, Validators.compose([
         Validators.maxLength(12),
         Validators.minLength(10),
         Validators.pattern('^(0|[1-9][0-9]*)$'),
@@ -98,17 +93,13 @@ export class ProfileComponent {
       ])),
       hobbies: new FormControl('', Validators.compose([
       ])),
-      dob: new FormControl('', Validators.compose([
+      dob: new FormControl(this.userModel.dob, Validators.compose([
       ])),
       gender: new FormControl('', Validators.compose([
       ]))
         }
     );
-    });
-    
-    
-   
-    // console.log(this.userModel.bio);
+
   }
   changeBio(bioText: string) {
     // this.uactivity.saveBio(bioText);    

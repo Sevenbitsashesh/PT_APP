@@ -18,27 +18,28 @@ import { DataProvider } from '../../providers/data/data';
   templateUrl: 'tab-home.html',
 })
 export class TabHomePage implements OnInit {
-  // currentUser: UserDetails;
-  // authDetails: TokenPayload;
-  //   currentUserSubscription: Subscription;
-  //   userInfo: UserInfo;
+  currentUser: UserDetails;
+  userInfo: UserInfo;
+  authDetails: TokenPayload;
+    currentUserSubscription: Subscription;    
   constructor(private authService: AuthProvider, private userService: UserProvider, private dataService: DataProvider) {
+    this.userInfo = this.dataService.u;
+  // dataService.userInfoObs.subscribe(u => {
+  //   this.userInfo = [];
     
-  
+  // })
   }
   ngOnDestroy() {
     // this.currentUserSubscription.unsubscribe();
   }
   ngOnInit() {
-  //   this.currentUserSubscription = this.authService.currentUser.subscribe(user => {
-  //     console.log(user);
-  //     this.currentUser = user;
-  //     this.authDetails = this.authService.getUserDetails();
-  //     this.userService.getUserData(this.currentUser, this.authDetails).pipe(take(1)).subscribe(u => {
-  //       this.userInfo = u;
-  //       console.log(u);
-  //     });
-  // })
+    this.currentUserSubscription = this.authService.currentUser.subscribe(user => {
+      
+      // this.currentUser = user;
+      // this.authDetails = this.authService.getUserDetails();
+      console.log(user);
+     this.dataService.getUserData(user);
+  });
 }
 
 checkVerification() {

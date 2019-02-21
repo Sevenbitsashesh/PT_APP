@@ -3,7 +3,8 @@ import { environment } from '../environments/environment';
 
 import { AppModule } from './app.module';
 import { enableProdMode } from '@angular/core';
-if (environment.production) {
-    enableProdMode();
-  }
+enableProdMode();
+// if (environment.production) {
+    
+//   }
 platformBrowserDynamic().bootstrapModule(AppModule);

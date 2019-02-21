@@ -12,8 +12,8 @@ export class UserProvider {
   
   }
   getUserData(user: UserDetails,auth: TokenPayload): Observable<any> {
-    console.log(auth.id, user.token);
-    return this.http.post(API_URL+'users/'+'getUserInfoById',{'publicid': auth.id},{headers : {  'Accept' : 'application/json',
+    // console.log(auth.id, user.token);
+    return this.http.post(API_URL+'users/'+'getUserInfoById',{'userid': auth.id},{headers : {  'Accept' : 'application/json',
       'Content-Type' : 'application/json','Authorization': 'Bearer '+ user.token}});
   }
   // updateUserData(Models: UserDetails) {

@@ -14,6 +14,7 @@ import { SettingComponent } from './setting/setting';
 import { SigninComponent } from './signin/signin';
 import { SignupComponent } from './signup/signup';
 import { FeedsComponent } from './feeds/feeds';
+import { LoaderComponent } from './loader/loader';
 
 
 
@@ -29,7 +30,8 @@ import { FeedsComponent } from './feeds/feeds';
     SettingComponent,
     SigninComponent,
     SignupComponent,
-    FeedsComponent],
+    FeedsComponent,
+    LoaderComponent],
 	imports: [ IonicModule, CommonModule, RouterModule	],
 	exports: [FirstComponent,
 	LoginComponent,
@@ -39,7 +41,8 @@ import { FeedsComponent } from './feeds/feeds';
     SettingComponent,
     SigninComponent,
     SignupComponent,
-    FeedsComponent],
+    FeedsComponent,
+    LoaderComponent],
     entryComponents: [LoginComponent, FirstComponent, ProfileComponent],
     
 })

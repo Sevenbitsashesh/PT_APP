@@ -10,7 +10,7 @@ export class AuthguardProvider  {
 
   }
 canActivate() {
-  console.log('checking authguard');
+  // console.log('checking authguard');
   if (!this.auth.isLoggedIn()) {
     console.log('not logged in');
     this.router.navigateByUrl('/login');

@@ -6,7 +6,7 @@
         <ion-avatar class="profi-pic" (click)=actionForProfile()>
           
             <!-- <img class="profi-pic" src="https://pbs.twimg.com/profile_images/971635378892386304/fqqp4Sru.jpg"/> -->
-            <img src='https://firebasestorage.googleapis.com/v0/b/my-social-a5d83.appspot.com/o/profiles%2Fdownload.png?alt=media&token=04d24821-a4ab-4a03-915c-dd97a6ca2a26' class="profi-pic"/>
+            <img [src]=userModel.profile_pic class="profi-pic"/>
             
             
         </ion-avatar>
@@ -24,7 +24,7 @@
   
   </div>
 <div class="bio-main">
-<textarea class="input-bio" [(ngModel)]="bio" (change)="changeBio(bio);" [maxlength]="150" placeholder="Write Your bio Here"></textarea>
+<textarea class="input-bio" [(ngModel)]="userModel.bio" (change)="changeBio(bio);" [maxlength]="150" placeholder="Write Your bio Here"></textarea>
 <ion-label class="bio-length">20/150</ion-label>
 
 

@@ -86,7 +86,6 @@ this.currentUserSubject = new BehaviorSubject<UserDetails>(JSON.parse(localStora
     if (token) {
       payload = token.split('.')[1];      
       payload = window.atob(payload);
-      
       return JSON.parse(payload);
     } else {
       return null;
@@ -96,7 +95,7 @@ this.currentUserSubject = new BehaviorSubject<UserDetails>(JSON.parse(localStora
     const user = this.getUserDetails();
     
     if (user) {
-      console.log('change1',user);
+      // console.log('change1',user);
       // this.currentUserSubject.next(user);
       return user.exp > Date.now() / 1000;
     } else {
