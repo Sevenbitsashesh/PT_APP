@@ -2,19 +2,11 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 
-/**
- * Generated class for the HometabComponent component.
- *
- * See https://angular.io/api/core/Component for more info on Angular
- * Components.
- */
 @Component({
   selector: 'hometab',
   templateUrl: 'hometab.html'
 })
 export class HometabComponent {
-
-
   constructor(private router: Router) {
     // console.log('Hello HometabComponent Component');
   }

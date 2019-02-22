@@ -31,7 +31,7 @@ export class AuthProvider {
   constructor(private router: Router, private http: HttpClient) {
     if(localStorage.getItem('swaUser')) {
 this.currentUserSubject = new BehaviorSubject<UserDetails>(JSON.parse(localStorage.getItem('swaUser')));
-        this.currentUser = this.currentUserSubject.asObservable(); 
+        this.currentUser = this.currentUserSubject
     }
     
   }

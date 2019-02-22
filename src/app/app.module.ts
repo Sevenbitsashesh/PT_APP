@@ -14,14 +14,16 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { UserRoutingModule } from '../pages/userhome/user.routing';
 import { UserhomePageModule } from '../pages/userhome/userhome.module';
-import { AngularFireAuthModule, AngularFireAuth  } from 'angularfire2/auth';
-import { AngularFireModule } from 'angularfire2';
+
+
 import { config } from '../Configs/firebase_config';
-import { AngularFirestoreModule, AngularFirestore} from 'angularfire2/firestore';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
+
+
 import { AngularFireStorageModule } from 'angularfire2/storage';
+import { AngularFireModule } from 'angularfire2';
+
 import { DataProvider } from '../providers/data/data';
-import { AngularFireMessagingModule } from 'angularfire2/messaging';
+
 import { RequestProvider } from '../providers/request/request';
 import { ImageProvider } from '../providers/image/image';
 import { TweetsProvider } from '../providers/tweets/tweets';
@@ -56,14 +58,13 @@ import { TweetProvider } from '../providers/tweet/tweet';
     AppRoutingModule,
     UserRoutingModule,
     UserhomePageModule,
-    AngularFireAuthModule,
     AngularFireModule.initializeApp(config),
     RouterModule,
-    AngularFirestoreModule,
-    AngularFireDatabaseModule,
+    
+    
     FormsModule,
     AngularFireStorageModule,
-    AngularFireMessagingModule
+    
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -74,7 +75,7 @@ import { TweetProvider } from '../providers/tweet/tweet';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     SharedProvider,
-    AngularFireAuth,
+    // AngularFireAuth,
     DataProvider,
     RequestProvider,
     ImageProvider,

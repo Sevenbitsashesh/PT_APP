@@ -6,7 +6,7 @@ import { FirstComponent } from '../components/first/first';
 import { UserhomePage } from '../pages/userhome/userhome';
 import { UserhomePageModule } from '../pages/userhome/userhome.module';
 // import { UserhomePageModule } from 'src/pages/userhome/userhome.module';
-import {  } from '@auth0/angular-jwt';
+// import {  } from '@auth0/angular-jwt';
 import { AuthguardProvider } from '../providers/authguard/authguard';
 export function getTestModule() { return UserhomePageModule; }
 

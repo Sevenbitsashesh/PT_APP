@@ -2,12 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 // import { UserDetails } from '../../Models/users.details';
-import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/firestore';
+// import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/firestore';
 import { appconfigs } from '../../Models/users_firestore';
 import { Observable } from 'rxjs/Observable';
 import { ToastController, ActionSheetController, LoadingController } from 'ionic-angular';
 import { DatePipe } from '@angular/common';
-import { AngularFireAuth } from 'angularfire2/auth';
+// import { AngularFireAuth } from 'angularfire2/auth';
 import { AuthProvider } from '../../providers/auth/auth';
 import { tap } from 'rxjs/operators';
 

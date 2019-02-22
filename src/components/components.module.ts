@@ -4,7 +4,7 @@ import { LoginComponent } from './login/login';
 import { IonicModule } from 'ionic-angular';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { AngularFireAuth } from 'angularfire2/auth';
+// import { AngularFireAuth } from 'angularfire2/auth';
 import { HometabComponent } from './hometab/hometab';
 import { ProfileComponent } from './profile/profile';
 import { ProfilepicComponent } from './profilepic/profilepic';

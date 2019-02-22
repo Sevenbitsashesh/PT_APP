@@ -3,10 +3,11 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { SharedProvider } from '../../providers/shared/shared';
 import { UserInfo } from '../../Models/users_info';
 import { AuthProvider, UserDetails, TokenPayload } from '../../providers/auth/auth';
-import { Subscription, from, Observable } from 'rxjs';
+import { Subscription, Observable,  } from 'rxjs';
 import { UserProvider } from '../../providers/user/user';
 import { take } from 'rxjs/operators';
 import { DataProvider } from '../../providers/data/data';
+
 
 
 
@@ -37,7 +38,7 @@ export class TabHomePage implements OnInit {
       
       // this.currentUser = user;
       // this.authDetails = this.authService.getUserDetails();
-      console.log(user);
+      // console.log(user);
      this.dataService.getUserData(user);
   });
 }

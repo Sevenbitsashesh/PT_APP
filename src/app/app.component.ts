@@ -14,7 +14,7 @@ export class MyApp {
   // rootPage:any = HomePage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,private route: Router) {
-    AngularFireModule.initializeApp(config);
+    // AngularFireModule.initializeApp(config);
     
     
     // console.log('main comp');

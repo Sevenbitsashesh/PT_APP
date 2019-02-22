@@ -1,18 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AngularFireStorage } from 'angularfire2/storage';
+// import { AngularFireStorage } from 'angularfire2/storage';
 import { finalize } from 'rxjs/operators';
 import { DataProvider } from '../../providers/data/data';
 
 @Injectable()
 export class StorageProvider {
 
-  constructor(public http: HttpClient, private storage: AngularFireStorage,private dataService: DataProvider) {
+  constructor(public http: HttpClient,private dataService: DataProvider) {
     
   }
   public uploadPhoto(profilepic,location) {
     const file = 'data:image/jpg;base64,' + profilepic;
-    return this.getFileRef(profilepic,location).putString(file,'data_url');  
+    // return this.getFileRef(profilepic,location).putString(file,'data_url');  
   }
     //Generate unique uuid for Image
     private generateUUID(): any {
@@ -26,9 +26,9 @@ export class StorageProvider {
     }
     getFileRef(pic, loc) {
       
-      return this.storage.ref('/'+ loc +'/' + this.generateUUID() + '.jpg');
+      // return this.storage.ref('/'+ loc +'/' + this.generateUUID() + '.jpg');
     }
     deleteFile(path) {
-      this.storage.ref('data:image/jpg;base64,' + path).delete();
+      // this.storage.ref('data:image/jpg;base64,' + path).delete();
     }
 }

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Camera } from '@ionic-native/camera';
 import { Observable } from 'rxjs';
 import { DataProvider } from '../data/data';
-import { AngularFireStorage } from 'angularfire2/storage';
+// import { AngularFireStorage } from 'angularfire2/storage';
 import { finalize } from 'rxjs/operators';
 
 
@@ -12,7 +12,7 @@ import { finalize } from 'rxjs/operators';
 export class ImageProvider {
   imageUrl;
   
-  constructor(public http: HttpClient, private camera: Camera, private dataService: DataProvider, private fstorage: AngularFireStorage) {
+  constructor(public http: HttpClient, private camera: Camera, private dataService: DataProvider) {
       
   }
   selectPhoto() {
@@ -42,22 +42,22 @@ export class ImageProvider {
  
         // Upload Photo to firestorage
   public uploadPhoto(profilepic,location) {
-    const file = 'data:image/jpg;base64,' + profilepic;
-    const fileRef =  this.fstorage.ref('/'+ location +'/' + this.generateUUID() + '.jpg');
-    const stor_task = fileRef.putString(file, 'data_url');
+    // const file = 'data:image/jpg;base64,' + profilepic;
+    // const fileRef =  this.fstorage.ref('/'+ location +'/' + this.generateUUID() + '.jpg');
+    // const stor_task = fileRef.putString(file, 'data_url');
 
-    stor_task.snapshotChanges().pipe(
-      finalize(() => {
-        fileRef.getDownloadURL()
-        .subscribe(url => {
-          if (url) {
-        // this.dataService.changeImageData(url);
+    // stor_task.snapshotChanges().pipe(
+    //   finalize(() => {
+    //     fileRef.getDownloadURL()
+    //     .subscribe(url => {
+    //       if (url) {
+    //     // this.dataService.changeImageData(url);
         
-          }
-        });
-      }
-      )
-    ).subscribe();
+    //       }
+    //     });
+    //   }
+    //   )
+    // ).subscribe();
   }
  
   //Generate unique uuid for Image
