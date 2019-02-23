@@ -65,7 +65,7 @@ export class ProfileComponent {
     }
   
   constructor(private formBuilder: FormBuilder, private imageService: ImageProvider, private dataService: DataProvider,private authService: AuthProvider, private userService: UserProvider) {
-   
+    document.addEventListener('touchstart', this.handler, {capture: true});
     this.userModel =  dataService.u;
     // this.userDetail = dataService.
    
@@ -158,5 +158,7 @@ export class ProfileComponent {
   //       });
   //       this.profileImg = this.uactivity.myPhotoURL;
   //   }    
-    
+    handler() {
+      
+    }
 }

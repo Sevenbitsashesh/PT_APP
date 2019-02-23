@@ -15,7 +15,9 @@ export class LoginComponent {
   constructor(private authService: AuthProvider) {    
     authService.checkLogin();
     this.login = "signin";
+    
   }
+
   
 
 

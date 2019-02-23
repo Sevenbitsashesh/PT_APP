@@ -44,6 +44,8 @@ import { TweetProvider } from '../providers/tweet/tweet';
 
 
 
+
+
 @NgModule({
   declarations: [
     MyApp,
@@ -60,11 +62,8 @@ import { TweetProvider } from '../providers/tweet/tweet';
     UserhomePageModule,
     AngularFireModule.initializeApp(config),
     RouterModule,
-    
-    
     FormsModule,
-    AngularFireStorageModule,
-    
+    AngularFireStorageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

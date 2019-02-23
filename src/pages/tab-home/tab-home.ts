@@ -8,11 +8,6 @@ import { UserProvider } from '../../providers/user/user';
 import { take } from 'rxjs/operators';
 import { DataProvider } from '../../providers/data/data';
 
-
-
-
-
-
 @IonicPage()
 @Component({
   selector: 'page-tab-home',
@@ -38,7 +33,7 @@ export class TabHomePage implements OnInit {
       
       // this.currentUser = user;
       // this.authDetails = this.authService.getUserDetails();
-      // console.log(user);
+      // console.log(user); 
      this.dataService.getUserData(user);
   });
 }

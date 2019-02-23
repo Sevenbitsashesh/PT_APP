@@ -13,6 +13,7 @@ import { TabProfilePageModule } from '../tab-profile/tab-profile.module';
 
 import { TabViewsPageModule } from '../tab-views/tab-views.module';
 
+
 @NgModule({
   declarations: [
     UserhomePage,
