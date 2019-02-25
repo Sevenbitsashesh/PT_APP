@@ -1,17 +1,23 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { SharedProvider } from '../../providers/shared/shared';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { LoginProvider } from '../../providers/login/login';
 import { AuthProvider, TokenPayload } from '../../providers/auth/auth';
 import { Router } from '@angular/router';
 import { identifierModuleUrl } from '@angular/compiler';
+import { P } from '@angular/core/src/render3';
+import { trigger } from '@angular/core/src/animation/dsl';
+import { UserProvider } from '../../providers/user/user';
 
 
 
 
 @Component({
   selector: 'signin',
-  templateUrl: 'signin.html'
+  templateUrl: 'signin.html',
+  animations: [
+
+  ]
 })
 
 export class SigninComponent implements OnInit {
@@ -29,6 +35,21 @@ export class SigninComponent implements OnInit {
     'password': [
       { type: 'required', message: 'Password is required'},
       { type: 'pattern', message: 'Minimum 8 and should include at least special charater'}
+    ],
+    'cpassword': [
+      { type: 'required', message: 'Confirm Password is required'},
+      { type: 'pattern', message: 'Minimum 8 and should include at least special charater'}
+    ],
+    'fname': [
+      { type: 'required', message: 'Please Enter Firstname' }
+    ],
+    'lname': [
+      { type: 'required', message: 'Please Enter Lastname' }
+    ],
+    'username': [
+      {type: 'required', message: 'Username is required'},
+      { type: 'pattern', message: 'Enter Valid Userid' },
+      { match: 'matched', message: 'Userid Already in taken'}
     ]
   };
   
@@ -43,12 +64,47 @@ export class SigninComponent implements OnInit {
       pass: new FormControl('', Validators.compose([
           Validators.pattern('(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}'),
         Validators.required
+      ])),
+      cpass: new FormControl('', Validators.compose([
+        Validators.required
+      ])),
+      fname: new FormControl('', Validators.compose([
+        Validators.required
+      ])),
+      lname: new FormControl('', Validators.compose([
+        Validators.required
+      ])),
+      username: new FormControl('', Validators.compose([
+        Validators.maxLength(25),
+          Validators.minLength(5),
+          Validators.pattern('^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]+$'),
+          Validators.required,
+          this.usernameExist(this.loginForm.get('username'))
       ]))
     });
   }
-  
-  constructor(private authService: AuthProvider, private router: Router) {
+  show: boolean = false;
+  arrow: string = "../../assets/icon/arrowdown.new.png";
+  constructor(private authService: AuthProvider, private router: Router, private userService: UserProvider) {
     // authService.checkLogin();
+    
+  }
+  showSign() {
+    
+    const signupItems = document.getElementsByClassName('mysignup');
+    for(var i=0;i<signupItems.length; i++) {
+      signupItems[i].setAttribute('hidden',`${!this.show}`);
+    }
+    
+    if(this.show) {
+      this.arrow = "../../assets/icon/arrowdown.new.png";
+    }
+    else {
+      this.arrow = "../../assets/icon/arrowup.new.png";
+    }
+    this.show = !this.show;
+    
+    
     
   }
   
@@ -74,12 +130,33 @@ export class SigninComponent implements OnInit {
    else {
      this.msg = "Please Connect to Internet";
    }
-  
-   
-
-    
     }
-  
-    
+    getSignup() {
+      if(navigator.onLine) { 
+        const model = {
+          'fname': this.loginForm.get('fname').value,
+          'lname': this.loginForm.get('lname').value,
+          'email': this.loginForm.get('email').value,
+          'password': this.loginForm.get('pass').value,
+          'cpassword': this.loginForm.get('pass').value,
+          'username': this.loginForm.get('username').value,        
+        };
+        this.authService.signUp(model).subscribe(user => {
+          console.log(user);
+        });
+      }
+      
+    }
+  heartClick() {
+    if(document.getElementById('heart-like').classList.contains('heart-black-animate')) {
+      document.getElementById('heart-like').classList.remove('heart-black-animate');
+    }
+    else {
+      document.getElementById('heart-like').classList.add('heart-black-animate');
+    }
+  }
+  usernameExist(userid) {
+    this.userService.getUserByUId(userid).subscribe();
+  }
  
 }

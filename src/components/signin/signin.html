@@ -1,11 +1,85 @@
 <form [formGroup]="loginForm" >
    
     <ion-grid align="center">
+
+        
             <ion-row>
                     <ion-col>
                         <img src="../../assets/imgs/swa.jpg" height="200px" width="100%" style="border-radius: 20px">
                 </ion-col>
-            </ion-row>          
+            </ion-row> 
+            <!-- <ion-row>
+                <div>
+                        <i class="fa fa-heart" id="heart-like" (click)="heartClick()" aria-hidden="true"></i>
+
+                </div>
+            </ion-row>          -->
+            <ion-row class="mysignup" [hidden]="!show">
+                    <ion-col>
+                          
+                      </ion-col>
+                  <ion-col col-12>
+                    
+                        <ion-item class="newionInput" >
+                                <ion-input type="name" formControlName="username"  placeholder="Username" class="loginEmail" (change)="usernameExist()"> </ion-input>
+                                
+                            </ion-item>  
+                    
+                  </ion-col>
+                  <ion-col>
+                    </ion-col>
+                </ion-row>
+                <ion-row [hidden]="!show">
+                        <ion-col>
+                            <ng-container *ngFor="let validation of validation_messages.username">
+                                <div class="error-message" *ngIf="loginForm.get('username').hasError(validation.type) && loginForm.controls['username'].touched">{{validation.message}}</div>
+                              </ng-container>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row [hidden]="!show">
+                            <ion-col>
+                                  
+                              </ion-col>
+                          <ion-col col-12>
+                            
+                                <ion-item class="newionInput" >
+                                        <ion-input type="name" formControlName="fname"  placeholder="Firstname" class="loginEmail"> </ion-input>
+                                        
+                                    </ion-item>  
+                            
+                          </ion-col>
+                          <ion-col>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row [hidden]="!show">
+                                <ion-col>
+                                    <ng-container *ngFor="let validation of validation_messages.fname">
+                                        <div class="error-message" *ngIf="loginForm.get('fname').hasError(validation.type) && loginForm.controls['fname'].touched">{{validation.message}}</div>
+                                      </ng-container>
+                                </ion-col>
+                            </ion-row>
+                            <ion-row [hidden]="!show">
+                                    <ion-col>
+                                          
+                                      </ion-col>
+                                  <ion-col col-12>
+                                    
+                                        <ion-item class="newionInput" >
+                                                <ion-input type="name" formControlName="lname"  placeholder="Lastname" class="loginEmail"> </ion-input>
+                                                
+                                            </ion-item>  
+                                    
+                                  </ion-col>
+                                  <ion-col>
+                                    </ion-col>
+                                </ion-row>
+                                <ion-row [hidden]="!show">
+                                        <ion-col>
+                                            <ng-container *ngFor="let validation of validation_messages.lname">
+                                                <div class="error-message" *ngIf="loginForm.get('lname').hasError(validation.type) && loginForm.controls['lname'].touched">{{validation.message}}</div>
+                                              </ng-container>
+                                        </ion-col>
+                                    </ion-row>
       <ion-row>
           <ion-col>
                 
@@ -45,6 +119,24 @@
                   </ng-container>
             </ion-col>
         </ion-row>
+        <ion-row [hidden]="!show" class="mysignup">
+            <ion-col>
+              </ion-col>
+            <ion-col col-12>
+              <ion-item class="newionInput">
+                  <ion-input type="Password" formControlName="cpass" name="cpass" placeholder="Confirm Password"></ion-input>
+              </ion-item>                           
+            </ion-col>
+            <ion-col>
+              </ion-col>
+          </ion-row>
+          <ion-row [hidden]="!show">
+              <ion-col class="required">
+                  <ng-container *ngFor="let validation of validation_messages.cpassword">
+                      <div class="error-message" *ngIf="loginForm.get('cpass').hasError(validation.type) && loginForm.controls['cpass'].touched">{{validation.message}}</div>   
+                    </ng-container>
+              </ion-col>
+          </ion-row>
         <ion-row>
             <ion-col col-12>  <ion-label *ngIf="msg">
                 {{msg}}
@@ -55,19 +147,29 @@
                
     </ion-grid>
     
-                        
-               <div class="login-button-bottom">
-                                <button ion-button (click)="getLogin()" id="btn-login" class="btn-login">
-                                Login
+                       
+               <div class="login-button-bottom" [hidden]="!show">
+                                <button ion-button (click)="getLogin()" id="btn-signup" class="btn-login" [disabled]="loginForm.invalid">
+                                Signup
                                 
                                 </button>
                </div>
-               
+               <div class="login-button-bottom" [hidden]="show">
+                    <button ion-button (click)="getLogin()" id="btn-login" class="btn-login">
+                    Login
+                    
+                    </button>
+   </div>
+               <div (click)="showSign()">
                <div>
-                    <img src="../../assets/icon/arrow-signup" height="30px" width="30px">
+                    <img [src]=arrow height="30px" width="30px">
                 
                </div>
-               <div>
-                   <button>Create Account</button>
+               <div [hidden]="!show">
+                   <button>Login</button>
                </div>
+               <div [hidden]="show">
+                    <button>Create Account</button>
+                </div>
+            </div>
 </form>  
