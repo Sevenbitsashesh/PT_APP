@@ -21,24 +21,32 @@
                   <ion-col col-12>
                     
                         <ion-item class="newionInput" >
-                                <ion-input type="name" formControlName="username"  placeholder="Username" class="loginEmail" (change)="usernameExist()"> </ion-input>
-                                
+                                <ion-input type="name" formControlName="username"  placeholder="Username" class="loginEmail"> </ion-input>
+                                <ion-label position="stacked" *ngIf="loginForm.get('username').status === 'PENDING'">Checking...</ion-label>
+                                <ion-label position="stacked" *ngIf="loginForm.get('username').status === 'INVALID'">Not available</ion-label>
+                                <ion-label position="stacked" *ngIf="loginForm.get('username').status === 'VALID'">Available</ion-label>
                             </ion-item>  
                     
                   </ion-col>
-                  <ion-col>
+                  <ion-col >
+                      
                     </ion-col>
                 </ion-row>
                 <ion-row [hidden]="!show">
                         <ion-col>
+                            
                             <ng-container *ngFor="let validation of validation_messages.username">
                                 <div class="error-message" *ngIf="loginForm.get('username').hasError(validation.type) && loginForm.controls['username'].touched">{{validation.message}}</div>
+                                    
                               </ng-container>
                         </ion-col>
                     </ion-row>
                     <ion-row [hidden]="!show">
                             <ion-col>
-                                  
+                                  <div>
+                                      
+                                  </div>
+
                               </ion-col>
                           <ion-col col-12>
                             
@@ -149,7 +157,7 @@
     
                        
                <div class="login-button-bottom" [hidden]="!show">
-                                <button ion-button (click)="getLogin()" id="btn-signup" class="btn-login" [disabled]="loginForm.invalid">
+                                <button ion-button (click)="getSignup()" id="btn-signup" class="btn-login" [disabled]="loginForm.invalid">
                                 Signup
                                 
                                 </button>

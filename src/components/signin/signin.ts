@@ -1,15 +1,14 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { SharedProvider } from '../../providers/shared/shared';
-import { FormGroup, FormBuilder, FormControl, Validators, AbstractControl } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
 import { LoginProvider } from '../../providers/login/login';
 import { AuthProvider, TokenPayload } from '../../providers/auth/auth';
 import { Router } from '@angular/router';
-import { identifierModuleUrl } from '@angular/compiler';
-import { P } from '@angular/core/src/render3';
-import { trigger } from '@angular/core/src/animation/dsl';
 import { UserProvider } from '../../providers/user/user';
-
-
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/delay';
+import 'rxjs/add/operator/filter';
+import {  existingUsernameValidator } from '../../directives/existing-userid-validator/existing-userid-validator';
 
 
 @Component({
@@ -49,7 +48,7 @@ export class SigninComponent implements OnInit {
     'username': [
       {type: 'required', message: 'Username is required'},
       { type: 'pattern', message: 'Enter Valid Userid' },
-      { match: 'matched', message: 'Userid Already in taken'}
+      { match: 'matched', message: 'Userid Already taken!'}
     ]
   };
   
@@ -79,8 +78,10 @@ export class SigninComponent implements OnInit {
           Validators.minLength(5),
           Validators.pattern('^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]+$'),
           Validators.required,
-          this.usernameExist(this.loginForm.get('username'))
-      ]))
+          
+      ]
+      ),existingUsernameValidator(this.userService)
+      )
     });
   }
   show: boolean = false;
@@ -138,8 +139,8 @@ export class SigninComponent implements OnInit {
           'lname': this.loginForm.get('lname').value,
           'email': this.loginForm.get('email').value,
           'password': this.loginForm.get('pass').value,
-          'cpassword': this.loginForm.get('pass').value,
-          'username': this.loginForm.get('username').value,        
+          'cpassword': this.loginForm.get('cpass').value,
+          'user_name': this.loginForm.get('username').value,        
         };
         this.authService.signUp(model).subscribe(user => {
           console.log(user);
@@ -155,8 +156,6 @@ export class SigninComponent implements OnInit {
       document.getElementById('heart-like').classList.add('heart-black-animate');
     }
   }
-  usernameExist(userid) {
-    this.userService.getUserByUId(userid).subscribe();
-  }
+
  
 }

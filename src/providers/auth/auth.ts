@@ -56,12 +56,13 @@ this.currentUserSubject = new BehaviorSubject<UserDetails>(JSON.parse(localStora
     return this.request('post','authenticate',cred);
   }
   signUp(cred) {
+    console.log(cred);
     return this.request("post","register",cred);
    
   }
   private request(method: 'post'|'get', type: 'authenticate'|'register'|'profile', user?: TokenPayload): Observable<any> {
     let base;
-// console.log(user,type,method);
+console.log(user,type,method);
     if (method === 'post') {
       base = this.http.post( API_URL+'users/'+type,user,{headers: {'Content-Type': 'application/json','Accept': 'application/json','Authorization': 'Basic Og=='}});
     } else {
