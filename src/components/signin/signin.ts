@@ -134,6 +134,8 @@ export class SigninComponent implements OnInit {
     }
     getSignup() {
       if(navigator.onLine) { 
+        document.getElementById('btn-signup').classList.add('btn-login-click');
+      document.getElementById('btn-signup').innerHTML = '>';
         const model = {
           'fname': this.loginForm.get('fname').value,
           'lname': this.loginForm.get('lname').value,
@@ -143,7 +145,13 @@ export class SigninComponent implements OnInit {
           'user_name': this.loginForm.get('username').value,        
         };
         this.authService.signUp(model).subscribe(user => {
-          console.log(user);
+          
+          if(user) {
+            document.getElementById('btn-signup').classList.remove('btn-login-click');
+        document.getElementById('btn-signup').innerHTML = 'Signup';
+            this.getLogin();
+          }
+          
         });
       }
       

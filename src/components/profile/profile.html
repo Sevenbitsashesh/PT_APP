@@ -44,7 +44,7 @@
               </div> 
 
 <div class="profile-segment-main">
-    <ion-segment [(ngModel)]="profileSegment">
+    <ion-segment [(ngModel)]="profileSegment" (ionChange)="segmentChange()">
         <ion-segment-button value="feeds">
             Feeds
         </ion-segment-button>

@@ -42,7 +42,6 @@ this.currentUserSubject = new BehaviorSubject<UserDetails>(JSON.parse(localStora
     localStorage.setItem('swaUser',JSON.stringify(user));
     console.log('change2');
     this.currentUserSubject.next(user);
-
   }
   private getToken(): string {
     if (localStorage.getItem('swaUser')) {

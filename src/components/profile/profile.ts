@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { SharedProvider } from '../../providers/shared/shared';
 import { ImageProvider } from '../../providers/image/image';
@@ -64,8 +64,8 @@ export class ProfileComponent {
       // this.uactivity.addInfo(model);
     }
   
-  constructor(private formBuilder: FormBuilder, private imageService: ImageProvider, private dataService: DataProvider,private authService: AuthProvider, private userService: UserProvider) {
-    document.addEventListener('touchstart', this.handler, {capture: true});
+  constructor(private formBuilder: FormBuilder, private imageService: ImageProvider, private dataService: DataProvider,private authService: AuthProvider, private userService: UserProvider, private cd: ChangeDetectorRef) {
+    // document.addEventListener('touchstart', this.handler, {capture: true});
     this.userModel =  dataService.u;
     // this.userDetail = dataService.
    
@@ -158,7 +158,8 @@ export class ProfileComponent {
   //       });
   //       this.profileImg = this.uactivity.myPhotoURL;
   //   }    
-    handler() {
-      
+  segmentChange() {
+    console.log('segment changed');
+      this.cd.detectChanges();      
     }
 }
