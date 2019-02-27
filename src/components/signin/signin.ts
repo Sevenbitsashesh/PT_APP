@@ -146,10 +146,11 @@ export class SigninComponent implements OnInit {
         };
         this.authService.signUp(model).subscribe(user => {
           
-          if(user) {
+          if(!user.accountAlready) {
+            console.log(user.accountAlready);
             document.getElementById('btn-signup').classList.remove('btn-login-click');
         document.getElementById('btn-signup').innerHTML = 'Signup';
-            this.getLogin();
+            // this.getLogin();
           }
           
         });

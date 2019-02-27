@@ -25,7 +25,7 @@ export class UserProvider {
   //   'Content-Type' : 'application/json','Authorization': 'Bearer '+this.token}});
   // }
   getUserByUId(userid): Observable<any>{
-    console.log('does exist?');
+    // console.log('does exist?');
    return this.http.post(API_URL+'users/'+'getuserbyuid',{'userid': userid},{headers : {  'Accept' : 'application/json',
     'Content-Type' : 'application/json'}});
   }
