@@ -8,11 +8,13 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/delay';
 import 'rxjs/add/operator/filter';
 import { Observable, BehaviorSubject } from 'rxjs';
+
 @Injectable()
 export class UserProvider {
+  Api_Url;
   currentUserSubject: BehaviorSubject<UserInfo>;
   constructor(public http: HttpClient) {
-  
+    
   }
   getUserData(user: UserDetails,auth: TokenPayload): Observable<any>{
     // console.log(auth.id, user.token);

@@ -15,6 +15,8 @@ import { SigninComponent } from './signin/signin';
 import { SignupComponent } from './signup/signup';
 import { FeedsComponent } from './feeds/feeds';
 import { LoaderComponent } from './loader/loader';
+import { VerificationPageModule } from '../pages/verification/verification.module';
+import { VerificationPage } from '../pages/verification/verification';
 
 
 
@@ -31,8 +33,8 @@ import { LoaderComponent } from './loader/loader';
     SigninComponent,
     SignupComponent,
     FeedsComponent,
-    LoaderComponent],
-	imports: [ IonicModule, CommonModule, RouterModule	],
+    LoaderComponent, VerificationPage],
+	imports: [ IonicModule, CommonModule, RouterModule, VerificationPageModule	],
 	exports: [FirstComponent,
 	LoginComponent,
     HometabComponent,

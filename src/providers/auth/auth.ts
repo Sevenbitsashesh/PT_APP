@@ -6,6 +6,8 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 
+
+
 export class UserDetails  {
   email: string;
   token: string;
@@ -25,10 +27,12 @@ export interface TokenPayload {
 };
 @Injectable()
 export class AuthProvider {
+  
   private token: string;
   currentUserSubject: BehaviorSubject<UserDetails>;
   public currentUser: Observable<UserDetails>;
   constructor(private router: Router, private http: HttpClient) {
+    
     if(localStorage.getItem('swaUser')) {
 this.currentUserSubject = new BehaviorSubject<UserDetails>(JSON.parse(localStorage.getItem('swaUser')));
         this.currentUser = this.currentUserSubject
@@ -40,7 +44,7 @@ this.currentUserSubject = new BehaviorSubject<UserDetails>(JSON.parse(localStora
 }
   private saveToken(user: UserDetails): void {
     localStorage.setItem('swaUser',JSON.stringify(user));
-    console.log('change2');
+    
     this.currentUserSubject.next(user);
   }
   private getToken(): string {
@@ -70,7 +74,7 @@ this.currentUserSubject = new BehaviorSubject<UserDetails>(JSON.parse(localStora
     
     const request = base.pipe(
       map((data: UserDetails) => {
-         console.log(data);
+        //  console.log(data);
         if (data.email === user.email) {
           this.saveToken(data);
         }
@@ -84,6 +88,7 @@ this.currentUserSubject = new BehaviorSubject<UserDetails>(JSON.parse(localStora
   public getUserDetails(): TokenPayload {
     const token = this.getToken();
     let payload;
+    
     if (token) {
       payload = token.split('.')[1];      
       payload = window.atob(payload);

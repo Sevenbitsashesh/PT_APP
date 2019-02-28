@@ -1,5 +1,5 @@
 <form [formGroup]="loginForm" >
-   
+   <div *ngIf="!saved">
     <ion-grid align="center">
 
         
@@ -8,12 +8,7 @@
                         <img src="../../assets/imgs/swa.jpg" height="200px" width="100%" style="border-radius: 20px">
                 </ion-col>
             </ion-row> 
-            <!-- <ion-row>
-                <div>
-                        <i class="fa fa-heart" id="heart-like" (click)="heartClick()" aria-hidden="true"></i>
-
-                </div>
-            </ion-row>          -->
+            
             <ion-row class="mysignup" [hidden]="!show">
                     <ion-col>
                           
@@ -22,9 +17,9 @@
                     
                         <ion-item class="newionInput" >
                                 <ion-input type="name" formControlName="username"  placeholder="Username" class="loginEmail"> </ion-input>
-                                <ion-label position="stacked" *ngIf="loginForm.get('username').status === 'PENDING'">Checking...</ion-label>
-                                <ion-label position="stacked" *ngIf="loginForm.get('username').status === 'INVALID'">Not available</ion-label>
-                                <ion-label position="stacked" *ngIf="loginForm.get('username').status === 'VALID'">Available</ion-label>
+                                <ion-label position="stacked" *ngIf="loginForm.get('username').status === 'PENDING' && loginForm.controls['username'].touched && loginForm.controls['username'].value !== ''">Checking...</ion-label>
+                                <ion-label position="stacked" *ngIf="loginForm.get('username').status === 'INVALID' && loginForm.controls['username'].touched && loginForm.controls['username'].value !== ''">Not available</ion-label>
+                                <ion-label position="stacked" *ngIf="loginForm.get('username').status === 'VALID' && loginForm.controls['username'].touched && loginForm.controls['username'].value !== ''">Available</ion-label>
                             </ion-item>  
                     
                   </ion-col>
@@ -155,7 +150,7 @@
           
                
     </ion-grid>
-    
+
                        
                <div class="login-button-bottom" [hidden]="!show">
                                 <button ion-button (click)="getSignup()" id="btn-signup" class="btn-login" [disabled]="loginForm.invalid">
@@ -164,11 +159,11 @@
                                 </button>
                </div>
                <div class="login-button-bottom" [hidden]="show">
-                    <button ion-button (click)="getLogin()" id="btn-login" class="btn-login">
+                    <button ion-button (click)="getLogin()" id="btn-login" class="btn-login" >
                     Login
                     
                     </button>
-   </div>
+                </div>
                <div (click)="showSign()">
                <div>
                     <img [src]=arrow height="30px" width="30px">
@@ -181,4 +176,8 @@
                     <button>Create Account</button>
                 </div>
             </div>
+        </div>
+        <div *ngIf="saved">
+            <page-verification></page-verification>
+        </div>
 </form>  

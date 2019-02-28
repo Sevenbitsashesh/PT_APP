@@ -9,6 +9,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/delay';
 import 'rxjs/add/operator/filter';
 import {  existingUsernameValidator } from '../../directives/existing-userid-validator/existing-userid-validator';
+import { NativeProvider } from '../../providers/native/native';
 
 
 @Component({
@@ -37,13 +38,15 @@ export class SigninComponent implements OnInit {
     ],
     'cpassword': [
       { type: 'required', message: 'Confirm Password is required'},
-      { type: 'pattern', message: 'Minimum 8 and should include at least special charater'}
+      { type: 'match', message: 'Password should match!' }
     ],
     'fname': [
-      { type: 'required', message: 'Please Enter Firstname' }
+      { type: 'required', message: 'Please Enter Firstname' },
+      {type: 'pattern', message: 'Should only include letters'},
     ],
     'lname': [
-      { type: 'required', message: 'Please Enter Lastname' }
+      { type: 'required', message: 'Please Enter Lastname' },
+      {type: 'pattern', message: 'Should only include letters'},
     ],
     'username': [
       {type: 'required', message: 'Username is required'},
@@ -51,7 +54,7 @@ export class SigninComponent implements OnInit {
       { match: 'matched', message: 'Userid Already taken!'}
     ]
   };
-  
+  saved: boolean = false;
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -68,10 +71,12 @@ export class SigninComponent implements OnInit {
         Validators.required
       ])),
       fname: new FormControl('', Validators.compose([
-        Validators.required
+        Validators.required,
+        Validators.pattern('[a-zA-Z]+')
       ])),
       lname: new FormControl('', Validators.compose([
-        Validators.required
+        Validators.required,
+        Validators.pattern('[a-zA-Z]+')
       ])),
       username: new FormControl('', Validators.compose([
         Validators.maxLength(25),
@@ -86,7 +91,7 @@ export class SigninComponent implements OnInit {
   }
   show: boolean = false;
   arrow: string = "../../assets/icon/arrowdown.new.png";
-  constructor(private authService: AuthProvider, private router: Router, private userService: UserProvider) {
+  constructor(private authService: AuthProvider, private router: Router, private userService: UserProvider, private nativeService: NativeProvider) {
     // authService.checkLogin();
     
   }
@@ -110,6 +115,7 @@ export class SigninComponent implements OnInit {
   }
   
   getLogin() {        
+
     if(navigator.onLine) {
       document.getElementById('btn-login').classList.add('btn-login-click');
       document.getElementById('btn-login').innerHTML = 'Please Wait';
@@ -120,11 +126,13 @@ export class SigninComponent implements OnInit {
       this.authService.signInEmail(credentials).subscribe(() => {
         this.msg = '';
         this.router.navigate(['/userhome']);
+
       }, (err) => {
         if(err) {
         this.msg = "Email Or Password is incorrect!";
         document.getElementById('btn-login').classList.remove('btn-login-click');
         document.getElementById('btn-login').innerHTML = 'Login';
+        
         }
       })
     }
@@ -145,26 +153,29 @@ export class SigninComponent implements OnInit {
           'user_name': this.loginForm.get('username').value,        
         };
         this.authService.signUp(model).subscribe(user => {
-          
-          if(!user.accountAlready) {
-            console.log(user.accountAlready);
-            document.getElementById('btn-signup').classList.remove('btn-login-click');
-        document.getElementById('btn-signup').innerHTML = 'Signup';
-            // this.getLogin();
+
+          if(!user.error) {                      
+            
+            this.nativeService.generateToast("Account Created","toast-success");
           }
-          
+          else {
+            this.nativeService.generateToast("Account Already Created","toast-error");
+          }
+          // this.saved = true;
+          document.getElementById('btn-signup').classList.remove('btn-login-click');
+        document.getElementById('btn-signup').innerHTML = 'Signup';
         });
-      }
-      
+      }      
     }
-  heartClick() {
-    if(document.getElementById('heart-like').classList.contains('heart-black-animate')) {
-      document.getElementById('heart-like').classList.remove('heart-black-animate');
-    }
-    else {
-      document.getElementById('heart-like').classList.add('heart-black-animate');
-    }
-  }
+    
+  // heartClick() {
+  //   if(document.getElementById('heart-like').classList.contains('heart-black-animate')) {
+  //     document.getElementById('heart-like').classList.remove('heart-black-animate');
+  //   }
+  //   else {
+  //     document.getElementById('heart-like').classList.add('heart-black-animate');
+  //   }
+  // }
 
  
 }

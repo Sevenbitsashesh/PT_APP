@@ -35,16 +35,7 @@ import { StorageProvider } from '../providers/storage/storage';
 import { UserProvider } from '../providers/user/user';
 import { AuthguardProvider } from '../providers/authguard/authguard';
 import { TweetProvider } from '../providers/tweet/tweet';
-
-
-
-
-
-
-
-
-
-
+import { NativeProvider } from '../providers/native/native';
 
 
 @NgModule({
@@ -86,7 +77,8 @@ import { TweetProvider } from '../providers/tweet/tweet';
     StorageProvider,
     UserProvider,
     AuthguardProvider,
-    TweetProvider
+    TweetProvider,
+    NativeProvider
   ]
 })
 export class AppModule {}
