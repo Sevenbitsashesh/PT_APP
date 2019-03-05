@@ -4,7 +4,7 @@
              <!-- <ion-title>@{{username}}</ion-title> -->
              
              <span style="font-size:30px;cursor:pointer" (click)="openNav()">&#9776;</span>
-             <div class="divNoti">
+             <div class="divNoti"  (click)="clickNotification()" id="notificationDiv">
                 
                         <div class="lbl-notification">
                                 1
@@ -15,6 +15,7 @@
                       
            </ion-toolbar>
          </ion-header>
+         
          <div id="mySidenav" class="sidenav">
           <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
           
@@ -31,16 +32,41 @@
           <button ion-button>Logout <img src="../../assets/icon/logout.svg" class="img-logout" (click)="logout()"></button>
         </div>
 <ion-content padding class="contentMain" (click)="clickedContent()">
-                
+  <div class="noti-slider-bar">
+    <ion-label>
+      Notification1
+    </ion-label>
+    <ion-label>
+      Notification2
+    </ion-label>
+    <ion-label>
+      Notification1
+    </ion-label>
+    <ion-label>
+      Notification2
+    </ion-label>
+    <ion-label>
+      Notification1
+    </ion-label>
+    <ion-label>
+      Notification2
+    </ion-label>
+    <ion-label>
+      Notification1
+    </ion-label>
+    <ion-label>
+      Notification2
+    </ion-label>
+ </div>
                       <!-- <loader></loader>         -->
-        <ion-refresher (ionRefresh)="doRefresh($event)">
+        <!-- <ion-refresher (ionRefresh)="doRefresh($event)">
                 <ion-refresher-content
                 pullingIcon="arrow-dropdown"
                 pullingText="Pull to refresh"
                 refreshingSpinner="circles"
                 refreshingText="Refreshing...">
               </ion-refresher-content>
-            </ion-refresher>
+            </ion-refresher> -->
     <!-- <create-tweet></create-tweet>
     <tweetslist></tweetslist> -->
     

@@ -16,7 +16,6 @@ import { NativeProvider } from '../../providers/native/native';
   selector: 'signin',
   templateUrl: 'signin.html',
   animations: [
-
   ]
 })
 
@@ -125,6 +124,7 @@ export class SigninComponent implements OnInit {
       }
       this.authService.signInEmail(credentials).subscribe(() => {
         this.msg = '';
+        this.nativeService.generateNoti('Welcome '+credentials.email);
         this.router.navigate(['/userhome']);
 
       }, (err) => {

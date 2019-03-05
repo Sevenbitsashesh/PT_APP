@@ -8,6 +8,7 @@ import { UserProvider } from '../../providers/user/user';
 import { take } from 'rxjs/operators';
 import { DataProvider } from '../../providers/data/data';
 
+
 @IonicPage()
 @Component({
   selector: 'page-tab-home',
@@ -18,6 +19,7 @@ export class TabHomePage implements OnInit {
   userInfo: UserInfo;
   authDetails: TokenPayload;
     currentUserSubscription: Subscription;    
+    
   constructor(private authService: AuthProvider, private userService: UserProvider, private dataService: DataProvider) {
     this.userInfo = this.dataService.u;
   // dataService.userInfoObs.subscribe(u => {
@@ -78,5 +80,9 @@ logout() {
   this.authService.logout().then(() => {
     console.log('Logged out Success');
   });
+}
+clickNotification() {
+  document.getElementById('notificationDiv').classList.add('click-not-slider-bar');
+  console.log('notification');
 }
 }

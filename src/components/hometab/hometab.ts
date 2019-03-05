@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
   templateUrl: 'hometab.html'
 })
 export class HometabComponent {
+  
   constructor(private router: Router) {
     // console.log('Hello HometabComponent Component');
   }

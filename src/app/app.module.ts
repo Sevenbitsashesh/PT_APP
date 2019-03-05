@@ -36,7 +36,7 @@ import { UserProvider } from '../providers/user/user';
 import { AuthguardProvider } from '../providers/authguard/authguard';
 import { TweetProvider } from '../providers/tweet/tweet';
 import { NativeProvider } from '../providers/native/native';
-
+import { LocalNotifications } from '@ionic-native/local-notifications/index';
 
 @NgModule({
   declarations: [
@@ -78,7 +78,8 @@ import { NativeProvider } from '../providers/native/native';
     UserProvider,
     AuthguardProvider,
     TweetProvider,
-    NativeProvider
+    NativeProvider,
+    LocalNotifications
   ]
 })
 export class AppModule {}
