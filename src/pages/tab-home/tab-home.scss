@@ -34,7 +34,7 @@
     top:0px;
     color:rebeccapurple;
     border-radius: 20px;
-    background: rosybrown;
+    // background: rosybrown;
 }
 
 .iconNotification {
@@ -97,13 +97,19 @@
     width: 100%;
 }
 .noti-slider-bar {
-    height: auto;
+    height: 0px;
     width: 50%;
     background: royalblue;
     float: right;
-    visibility: hidden;
+    // visibility: hidden;
+    transition: 0.5s;
+    position: absolute;
+    top: 0%;
+    right: 0%;
+    border-radius: 20px;
+    overflow: hidden;
 }
 .click-not-slider-bar {
-    visibility: visible;
-    
+    height: 300px;
+    // visibility: hidden;    
 }

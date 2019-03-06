@@ -4,7 +4,7 @@
              <!-- <ion-title>@{{username}}</ion-title> -->
              
              <span style="font-size:30px;cursor:pointer" (click)="openNav()">&#9776;</span>
-             <div class="divNoti"  (click)="clickNotification()" id="notificationDiv">
+             <div class="divNoti"  (click)="clickNotification()" >
                 
                         <div class="lbl-notification">
                                 1
@@ -32,31 +32,15 @@
           <button ion-button>Logout <img src="../../assets/icon/logout.svg" class="img-logout" (click)="logout()"></button>
         </div>
 <ion-content padding class="contentMain" (click)="clickedContent()">
-  <div class="noti-slider-bar">
-    <ion-label>
-      Notification1
-    </ion-label>
-    <ion-label>
-      Notification2
-    </ion-label>
-    <ion-label>
-      Notification1
-    </ion-label>
-    <ion-label>
-      Notification2
-    </ion-label>
-    <ion-label>
-      Notification1
-    </ion-label>
-    <ion-label>
-      Notification2
-    </ion-label>
-    <ion-label>
-      Notification1
-    </ion-label>
-    <ion-label>
-      Notification2
-    </ion-label>
+  <div class="noti-slider-bar" id="notificationDiv">
+    <ul id="list">
+      <!-- Create a bunch, or not a bunch, of li's to see the timing. -->
+      <li>item</li>
+      <li>item</li>
+      <li>item</li>
+      <li>item</li>
+      <li>item</li>
+  </ul>
  </div>
                       <!-- <loader></loader>         -->
         <!-- <ion-refresher (ionRefresh)="doRefresh($event)">

@@ -37,6 +37,8 @@ import { AuthguardProvider } from '../providers/authguard/authguard';
 import { TweetProvider } from '../providers/tweet/tweet';
 import { NativeProvider } from '../providers/native/native';
 import { LocalNotifications } from '@ionic-native/local-notifications/index';
+import { PassportProvider } from '../providers/passport/passport';
+import { Facebook } from '@ionic-native/facebook/ngx';
 
 @NgModule({
   declarations: [
@@ -79,7 +81,9 @@ import { LocalNotifications } from '@ionic-native/local-notifications/index';
     AuthguardProvider,
     TweetProvider,
     NativeProvider,
-    LocalNotifications
+    LocalNotifications,
+    PassportProvider,
+    Facebook
   ]
 })
 export class AppModule {}

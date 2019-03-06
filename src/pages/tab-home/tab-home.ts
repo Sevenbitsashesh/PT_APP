@@ -61,6 +61,7 @@ doRefresh(event) {
   },3000)
 }
 openNav() {
+  document.getElementById('notificationDiv').classList.remove('click-not-slider-bar');
   let width = document.getElementById("mySidenav").style.width;
   if(width === '50%') {
     document.getElementById("mySidenav").style.width = '0%';
@@ -75,6 +76,7 @@ closeNav() {
 }
 clickedContent() {
   document.getElementById("mySidenav").style.width = '0%';
+  document.getElementById('notificationDiv').classList.remove('click-not-slider-bar');
 }
 logout() {
   this.authService.logout().then(() => {
@@ -82,7 +84,13 @@ logout() {
   });
 }
 clickNotification() {
-  document.getElementById('notificationDiv').classList.add('click-not-slider-bar');
-  console.log('notification');
+  document.getElementById("mySidenav").style.width = '0%';
+  if(document.getElementById('notificationDiv').classList.contains('click-not-slider-bar')) {
+    document.getElementById('notificationDiv').classList.remove('click-not-slider-bar');
+  }
+  else {
+    document.getElementById('notificationDiv').classList.add('click-not-slider-bar');
+  }
+  
 }
 }

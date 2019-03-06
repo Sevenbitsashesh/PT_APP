@@ -10,6 +10,7 @@ import 'rxjs/add/operator/delay';
 import 'rxjs/add/operator/filter';
 import {  existingUsernameValidator } from '../../directives/existing-userid-validator/existing-userid-validator';
 import { NativeProvider } from '../../providers/native/native';
+import { PassportProvider } from '../../providers/passport/passport';
 
 
 @Component({
@@ -90,9 +91,10 @@ export class SigninComponent implements OnInit {
   }
   show: boolean = false;
   arrow: string = "../../assets/icon/arrowdown.new.png";
-  constructor(private authService: AuthProvider, private router: Router, private userService: UserProvider, private nativeService: NativeProvider) {
+  eyeIcon = "eye";
+  showPassword: boolean = false;
+  constructor(private authService: AuthProvider, private router: Router, private userService: UserProvider, private nativeService: NativeProvider, private passport: PassportProvider) {
     // authService.checkLogin();
-    
   }
   showSign() {
     
@@ -137,7 +139,8 @@ export class SigninComponent implements OnInit {
       })
     }
    else {
-     this.msg = "Please Connect to Internet";
+     this.nativeService.generateToast('Please Connect to Internet','');
+     
    }
     }
     getSignup() {
@@ -167,7 +170,17 @@ export class SigninComponent implements OnInit {
         });
       }      
     }
-    
+    showHide() {
+      if(this.showPassword) {
+        this.showPassword = false;
+        this.eyeIcon = 'eye-off';
+      }
+      else {
+        this.showPassword = true;
+        this.eyeIcon = 'eye';
+      }
+    }
+
   // heartClick() {
   //   if(document.getElementById('heart-like').classList.contains('heart-black-animate')) {
   //     document.getElementById('heart-like').classList.remove('heart-black-animate');
@@ -177,5 +190,10 @@ export class SigninComponent implements OnInit {
   //   }
   // }
 
- 
+ loginGoogle() {
+  // this.passport.loginGoogle()   
+ }
+ loginFacebook() {
+   this.passport.loginFacebook();
+ }
 }
