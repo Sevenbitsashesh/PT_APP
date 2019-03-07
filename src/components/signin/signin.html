@@ -179,24 +179,10 @@
                     <button>Create Account</button>
                 </div>
             </div>
-            <!-- <div>
-                <button class="btn-login"><ion-icon name="logo-facebook" class="login-social"></ion-icon></button>
-                
-            </div>
-            <div>
-                <button class="btn-login"><ion-icon name="logo-google" class="login-social"></ion-icon></button>
-            </div> -->
+            
         </div>
         <div *ngIf="saved">
             <page-verification></page-verification>
         </div>
-        <ion-fab right bottom>
-            <button ion-fab color="light"><ion-icon name="arrow-dropleft"></ion-icon></button>
-            <ion-fab-list side="left">
-              <button ion-fab (click)="loginFacebook()"><ion-icon name="logo-facebook" class="logo-facebook"></ion-icon></button>
-              <button ion-fab><ion-icon name="logo-twitter" class="logo-twitter"></ion-icon></button>
-              <!-- <button ion-fab><ion-icon name="logo-vimeo"></ion-icon></button> -->
-              <button ion-fab (click)="loginGoogle()"><ion-icon name="logo-googleplus" class="logo-googleplus"></ion-icon></button>
-            </ion-fab-list>
-          </ion-fab>
+        
 </form>  

@@ -8,8 +8,8 @@ export class PassportProvider {
   constructor(public http: HttpClient, private fb: Facebook) {
     
   }
-  loginFacebook() {
-    this.fb.login(['public_profile']).then((res: FacebookLoginResponse) => {
+  loginFacebook() : Promise<any> {
+    return this.fb.login(['public_profile']).then((res: FacebookLoginResponse) => {
       console.log(res.status);
     }).catch(err => {
       console.log(err);

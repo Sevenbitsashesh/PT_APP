@@ -22,6 +22,7 @@ export class TabHomePage implements OnInit {
     
   constructor(private authService: AuthProvider, private userService: UserProvider, private dataService: DataProvider) {
     this.userInfo = this.dataService.u;
+    
   // dataService.userInfoObs.subscribe(u => {
   //   this.userInfo = [];
     
@@ -63,11 +64,11 @@ doRefresh(event) {
 openNav() {
   document.getElementById('notificationDiv').classList.remove('click-not-slider-bar');
   let width = document.getElementById("mySidenav").style.width;
-  if(width === '50%') {
+  if(width === '100%') {
     document.getElementById("mySidenav").style.width = '0%';
   }
   else {
-    document.getElementById("mySidenav").style.width = '50%';
+    document.getElementById("mySidenav").style.width = '100%';
   }  
 }
 closeNav() {

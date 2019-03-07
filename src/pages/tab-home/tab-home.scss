@@ -56,9 +56,13 @@
     transition: 0.5s;
     padding-top: 60px;
     bottom: 0%;
-    background-image: url('../../assets/imgs/profile-background.png');
+    // background-image: url('../../assets/imgs/sidebar_background.jpg');
+    // background-repeat: repeat;
+    background-color: rgb(42, 187, 156);
+
     overflow: scroll;
-    
+    opacity: 0.8;
+  filter: alpha(opacity=100); 
 }
 .sidenav .closebtn {
     position: absolute;
@@ -112,4 +116,8 @@
 .click-not-slider-bar {
     height: 300px;
     // visibility: hidden;    
+}
+.sidemenu-main {
+    position: relative;
+    top:20%;
 }

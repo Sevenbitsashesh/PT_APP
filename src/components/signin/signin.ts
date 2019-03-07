@@ -194,6 +194,8 @@ export class SigninComponent implements OnInit {
   // this.passport.loginGoogle()   
  }
  loginFacebook() {
-   this.passport.loginFacebook();
+   this.passport.loginFacebook().then(res => {
+     console.log('loggedin');
+   });
  }
 }

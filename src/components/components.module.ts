@@ -17,6 +17,7 @@ import { FeedsComponent } from './feeds/feeds';
 import { LoaderComponent } from './loader/loader';
 import { VerificationPageModule } from '../pages/verification/verification.module';
 import { VerificationPage } from '../pages/verification/verification';
+import { SidemenuComponent } from './sidemenu/sidemenu';
 
 
 
@@ -33,7 +34,8 @@ import { VerificationPage } from '../pages/verification/verification';
     SigninComponent,
     SignupComponent,
     FeedsComponent,
-    LoaderComponent, VerificationPage],
+    LoaderComponent, VerificationPage,
+    SidemenuComponent],
 	imports: [ IonicModule, CommonModule, RouterModule, VerificationPageModule	],
 	exports: [FirstComponent,
 	LoginComponent,
@@ -44,7 +46,8 @@ import { VerificationPage } from '../pages/verification/verification';
     SigninComponent,
     SignupComponent,
     FeedsComponent,
-    LoaderComponent],
+    LoaderComponent,
+    SidemenuComponent],
     entryComponents: [LoginComponent, FirstComponent, ProfileComponent],
     
 })

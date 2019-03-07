@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { API_URL,LOCAL_API_URL } from '../../Models/api_url';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, share } from 'rxjs/operators';
 
 
 
@@ -67,7 +67,7 @@ this.currentUserSubject = new BehaviorSubject<UserDetails>(JSON.parse(localStora
     let base;
 // console.log(user,type,method);
     if (method === 'post') {
-      base = this.http.post( API_URL+'users/'+type,user,{headers: {'Content-Type': 'application/json','Accept': 'application/json','Authorization': 'Basic Og=='}});
+      base = this.http.post( API_URL+'users/'+type,user,{headers: {'Content-Type': 'application/json','Accept': 'application/json','Authorization': 'Basic Og=='}}).pipe(share());
     } else {
       base = this.http.get(`/users/${type}`, { headers: { Authorization: `Bearer ${this.getToken()}` }});
     }
@@ -122,8 +122,7 @@ this.currentUserSubject = new BehaviorSubject<UserDetails>(JSON.parse(localStora
       this.token = '';
       window.localStorage.removeItem('swaUser');
       this.router.navigateByUrl('/login');
-    })
-    
+    })    
   }
   
 }

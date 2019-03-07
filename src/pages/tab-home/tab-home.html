@@ -17,19 +17,21 @@
          </ion-header>
          
          <div id="mySidenav" class="sidenav">
-          <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
-          
-          <div class="sidebar-profile-div">
-                <!-- <label>{{currentUser.fname}}</label> -->
-                <img src="../../assets/imgs/icon.png"  class="sidebar-profile-img"/>
+          <div>
+            <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
           </div>
-          <button ion-button>Home</button>
-          <button ion-button>Search</button>
-          <button ion-button>Profile</button>
-          <button ion-button>My Sales</button>
-          <button ion-button>NewsFeed</button>
-          <button ion-button>Settings</button>
-          <button ion-button>Logout <img src="../../assets/icon/logout.svg" class="img-logout" (click)="logout()"></button>
+        
+         <div class="sidemenu-main">
+          <sidemenu></sidemenu>
+         </div>
+          
+          
+          <!-- <button ion-button>Search</button> -->
+          <!-- <button ion-button>Profile</button> -->
+          <!-- <button ion-button>My Sales</button> -->
+          <!-- <button ion-button>NewsFeed</button> -->
+          <!-- <button ion-button>Settings</button> -->
+          <!-- <button ion-button>Logout <img src="../../assets/icon/logout.svg" class="img-logout" (click)="logout()"></button> -->
         </div>
 <ion-content padding class="contentMain" (click)="clickedContent()">
   <div class="noti-slider-bar" id="notificationDiv">

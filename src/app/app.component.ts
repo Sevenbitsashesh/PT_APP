@@ -22,7 +22,7 @@ export class MyApp {
     this.route.navigate(['/home']);
     platform.ready().then(() => {
       statusBar.show();
-       
+       statusBar.backgroundColorByHexString('#2abb9c');
       splashScreen.hide();
     });
   }
