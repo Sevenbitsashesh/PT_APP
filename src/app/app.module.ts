@@ -38,8 +38,8 @@ import { TweetProvider } from '../providers/tweet/tweet';
 import { NativeProvider } from '../providers/native/native';
 import { LocalNotifications } from '@ionic-native/local-notifications/index';
 import { PassportProvider } from '../providers/passport/passport';
-import { Facebook } from '@ionic-native/facebook/ngx';
-
+import { Facebook } from '@ionic-native/facebook';
+import { AdMobFree } from '@ionic-native/admob-free';
 @NgModule({
   declarations: [
     MyApp,
@@ -83,7 +83,8 @@ import { Facebook } from '@ionic-native/facebook/ngx';
     NativeProvider,
     LocalNotifications,
     PassportProvider,
-    Facebook
+    Facebook,
+    AdMobFree
   ]
 })
 export class AppModule {}

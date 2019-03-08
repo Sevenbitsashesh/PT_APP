@@ -18,6 +18,7 @@ import { LoaderComponent } from './loader/loader';
 import { VerificationPageModule } from '../pages/verification/verification.module';
 import { VerificationPage } from '../pages/verification/verification';
 import { SidemenuComponent } from './sidemenu/sidemenu';
+import { SocialLoginComponent } from './social-login/social-login';
 
 
 
@@ -35,7 +36,8 @@ import { SidemenuComponent } from './sidemenu/sidemenu';
     SignupComponent,
     FeedsComponent,
     LoaderComponent, VerificationPage,
-    SidemenuComponent],
+    SidemenuComponent,
+    SocialLoginComponent],
 	imports: [ IonicModule, CommonModule, RouterModule, VerificationPageModule	],
 	exports: [FirstComponent,
 	LoginComponent,
@@ -47,7 +49,8 @@ import { SidemenuComponent } from './sidemenu/sidemenu';
     SignupComponent,
     FeedsComponent,
     LoaderComponent,
-    SidemenuComponent],
+    SidemenuComponent,
+    SocialLoginComponent],
     entryComponents: [LoginComponent, FirstComponent, ProfileComponent],
     
 })

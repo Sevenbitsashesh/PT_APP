@@ -7,6 +7,7 @@ import { Subscription, Observable,  } from 'rxjs';
 import { UserProvider } from '../../providers/user/user';
 import { take } from 'rxjs/operators';
 import { DataProvider } from '../../providers/data/data';
+import { AdMobFree, AdMobFreeBannerConfig, AdMobFreeInterstitialConfig } from '@ionic-native/admob-free';
 
 
 @IonicPage()
@@ -20,9 +21,10 @@ export class TabHomePage implements OnInit {
   authDetails: TokenPayload;
     currentUserSubscription: Subscription;    
     
-  constructor(private authService: AuthProvider, private userService: UserProvider, private dataService: DataProvider) {
+  constructor(private authService: AuthProvider, private userService: UserProvider, private dataService: DataProvider, private adMob: AdMobFree) {
     this.userInfo = this.dataService.u;
-    
+    // this.showBanner();
+    this.launchInterstitial();
   // dataService.userInfoObs.subscribe(u => {
   //   this.userInfo = [];
     
@@ -93,5 +95,35 @@ clickNotification() {
     document.getElementById('notificationDiv').classList.add('click-not-slider-bar');
   }
   
+}
+showBanner() {
+
+  let bannerConfig: AdMobFreeBannerConfig = {
+      isTesting: true, // Remove in production
+      autoShow: true
+      //id: Your Ad Unit ID goes here
+  };
+
+  this.adMob.banner.config(bannerConfig);
+
+  this.adMob.banner.prepare().then(() => {
+      // success
+  }).catch(e => console.log(e));
+
+}
+launchInterstitial() {
+
+  // let interstitialConfig: AdMobFreeInterstitialConfig = {
+  //     isTesting: true, // Remove in production
+  //     autoShow: true
+  //     //id: Your Ad Unit ID goes here
+  // }; 
+
+  // this.adMob.interstitial.config(interstitialConfig);
+
+  // this.adMob.interstitial.prepare().then(() => {
+  //     // success
+  // });
+
 }
 }

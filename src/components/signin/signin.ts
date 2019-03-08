@@ -93,7 +93,7 @@ export class SigninComponent implements OnInit {
   arrow: string = "../../assets/icon/arrowdown.new.png";
   eyeIcon = "eye";
   showPassword: boolean = false;
-  constructor(private authService: AuthProvider, private router: Router, private userService: UserProvider, private nativeService: NativeProvider, private passport: PassportProvider) {
+  constructor(private authService: AuthProvider, private router: Router, private userService: UserProvider, private nativeService: NativeProvider) {
     // authService.checkLogin();
   }
   showSign() {
@@ -190,12 +190,6 @@ export class SigninComponent implements OnInit {
   //   }
   // }
 
- loginGoogle() {
-  // this.passport.loginGoogle()   
- }
- loginFacebook() {
-   this.passport.loginFacebook().then(res => {
-     console.log('loggedin');
-   });
- }
+ 
+ 
 }

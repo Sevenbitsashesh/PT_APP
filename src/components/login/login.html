@@ -5,7 +5,13 @@
 </ion-header> -->
 
    <ion-content align="center" class="LoginContent">
-    <signin></signin>
+     <div *ngIf="!socialLogin">
+        <signin></signin>
+     </div>
+     <div *ngIf="socialLogin">
+        <social-login [user]=user></social-login>
+     </div>
+    
         <!-- <ion-segment [(ngModel)]="login" color="primary">
                 <ion-segment-button value="signin">
                   Sign In
@@ -14,14 +20,13 @@
                   Sign Up
                 </ion-segment-button>
               </ion-segment>
-              <div [ngSwitch]="login">
-                    
-              <signin *ngSwitchCase="'signin'"></signin>
-                
-                        <signup *ngSwitchCase="'signup'"></signup>
-                
+              <div [ngSwitch]="login">                    
+              <signin *ngSwitchCase="'signin'"></signin>                
+                        <signup *ngSwitchCase="'signup'"></signup>                
             </div> -->
             
+       
+
    </ion-content>
    <ion-fab right bottom>
     <button ion-fab color="light"><ion-icon name="arrow-dropleft"></ion-icon></button>

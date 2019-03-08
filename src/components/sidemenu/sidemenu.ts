@@ -10,5 +10,7 @@ export class SidemenuComponent {
   constructor() {
 
   }
-
+  navHome() {
+    document.getElementById("mySidenav").style.width = '0%';
+  }
 }

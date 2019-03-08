@@ -1,20 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook/ngx';
+import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 @Injectable()
 export class PassportProvider {
 
   constructor(public http: HttpClient, private fb: Facebook) {
     
   }
-  loginFacebook() : Promise<any> {
-    return this.fb.login(['public_profile']).then((res: FacebookLoginResponse) => {
-      console.log(res.status);
-    }).catch(err => {
-      console.log(err);
-    });  
-  }
+  
   
   }
 

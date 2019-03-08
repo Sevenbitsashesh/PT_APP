@@ -4,17 +4,22 @@ import { Router } from '@angular/router';
 import { API_URL,LOCAL_API_URL } from '../../Models/api_url';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { map, share } from 'rxjs/operators';
+import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 
 
 
-
+export class SocialUser {
+  token: string;
+  expires?: number;
+  session_key?: boolean;
+  userid?: string;
+}
 export class UserDetails  {
   email: string;
   token: string;
   user_name?: string;
   fname?: string;
-  lname?: string;
-  
+  lname?: string;  
 };
 export interface TokenResponse {
 token: string;
@@ -31,7 +36,7 @@ export class AuthProvider {
   private token: string;
   currentUserSubject: BehaviorSubject<UserDetails>;
   public currentUser: Observable<UserDetails>;
-  constructor(private router: Router, private http: HttpClient) {
+  constructor(private router: Router, private http: HttpClient, private fb: Facebook) {
     
     if(localStorage.getItem('swaUser')) {
 this.currentUserSubject = new BehaviorSubject<UserDetails>(JSON.parse(localStorage.getItem('swaUser')));
@@ -41,7 +46,7 @@ this.currentUserSubject = new BehaviorSubject<UserDetails>(JSON.parse(localStora
   }
   public get currentUserValue(): UserDetails {
     return this.currentUserSubject.value;
-}
+  }
   private saveToken(user: UserDetails): void {
     localStorage.setItem('swaUser',JSON.stringify(user));
     
@@ -124,5 +129,24 @@ this.currentUserSubject = new BehaviorSubject<UserDetails>(JSON.parse(localStora
       this.router.navigateByUrl('/login');
     })    
   }
-  
+  loginFacebook() : Promise<any> {
+    let permissions = ["public_profile", "email"];
+    return this.fb.login(permissions).then((res: FacebookLoginResponse) => {
+      let userId = res.authResponse.userID;      
+      this.fb.api('/me?fields=first_name,last_name,email',permissions).then(user => {        
+      })      
+    }).catch(err => {
+      console.log(err);
+    });  
+  }
+  // loginFacebook() : Promise<any> {
+  //   let permissions = ["public_profile", "email"];
+  //   return this.fb.login(permissions).then((res: FacebookLoginResponse) => {
+  //     let userId = res.authResponse.userID;      
+  //     this.fb.api('/me?fields=first_name,last_name,email',permissions).then(user => {        
+  //     })      
+  //   }).catch(err => {
+  //     console.log(err);
+  //   });  
+  // }
 }
