@@ -123,6 +123,7 @@ export class SigninComponent implements OnInit {
      const credentials = {
         email: this.loginForm.get('email').value,
         password: this.loginForm.get('pass').value
+        
       }
       this.authService.signInEmail(credentials).subscribe(() => {
         this.msg = '';

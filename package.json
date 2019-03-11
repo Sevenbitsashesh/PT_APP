@@ -88,8 +88,8 @@
       "cordova-plugin-facebook4": {
         "APP_ID": "277578012918557",
         "APP_NAME": "SocialWebAuth2",
-        "FACEBOOK_HYBRID_APP_EVENTS": "false",
-        "FACEBOOK_ANDROID_SDK_VERSION": "4.40.0"
+        "FACEBOOK_HYBRID_APP_EVENTS": "true",
+        "FACEBOOK_ANDROID_SDK_VERSION": "3.20"
       },
       "cordova-plugin-admob-free": {
         "ADMOB_APP_ID": "ca-app-pub-1123706511056248~6344373073"

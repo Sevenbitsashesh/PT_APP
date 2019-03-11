@@ -130,14 +130,16 @@ this.currentUserSubject = new BehaviorSubject<UserDetails>(JSON.parse(localStora
     })    
   }
   loginFacebook() : Promise<any> {
-    let permissions = ["public_profile", "email"];
-    return this.fb.login(permissions).then((res: FacebookLoginResponse) => {
-      let userId = res.authResponse.userID;      
-      this.fb.api('/me?fields=first_name,last_name,email',permissions).then(user => {        
-      })      
-    }).catch(err => {
-      console.log(err);
-    });  
+    
+    let permissions = ["public_profile", "email","user_gender"];
+      // this.fb.api('/me?fields=first_name,last_name,email,user_gender',permissions).then(user => {        
+      //   console.log(user);
+      // })   
+    return this.fb.login(permissions);
+  }
+  getFbData() {
+    let permissions = ["public_profile", "email","user_gender"];
+    return this.fb.api('/me?fields=first_name,last_name,email,gender',permissions);
   }
   // loginFacebook() : Promise<any> {
   //   let permissions = ["public_profile", "email"];
