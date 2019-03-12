@@ -67,10 +67,10 @@ export class ProfileComponent {
   constructor(private formBuilder: FormBuilder, private imageService: ImageProvider, private dataService: DataProvider,private authService: AuthProvider, private userService: UserProvider, private cd: ChangeDetectorRef) {
     // document.addEventListener('touchstart', this.handler, {capture: true});
     this.userModel =  dataService.u;
-    // this.userDetail = dataService.
+    console.log(this.userModel);
    
     this.myForm = formBuilder.group({
-      username: new FormControl(this.userModel.display_name, Validators.compose([
+      username: new FormControl(this.userModel.user_name, Validators.compose([
         Validators.maxLength(25),
         Validators.minLength(5),
         Validators.pattern('^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]+$'),

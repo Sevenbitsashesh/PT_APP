@@ -27,7 +27,7 @@ export class UserInfo  {
     address: string;
     bio: string;
     cover_image: string;
-    display_name: string;
+    user_name: string;
     dob: Date;
     id: string;
     interests: string;

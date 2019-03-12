@@ -32,7 +32,8 @@ export class UserProvider {
     'Content-Type' : 'application/json'}});
   }
   getUserInfoById(userid): Observable<any> {
-    return this.http.post(API_URL+'users/getuserinfobyid',{userid: userid},{headers: {'Content-Type': 'application/json','Accept': 'application/json','Authorization': 'Basic Og=='}});
+    
+    return this.http.post(API_URL+'users/getuserinfobyid',{'userid': userid},{headers: {'Content-Type': 'application/json','Accept': 'application/json','Authorization': 'Basic Og=='}});
   }
   // registerUserInfo(model): Observable<any> {
   //   // return this.http.post()

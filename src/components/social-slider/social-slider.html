@@ -1,0 +1,18 @@
+<form>
+<div *ngIf="slides === 1">
+  <ion-label>Set a Username</ion-label>
+  <div>
+      <img src="../../assets/icon/friends.svg" height="50%" width="30%">
+  </div>
+  <input ion-input type="text" placeholder="Display Name"/>
+  <div> <button ion-button (click)="nextSlide()">Next</button></div>
+</div>
+<div *ngIf="slides === 2">
+<ion-label>Slide 2</ion-label>
+<div> <button ion-button (click)="nextSlide()">Next</button></div>
+</div>
+<div *ngIf="slides === 3">
+    <ion-label>Slide 3</ion-label>
+  <div> <button ion-button (click)="nextSlide()">Start</button></div>
+</div>
+</form>
