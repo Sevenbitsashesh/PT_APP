@@ -9,7 +9,7 @@
         <signin></signin>
      </div>
      <div *ngIf="!socialLogin">
-        <social-login></social-login>
+        <social-login [user]=socialUser></social-login>
      </div>
     
         <!-- <ion-segment [(ngModel)]="login" color="primary">

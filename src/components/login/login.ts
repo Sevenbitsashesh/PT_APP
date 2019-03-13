@@ -5,7 +5,12 @@ import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 import { UserProvider } from '../../providers/user/user';
 import { Router } from '@angular/router';
 import { Modal } from 'ionic-angular';
-
+export class SocialUser {
+  first_name: string;
+  last_name: string;
+  email: string;
+  gender: string
+}
 
 
 @Component({
@@ -19,7 +24,7 @@ export class LoginComponent {
   
   login;
   socialLogin:boolean = true;
-  // socialUser: SocialUser;
+  socialUser: SocialUser;
 
   constructor(private authService: AuthProvider, private userService: UserProvider) {    
     authService.checkLogin();
@@ -32,15 +37,17 @@ export class LoginComponent {
         let userId = res.authResponse.userID;  
         this.userService.getUserInfoById(userId).subscribe(social => {
           console.log(social);
+          // If Facebook account Already create
           if(social.message !== "Not found") {
               this.authService.getFbData().then(u => {
-                console.log(u);
+                console.log(u);                                                
               })
           }
-          // else if(social.message === "Not found") {
-          //     // console.log('Acccount is not exist');
-          //     this.socialLogin = true;
-          // }
+          // If Facebook account not created
+          else if(social.message === "Not found") {
+              // console.log('Acccount is not exist');
+              this.socialLogin = false;
+          }
         })
       }).catch(err => {
         console.log(err);

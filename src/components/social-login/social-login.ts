@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-// import { SocialUser } from '../../components/login/login';
+import { SocialUser } from '../../components/login/login';
 
 
 @Component({
@@ -7,9 +7,9 @@ import { Component, Input } from '@angular/core';
   templateUrl: 'social-login.html'
 })
 export class SocialLoginComponent {
-  // @Input() user: SocialUser;
+  @Input() user: SocialUser;
   constructor() {
-    // console.log(this.user);
+    console.log(this.user);
   }
 
 }

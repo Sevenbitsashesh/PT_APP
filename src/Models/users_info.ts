@@ -35,6 +35,7 @@ export class UserInfo  {
     profile_pic: string;
     userid: string;
     website: string;
+    socialUser: boolean
 }
 export interface TokenResponse {
 token: string;

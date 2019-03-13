@@ -154,7 +154,8 @@ export class SigninComponent implements OnInit {
           'email': this.loginForm.get('email').value,
           'password': this.loginForm.get('pass').value,
           'cpassword': this.loginForm.get('cpass').value,
-          'user_name': this.loginForm.get('username').value,        
+          'user_name': this.loginForm.get('username').value,
+          'socialUser': false        
         };
         this.authService.signUp(model).subscribe(user => {
 

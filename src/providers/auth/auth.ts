@@ -68,7 +68,7 @@ this.currentUserSubject = new BehaviorSubject<UserDetails>(JSON.parse(localStora
     return this.request("post","register",cred);
    
   }
-  private request(method: 'post'|'get', type: 'authenticate'|'register'|'profile', user?: TokenPayload): Observable<any> {
+  private request(method: 'post'|'get', type: 'authenticate'|'register'|'profile', user): Observable<any> {
     let base;
 // console.log(user,type,method);
     if (method === 'post') {
