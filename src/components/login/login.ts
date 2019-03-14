@@ -26,7 +26,7 @@ export class LoginComponent {
   socialLogin:boolean = true;
   socialUser: SocialUser;
 
-  constructor(private authService: AuthProvider, private userService: UserProvider) {    
+  constructor(private authService: AuthProvider, private userService: UserProvider, private router: Router) {    
     authService.checkLogin();
     this.login = "signin";
     
@@ -41,11 +41,17 @@ export class LoginComponent {
           if(social.message !== "Not found") {
               this.authService.getFbData().then(u => {
                 console.log(u);                                                
+                this.authService.signInSocial(u).subscribe(() => {
+                    this.router.navigate(['/userhome'])
+                },(err) => {
+                  console.log('Error Login',err)
+                });
               })
           }
           // If Facebook account not created
           else if(social.message === "Not found") {
-              // console.log('Acccount is not exist');
+              console.log('Acccount is not exist');
+              
               this.socialLogin = false;
           }
         })

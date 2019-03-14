@@ -66,9 +66,12 @@ this.currentUserSubject = new BehaviorSubject<UserDetails>(JSON.parse(localStora
   signUp(cred) {
     // console.log(cred);
     return this.request("post","register",cred);
-   
   }
-  private request(method: 'post'|'get', type: 'authenticate'|'register'|'profile', user): Observable<any> {
+  signInSocial(cred) {
+    console.log('mycred',cred)
+    return this.request('post','socialauthenticate',cred);
+  }
+  private request(method: 'post'|'get', type: 'authenticate'|'register'|'profile'|'socialauthenticate', user): Observable<any> {
     let base;
 // console.log(user,type,method);
     if (method === 'post') {
@@ -119,7 +122,7 @@ this.currentUserSubject = new BehaviorSubject<UserDetails>(JSON.parse(localStora
       this.router.navigate(['/userhome']);
     }
     else
-    this.router.navigate(['/login']);
+      this.router.navigate(['/login']);
   }
   logout(): Promise<any> {
     // console.log(this.token);
