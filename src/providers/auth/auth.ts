@@ -55,7 +55,6 @@ this.currentUserSubject = new BehaviorSubject<UserDetails>(JSON.parse(localStora
   private getToken(): string {
     if (localStorage.getItem('swaUser')) {
       this.token = JSON.parse(localStorage.getItem('swaUser')).token;
-      
     }
     return this.token;
   }
@@ -68,21 +67,22 @@ this.currentUserSubject = new BehaviorSubject<UserDetails>(JSON.parse(localStora
     return this.request("post","register",cred);
   }
   signInSocial(cred) {
-    console.log('mycred',cred)
+    // console.log('mycred',cred)
     return this.request('post','socialauthenticate',cred);
   }
   private request(method: 'post'|'get', type: 'authenticate'|'register'|'profile'|'socialauthenticate', user): Observable<any> {
     let base;
 // console.log(user,type,method);
     if (method === 'post') {
-      base = this.http.post( API_URL+'users/'+type,user,{headers: {'Content-Type': 'application/json','Accept': 'application/json','Authorization': 'Basic Og=='}}).pipe(share());
+      console.log('cred',user);
+      base = this.http.post( API_URL+'users/'+type,user,{headers: {'Content-Type': 'application/json','Accept': '','Authorization': 'Basic Og=='}}).pipe(share());
     } else {
       base = this.http.get(`/users/${type}`, { headers: { Authorization: `Bearer ${this.getToken()}` }});
     }
     
     const request = base.pipe(
       map((data: UserDetails) => {
-        //  console.log(data);
+         console.log(data,user);
         if (data.email === user.email) {
           this.saveToken(data);
         }

@@ -42,7 +42,8 @@ export class LoginComponent {
               this.authService.getFbData().then(u => {
                 console.log(u);                                                
                 this.authService.signInSocial(u).subscribe(() => {
-                    this.router.navigate(['/userhome'])
+                    // this.router.navigate(['/userhome'])
+                    window.location.reload();
                 },(err) => {
                   console.log('Error Login',err)
                 });
@@ -52,7 +53,7 @@ export class LoginComponent {
           else if(social.message === "Not found") {
               console.log('Acccount is not exist');
               
-              this.socialLogin = false;
+              this.socialLogin = true;
           }
         })
       }).catch(err => {

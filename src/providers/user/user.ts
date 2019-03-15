@@ -16,11 +16,10 @@ export class UserProvider {
   constructor(public http: HttpClient) {
     
   }
-  getUserData(user: UserDetails,auth: TokenPayload): Observable<any>{
-    // console.log(auth.id, user.token);
-    return this.http.post(API_URL+'users/'+'getuserinfobyid',{'userid': auth.id},{headers : {  'Accept' : 'application/json',
+  getUserData(user: UserDetails,auth: TokenPayload): Observable<any> {
+    console.log(auth.id, user.token);
+    return this.http.post(API_URL+'users/'+'getuserinfobyid',{'id': auth.id},{headers : {  'Accept' : 'application/json',
       'Content-Type' : 'application/json','Authorization': 'Bearer '+ user.token}});
-    
   }
   // updateUserData(Models: UserDetails) {
   //   return this.http.post(API_URL+'UpdateDeatail',Models,{headers: {'Accept' : 'application/json',
@@ -33,7 +32,10 @@ export class UserProvider {
   }
   getUserInfoById(userid): Observable<any> {
     
-    return this.http.post(API_URL+'users/getuserinfobyid',{'userID': userid},{headers: {'Content-Type': 'application/json','Accept': 'application/json','Authorization': 'Basic Og=='}});
+    return this.http.post(API_URL+'users/getuserinfobyid',{'id': userid},{headers: {'Content-Type': 'application/json','Accept': 'application/json','Authorization': 'Basic Og=='}});
+  }
+  getSocialUserById(userid): Observable<any> {
+    return this.http.post(API_URL + 'users/getsocialuserbyid',{'id': userid},{headers: {'Content-Type': 'application/json','Accept': 'application/json','Authorization': 'Basic Og=='}})
   }
   // registerUserInfo(model): Observable<any> {
   //   // return this.http.post()
