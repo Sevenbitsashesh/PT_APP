@@ -9,7 +9,8 @@ export class SocialUser {
   first_name: string;
   last_name: string;
   email: string;
-  gender: string
+  gender: string;
+  profile_pic: string;
 }
 
 
@@ -23,8 +24,8 @@ export class LoginComponent {
 
   
   login;
-  socialLogin:boolean = true;
-  socialUser: SocialUser;
+  socialLogin:boolean = false;
+  socialUser =new SocialUser();
 
   constructor(private authService: AuthProvider, private userService: UserProvider, private router: Router) {    
     authService.checkLogin();
@@ -38,11 +39,14 @@ export class LoginComponent {
         this.userService.getUserInfoById(userId).subscribe(social => {
           console.log(social);
           // If Facebook account Already create
-          if(social.message !== "Not found") {
+          if(social && social.message !== "Not found") {
               this.authService.getFbData().then(u => {
                 console.log(u);                                                
+                this.socialUser.profile_pic = u.picture.data.url;
+                
                 this.authService.signInSocial(u).subscribe(() => {
                     // this.router.navigate(['/userhome'])
+                    
                     window.location.reload();
                 },(err) => {
                   console.log('Error Login',err)
@@ -50,10 +54,14 @@ export class LoginComponent {
               })
           }
           // If Facebook account not created
-          else if(social.message === "Not found") {
+          else if(social === null) {
+            this.authService.getFbData().then(u => { 
+              this.socialUser.profile_pic = u.picture.data.url;
+              this.socialLogin = true;
+            })
               console.log('Acccount is not exist');
               
-              this.socialLogin = true;
+              
           }
         })
       }).catch(err => {

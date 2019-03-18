@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { } from 'angularfire2/storage';
+import { ImageProvider } from '../../providers/image/image';
+import { SocialUser } from '../../components/login/login';
 
 
 
@@ -7,9 +10,12 @@ import { Component } from '@angular/core';
   templateUrl: 'social-slider.html'
 })
 export class SocialSliderComponent {
+  @Input() user: SocialUser;
   slides: number =1;
-  constructor() {
-
+  // profil_image = "../../assets/icon/friends.svg";
+  progress;
+  constructor(private imageService: ImageProvider) {
+    // this.progress = imageService.progress;
   }
   nextSlide() {
     if(this.slides !== 3) {
@@ -19,5 +25,15 @@ export class SocialSliderComponent {
       this.slides = 1;
     }
     
+  }
+  onProfileImage() {
+    this.imageService.selectPhoto().then(image => {
+    
+      this.imageService.uploadPhoto(image,'swaProfile');
+      // this.imageService.uploadedImageObs.subscribe(imageUrl => {
+      //   this.profil_image = imageUrl;
+      //   this.progress = this.imageService.progress;
+      // });
+    })
   }
 }

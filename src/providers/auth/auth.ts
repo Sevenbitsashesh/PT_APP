@@ -5,6 +5,7 @@ import { API_URL,LOCAL_API_URL } from '../../Models/api_url';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { map, share } from 'rxjs/operators';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
+import { FabButton } from 'ionic-angular';
 
 
 
@@ -142,7 +143,8 @@ this.currentUserSubject = new BehaviorSubject<UserDetails>(JSON.parse(localStora
   }
   getFbData() {
     let permissions = ["public_profile", "email","user_gender"];
-    return this.fb.api('/me?fields=first_name,last_name,email,gender',permissions);
+    
+    return this.fb.api('/me?fields=first_name,last_name,email,gender,picture.type(small)',permissions);
   }
   // loginFacebook() : Promise<any> {
   //   let permissions = ["public_profile", "email"];

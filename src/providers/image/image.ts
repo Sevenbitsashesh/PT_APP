@@ -1,19 +1,21 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Camera } from '@ionic-native/camera';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { DataProvider } from '../data/data';
-// import { AngularFireStorage } from 'angularfire2/storage';
+
 import { finalize } from 'rxjs/operators';
+import { AngularFireStorage } from 'angularfire2/storage';
 
 
 
 @Injectable()
 export class ImageProvider {
-  imageUrl;
-  
-  constructor(public http: HttpClient, private camera: Camera, private dataService: DataProvider) {
-      
+  imageUrl = new BehaviorSubject<any>('');
+  uploadedImageObs = this.imageUrl.asObservable();
+  progress;
+  constructor(public http: HttpClient, private camera: Camera, private dataService: DataProvider, private fstorage: AngularFireStorage) {
+
   }
   selectPhoto() {
     
@@ -23,15 +25,14 @@ export class ImageProvider {
       destinationType: this.camera.DestinationType.DATA_URL,
       sourceType: this.camera.PictureSourceType.SAVEDPHOTOALBUM,
       encodingType: this.camera.EncodingType.JPEG || this.camera.EncodingType.PNG,
-      mediaType: this.camera.MediaType.PICTURE,
-      allowEdit: true
+      mediaType: this.camera.MediaType.PICTURE
     });
     
         }
   capturePhoto() {
     return this.camera.getPicture({
       correctOrientation: true,
-      quality: 30,
+      quality: 20,
       destinationType: this.camera.DestinationType.FILE_URI,
       sourceType: this.camera.PictureSourceType.CAMERA,
       encodingType: this.camera.EncodingType.PNG,
@@ -42,22 +43,22 @@ export class ImageProvider {
  
         // Upload Photo to firestorage
   public uploadPhoto(profilepic,location) {
-    // const file = 'data:image/jpg;base64,' + profilepic;
-    // const fileRef =  this.fstorage.ref('/'+ location +'/' + this.generateUUID() + '.jpg');
-    // const stor_task = fileRef.putString(file, 'data_url');
-
-    // stor_task.snapshotChanges().pipe(
-    //   finalize(() => {
-    //     fileRef.getDownloadURL()
-    //     .subscribe(url => {
-    //       if (url) {
-    //     // this.dataService.changeImageData(url);
-        
-    //       }
-    //     });
-    //   }
-    //   )
-    // ).subscribe();
+    const file = 'data:image/jpg;base64,' + profilepic;
+    const fileRef =  this.fstorage.ref('/'+ location +'/' + this.generateUUID() + '.jpg');
+    const stor_task = fileRef.putString(file, 'data_url');
+    stor_task.percentageChanges().subscribe(d => {
+      this.progress = d;
+    })
+    //  then(snap => {
+    //   this.progress = ((snap.bytesTransferred*100)/snap.totalBytes);
+    //   snap.ref.getDownloadURL().then(url => {
+    //     console.log(url);
+    //     this.imageUrl.next(url);
+    //   })
+    // }).catch(err => {
+    //   console.log('Error',err);
+    // })
+      
   }
  
   //Generate unique uuid for Image
