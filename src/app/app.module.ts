@@ -40,6 +40,8 @@ import { LocalNotifications } from '@ionic-native/local-notifications/index';
 import { PassportProvider } from '../providers/passport/passport';
 import { Facebook } from '@ionic-native/facebook';
 import { AdMobFree } from '@ionic-native/admob-free';
+import { MapProvider } from '../providers/map/map';
+
 
 
 @NgModule({
@@ -86,7 +88,9 @@ import { AdMobFree } from '@ionic-native/admob-free';
     LocalNotifications,
     PassportProvider,
     Facebook,
-    AdMobFree
+    AdMobFree,
+    MapProvider
+    
   ]
   
 })

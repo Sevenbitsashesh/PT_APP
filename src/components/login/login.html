@@ -5,11 +5,11 @@
 </ion-header> -->
 
    <ion-content align="center" class="LoginContent">
-     <div *ngIf="!socialLogin">
+     <div *ngIf="socialLogin">
         <signin></signin>
      </div>
-     <div *ngIf="socialLogin">
-        <social-login [user]=socialUser></social-login>
+     <div *ngIf="!socialLogin">
+        <social-login [user]=socialUser (socialToggle)="changeSocial($event)"></social-login>
      </div>
     
         <!-- <ion-segment [(ngModel)]="login" color="primary">
@@ -28,7 +28,7 @@
        
 
    </ion-content>
-   <ion-fab right bottom *ngIf="!socialLogin">
+   <ion-fab right bottom *ngIf="socialLogin">
     <button ion-fab color="light"><ion-icon name="arrow-dropleft"></ion-icon></button>
     <ion-fab-list side="left">
       <button ion-fab (click)="loginFacebook()"><ion-icon name="logo-facebook" class="logo-facebook"></ion-icon></button>

@@ -94,6 +94,11 @@
     <plugin name="cordova-plugin-admob-free" spec="0.25.0">
         <variable name="ADMOB_APP_ID" value="ca-app-pub-1123706511056248~6344373073" />
     </plugin>
+    <plugin name="cordova-plugin-googlemaps" spec="2.5.3">
+        <variable name="API_KEY_FOR_ANDROID" value="&#xA;AIzaSyBOeo1nAhrDURbJLDvU56FviHNNvYLXaLQ" />
+        <variable name="PLAY_SERVICES_VERSION" value="15.0.1" />
+        <variable name="ANDROID_SUPPORT_V4_VERSION" value="27.+" />
+    </plugin>
     <engine name="android" spec="7.1.4" />
     <engine name="browser" spec="5.0.4" />
     <engine name="ios" spec="4.5.5" />

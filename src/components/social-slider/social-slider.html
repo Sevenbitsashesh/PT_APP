@@ -1,24 +1,34 @@
-<form>
-<div *ngIf="slides === 1">
-  <div>
-    {{progress}}
-  </div>
-  <ion-label>Set a Username</ion-label>
+
+<div class="social-profile-edit-main">
+  <!-- <div class="social-profile-nav">
+      <img src="../../assets/icon/arrow-left.svg">
+  </div> -->
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+            <img src="../../assets/icon/arrow-left.svg" (click)="getBack()">
+        </ion-col>
+        <ion-col col-6>
+            {{user.first_name}} {{user.last_name}}
+        </ion-col>
+        <ion-col>
+            <!-- <img src="../../assets/icon/arrow-left.svg"> -->
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  
+</div>
+<!-- <form [formGroup]="mySocialForm"> -->
+<div>  
+  
   <div (click)="onProfileImage()">
       <img [src]=user.profile_pic height="50%" width="30%">
   </div>
-  <input ion-input type="text" placeholder="Username" [value]=user.first_name />
-  <div> <button ion-button (click)="nextSlide()">Next</button></div>
+  <input ion-input type="text" placeholder="Username"/>
+  
 </div>
-<div *ngIf="slides === 2">
-<ion-label>Slide 2</ion-label>
-<input ion-input type="text" placeholder="First Name"/>
-<div> <button ion-button (click)="nextSlide()">Next</button></div>
+<div class="google-map-main" resizable r-directions="['bottom']">
+Google map
 </div>
-<div *ngIf="slides === 3">
-    <ion-label>Slide 3</ion-label>
-    <input ion-input type="text" placeholder="Last Name"/>
-    
-  <div> <button ion-button (click)="nextSlide()">Start</button></div>
-</div>
-</form>
+
+<!-- </form> -->

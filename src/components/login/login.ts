@@ -34,14 +34,15 @@ export class LoginComponent {
   }
   loginFacebook() {
     this.authService.loginFacebook().then((res: FacebookLoginResponse) => {
-      console.log(res);
+      // console.log(res);
         let userId = res.authResponse.userID;  
         this.userService.getUserInfoById(userId).subscribe(social => {
-          console.log(social);
+          // console.log(social);
           // If Facebook account Already create
           if(social && social.message !== "Not found") {
               this.authService.getFbData().then(u => {
-                console.log(u);                                                
+                // console.log(u);  
+                                                            
                 this.socialUser.profile_pic = u.picture.data.url;
                 
                 this.authService.signInSocial(u).subscribe(() => {
@@ -56,12 +57,12 @@ export class LoginComponent {
           // If Facebook account not created
           else if(social === null) {
             this.authService.getFbData().then(u => { 
+              console.log(u);
+              this.socialUser = u;  
               this.socialUser.profile_pic = u.picture.data.url;
               this.socialLogin = true;
             })
               console.log('Acccount is not exist');
-              
-              
           }
         })
       }).catch(err => {
@@ -75,9 +76,7 @@ export class LoginComponent {
       
     // });
   }
-  
-
-
-
-  
+  changeSocial(socialLogin) {
+    this.socialLogin = socialLogin;
+  }
 }
