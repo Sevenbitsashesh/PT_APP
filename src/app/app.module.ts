@@ -41,7 +41,8 @@ import { PassportProvider } from '../providers/passport/passport';
 import { Facebook } from '@ionic-native/facebook';
 import { AdMobFree } from '@ionic-native/admob-free';
 import { MapProvider } from '../providers/map/map';
-
+import { GoogleMaps } from '@ionic-native/google-maps';
+import { Geolocation } from '@ionic-native/geolocation';
 
 
 @NgModule({
@@ -89,8 +90,9 @@ import { MapProvider } from '../providers/map/map';
     PassportProvider,
     Facebook,
     AdMobFree,
-    MapProvider
-    
+    MapProvider,
+    GoogleMaps,
+    Geolocation
   ]
   
 })
