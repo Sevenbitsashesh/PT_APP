@@ -43,6 +43,7 @@ import { AdMobFree } from '@ionic-native/admob-free';
 import { MapProvider } from '../providers/map/map';
 import { GoogleMaps } from '@ionic-native/google-maps';
 import { Geolocation } from '@ionic-native/geolocation';
+import { LocationProvider } from '../providers/location/location';
 
 
 @NgModule({
@@ -92,7 +93,8 @@ import { Geolocation } from '@ionic-native/geolocation';
     AdMobFree,
     MapProvider,
     GoogleMaps,
-    Geolocation
+    Geolocation,
+    LocationProvider
   ]
   
 })
