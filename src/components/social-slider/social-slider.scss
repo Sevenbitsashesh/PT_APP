@@ -1,15 +1,25 @@
-social-slider {
 
-}
 .social-profile-edit-main {
     width: 100%;
     height: 50%;
-    background: whitesmoke;
+    background: rgb(252, 253, 253);
     font-size: 20px;
+    box-shadow: 5px 8px rgb(213, 218, 218);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
 
 .google-map-main {
     width: 100%;
     height: auto;
     background: brown;
+}
+.col-profile-edit {
+    font-size: 14px;
+    color: rgb(49, 48, 75);
+
+    
+    font-family: 'Gentium Book Basic', serif;
+
+
 }

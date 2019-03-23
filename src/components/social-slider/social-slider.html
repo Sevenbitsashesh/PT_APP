@@ -9,26 +9,40 @@
             <img src="../../assets/icon/arrow-left.svg" (click)="getBack()">
         </ion-col>
         <ion-col col-6>
-            {{user.first_name}} {{user.last_name}}
+            
+            
         </ion-col>
         <ion-col>
             <!-- <img src="../../assets/icon/arrow-left.svg"> -->
         </ion-col>
       </ion-row>
+      <ion-row>
+        <ion-col>
+          <div>  
+  
+            <div (click)="onProfileImage()">
+                <img [src]=user.profile_pic height="50%" >
+                 <!-- <img src="../../assets/imgs/swa.jpg"> -->
+            </div>
+            <!-- <input ion-input type="text" placeholder="Username"/> -->
+            
+          </div>
+        </ion-col>
+
+        <ion-col col-9 class="col-profile-edit">
+          <div>{{user.first_name}} {{user.last_name}}</div>
+          <div style="font-size: 10px;">Ahmedabad, Gujarat, India</div>
+          <div style="font-size: 10px;">{{user.gender}}</div>
+        </ion-col>
+      </ion-row>
     </ion-grid>
   
 </div>
+
 <!-- <form [formGroup]="mySocialForm"> -->
-<div>  
-  
-  <div (click)="onProfileImage()">
-      <img [src]=user.profile_pic height="50%" width="30%">
-  </div>
-  <input ion-input type="text" placeholder="Username"/>
-  
-</div>
-<div class="google-map-main">
+
+<!-- <div class="google-map-main">
 Google map
-</div>
+</div> -->
 
 <!-- </form> -->

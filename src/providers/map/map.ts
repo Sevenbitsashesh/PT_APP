@@ -9,7 +9,8 @@ export class MapProvider {
   currentLoc: LatLng;
   map: GoogleMap;
   geoLoc;
-  constructor(public http: HttpClient, private geoLocation: Geolocation) {
+  geoCoder = new Geocoder();
+  constructor(public http: HttpClient) {
     
     
   }
@@ -38,18 +39,18 @@ export class MapProvider {
   };
   this.map =  GoogleMaps.create(element, options);  
   }
-  getCurrentPosition() {
-    return this.geoLocation.getCurrentPosition({enableHighAccuracy: true});
-  }
+  
   moveCamera(latlng: LatLng) {
-    
+    console.log(latlng);
       let campos: CameraPosition<any> = {
         target: latlng,
-        zoom: 10,
+        zoom: 15,
         tilt: 10,
         duration: 10000
       }
     return  this.map.moveCamera(campos);
   }
-
+  getLocation() {
+    return this.geoCoder.geocode({address: 'ahmedabad'})
+  }
 }

@@ -99,7 +99,7 @@
         "ADMOB_APP_ID": "ca-app-pub-1123706511056248~6344373073"
       },
       "cordova-plugin-googlemaps": {
-        "API_KEY_FOR_ANDROID": "AIzaSyA98dWPJBixUTiREwoVhZb1mV1oDWWewzA",
+        "API_KEY_FOR_ANDROID": "AIzaSyDaMmUcEiAEXNr3LkFkkOwunbv7Lng7fYA ",
         "PLAY_SERVICES_VERSION": "15.0.1",
         "ANDROID_SUPPORT_V4_VERSION": "27.+"
       },
