@@ -3,6 +3,7 @@ import { } from 'angularfire2/storage';
 import { ImageProvider } from '../../providers/image/image';
 import { SocialUser } from '../../components/login/login';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'social-slider',
@@ -10,6 +11,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class SocialSliderComponent {
   @Input() user: SocialUser;
+  
   slides: number =1;  
   progress;
   mySocialForm: FormGroup;
@@ -19,18 +21,27 @@ export class SocialSliderComponent {
   constructor(private imageService: ImageProvider, private formBuilder: FormBuilder) {
       // this.mySocialForm = formBuilder.group({
       //       firstname: Validators.required()
-      // })
+      // })      
+    
+      
+      
   }
   onProfileImage() {
     this.imageService.selectPhoto().then(image => {    
       this.imageService.uploadPhoto(image,'swaProfile');
-      // this.imageService.uploadedImageObs.subscribe(imageUrl => {
-      //   this.profil_image = imageUrl;
-      //   this.progress = this.imageService.progress;
-      // });
+      this.imageService.uploadedImageObs.subscribe(imageUrl => {
+        console.log(this.user);
+        this.user.profile_pic = imageUrl;
+        
+        this.progress = this.imageService.progress;
+      });
     })
   }
   getBack() {
     this.socialToggle.emit(false);
   }
+  interest() {
+    
+  }
+  
 }

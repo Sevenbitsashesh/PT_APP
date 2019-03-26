@@ -24,6 +24,7 @@ export class UserInfo  {
     // bio?: string;
     // // status?: boolean;
     // publicguid?: string; 
+    gender: string;
     address: string;
     bio: string;
     cover_image: string;

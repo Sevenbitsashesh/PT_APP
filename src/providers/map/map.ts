@@ -41,7 +41,7 @@ export class MapProvider {
   }
   
   moveCamera(latlng: LatLng) {
-    console.log(latlng);
+    // console.log(latlng);
       let campos: CameraPosition<any> = {
         target: latlng,
         zoom: 15,

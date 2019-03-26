@@ -11,7 +11,17 @@
      <div *ngIf="socialLogin">
         <social-login [user]=socialUser (socialToggle)="changeSocial($event)"></social-login>
      </div>
-    
+    <div *ngIf="!socialLogin">
+      <ion-grid>
+        <ion-row>
+        <ion-col>
+          <button class="logo-social" (click)="loginFacebook()"><ion-icon name="logo-facebook"  ></ion-icon> Continue with Facebook</button>
+          <button class="logo-social" (click)="loginGoogle()"><ion-icon name="logo-google" class="logo-facebook"></ion-icon> Continue with Google</button>
+          <button class="logo-social"  (click)="loginTwitter()"><ion-icon name="logo-twitter" class="logo-facebook"></ion-icon> Continue with Twitter</button>
+        </ion-col>
+      </ion-row>
+      </ion-grid>
+    </div>
         <!-- <ion-segment [(ngModel)]="login" color="primary">
                 <ion-segment-button value="signin">
                   Sign In
@@ -28,15 +38,14 @@
        
 
    </ion-content>
-   <ion-fab right bottom *ngIf="!socialLogin">
-    <button ion-fab color="light"><ion-icon name="arrow-dropleft"></ion-icon></button>
+   <!-- <ion-fab right bottom *ngIf="!socialLogin">
+    <button ion-fab color="light"></ion-icon></button>
     <ion-fab-list side="left">
       <button ion-fab (click)="loginFacebook()"><ion-icon name="logo-facebook" class="logo-facebook"></ion-icon></button>
-      <button ion-fab><ion-icon name="logo-twitter" class="logo-twitter"></ion-icon></button>
-      <!-- <button ion-fab><ion-icon name="logo-vimeo"></ion-icon></button> -->
+      <button ion-fab><ion-icon name="logo-twitter" class="logo-twitter"></ion-icon></button>      
       <button ion-fab (click)="loginGoogle()"><ion-icon name="logo-googleplus" class="logo-googleplus"></ion-icon></button>
     </ion-fab-list>
-  </ion-fab>
+  </ion-fab> -->
 
   
      <router-outlet>

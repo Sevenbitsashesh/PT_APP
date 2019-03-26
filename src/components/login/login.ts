@@ -5,6 +5,7 @@ import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 import { UserProvider } from '../../providers/user/user';
 import { Router } from '@angular/router';
 import { Modal } from 'ionic-angular';
+import { NativeProvider } from '../../providers/native/native';
 export class SocialUser {
   first_name: string;
   last_name: string;
@@ -27,47 +28,50 @@ export class LoginComponent {
   socialLogin:boolean = false;
   socialUser =new SocialUser();
 
-  constructor(private authService: AuthProvider, private userService: UserProvider, private router: Router) {    
+  constructor(private authService: AuthProvider, private userService: UserProvider, private router: Router,private nativeService: NativeProvider) {    
     authService.checkLogin();
     this.login = "signin";
-    
   }
-  loginFacebook() {
-    this.authService.loginFacebook().then((res: FacebookLoginResponse) => {
-      // console.log(res);
-        let userId = res.authResponse.userID;  
-        this.userService.getUserInfoById(userId).subscribe(social => {
-          // console.log(social);
-          // If Facebook account Already create
-          if(social && social.message !== "Not found") {
-              this.authService.getFbData().then(u => {
-                // console.log(u);  
-                                                            
+  loginFacebook() {      
+      this.authService.loginFacebook().then((res: FacebookLoginResponse) => {
+        // console.log(res);
+          let userId = res.authResponse.userID;  
+          this.nativeService.generateLoad(5000);
+          this.userService.getUserInfoById(userId).subscribe(social => {
+            // console.log(social);
+            // If Facebook account Already create
+            if(social && social.message !== "Not found") {
+                this.authService.getFbData().then(u => {
+                  // console.log(u);  
+                  this.socialUser = u;
+                  this.socialUser.profile_pic = u.picture.data.url;
+                  
+                  this.authService.signInSocial(u).subscribe(() => {
+                      // this.router.navigate(['/userhome'])                      
+                      window.location.reload();
+                  },(err) => {
+                    console.log('Error Login',err)
+                  })
+                },reject => {
+                  console.log('Error',reject);
+                })
+            }
+            // If Facebook account not created
+            else if(social === null) {
+              this.authService.getFbData().then(u => { 
+                console.log(u);
+                this.socialUser = u;  
                 this.socialUser.profile_pic = u.picture.data.url;
-                
-                this.authService.signInSocial(u).subscribe(() => {
-                    // this.router.navigate(['/userhome'])
-                    
-                    window.location.reload();
-                },(err) => {
-                  console.log('Error Login',err)
-                });
+                this.socialLogin = true;
               })
-          }
-          // If Facebook account not created
-          else if(social === null) {
-            this.authService.getFbData().then(u => { 
-              console.log(u);
-              this.socialUser = u;  
-              this.socialUser.profile_pic = u.picture.data.url;
-              this.socialLogin = true;
-            })
-              console.log('Acccount is not exist');
-          }
-        })
-      }).catch(err => {
-        console.log(err);
-      }); 
+                console.log('Acccount is not exist');
+            }
+          })
+        }).catch(err => {
+          console.log(err);
+        }); 
+    
+    
     // .then(res => {
     //   console.log(res);
     //   if(res !== undefined) {

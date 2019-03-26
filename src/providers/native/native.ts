@@ -1,13 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ToastController, Platform } from 'ionic-angular';
+import { ToastController, Platform, LoadingController } from 'ionic-angular';
 import { LocalNotifications } from '@ionic-native/local-notifications'
 
 
 @Injectable()
 export class NativeProvider {
 
-  constructor(public http: HttpClient, private toast: ToastController, private notification: LocalNotifications, private platform: Platform) {
+  constructor(public http: HttpClient, private toast: ToastController, private notification: LocalNotifications, private platform: Platform, private loading: LoadingController) {
     
   }
   generateToast(msg: string, cssToast: string) {
@@ -35,5 +35,13 @@ export class NativeProvider {
   }
   isApplication() : boolean {
     return this.platform.is('core');
+  }
+  generateLoad(time) {
+    console.log('loading');
+    this.loading.create({duration: time,spinner: 'crescent',content: 'Please wait...'}).present();
+   
+
+    
+    
   }
 }

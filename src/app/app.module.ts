@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule, NavController, NavControllerBase } from 'ionic-angular';
+import { IonicApp, IonicErrorHandler, IonicModule, NavController, NavControllerBase, LoadingController } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
@@ -94,7 +94,8 @@ import { LocationProvider } from '../providers/location/location';
     MapProvider,
     GoogleMaps,
     Geolocation,
-    LocationProvider
+    LocationProvider,
+    LoadingController
   ]
   
 })
