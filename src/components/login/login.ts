@@ -12,6 +12,9 @@ export class SocialUser {
   email: string;
   gender: string;
   profile_pic: string;
+  birthday: Date;
+  authRes: FacebookLoginResponse;
+  username: string;
 }
 
 
@@ -33,12 +36,12 @@ export class LoginComponent {
     this.login = "signin";
   }
   loginFacebook() {      
-      this.authService.loginFacebook().then((res: FacebookLoginResponse) => {
-        // console.log(res);
+      this.authService.loginFacebook().then((res: FacebookLoginResponse) => { 
+               
           let userId = res.authResponse.userID;  
           this.nativeService.generateLoad(5000);
           this.userService.getUserInfoById(userId).subscribe(social => {
-            // console.log(social);
+            console.log(social);
             // If Facebook account Already create
             if(social && social.message !== "Not found") {
                 this.authService.getFbData().then(u => {
@@ -52,7 +55,7 @@ export class LoginComponent {
                   },(err) => {
                     console.log('Error Login',err)
                   })
-                },reject => {
+                }, reject => {
                   console.log('Error',reject);
                 })
             }
@@ -61,6 +64,7 @@ export class LoginComponent {
               this.authService.getFbData().then(u => { 
                 console.log(u);
                 this.socialUser = u;  
+                this.socialUser.authRes = res;
                 this.socialUser.profile_pic = u.picture.data.url;
                 this.socialLogin = true;
               })

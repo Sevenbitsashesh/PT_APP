@@ -6,15 +6,15 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { map, share } from 'rxjs/operators';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 import { FabButton } from 'ionic-angular';
+import { SocialUser } from '../../components/login/login';
 
 
-
-export class SocialUser {
-  token: string;
-  expires?: number;
-  session_key?: boolean;
-  userid?: string;
-}
+// export class SocialUser {
+//   token: string;
+//   expires?: number;
+//   session_key?: boolean;
+//   userid?: string;
+// }
 export class UserDetails  {
   email: string;
   token: string;
@@ -38,7 +38,7 @@ export class AuthProvider {
   currentUserSubject: BehaviorSubject<UserDetails>;
   public currentUser: Observable<UserDetails>;
   constructor(private router: Router, private http: HttpClient, private fb: Facebook) {
-    
+//new auth    
     if(localStorage.getItem('swaUser')) {
 this.currentUserSubject = new BehaviorSubject<UserDetails>(JSON.parse(localStorage.getItem('swaUser')));
         this.currentUser = this.currentUserSubject
@@ -71,12 +71,15 @@ this.currentUserSubject = new BehaviorSubject<UserDetails>(JSON.parse(localStora
     // console.log('mycred',cred)
     return this.request('post','socialauthenticate',cred);
   }
-  private request(method: 'post'|'get', type: 'authenticate'|'register'|'profile'|'socialauthenticate', user): Observable<any> {
+  signupSocial(cred: SocialUser) {
+    return this.request('post','registersocial',cred);
+  }
+  private request(method: 'post'|'get', type: 'authenticate'|'register'|'profile'|'socialauthenticate'| 'registersocial', user): Observable<any> {
     let base;
 // console.log(user,type,method);
     if (method === 'post') {
       console.log('cred',user);
-      base = this.http.post( API_URL+'users/'+type,user,{headers: {'Content-Type': 'application/json','Accept': '','Authorization': 'Basic Og=='}}).pipe(share());
+      base = this.http.post( API_URL+'users/'+type,user,{headers: {'Content-Type': 'application/json','Accept': 'application/json','Authorization': 'Basic Og=='}}).pipe(share());
     } else {
       base = this.http.get(`/users/${type}`, { headers: { Authorization: `Bearer ${this.getToken()}` }});
     }
@@ -142,10 +145,11 @@ this.currentUserSubject = new BehaviorSubject<UserDetails>(JSON.parse(localStora
     return this.fb.login(permissions);
   }
   getFbData() {
-    let permissions = ["public_profile", "email","user_gender"];
+    let permissions = ["public_profile", "email","user_gender","user_birthday"];
     
-    return this.fb.api('/me?fields=first_name,last_name,email,gender,picture.type(small)',permissions);
+    return this.fb.api('/me?fields=first_name,last_name,email,gender,picture.type(small),birthday',permissions);
   }
+
   // loginFacebook() : Promise<any> {
   //   let permissions = ["public_profile", "email"];
   //   return this.fb.login(permissions).then((res: FacebookLoginResponse) => {

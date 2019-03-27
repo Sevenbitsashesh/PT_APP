@@ -40,53 +40,49 @@
   
 </div>
 <div>
+  <form [formGroup]="mySocialForm">
   <ion-grid>
     
       <ion-row>
           <ion-col col-6>
             <ion-item>
-                <ion-input placeholder="Username"></ion-input>
+                <ion-input placeholder="Username" formControlName="username"></ion-input>
+                <ion-label position="stacked" *ngIf="mySocialForm.get('username').status === 'PENDING' && mySocialForm.controls['username'].touched && mySocialForm.controls['username'].value !== ''">Checking...</ion-label>
+                                <ion-label position="stacked" *ngIf="mySocialForm.get('username').status === 'INVALID' && mySocialForm.controls['username'].touched && mySocialForm.controls['username'].value !== ''">Not available</ion-label>
+                                <ion-label position="stacked" *ngIf="mySocialForm.get('username').status === 'VALID' && mySocialForm.controls['username'].touched && mySocialForm.controls['username'].value !== ''">Available</ion-label>
             </ion-item>
             
           </ion-col>      
           
         </ion-row>
-    <ion-row>
-      <ion-col col-6 background="red">
-          <ion-item>
-        <ion-input placeholder="Gender"></ion-input>
-        </ion-item>
-      </ion-col>      
-    </ion-row>
-    
       
         <ion-row>
             <ion-col col-6>
                 <ion-item>
-              <ion-input type="Date" placeholder="DOB"></ion-input>
+              <ion-input type="text" placeholder="DD/MM/YYYY" formControlName="birthday"></ion-input>
               </ion-item>
             </ion-col>      
           </ion-row>
          
             <ion-row>
               <ion-col>
-                  <button ion-button>
+                  <button ion-button (click)="createSocial()">
                       Save Profile 
                   </button>
               </ion-col>
             </ion-row>
   </ion-grid>
+</form>
 </div>
-<div class="interest-main">
-  
-  <div class="select-interest"> Arts & Entertainment</div>
-  <div class="select-interest"> Arts & Entertainment</div>
-  
-  
-  
-  <div>
 
-  </div>
+
+
+<!-- <div class="interest-main">
+  
+  <div class="select-interest"> Arts & Entertainment</div>
+  <div class="select-interest"> Arts & Entertainment</div>
+    <div>
+  </div> -->
   <!-- <a href="#news">Painting</a>
   <a href="#news">Dancing & Singing</a>
   <a href="#news">Games</a>
@@ -101,11 +97,10 @@
   <a href="#news">Technology</a>
   <a href="#news">Business</a>
   <a href="#news">Fashion & Styles</a> -->
-</div>
-<!-- <form [formGroup]="mySocialForm"> -->
+
+
 
 <!-- <div class="google-map-main">
 Google map
 </div> -->
 
-<!-- </form> -->
