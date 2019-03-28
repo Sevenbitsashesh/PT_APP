@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { Modal } from 'ionic-angular';
 import { NativeProvider } from '../../providers/native/native';
 export class SocialUser {
+  providerName: string;
   first_name: string;
   last_name: string;
   email: string;
@@ -14,7 +15,7 @@ export class SocialUser {
   profile_pic: string;
   birthday: Date;
   authRes: FacebookLoginResponse;
-  username: string;
+  user_name: string;
 }
 
 

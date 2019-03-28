@@ -72,6 +72,7 @@ this.currentUserSubject = new BehaviorSubject<UserDetails>(JSON.parse(localStora
     return this.request('post','socialauthenticate',cred);
   }
   signupSocial(cred: SocialUser) {
+    console.log(cred);
     return this.request('post','registersocial',cred);
   }
   private request(method: 'post'|'get', type: 'authenticate'|'register'|'profile'|'socialauthenticate'| 'registersocial', user): Observable<any> {
@@ -88,6 +89,7 @@ this.currentUserSubject = new BehaviorSubject<UserDetails>(JSON.parse(localStora
       map((data: UserDetails) => {
          console.log(data,user);
         if (data.email === user.email) {
+          
           this.saveToken(data);
         }
         

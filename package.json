@@ -12,8 +12,10 @@
     "ionic:build": "ionic-app-scripts build",
     "ionic:serve": "ionic-app-scripts serve"
   },
+  "config": {
+    "ionic_copy": "./copy.config.js"
+  },
   "dependencies": {
-    "@angular/animations": "5.2.11",
     "@angular/common": "5.2.11",
     "@angular/compiler": "5.2.11",
     "@angular/compiler-cli": "^5.2.11",
@@ -25,6 +27,7 @@
     "@angular/router": "^5.2.11",
     "@ionic-native/action-sheet": "^4.20.0",
     "@ionic-native/admob-free": "^4.2.0",
+    "@ionic-native/calendar": "^4.20.0",
     "@ionic-native/camera": "^4.20.0",
     "@ionic-native/core": "^4.20.0",
     "@ionic-native/facebook": "^4.20.0",
@@ -46,6 +49,7 @@
     "cordova-plugin-actionsheet": "^2.3.3",
     "cordova-plugin-admob-free": "^0.25.0",
     "cordova-plugin-badge": "^0.8.8",
+    "cordova-plugin-calendar": "5.1.4",
     "cordova-plugin-camera": "^4.0.3",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-facebook4": "^4.2.1",
@@ -105,7 +109,11 @@
         "PLAY_SERVICES_VERSION": "15.0.1",
         "ANDROID_SUPPORT_V4_VERSION": "27.+"
       },
-      "cordova-plugin-geolocation": {}
+      "cordova-plugin-geolocation": {},
+      "cordova-plugin-calendar": {
+        "CALENDAR_USAGE_DESCRIPTION": " ",
+        "CONTACTS_USAGE_DESCRIPTION": " "
+      }
     },
     "platforms": [
       "browser",

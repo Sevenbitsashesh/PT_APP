@@ -22,7 +22,7 @@ export class SocialSliderComponent {
 
   constructor(private imageService: ImageProvider, private formBuilder: FormBuilder, private authService: AuthProvider, private userService: UserProvider) {
       this.mySocialForm = formBuilder.group({
-        username: new FormControl('', Validators.compose([
+        user_name: new FormControl('', Validators.compose([
           Validators.maxLength(25),
             Validators.minLength(5),
             Validators.pattern('^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]+$'),
@@ -48,9 +48,11 @@ export class SocialSliderComponent {
     this.socialToggle.emit(false);
   }
   createSocial() {
+    this.user.user_name = this.mySocialForm.get('user_name').value;
+    this.user.providerName = "facebook";
       this.authService.signupSocial(this.user).subscribe(res => {
         console.log(res);
-         this.user.username = this.mySocialForm.get('username').value;
+         
          
       })
   }

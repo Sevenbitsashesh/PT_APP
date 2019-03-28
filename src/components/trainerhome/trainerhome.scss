@@ -1,0 +1,34 @@
+trainerhome {
+color: black;
+}
+.trainer-home-main {
+    height: 100%;
+    width: 100%;
+    background: lightseagreen;
+    border-radius: 20px;
+    box-shadow: 2px 2px 2px 2px lightpink;
+    
+}
+.trainer-home-top {
+    height: 50px;
+    background: lightcoral;
+     border-top-left-radius: 20px;
+     border-top-right-radius: 20px;
+}
+
+.label-activity {
+    height: 50px;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    font-family: fantasy;
+    font-size: 20px;
+    font-weight: 700;
+}
+.trainer-home-bottom {
+    // width: 99%;
+    height: 50px;
+    background: lightblue;
+    
+    border-radius: 6px 6px 6px 6px;
+}

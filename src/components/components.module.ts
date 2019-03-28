@@ -20,6 +20,10 @@ import { VerificationPage } from '../pages/verification/verification';
 import { SidemenuComponent } from './sidemenu/sidemenu';
 import { SocialLoginComponent } from './social-login/social-login';
 import { SocialSliderComponent } from './social-slider/social-slider';
+import { SchedulesComponent } from './schedules/schedules';
+import { NewclientComponent } from './newclient/newclient';
+import { TrainerhomeComponent } from './trainerhome/trainerhome';
+import { NewworkoutComponent } from './newworkout/newworkout';
 
 
 
@@ -39,7 +43,11 @@ import { SocialSliderComponent } from './social-slider/social-slider';
     LoaderComponent, VerificationPage,
     SidemenuComponent,
     SocialLoginComponent,
-    SocialSliderComponent],
+    SocialSliderComponent,
+    SchedulesComponent,
+    NewclientComponent,
+    TrainerhomeComponent,
+    NewworkoutComponent],
 	imports: [ IonicModule, CommonModule, RouterModule, VerificationPageModule	],
 	exports: [FirstComponent,
 	LoginComponent,
@@ -53,7 +61,11 @@ import { SocialSliderComponent } from './social-slider/social-slider';
     LoaderComponent,
     SidemenuComponent,
     SocialLoginComponent,
-    SocialSliderComponent],
+    SocialSliderComponent,
+    SchedulesComponent,
+    NewclientComponent,
+    TrainerhomeComponent,
+    NewworkoutComponent],
     entryComponents: [LoginComponent, FirstComponent, ProfileComponent],
     
 })
