@@ -9,5 +9,8 @@ export class TrainerhomeComponent {
   constructor() {
 
   }
-
+  swipeEvent($event) {
+    console.log($event.deltaX+", "+$event.deltaY);
+    $event.deltaX 
+  }
 }

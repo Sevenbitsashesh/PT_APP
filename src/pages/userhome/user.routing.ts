@@ -9,16 +9,33 @@ import { HometabComponent } from '../../components/hometab/hometab';
 import { TabSearchPageModule } from '../tab-search/tab-search.module';
 import { TabProfilePageModule } from '../tab-profile/tab-profile.module';
 import { TabViewsPageModule } from '../tab-views/tab-views.module';
+import { TabexercisesPageModule } from '../../pages/tabexercises/tabexercises.module';
+import { TabworkoutsPageModule } from '../../pages/tabworkouts/tabworkouts.module';
+import { TabmealplansPageModule } from '../../pages/tabmealplans/tabmealplans.module';
 export function getHomeModule() { return TabHomePageModule; }
 export function getSearchModule() { return TabSearchPageModule; }
-export function getProfileModule() { return TabProfilePageModule; }
+export function getProfileModule() { console.log('profile'); return TabProfilePageModule; }
 export function getViewModule() { return TabViewsPageModule; }
-
+export function getExercisesModule() { console.log('as'); return TabexercisesPageModule; }
+export function getWorkoutsModule() { return TabworkoutsPageModule; }
+export function getMealplansModule() { return TabmealplansPageModule; }
 const routes: Routes = [
-//     {
-//         path: '',
-//         loadChildren: () => TabHomePageModule
-// },
+    {
+        path: '',
+        loadChildren: () => TabexercisesPageModule
+},
+{
+    path: 'tab_exercises',
+    loadChildren: getExercisesModule
+},
+{
+    path: 'tab_workouts',
+    loadChildren: getWorkoutsModule
+},
+{
+    path: 'tab_mealplans',
+    loadChildren: getMealplansModule
+},
             {
                 path: 'tab_home',
                 //  component: TabHomePage,
@@ -37,16 +54,14 @@ const routes: Routes = [
             {
                 path: 'tab_views',
                 loadChildren: getViewModule
-            }
+            }            
     // {  
     //         path: 'tab_home',
     //         outlet: 'tab_home',
     //          component: HometabComponent,
     //         // loadChildren: '../tab-home/tab-home.module#TabHomePageModule'
         
-    //   },
-
-    
+    //   },  
 ];
 @NgModule({
     imports: [ RouterModule.forChild(routes) ],

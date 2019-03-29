@@ -24,6 +24,7 @@ import { SchedulesComponent } from './schedules/schedules';
 import { NewclientComponent } from './newclient/newclient';
 import { TrainerhomeComponent } from './trainerhome/trainerhome';
 import { NewworkoutComponent } from './newworkout/newworkout';
+import { NewmealplansComponent } from './newmealplans/newmealplans';
 
 
 
@@ -47,7 +48,8 @@ import { NewworkoutComponent } from './newworkout/newworkout';
     SchedulesComponent,
     NewclientComponent,
     TrainerhomeComponent,
-    NewworkoutComponent],
+    NewworkoutComponent,
+    NewmealplansComponent],
 	imports: [ IonicModule, CommonModule, RouterModule, VerificationPageModule	],
 	exports: [FirstComponent,
 	LoginComponent,
@@ -65,7 +67,8 @@ import { NewworkoutComponent } from './newworkout/newworkout';
     SchedulesComponent,
     NewclientComponent,
     TrainerhomeComponent,
-    NewworkoutComponent],
+    NewworkoutComponent,
+    NewmealplansComponent],
     entryComponents: [LoginComponent, FirstComponent, ProfileComponent],
     
 })

@@ -70,14 +70,14 @@ export class ProfileComponent {
     console.log(this.userModel);
    
     this.myForm = formBuilder.group({
-      username: new FormControl(this.userModel.user_name, Validators.compose([
+      username: new FormControl('', Validators.compose([
         Validators.maxLength(25),
         Validators.minLength(5),
         Validators.pattern('^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]+$'),
         Validators.required
       ])
       ),
-      mobile: new FormControl(this.userModel.mobile, Validators.compose([
+      mobile: new FormControl('', Validators.compose([
         Validators.maxLength(12),
         Validators.minLength(10),
         Validators.pattern('^(0|[1-9][0-9]*)$'),
@@ -93,7 +93,7 @@ export class ProfileComponent {
       ])),
       hobbies: new FormControl('', Validators.compose([
       ])),
-      dob: new FormControl(this.userModel.dob, Validators.compose([
+      dob: new FormControl('', Validators.compose([
       ])),
       gender: new FormControl('', Validators.compose([
       ]))

@@ -7,10 +7,10 @@ import { ComponentsModule } from '../../components/components.module';
 
 
 const routes: Routes = [
-  {
-    path: '',
-    component: TabSearchPage
-  },
+  // {
+  //   path: '',
+  //   component: TabSearchPage
+  // },
   {
     path: 'userprofile/:userid',
     component: UserprofileComponent

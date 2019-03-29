@@ -12,6 +12,9 @@ import { TabProfilePageModule } from '../tab-profile/tab-profile.module';
 
 
 import { TabViewsPageModule } from '../tab-views/tab-views.module';
+import { TabexercisesPageModule } from '../../pages/tabexercises/tabexercises.module';
+import { TabworkoutsPageModule } from '../../pages/tabworkouts/tabworkouts.module';
+import { TabmealplansPageModule } from '../../pages/tabmealplans/tabmealplans.module';
 
 
 
@@ -30,7 +33,10 @@ import { TabViewsPageModule } from '../tab-views/tab-views.module';
     TabHomePageModule,
     TabSearchPageModule,
     TabProfilePageModule,
-    TabViewsPageModule
+    TabViewsPageModule,
+    TabexercisesPageModule,
+    TabworkoutsPageModule,
+    TabmealplansPageModule
   ],
   bootstrap: [],
   entryComponents: [],

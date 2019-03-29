@@ -6,10 +6,10 @@ import { ComponentsModule } from '../../components/components.module';
 import { NotificationComponent } from '../../components/notification/notification';
 
 const routes : Routes= [
-  {
-    path: '',
-    component: TabViewsPage
-  }
+  // {
+  //   path: '',
+  //   component: TabViewsPage
+  // }
 ]
 @NgModule({
   declarations: [

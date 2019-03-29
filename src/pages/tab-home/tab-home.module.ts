@@ -11,10 +11,10 @@ import { ComponentsModule } from '../../components/components.module';
 
 
 const routes: Routes = [
-  {
-    path: '',
-    component: TabHomePage
-  },
+  // {
+  //   path: '',
+  //   component: TabHomePage
+  // },
   {
     path: 'verification',
     component: VerificationPage

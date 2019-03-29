@@ -10,6 +10,7 @@ export class HometabComponent {
   
   constructor(private router: Router) {
     // console.log('Hello HometabComponent Component');
+    
   }
   gotoHome(event) {
     var btns = document.getElementsByClassName('active');
@@ -23,6 +24,6 @@ export class HometabComponent {
     // document.getElementById('spanTab')    
   }
   routeTo() {
-    this.router.navigate(['/tab_home']);
+    this.router.navigate(['/tab_exercises']);
   }
 }

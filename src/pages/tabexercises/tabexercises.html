@@ -1,0 +1,64 @@
+<!--  -->
+<ion-header>
+  <ion-toolbar>
+    <!-- <ion-title>@{{username}}</ion-title> -->
+    
+    <span style="font-size:30px;cursor:pointer" (click)="openNav()">&#9776;</span>
+    <div class="divNoti"  (click)="clickNotification()" >
+       
+               <div class="lbl-notification">
+                       1
+               </div>
+       
+       <img class="iconNotification" src="../../assets/icon/noti.svg">
+    </div>
+             
+  </ion-toolbar>
+</ion-header>
+
+<div id="mySidenav" class="sidenav">
+ <div>
+   <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
+ </div>
+
+<div class="sidemenu-main">
+ <sidemenu></sidemenu>
+</div>
+ 
+ 
+ <!-- <button ion-button>Search</button> -->
+ <!-- <button ion-button>Profile</button> -->
+ <!-- <button ion-button>My Sales</button> -->
+ <!-- <button ion-button>NewsFeed</button> -->
+ <!-- <button ion-button>Settings</button> -->
+ <!-- <button ion-button>Logout <img src="../../assets/icon/logout.svg" class="img-logout" (click)="logout()"></button> -->
+</div>
+<ion-content padding class="contentMain" (click)="clickedContent()" >
+<div class="noti-slider-bar" id="notificationDiv">
+<ul id="list">
+<!-- Create a bunch, or not a bunch, of li's to see the timing. -->
+<li>item</li>
+<li>item</li>
+<li>item</li>
+<li>item</li>
+<li>item</li>
+</ul>
+</div>
+<trainerhome></trainerhome>    
+<!-- <loader></loader>         -->
+<!-- <ion-refresher (ionRefresh)="doRefresh($event)">
+       <ion-refresher-content
+       pullingIcon="arrow-dropdown"
+       pullingText="Pull to refresh"
+       refreshingSpinner="circles"
+       refreshingText="Refreshing...">
+     </ion-refresher-content>
+   </ion-refresher> -->
+<!-- <create-tweet></create-tweet>
+<tweetslist></tweetslist> -->
+<!-- <div class="home-content-main">
+<div class="ad-content-top">
+
+</div>
+</div> -->
+</ion-content>
