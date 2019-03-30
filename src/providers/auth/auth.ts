@@ -51,7 +51,7 @@ this.currentUserSubject = new BehaviorSubject<UserDetails>(JSON.parse(localStora
   private saveToken(user: UserDetails): void {
     localStorage.setItem('swaUser',JSON.stringify(user));
     
-    this.currentUserSubject.next(user);
+    // this.currentUserSubject.next(user);
   }
   private getToken(): string {
     if (localStorage.getItem('swaUser')) {
@@ -91,6 +91,7 @@ this.currentUserSubject = new BehaviorSubject<UserDetails>(JSON.parse(localStora
         if (data.email === user.email) {
           
           this.saveToken(data);
+          window.location.reload();
         }
         
         return data;

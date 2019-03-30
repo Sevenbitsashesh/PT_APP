@@ -132,6 +132,7 @@ export class SigninComponent implements OnInit {
 
       }, (err) => {
         if(err) {
+          console.log(err);
         this.msg = "Email Or Password is incorrect!";
         document.getElementById('btn-login').classList.remove('btn-login-click');
         document.getElementById('btn-login').innerHTML = 'Login';
