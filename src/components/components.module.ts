@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FirstComponent } from './first/first';
 import { LoginComponent } from './login/login';
-import { IonicModule } from 'ionic-angular';
+import { IonicModule, IonicPageModule } from 'ionic-angular';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 // import { AngularFireAuth } from 'angularfire2/auth';
@@ -25,8 +25,11 @@ import { NewclientComponent } from './newclient/newclient';
 import { TrainerhomeComponent } from './trainerhome/trainerhome';
 import { NewworkoutComponent } from './newworkout/newworkout';
 import { NewmealplansComponent } from './newmealplans/newmealplans';
+import { DropdownComponent } from './dropdown/dropdown';
+import { StepperComponent } from './stepper/stepper';
+import { MatStepperModule, MatFormFieldModule } from '@angular/material';
 
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -49,8 +52,10 @@ import { NewmealplansComponent } from './newmealplans/newmealplans';
     NewclientComponent,
     TrainerhomeComponent,
     NewworkoutComponent,
-    NewmealplansComponent],
-	imports: [ IonicModule, CommonModule, RouterModule, VerificationPageModule	],
+    NewmealplansComponent,
+    DropdownComponent,
+    StepperComponent],
+	imports: [ IonicModule, CommonModule, RouterModule, VerificationPageModule, MatStepperModule, MatFormFieldModule	],
 	exports: [FirstComponent,
 	LoginComponent,
     HometabComponent,
@@ -68,7 +73,9 @@ import { NewmealplansComponent } from './newmealplans/newmealplans';
     NewclientComponent,
     TrainerhomeComponent,
     NewworkoutComponent,
-    NewmealplansComponent],
+    NewmealplansComponent,
+    DropdownComponent,
+    StepperComponent],
     entryComponents: [LoginComponent, FirstComponent, ProfileComponent],
     
 })

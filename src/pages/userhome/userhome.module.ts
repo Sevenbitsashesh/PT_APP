@@ -27,7 +27,7 @@ import { TabmealplansPageModule } from '../../pages/tabmealplans/tabmealplans.mo
   imports: [
     // IonicPageModule.forChild(UserhomePage),
     CommonModule,
-    IonicModule.forRoot(UsertabsComponent),
+    IonicModule,
     UserRoutingModule,
     ComponentsModule,
     TabHomePageModule,
