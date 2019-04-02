@@ -1,15 +1,22 @@
 
-
-<ion-content >
-  <div class="workouts-top-main">
+<ion-header>
+    <div class="top-bar top-text">
     
-    <ion-grid>
-      <ion-row>
-        <ion-col col-1><div><i class="fas fa-plus"></i></div></ion-col>
-        <ion-col col-10>Workouts</ion-col>
-        <ion-col col-1><div><i class="fas fa-plus"></i></div></ion-col>
-      </ion-row>
-    </ion-grid>
+        <ion-grid>
+          <ion-row></ion-row>
+          <ion-row style="text-align: center;">
+            <ion-col col-2><div><i class="fas fa-plus"></i></div></ion-col>
+            <ion-col col-8>WORKOUTS</ion-col>
+            <ion-col col-2>  <div (click)="listWorkout(myNav)"><i class="fas fa-th-list"></i></div></ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+</ion-header>
+<ion-content class="contentWorkout">
+    <!-- <ion-nav #myNav [root]="rootPage"></ion-nav> -->
+  <div class="list-view-vertical">
+      <listworkouts></listworkouts>
+    
   </div>
-<newworkout></newworkout>
+
 </ion-content>

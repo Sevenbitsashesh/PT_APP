@@ -8,7 +8,8 @@ import { ComponentsModule } from '../../components/components.module';
 const routes: Routes = [
   {
     path: '',
-    component: TabexercisesPage
+    component: TabexercisesPage,
+    data: {animation: 'TabexercisesPage'}
   }
         
 ]

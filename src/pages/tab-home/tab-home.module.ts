@@ -8,6 +8,8 @@ import { CreateTweetComponent } from '../../components/create-tweet/create-tweet
 import { TweetslistComponent } from '../../components/tweetslist/tweetslist';
 import { ProgressbarComponent } from '../../components/progressbar/progressbar';
 import { ComponentsModule } from '../../components/components.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
 
 
 const routes: Routes = [

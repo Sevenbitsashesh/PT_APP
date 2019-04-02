@@ -14,6 +14,7 @@ import { AdMobFree, AdMobFreeBannerConfig, AdMobFreeInterstitialConfig } from '@
 @Component({
   selector: 'page-tab-home',
   templateUrl: 'tab-home.html',
+  
 })
 export class TabHomePage implements OnInit {
   currentUser: UserDetails;
@@ -126,4 +127,5 @@ launchInterstitial() {
   // });
 
 }
+
 }

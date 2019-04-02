@@ -13,6 +13,7 @@ import { TabexercisesPageModule } from '../../pages/tabexercises/tabexercises.mo
 import { TabworkoutsPageModule } from '../../pages/tabworkouts/tabworkouts.module';
 import { TabmealplansPageModule } from '../../pages/tabmealplans/tabmealplans.module';
 import { TabViewsPage } from '../../pages/tab-views/tab-views';
+
 export function getHomeModule() { return TabHomePageModule; }
 export function getSearchModule() { return TabSearchPageModule; }
 export function getProfileModule() { console.log('profile'); return TabProfilePageModule; }
@@ -28,11 +29,15 @@ const routes: Routes = [
 },
 {
     path: 'tab_exercises',
-    loadChildren: getExercisesModule
+    loadChildren: getExercisesModule,
+    data: {animation: 'TabexercisesPage'}
+            
+
 },
 {
     path: 'tab_workouts',
-    loadChildren: getWorkoutsModule
+    loadChildren: getWorkoutsModule,
+    data: {animation: 'TabworkoutsPage'}
 },
 {
     path: 'tab_mealplans',

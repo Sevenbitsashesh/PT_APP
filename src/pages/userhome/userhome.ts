@@ -1,15 +1,17 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { SharedProvider } from '../../providers/shared/shared';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { AuthProvider } from '../../providers/auth/auth';
+import { slideInAnimation } from '../../providers/animation/animation';
 
 
 
 @IonicPage()
 @Component({
   selector: 'page-userhome',
-  templateUrl: 'userhome.html'
+  templateUrl: 'userhome.html',
+  animations: [slideInAnimation]
 })
 export class UserhomePage {
   
@@ -18,6 +20,10 @@ export class UserhomePage {
     // sharedService.getCred();  
     // sharedService.checkLogin();       
     authService.checkLogin();
+  }
+  prepareRoute(outlet: RouterOutlet) {
+    // console.log(outlet.activatedRoute);
+    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
   }
 
   

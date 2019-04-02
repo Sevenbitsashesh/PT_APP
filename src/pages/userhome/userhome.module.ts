@@ -15,6 +15,7 @@ import { TabViewsPageModule } from '../tab-views/tab-views.module';
 import { TabexercisesPageModule } from '../../pages/tabexercises/tabexercises.module';
 import { TabworkoutsPageModule } from '../../pages/tabworkouts/tabworkouts.module';
 import { TabmealplansPageModule } from '../../pages/tabmealplans/tabmealplans.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -36,11 +37,12 @@ import { TabmealplansPageModule } from '../../pages/tabmealplans/tabmealplans.mo
     TabViewsPageModule,
     TabexercisesPageModule,
     TabworkoutsPageModule,
-    TabmealplansPageModule
+    TabmealplansPageModule,
+    
   ],
   bootstrap: [],
-  entryComponents: [],
-  exports: [],
+  entryComponents: [ ],
+  exports: [ ],
   providers: []
 })
 export class UserhomePageModule { }

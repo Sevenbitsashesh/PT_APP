@@ -8,7 +8,9 @@
   color: #AA9C6F;
   zoom: 1;
 }
-.active {
+.btnTab:active {
+  background-color: rgb(138, 207, 155);
+  color: white;
   color: orange;
   font-size: 20px;
 }

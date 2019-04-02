@@ -30,6 +30,8 @@ import { StepperComponent } from './stepper/stepper';
 import { MatStepperModule, MatFormFieldModule } from '@angular/material';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ListworkoutsComponent } from './listworkouts/listworkouts';
+import { ListverticalComponent } from './listvertical/listvertical';
 
 
 
@@ -54,7 +56,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NewworkoutComponent,
     NewmealplansComponent,
     DropdownComponent,
-    StepperComponent],
+    StepperComponent,
+    // ListworkoutsComponent,
+    ListverticalComponent],
 	imports: [ IonicModule, CommonModule, RouterModule, VerificationPageModule, MatStepperModule, MatFormFieldModule	],
 	exports: [FirstComponent,
 	LoginComponent,
@@ -75,7 +79,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NewworkoutComponent,
     NewmealplansComponent,
     DropdownComponent,
-    StepperComponent],
+    StepperComponent,
+    // ListworkoutsComponent,
+    ListverticalComponent],
     entryComponents: [LoginComponent, FirstComponent, ProfileComponent],
     
 })
