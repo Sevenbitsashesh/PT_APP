@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule, NavController, NavControllerBase, LoadingController, Nav, NavParams } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -45,7 +45,7 @@ import { MapProvider } from '../providers/map/map';
 import { GoogleMaps } from '@ionic-native/google-maps';
 import { Geolocation } from '@ionic-native/geolocation';
 import { LocationProvider } from '../providers/location/location';
-import { AnimationProvider } from '../providers/animation/animation';
+
 
 
 @NgModule({
@@ -67,7 +67,7 @@ import { AnimationProvider } from '../providers/animation/animation';
     FormsModule,
     AngularFireStorageModule,
     BrowserAnimationsModule
-    // AnimationModule
+    // AnimationModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -100,7 +100,7 @@ import { AnimationProvider } from '../providers/animation/animation';
     Geolocation,
     LocationProvider,
     LoadingController,
-    AnimationProvider
+    // AnimationProvider
   ]
   
 })

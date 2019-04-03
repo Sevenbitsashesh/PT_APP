@@ -3,13 +3,13 @@ import { IonicPageModule, NavController, NavControllerBase, NavParams, Nav } fro
 import { TabexercisesPage } from './tabexercises';
 import { Routes, RouterModule } from '@angular/router';
 import { ComponentsModule } from '../../components/components.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 const routes: Routes = [
   {
     path: '',
-    component: TabexercisesPage,
-    data: {animation: 'TabexercisesPage'}
+    component: TabexercisesPage
   }
         
 ]

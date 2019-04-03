@@ -17,14 +17,14 @@ export class UsertabsComponent implements AfterViewInit {
     
   }
   ngAfterViewInit(){
-    const swiper = new Swiper('.swiper-container', {
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-        renderBullet: function (index, className) {
-          return '<div style="height: 50px; width: 20%;" style="" class="' + className + '">' + '<img src="../../assets/imgs/logo.png" style="height: 50px; width: 100%;"/>'+ '</div>';
-        },
-      },
-    })
+    // const swiper = new Swiper('.swiper-container', {
+    //   pagination: {
+    //     el: '.swiper-pagination',
+    //     clickable: true,
+    //     renderBullet: function (index, className) {
+    //       return '<div style="height: 50px; width: 20%;" style="" class="' + className + '">' + '<img src="../../assets/imgs/logo.png" style="height: 50px; width: 100%;"/>'+ '</div>';
+    //     },
+    //   },
+    // })
   }
 }

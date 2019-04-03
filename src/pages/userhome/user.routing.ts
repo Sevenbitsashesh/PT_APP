@@ -30,14 +30,10 @@ const routes: Routes = [
 {
     path: 'tab_exercises',
     loadChildren: getExercisesModule,
-    data: {animation: 'TabexercisesPage'}
-            
-
 },
 {
     path: 'tab_workouts',
-    loadChildren: getWorkoutsModule,
-    data: {animation: 'TabworkoutsPage'}
+    loadChildren: getWorkoutsModule
 },
 {
     path: 'tab_mealplans',

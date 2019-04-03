@@ -1,16 +1,20 @@
 import { NgModule } from '@angular/core';
-import { IonicPageModule, NavController } from 'ionic-angular';
+import { IonicPageModule, NavController, IonicModule } from 'ionic-angular';
 import { TabworkoutsPage } from './tabworkouts';
 import { Routes, RouterModule } from '@angular/router';
 import { ComponentsModule } from '../../components/components.module';
 import { ListworkoutsComponent } from '../../components/listworkouts/listworkouts';
+import { NewworkoutComponent } from '../../components/newworkout/newworkout';
 
 
 const routes: Routes = [
   {
     path: '',
-    component: TabworkoutsPage,
-    data: {animation: 'TabexercisesPage'}
+    component: TabworkoutsPage
+  },
+  {
+    path: 'newworkout',
+    component: NewworkoutComponent
   }
         
 ]
@@ -18,15 +22,14 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    TabworkoutsPage,
-    ListworkoutsComponent
+    TabworkoutsPage
   ],
   imports: [
-    IonicPageModule.forChild(TabworkoutsPage),
+    IonicModule,
     RouterModule.forChild(routes),
     ComponentsModule,
     
   ],
-  entryComponents: [ListworkoutsComponent]
+  entryComponents: [NewworkoutComponent]
 })
 export class TabworkoutsPageModule {}

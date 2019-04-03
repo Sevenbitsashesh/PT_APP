@@ -1,6 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, Nav } from 'ionic-angular';
-import { ListworkoutsComponent } from '../../components/listworkouts/listworkouts';
+import { NewworkoutComponent } from '../../components/newworkout/newworkout';
+
+
 
 
 @IonicPage()
@@ -8,16 +10,17 @@ import { ListworkoutsComponent } from '../../components/listworkouts/listworkout
   selector: 'page-tabworkouts',
   templateUrl: 'tabworkouts.html',
 })
-export class TabworkoutsPage {
-// @ViewChild(Nav) nav: Nav;
-// public rootPage: any = ListworkoutsComponent;
+export class TabworkoutsPage  {
 
+  
   constructor() {
+    
   }
 
   ionViewDidLoad() {
-    
+    // this.nav.push(NewworkoutComponent);
 
   }
+  
 
 }

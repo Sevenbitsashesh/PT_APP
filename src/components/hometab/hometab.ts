@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 
 
@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class HometabComponent {
   
-  constructor(private router: Router) {
+  constructor() {
     // console.log('Hello HometabComponent Component');
     
   }
@@ -24,6 +24,6 @@ export class HometabComponent {
     // document.getElementById('spanTab')    
   }
   routeTo() {
-    this.router.navigate(['/tab_exercises']);
+    // this.router.navigate(['/tab_exercises']);
   }
 }
