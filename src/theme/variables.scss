@@ -99,9 +99,12 @@ $colors: (
  .error-message, .required {
    color: red;
 }
- ion-col {
-border: think solid black;
- }
+//  ion-col {
+// border: think solid black;
+//  }
 $color: (
- cornflower: cornflowerblue
-)
+ cornflower: cornflowerblue,
+);
+ion-select {
+  color: rgb(190, 229, 208);
+}

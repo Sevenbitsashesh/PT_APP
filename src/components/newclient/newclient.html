@@ -18,7 +18,7 @@
                 <ion-col col-12 class="animated fadeInLeft delay-3s">
                     <ion-item>
                         <ion-label>Goal</ion-label>
-                        <ion-select>
+                        <ion-select [(ngModel)]="binding">
                           <ion-option ion-option value="muscleBuilding">Muscle Building</ion-option>
                           <ion-option value="gainStrength">Gain Strength</ion-option>
                           <ion-option value="massGrowth">Mass Growth</ion-option>
@@ -36,10 +36,9 @@
                     <ion-item>
                         <ion-label>Level</ion-label>
                         <ion-select>
-                          <ion-option ion-option value="begginer">Begginer</ion-option>
+                          <ion-option  value="begginer">Begginer</ion-option>
                           <ion-option value="intermediate">Intermediate</ion-option>
-                          <ion-option value="advanced">Advanced</ion-option>
-                          
+                          <!-- <ion-option value="advanced">Advanced</ion-option -->
                         </ion-select>
                       </ion-item>
                 
@@ -81,7 +80,20 @@
       </mat-step>
       <mat-step  [completed]="false">
         <ng-template matStepLabel>Done</ng-template>
-        
+       
+        <div>
+          <ion-item>
+              <ion-label>Workout Plan</ion-label>
+              <ion-select [ngModel]="category" (ngModelChange)="selectCategory($event)" name="category">
+                  <ion-option [value]="null">
+                      None
+                  </ion-option>
+                  <ion-option *ngFor="let category of categories | async" [value]="category">
+                      {{category}}
+                  </ion-option>
+              </ion-select>
+        </ion-item>
+        </div>
         <div>
           <button ion-button mat-button matStepperPrevious>Back</button>
           

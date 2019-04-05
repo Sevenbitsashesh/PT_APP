@@ -66,8 +66,8 @@ import { LocationProvider } from '../providers/location/location';
     RouterModule,
     FormsModule,
     AngularFireStorageModule,
-    BrowserAnimationsModule
-    // AnimationModule,
+    BrowserAnimationsModule,
+  // AnimationModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [

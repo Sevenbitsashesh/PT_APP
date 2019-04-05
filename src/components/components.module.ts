@@ -37,6 +37,7 @@ import { StretchComponent } from './stretch/stretch';
 
 
 
+
 @NgModule({
 	declarations: [FirstComponent,
     LoginComponent,
@@ -60,7 +61,7 @@ import { StretchComponent } from './stretch/stretch';
     StepperComponent,
     ListworkoutsComponent,
     ListverticalComponent,
-    StretchComponent],
+    StretchComponent    ],
 	imports: [ IonicModule, CommonModule, RouterModule, VerificationPageModule, MatStepperModule, MatFormFieldModule	],
 	exports: [FirstComponent,
 	LoginComponent,

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import { Platform, LoadingController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import {  AngularFireModule } from 'angularfire2/';
@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 export class MyApp {
   // rootPage:any = HomePage;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,private route: Router) {
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,private route: Router, private loadingController: LoadingController) {
     // AngularFireModule.initializeApp(config);
     
     
@@ -24,6 +24,7 @@ export class MyApp {
       statusBar.show();
        statusBar.backgroundColorByHexString('#2abb9c');
       splashScreen.hide();
+      // loadingController.create({content: 'name',duration: 2000,}).present()
     });
   }
 }

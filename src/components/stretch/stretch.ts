@@ -15,6 +15,3 @@ export class StretchComponent  {
 
 }
 
-interface HtmlElement {
-  extended?:  any;
-}

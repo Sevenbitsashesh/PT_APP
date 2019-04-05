@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { IonicPageModule, NavController, NavControllerBase, NavParams, Nav } from 'ionic-angular';
+import { IonicPageModule, NavController, NavControllerBase, NavParams, Nav, IonicModule } from 'ionic-angular';
 import { TabexercisesPage } from './tabexercises';
 import { Routes, RouterModule } from '@angular/router';
 import { ComponentsModule } from '../../components/components.module';
@@ -20,9 +20,10 @@ const routes: Routes = [
     TabexercisesPage,
   ],
   imports: [
-    IonicPageModule, 
+    IonicModule.forRoot(TabexercisesPage), 
     RouterModule.forChild(routes),
-    ComponentsModule
+    ComponentsModule,
+    
   ],
   providers: [
     

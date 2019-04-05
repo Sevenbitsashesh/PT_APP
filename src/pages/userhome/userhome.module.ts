@@ -26,7 +26,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     UsertabsComponent
   ],
   imports: [
-    // IonicPageModule.forChild(UserhomePage),
+    IonicPageModule.forChild(UserhomePage),
     CommonModule,
     IonicModule.forRoot(UsertabsComponent),
     UserRoutingModule,

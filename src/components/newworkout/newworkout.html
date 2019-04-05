@@ -1,39 +1,110 @@
-<ion-grid>
-    <ion-row>
-      <ion-col col-12>
-      <ion-input placeholder="Plan name"></ion-input>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col col-12>
-        <textarea placeholder="Description(Optional)"></textarea>
-        </ion-col>
-    </ion-row>
-  
-    <ion-row>
-      <ion-col col-12>
-          <select>
-              <option>Monthly</option>
-              <option>Weekly</option>
-            </select>
-           
-        </ion-col>
-        <ion-col>
-          <ion-input type="number" placeholder="Type Months/Weeks"></ion-input>
-        </ion-col>
-    </ion-row>
-   <ion-row>
-    <ion-row>
-      <ion-col>
-        <div>
-            <button ion-button>Create Workout</button>
-        </div>
-    </ion-col>
-    </ion-row>
-   </ion-row>
-  </ion-grid>
-  <div class="client-basic">
-    </div>
-  <div class="client-advance">
-  
+<ion-header>
+  <div class="top-bar top-text">
+    
+    <ion-grid>
+      <ion-row></ion-row>
+      <ion-row style="text-align: center;">
+        <ion-col col-2><div (click)="newWorkoutBack()"><i class="fas fa-arrow-left"></i></div></ion-col>
+        <ion-col col-8>NEW WORKOUT PLAN</ion-col>
+        <ion-col col-2>  <div><i class="fas fa-check"></i></div></ion-col>
+      </ion-row>
+    </ion-grid>
   </div>
+</ion-header>
+<ion-content class="new-workout-content">
+  
+      <ion-grid class="workout-grid text-decorations">
+          <ion-row class="full-width">
+            <ion-col col-12 class="workout-col">
+            <ion-label class="text-decorations">NAME YOU PLAN</ion-label>
+            </ion-col>
+          </ion-row>
+          
+            <ion-row class="full-width">
+                <ion-col col-12 class="workout-col">
+                <ion-input placeholder="Workout Name"></ion-input>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <ion-label>
+                    COLOR TAG
+                  </ion-label>
+                  <div class="row-form">
+                    <div class="color-tag-single">
+                        <div id="color1" class="color-tag color1" (click)="tagClick1($event)"></div>
+                    </div>
+                    <div class="color-tag-single">
+                        <div id="color2" class="color-tag color2" (click)="tagClick1($event)"></div>
+                    </div>
+                    <div class="color-tag-single">
+                        <div id="color3" class="color-tag color3" (click)="tagClick1($event)"></div>
+                    </div>
+                    <div class="color-tag-single">
+                        <div id="color4" class="color-tag color4" (click)="tagClick1($event)"></div>
+                    </div>
+                    <div class="color-tag-single">
+                        <div id="color5" class="color-tag color5" (click)="tagClick1($event)"></div>
+                    </div>
+                    <div class="color-tag-single">
+                        <div id="color6" class="color-tag color6" (click)="tagClick1($event)"></div>
+                    </div>
+                  </div>
+                </ion-col>                
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  SELECT WORKOUT DAY
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <div class="row-form">
+                    <div class="single-day" id="select_{{i}}" *ngFor="let i of days" (click)="clickDay($event)">
+                      {{i}}
+                    </div>
+                   
+                  </div>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                  <ion-label>EXERCISES</ion-label>
+              </ion-row>
+
+          <ion-row *ngIf="exerciseSelect">
+
+            <ion-slides (ionSlideChage)="slides()">
+              <ion-slide>
+                  <ion-col>
+                      <div class="row-form" *ngFor="let item of item1">
+                        {{item}}
+                      </div>        
+                      <div>
+                          <button class="btn-choose-exercise" *ngIf="exerciseSelect" id="add-exe-btn" (click)="selectExe($event)">ADD EXERCISES</button>
+                      </div>    
+                    </ion-col>
+              </ion-slide>
+              <ion-slide>
+                
+                  <div class="exercise-bpart" (click)="selectExe($event)" id="exe_chest">Chest</div>
+                    <div class="exercise-bpart" (click)="selectExe($event)" id="exe_leg">Leg</div>
+                    <div class="exercise-bpart" (click)="selectExe($event)" id="exe_thigh">Thigh</div>
+                    <div class="exercise-bpart" (click)="selectExe($event)" id="exe_shoulder">Shoulder</div>
+                    <div class="exercise-bpart" (click)="selectExe($event)" id="exe_back">Back</div>
+                    <div class="exercise-bpart" (click)="selectExe($event)" id="exe_biceps">Biceps</div>  
+              </ion-slide>
+              
+            </ion-slides>
+            
+            
+
+          </ion-row>
+          
+          <ion-row>
+
+          </ion-row>
+        </ion-grid>  
+
+  
+
+</ion-content>

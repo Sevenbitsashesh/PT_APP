@@ -1,0 +1,148 @@
+.new-workout-content {
+    background: lightseagreen;
+}
+.workout-grid {
+    width: 100%;    
+    
+}
+.workout-col {
+    background: #64cb9d;        
+    -webkit-box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+.full-width {
+    align-items: center;
+}
+.text-decorations {
+    text-align: center;
+    color: #41392e;
+}
+.row-form {
+width: 100%;
+height: 70px;
+background: #64cb9d;
+padding-top: 20px;
+-webkit-box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.color-tag-single {
+    height: 30px;
+    width: 16%;
+    padding-left: 20px;
+    // border-radius: 50%;
+    // background: #41392e;
+    float: left;
+    // background: palegoldenrod;    
+    transition: 1s;
+}
+.color-tag {
+    height: 100%;
+    width: 30px;
+    border-radius: 50%;
+    
+}
+.color1 {
+    background: rgb(201, 194, 120);
+    
+    transition: 0.9s;
+        
+
+}
+.color2 {
+    background: rgb(93, 142, 161);
+    transition: 1s;
+}
+.color3 {
+    background: rgb(179, 87, 163);
+    transition: 1s;
+}
+.color4 {
+    background: rgb(132, 97, 197);
+    transition: 1s;
+}
+.color5 {
+    background: rgb(36, 151, 103);
+    transition: 1s;
+}
+.color6 {
+    background: rgb(150, 87, 97);
+    transition: 1s;
+}
+.shadow-tag-color1 {
+    box-shadow: 0 0 0 5px #d7d6bc;
+    box-shadow: 0 0 0 7px #ebeadc;
+
+}
+.single-day{
+    height: 50px;
+    width: 14%;
+    float: left;
+    border-radius: 50%;
+    padding-top: 10px;
+    transition: 1s;
+}
+.single-day-selected {
+    background: #916bb4;
+}
+.btn-choose-exercise {
+    height: 50px;
+    width: 100%;
+    background: #916bb4;
+    // border-radius: 20px;
+}
+
+
+
+
+@keyframes gradient {
+    0% {
+      background: radial-gradient(circle at center, rgba( 255, 125 , 125, 0 ) 0%, #fff 0%, #fff 100%);
+    }
+    25% {
+      background: radial-gradient(circle at center, rgba( 255, 125, 125, 0.3 ) 24%, #fff 25%, #fff 100%);
+    }
+    50% {
+      background: radial-gradient(circle at center, rgba( 255, 125, 125, 0.5 ) 49%, #fff 50%, #fff 100%);
+    }
+    75% {
+      background: radial-gradient(circle at center, rgba( 255, 125, 125, 0.8 ) 74%, #fff 75%, #fff 100%);
+    }
+    100% {
+      color: #fff;
+      background: radial-gradient(circle at center, #f88 99%, #fff 100%, #fff 100%);
+    }
+  }
+  
+//   body {
+//     background: #68d;
+//   }
+  #add-exe-btn {
+    // margin-left: calc( 50vw - 175px );
+    // margin-top: calc( 50vh - 30px );
+    width: 100%;
+    height: 60px;
+    border: none;
+    border-radius: 5px;
+    background: #fff;
+    font-weight: bold;
+    font-size: 1.1em;
+    color: #666;
+    // box-shadow: 0 6px 6px #06f;
+    outline: none;
+  }
+  #add-exe-btn:active {
+    /* set time duration to your needs */
+    animation: gradient 100ms;
+    background: #f88;
+    color: #fff;
+    box-shadow: none;
+  }
+  .exercise-bpart {
+      width: 20%;
+      height: auto;
+      background: #8461c5;
+      float: left;
+      margin-right: 5px;
+      border-radius: 10px;
+  }
