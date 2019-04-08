@@ -1,23 +1,35 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import { delay } from 'rxjs/operator/delay';
 import { Observable } from 'rxjs';
-
+import * as anime from 'animejs'; 
+import { NativeProvider } from '../../providers/native/native';
+declare var Swiper: any;
 @Component({
   selector: 'newworkout',
   templateUrl: 'newworkout.html'
 })
-export class NewworkoutComponent {
+export class NewworkoutComponent  implements AfterViewInit{
 
   
   days = ['MON','TUE','WED','THUR','FRI','SAT','SUN'];
   exerciseSelect: boolean;
   item1 = [];
-  
+  swiper;
     
     
-  constructor() {
-    
+  constructor(private nativeService: NativeProvider) {
+   
   }
+   ngAfterViewInit() {
+    //  console.log(swiper.Swiper);
+    this.swiper = new Swiper('.swiper-container', {
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    }); 
+   
+   }
   newWorkoutBack() {
     window.history.back();
   }
@@ -58,7 +70,22 @@ export class NewworkoutComponent {
       this.item1 = ['Abs Scrunch','Trap Bar Deadlift', 'Barbel Push Up'];
       this.exerciseSelect = true;
     }
-    
+    else if(idDay.split('_')[1] === "THUR") {
+      this.item1 = ['Abs Scrunch','Trap Bar Deadlift'];
+      this.exerciseSelect = true;
+    }
+    else if(idDay.split('_')[1] === "FRI") {
+      this.item1 = ['Trap Bar Deadlift'];
+      this.exerciseSelect = true;
+    }
+    else if(idDay.split('_')[1] === "SAT") {
+      this.item1 = ['Barbel Push Up'];
+      this.exerciseSelect = true;
+    }
+    else if(idDay.split('_')[1] === "SUN") {
+      this.item1 = [];
+      this.exerciseSelect = true;
+    }
     Array.from(document.querySelectorAll('.single-day')).forEach(items => {
       items.classList.remove('single-day-selected');
     })
@@ -68,5 +95,9 @@ export class NewworkoutComponent {
   selectExe(control) {
     this.item1.push(control.target.id);
     console.log(this.item1);
+  }
+  newWorkoutCreate() {
+    this.nativeService.generateToast('New Workout Created','css');
+    window.history.back();
   }
 }

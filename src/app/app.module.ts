@@ -47,7 +47,6 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { LocationProvider } from '../providers/location/location';
 
 
-
 @NgModule({
   declarations: [
     MyApp,
@@ -68,6 +67,7 @@ import { LocationProvider } from '../providers/location/location';
     AngularFireStorageModule,
     BrowserAnimationsModule,
   // AnimationModule,
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [
