@@ -22,12 +22,12 @@ export class NewworkoutComponent  implements AfterViewInit{
   }
    ngAfterViewInit() {
     //  console.log(swiper.Swiper);
-    this.swiper = new Swiper('.swiper-container', {
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-    }); 
+    // this.swiper = new Swiper('.swiper-container', {
+    //   navigation: {
+    //     nextEl: '.swiper-button-next',
+    //     prevEl: '.swiper-button-prev',
+    //   }
+    // }); 
    
    }
   newWorkoutBack() {

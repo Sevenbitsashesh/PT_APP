@@ -33,6 +33,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ListworkoutsComponent } from './listworkouts/listworkouts';
 import { ListverticalComponent } from './listvertical/listvertical';
 import { StretchComponent } from './stretch/stretch';
+import { NewexerciseComponent } from './newexercise/newexercise';
 
 
 
@@ -61,7 +62,8 @@ import { StretchComponent } from './stretch/stretch';
     StepperComponent,
     ListworkoutsComponent,
     ListverticalComponent,
-    StretchComponent    ],
+    StretchComponent,
+    NewexerciseComponent    ],
 	imports: [ IonicModule, CommonModule, RouterModule, VerificationPageModule, MatStepperModule, MatFormFieldModule	],
 	exports: [FirstComponent,
 	LoginComponent,
@@ -85,7 +87,8 @@ import { StretchComponent } from './stretch/stretch';
     StepperComponent,
     ListworkoutsComponent,
     ListverticalComponent,
-    StretchComponent],
+    StretchComponent,
+    NewexerciseComponent],
     entryComponents: [LoginComponent, FirstComponent, ProfileComponent],
     
 })

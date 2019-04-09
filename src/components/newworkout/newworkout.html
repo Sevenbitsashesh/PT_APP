@@ -70,8 +70,26 @@
                   <ion-label>EXERCISES</ion-label>
               </ion-row>
               <ion-row>
-                  <div class="swipe-data-grid">
-            <div class="swiper-container">
+                  <ion-slides pager="true" size=100 >
+                      <ion-slide id="slide1">
+                          <div class="row-form" *ngFor="let item of item1">
+                              {{item}}
+                            </div> 
+                      </ion-slide>
+                    
+                      <ion-slide id="slide2">
+                          <div class="exercise-bpart" (click)="selectExe($event)" id="exe_chest">Chest</div>
+                          <div class="exercise-bpart" (click)="selectExe($event)" id="exe_leg">Leg</div>
+                          <div class="exercise-bpart" (click)="selectExe($event)" id="exe_thigh">Thigh</div>
+                          <div class="exercise-bpart" (click)="selectExe($event)" id="exe_shoulder">Shoulder</div>
+                          <div class="exercise-bpart" (click)="selectExe($event)" id="exe_back">Back</div>
+                          <div class="exercise-bpart" (click)="selectExe($event)" id="exe_biceps">Biceps</div>  
+                      </ion-slide>
+                    
+                      
+                    </ion-slides>
+                  <!-- <div class="swipe-data-grid" >
+            <div class="swiper-container" style="height: 400px">
               <div class="swiper-wrapper">
                 <div class="swiper-slide"> 
                     <div class="swipe-data-grid">
@@ -94,9 +112,10 @@
               
               <div class="swiper-button-next"></div>
               <div class="swiper-button-prev"></div>
-                
+              <div class="swiper-scrollbar"></div>
+
             </div>
-            </div>
+            </div> -->
               </ion-row>
 
 
