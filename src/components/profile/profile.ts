@@ -7,6 +7,8 @@ import { DataProvider } from '../../providers/data/data';
 import { UserProvider } from '../../providers/user/user';
 import { AuthProvider, UserDetails } from '../../providers/auth/auth';
 import { UserInfo } from '../../Models/users_info';
+import { ModalController } from 'ionic-angular';
+import { ExeSetsComponent } from '../../components/exe-sets/exe-sets';
 
 
 @Component({
@@ -64,7 +66,7 @@ export class ProfileComponent {
       // this.uactivity.addInfo(model);
     }
   
-  constructor(private formBuilder: FormBuilder, private imageService: ImageProvider, private dataService: DataProvider,private authService: AuthProvider, private userService: UserProvider, private cd: ChangeDetectorRef) {
+  constructor(private formBuilder: FormBuilder, private imageService: ImageProvider, private dataService: DataProvider,private authService: AuthProvider, private userService: UserProvider, private cd: ChangeDetectorRef, private modal: ModalController) {
     // document.addEventListener('touchstart', this.handler, {capture: true});
     this.userModel =  dataService.u;
     console.log(this.userModel);
@@ -162,4 +164,5 @@ export class ProfileComponent {
     console.log('segment changed');
       this.cd.detectChanges();      
     }
+   
 }

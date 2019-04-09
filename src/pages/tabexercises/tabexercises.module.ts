@@ -20,7 +20,7 @@ const routes: Routes = [
     TabexercisesPage,
   ],
   imports: [
-    IonicModule.forRoot(TabexercisesPage), 
+    IonicModule, 
     RouterModule.forChild(routes),
     ComponentsModule,
     

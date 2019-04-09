@@ -10,7 +10,7 @@ import 'rxjs/add/operator/delay';
 import 'rxjs/add/operator/filter';
 import {  existingUsernameValidator } from '../../directives/existing-userid-validator/existing-userid-validator';
 import { NativeProvider } from '../../providers/native/native';
-import { PassportProvider } from '../../providers/passport/passport';
+
 
 
 @Component({
@@ -94,6 +94,7 @@ export class SigninComponent implements OnInit {
   eyeIcon = "eye";
   showPassword: boolean = false;
   constructor(private authService: AuthProvider, private router: Router, private userService: UserProvider, private nativeService: NativeProvider) {
+
     // authService.checkLogin();
   }
   showSign() {

@@ -10,13 +10,10 @@ declare var Swiper: any;
 })
 export class NewworkoutComponent  implements AfterViewInit{
 
-  
   days = ['MON','TUE','WED','THUR','FRI','SAT','SUN'];
   exerciseSelect: boolean;
   item1 = [];
   swiper;
-    
-    
   constructor(private nativeService: NativeProvider) {
    
   }
@@ -51,39 +48,33 @@ export class NewworkoutComponent  implements AfterViewInit{
   }
   clickDay(dayControl) {
     var idDay = dayControl.target.id;
-    // this.daysExercises.forEach(item => {
-      
-    //   if(this.daysExercises.find(idDay.split('_')[1])) {
-        
-    //     this.exerciseSelect = true;
-    //   }
-    // })
+    
     if(idDay.split('_')[1] === "MON") {
-      this.item1 = ['SQUAT','LEG Extention'];
+      // this.item1 = ['SQUAT','LEG Extention'];
           this.exerciseSelect = true;
     }
     else if(idDay.split('_')[1] === "TUE") {
-      this.item1 = ['Dumbbell Lunges','Burpee', 'Barbel Lunge'];
+      // this.item1 = ['Dumbbell Lunges','Burpee', 'Barbel Lunge'];
       this.exerciseSelect = true;
     }
     else if(idDay.split('_')[1] === "WED") {
-      this.item1 = ['Abs Scrunch','Trap Bar Deadlift', 'Barbel Push Up'];
+      // this.item1 = ['Abs Scrunch','Trap Bar Deadlift', 'Barbel Push Up'];
       this.exerciseSelect = true;
     }
     else if(idDay.split('_')[1] === "THUR") {
-      this.item1 = ['Abs Scrunch','Trap Bar Deadlift'];
+      // this.item1 = ['Abs Scrunch','Trap Bar Deadlift'];
       this.exerciseSelect = true;
     }
     else if(idDay.split('_')[1] === "FRI") {
-      this.item1 = ['Trap Bar Deadlift'];
+      // this.item1 = ['Trap Bar Deadlift'];
       this.exerciseSelect = true;
     }
     else if(idDay.split('_')[1] === "SAT") {
-      this.item1 = ['Barbel Push Up'];
+      // this.item1 = ['Barbel Push Up'];
       this.exerciseSelect = true;
     }
     else if(idDay.split('_')[1] === "SUN") {
-      this.item1 = [];
+      // this.item1 = [];
       this.exerciseSelect = true;
     }
     Array.from(document.querySelectorAll('.single-day')).forEach(items => {
@@ -99,5 +90,12 @@ export class NewworkoutComponent  implements AfterViewInit{
   newWorkoutCreate() {
     this.nativeService.generateToast('New Workout Created','css');
     window.history.back();
+  }
+  removeItem(event) {
+    
+    const items = event.target.id.split('_');
+    const index = this.item1.indexOf(items[1]+'_'+items[2]);
+    this.item1.splice(index,index);
+    console.log(index);
   }
 }

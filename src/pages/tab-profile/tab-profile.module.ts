@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { IonicPageModule } from 'ionic-angular';
+import { IonicPageModule, IonicModule } from 'ionic-angular';
 import { TabProfilePage } from './tab-profile';
 import { Routes, RouterModule } from '@angular/router';
 import { ComponentsModule } from '../../components/components.module';
@@ -18,7 +18,7 @@ const routes: Routes = [
     TabProfilePage
   ],
   imports: [
-    IonicPageModule,
+    IonicModule,
     RouterModule.forChild(routes),
     ComponentsModule,
     ReactiveFormsModule,

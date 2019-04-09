@@ -72,8 +72,8 @@
               <ion-row>
                   <ion-slides pager="true" size=100 >
                       <ion-slide id="slide1">
-                          <div class="row-form" *ngFor="let item of item1">
-                              {{item}}
+                          <div class="row-form" *ngFor="let item of item1"   >
+                              {{item}} <i class="fas fa-minus-circle" id="sel_{{item}}" (click)="removeItem($event)"></i>
                             </div> 
                       </ion-slide>
                     

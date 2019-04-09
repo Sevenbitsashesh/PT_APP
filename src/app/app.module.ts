@@ -65,7 +65,7 @@ import { LocationProvider } from '../providers/location/location';
     RouterModule,
     FormsModule,
     AngularFireStorageModule,
-    BrowserAnimationsModule,
+    // BrowserAnimationsModule,
   // AnimationModule,
 
   ],

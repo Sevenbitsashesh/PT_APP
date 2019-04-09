@@ -117,7 +117,7 @@ padding-top: 20px;
 //   body {
 //     background: #68d;
 //   }
-  #add-exe-btn {
+  .add-exe-btn {
     // margin-left: calc( 50vw - 175px );
     // margin-top: calc( 50vh - 30px );
     width: 100%;
@@ -130,8 +130,10 @@ padding-top: 20px;
     color: #666;
     // box-shadow: 0 6px 6px #06f;
     outline: none;
+    text-align: center;
+    font-size: 20px;
   }
-  #add-exe-btn:active {
+  .add-exe-btn:active {
     /* set time duration to your needs */
     animation: gradient 100ms;
     background: #f88;
