@@ -14,6 +14,7 @@ export class NewworkoutComponent  implements AfterViewInit{
   exerciseSelect: boolean;
   item1 = [];
   swiper;
+  exe_image = "../../assets/imgs/attach-img.svg";
   constructor(private nativeService: NativeProvider) {
    
   }

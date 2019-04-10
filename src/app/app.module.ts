@@ -45,6 +45,8 @@ import { MapProvider } from '../providers/map/map';
 import { GoogleMaps } from '@ionic-native/google-maps';
 import { Geolocation } from '@ionic-native/geolocation';
 import { LocationProvider } from '../providers/location/location';
+import { ExerciseProvider } from '../providers/exercise/exercise';
+import { WorkoutProvider } from '../providers/workout/workout';
 
 
 @NgModule({
@@ -100,6 +102,8 @@ import { LocationProvider } from '../providers/location/location';
     Geolocation,
     LocationProvider,
     LoadingController,
+    ExerciseProvider,
+    WorkoutProvider,
     // AnimationProvider
   ]
   

@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ComponentsModule } from '../../components/components.module';
 import { ListworkoutsComponent } from '../../components/listworkouts/listworkouts';
 import { NewworkoutComponent } from '../../components/newworkout/newworkout';
+import { WorkoutdetailsComponent } from '../../components/workoutdetails/workoutdetails';
 
 
 const routes: Routes = [
@@ -15,6 +16,10 @@ const routes: Routes = [
   {
     path: 'newworkout',
     component: NewworkoutComponent
+  },
+  {
+    path: 'workoutdetails',
+    component: WorkoutdetailsComponent
   }
         
 ]

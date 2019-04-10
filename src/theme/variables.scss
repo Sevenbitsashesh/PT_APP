@@ -108,3 +108,7 @@ $color: (
 ion-select {
   color: rgb(0, 0, 0);
 }
+.text-input::-webkit-input-placeholder {
+  text-indent: 0;
+  color: #293d74;
+}

@@ -3,9 +3,10 @@
 <div>
   <ion-grid>
     <ion-row>
-      <ion-col col-4><img class="attachImg" src="../../assets/imgs/attach-img.svg"></ion-col>
+      
+      <ion-col col-4><img class="attachImg" [src]=exe_image (click)="imageAction()"></ion-col>
       <ion-col>
-        <ion-input placeholder="Exercise name"></ion-input>
+        <input placeholder="Exercise name" class="newionInput" [(ngModel)]="exe_name">
       </ion-col>
       
     </ion-row>
@@ -15,7 +16,7 @@
           
               <ion-label class="content">Muscle</ion-label>
 
-              <ion-select class="selector">
+              <ion-select class="selector" [(ngModel)]="exe_muscle">
                   <ion-option>Shoulders</ion-option>
                   <ion-option>Chest</ion-option>
                   <ion-option>Abs</ion-option>
@@ -51,7 +52,7 @@
     <ion-row>
         <ion-col>
          <ion-item>
-           <textarea type="textarea" placeholder="Exercise Description" class="textarea-desc"></textarea>
+           <textarea type="textarea" placeholder="Exercise Description" class="newionInput" [(ngModel)]="exe_desc"></textarea>
            
          </ion-item>
         </ion-col>

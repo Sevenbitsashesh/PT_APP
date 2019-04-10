@@ -46,10 +46,11 @@ export class ImageProvider {
     const file = 'data:image/jpg;base64,' + profilepic;
     const fileRef =  this.fstorage.ref('/'+ location +'/' + this.generateUUID() + '.jpg');
     const stor_task = fileRef.putString(file, 'data_url');
-    stor_task.percentageChanges().subscribe(d => {
-      this.progress = d;
-    })
-    //  then(snap => {
+    return stor_task;
+    // .percentageChanges().subscribe(d => {
+    //   this.progress = d;
+    // })
+    //  .then(snap => {
     //   this.progress = ((snap.bytesTransferred*100)/snap.totalBytes);
     //   snap.ref.getDownloadURL().then(url => {
     //     console.log(url);

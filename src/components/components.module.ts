@@ -35,6 +35,7 @@ import { ListverticalComponent } from './listvertical/listvertical';
 import { StretchComponent } from './stretch/stretch';
 import { NewexerciseComponent } from './newexercise/newexercise';
 import { ExeSetsComponent } from './exe-sets/exe-sets';
+import { WorkoutdetailsComponent } from './workoutdetails/workoutdetails';
 
 
 
@@ -65,7 +66,8 @@ import { ExeSetsComponent } from './exe-sets/exe-sets';
     ListverticalComponent,
     StretchComponent,
     NewexerciseComponent,
-    ExeSetsComponent    ],
+    ExeSetsComponent,
+    WorkoutdetailsComponent    ],
 	imports: [ IonicModule, CommonModule, RouterModule, VerificationPageModule, MatStepperModule, MatFormFieldModule	],
 	exports: [FirstComponent,
 	LoginComponent,
@@ -91,7 +93,8 @@ import { ExeSetsComponent } from './exe-sets/exe-sets';
     ListverticalComponent,
     StretchComponent,
     NewexerciseComponent,
-    ExeSetsComponent],
+    ExeSetsComponent,
+    WorkoutdetailsComponent],
     entryComponents: [LoginComponent, FirstComponent, ProfileComponent, ExeSetsComponent],
     
 })
