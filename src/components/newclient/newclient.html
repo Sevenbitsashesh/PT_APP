@@ -9,13 +9,20 @@
               <ion-row>
                 <ion-col col-12>
                   <ion-item class="animated fadeInLeft delay-1s">
-                      <ion-input placeholder="Client name"></ion-input>
-                  </ion-item>
-                
+                      <ion-input placeholder="First name"></ion-input>
+                      <ion-input placeholder="Last name"></ion-input>
+                  </ion-item>                
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                  <ion-col>
+                <ion-item class="animated fadeInLeft delay-3s"> 
+                    <ion-input placeholder="Email"></ion-input>
+                </ion-item>
                 </ion-col>
               </ion-row>
               <ion-row col-12>
-                <ion-col col-12 class="animated fadeInLeft delay-3s">
+                <ion-col col-12 class="animated fadeInLeft delay-5s">
                     <ion-item>
                         <ion-label>Goal</ion-label>
                         <ion-select [(ngModel)]="binding">
@@ -38,7 +45,7 @@
                         <ion-select>
                           <ion-option  value="begginer">Begginer</ion-option>
                           <ion-option value="intermediate">Intermediate</ion-option>
-                          <!-- <ion-option value="advanced">Advanced</ion-option -->
+                          <ion-option value="advanced">Advanced</ion-option>
                         </ion-select>
                       </ion-item>
                 
@@ -84,16 +91,29 @@
         <div>
           <ion-item>
               <ion-label>Workout Plan</ion-label>
-              <ion-select [ngModel]="category" (ngModelChange)="selectCategory($event)" name="category">
+              <ion-select [ngModel]="category" name="category">
                   <ion-option [value]="null">
                       None
                   </ion-option>
-                  <ion-option *ngFor="let category of categories | async" [value]="category">
-                      {{category}}
+                  <ion-option *ngFor="let category of work_plans" [value]="category.work_name">
+                      {{category.work_name}}
                   </ion-option>
               </ion-select>
         </ion-item>
         </div>
+        <div>
+            <ion-item>
+                <ion-label>Meal Plan</ion-label>
+                <ion-select [ngModel]="category" name="category">
+                    <ion-option [value]="null">
+                        None
+                    </ion-option>
+                    <ion-option *ngFor="let category of meal_plans" [value]="category.meal_name">
+                        {{category.meal_name}}
+                    </ion-option>
+                </ion-select>
+          </ion-item>
+          </div>
         <div>
           <button ion-button mat-button matStepperPrevious>Back</button>
           

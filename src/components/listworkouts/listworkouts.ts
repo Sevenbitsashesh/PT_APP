@@ -35,8 +35,15 @@ export class ListworkoutsComponent {
   workouts: WorkoutDetails[];
   constructor(private dataService: DataProvider, private workService: WorkoutProvider) {
     console.log(dataService.u);
-    workService.getMyWorkouts(dataService.u).subscribe((data: WorkoutDetails[]) => {
-      this.workouts = data;
+    workService.getMyWorkouts(dataService.u).subscribe((data) => {
+      if(!data.message) {
+        console.log(data);
+        this.workouts = data;
+      }
+      else {
+        
+        this.workouts = undefined;
+      }
     })
   }
   

@@ -20,7 +20,6 @@ import { VerificationPage } from '../pages/verification/verification';
 import { SidemenuComponent } from './sidemenu/sidemenu';
 import { SocialLoginComponent } from './social-login/social-login';
 import { SocialSliderComponent } from './social-slider/social-slider';
-import { SchedulesComponent } from './schedules/schedules';
 import { NewclientComponent } from './newclient/newclient';
 import { TrainerhomeComponent } from './trainerhome/trainerhome';
 import { NewworkoutComponent } from './newworkout/newworkout';
@@ -36,6 +35,10 @@ import { StretchComponent } from './stretch/stretch';
 import { NewexerciseComponent } from './newexercise/newexercise';
 import { ExeSetsComponent } from './exe-sets/exe-sets';
 import { WorkoutdetailsComponent } from './workoutdetails/workoutdetails';
+import { ViewscheduleComponent } from './viewschedule/viewschedule';
+import { IgxDatePickerModule } from 'igniteui-angular/date-picker/date-picker.component';
+import { BrowserModule } from '@angular/platform-browser';
+
 
 
 
@@ -55,7 +58,6 @@ import { WorkoutdetailsComponent } from './workoutdetails/workoutdetails';
     SidemenuComponent,
     SocialLoginComponent,
     SocialSliderComponent,
-    SchedulesComponent,
     NewclientComponent,
     TrainerhomeComponent,
     NewworkoutComponent,
@@ -67,8 +69,9 @@ import { WorkoutdetailsComponent } from './workoutdetails/workoutdetails';
     StretchComponent,
     NewexerciseComponent,
     ExeSetsComponent,
-    WorkoutdetailsComponent    ],
-	imports: [ IonicModule, CommonModule, RouterModule, VerificationPageModule, MatStepperModule, MatFormFieldModule	],
+    WorkoutdetailsComponent,
+    ViewscheduleComponent    ],
+	imports: [ IonicModule, CommonModule, RouterModule, VerificationPageModule, MatStepperModule, MatFormFieldModule,IgxDatePickerModule	],
 	exports: [FirstComponent,
 	LoginComponent,
     HometabComponent,
@@ -82,7 +85,6 @@ import { WorkoutdetailsComponent } from './workoutdetails/workoutdetails';
     SidemenuComponent,
     SocialLoginComponent,
     SocialSliderComponent,
-    SchedulesComponent,
     NewclientComponent,
     TrainerhomeComponent,
     NewworkoutComponent,
@@ -94,7 +96,8 @@ import { WorkoutdetailsComponent } from './workoutdetails/workoutdetails';
     StretchComponent,
     NewexerciseComponent,
     ExeSetsComponent,
-    WorkoutdetailsComponent],
+    WorkoutdetailsComponent,
+    ViewscheduleComponent],
     entryComponents: [LoginComponent, FirstComponent, ProfileComponent, ExeSetsComponent],
     
 })

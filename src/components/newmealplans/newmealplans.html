@@ -1,31 +1,51 @@
 <ion-grid>
-  <ion-row>
+  <ion-row class="row-text">
     <ion-col col-12>
     <ion-input placeholder="Meal Plan name"></ion-input>
     </ion-col>
   </ion-row>
-  <ion-row>
+  <ion-row class="row-text">
     <ion-col col-12>
       <textarea placeholder="Description(Optional)"></textarea>
       </ion-col>
   </ion-row>
-
+  <ion-row class="row-text"><ion-col col-12>Eat</ion-col></ion-row>
   <ion-row>
     <ion-col col-12>
-       Eat <input type="checkbox" value="Meat">
-       <input type="checkbox" value="Fish & seafood">
-       <input type="checkbox" value="eggs">
-       <input type="checkbox" value="vegeatables">
+       
+       <ion-list>
+        <ion-item><ion-label>Fish & seafood </ion-label><ion-checkbox checked="true"></ion-checkbox></ion-item>
+        <ion-item><ion-label>eggs </ion-label><ion-checkbox checked="true"></ion-checkbox></ion-item>
+        <ion-item><ion-label>vegeatables </ion-label><ion-checkbox checked="true"></ion-checkbox></ion-item>
+        
+       </ion-list>
+       
+       
+
        
       </ion-col>
       
   </ion-row>
+  <ion-row class="row-text"><ion-col col-12>Avoid</ion-col></ion-row>
   <ion-row>
     <ion-col col-12>
-       Avoids <select>
-            <option>Monthly</option>
-            <option>Weekly</option>
-          </select>
+        <ion-list>
+          <ion-item><ion-label>Cocks & Cold Drinks</ion-label><ion-checkbox checked="true"></ion-checkbox></ion-item>
+          <ion-item><ion-label> Fat  </ion-label><ion-checkbox checked="true"></ion-checkbox></ion-item>
+          <ion-item><ion-label>vegeatables </ion-label><ion-checkbox checked="true"></ion-checkbox></ion-item>
+          
+         </ion-list>
+       
+      </ion-col>
+      
+  </ion-row>
+  <ion-row class="row-text"><ion-col>For</ion-col></ion-row>
+  <ion-row>
+    <ion-col col-12>
+       
+       <ion-item>
+          <ion-input type="number" placeholder="Total Weeks"></ion-input>
+       </ion-item> 
          
       </ion-col>
       
@@ -34,7 +54,7 @@
   <ion-row>
     <ion-col>
       <div>
-          <button ion-button>Create Workout</button>
+          <button class="add-exe-btn">Create Meal</button>
       </div>
   </ion-col>
   </ion-row>

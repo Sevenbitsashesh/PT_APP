@@ -143,7 +143,6 @@ export class SigninComponent implements OnInit {
     }
    else {
      this.nativeService.generateToast('Please Connect to Internet','');
-     
    }
     }
     getSignup() {

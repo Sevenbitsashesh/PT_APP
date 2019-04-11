@@ -12,7 +12,8 @@ import { TabViewsPageModule } from '../tab-views/tab-views.module';
 import { TabexercisesPageModule } from '../../pages/tabexercises/tabexercises.module';
 import { TabworkoutsPageModule } from '../../pages/tabworkouts/tabworkouts.module';
 import { TabmealplansPageModule } from '../../pages/tabmealplans/tabmealplans.module';
-import { TabViewsPage } from '../../pages/tab-views/tab-views';
+
+import { TabschedulePageModule } from '../../pages/tabschedule/tabschedule.module';
 
 export function getHomeModule() { return TabHomePageModule; }
 export function getSearchModule() { return TabSearchPageModule; }
@@ -21,7 +22,7 @@ export function getViewModule() { return TabViewsPageModule; }
 export function getExercisesModule() { console.log('as'); return TabexercisesPageModule; }
 export function getWorkoutsModule() { return TabworkoutsPageModule; }
 export function getMealplansModule() { return TabmealplansPageModule; }
-export function getScheduleModule() { return TabViewsPage }
+export function getScheduleModule() { return TabschedulePageModule }
 const routes: Routes = [
     {
         path: '',
@@ -38,6 +39,10 @@ const routes: Routes = [
 {
     path: 'tab_mealplans',
     loadChildren: getMealplansModule
+},
+{
+    path: 'tab_schedule',
+    loadChildren: getScheduleModule
 },
             {
                 path: 'tab_home',
@@ -57,11 +62,8 @@ const routes: Routes = [
             {
                 path: 'tab_views',
                 loadChildren: getViewModule
-            },
-            {
-                path: 'tab_schedule',
-                loadChildren: getScheduleModule
             }
+            
     // {  
     //         path: 'tab_home',
     //         outlet: 'tab_home',

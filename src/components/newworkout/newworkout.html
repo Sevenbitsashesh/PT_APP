@@ -15,16 +15,16 @@
  
       <ion-grid class="workout-grid text-decorations">
           <ion-row class="full-width">
-              <ion-col col-4><img class="attachImg" [src]=exe_image (click)="imageAction()"></ion-col>
+              <ion-col col-4><img class="attachImg" [src]=work_image (click)="imageAction()"></ion-col>
             <ion-col col-8 class="workout-col">
             <ion-label class="text-decorations">NAME YOU PLAN</ion-label>
             </ion-col>
           </ion-row>     
           <ion-row>
             <ion-col>
-              <div class="row-form">
+              <div class="row-form" >
               <ion-item>
-                <ion-select>
+                <ion-select [(ngModel)]="work_level">
                     <ion-label>Workout Level</ion-label>
                   <ion-option>Beginner</ion-option>
                   <ion-option>Intermediate</ion-option>
@@ -87,18 +87,18 @@
               <ion-row>
                   <ion-slides pager="true" size=100 >
                       <ion-slide id="slide1">
-                          <div class="row-form" *ngFor="let item of item1"   >
+                          <div class="row-form" *ngFor="let item of item1">
                               {{item}} <i class="fas fa-minus-circle" id="sel_{{item}}" (click)="removeItem($event)"></i>
                             </div> 
                       </ion-slide>
                     
                       <ion-slide id="slide2">
-                          <div class="exercise-bpart" (click)="selectExe($event)" id="exe_chest">Chest</div>
-                          <div class="exercise-bpart" (click)="selectExe($event)" id="exe_leg">Leg</div>
+                          <div class="exercise-bpart" (click)="selectExe($event)" id="exe_chest" *ngFor="let item of listExer">{{item}}</div>
+                          <!-- <div class="exercise-bpart" (click)="selectExe($event)" id="exe_leg">Leg</div>
                           <div class="exercise-bpart" (click)="selectExe($event)" id="exe_thigh">Thigh</div>
                           <div class="exercise-bpart" (click)="selectExe($event)" id="exe_shoulder">Shoulder</div>
                           <div class="exercise-bpart" (click)="selectExe($event)" id="exe_back">Back</div>
-                          <div class="exercise-bpart" (click)="selectExe($event)" id="exe_biceps">Biceps</div>  
+                          <div class="exercise-bpart" (click)="selectExe($event)" id="exe_biceps">Biceps</div>   -->
                       </ion-slide>
                     
                       

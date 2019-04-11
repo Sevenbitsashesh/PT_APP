@@ -1,4 +1,5 @@
 <ion-grid>
+  <div *ngIf="workouts" >
   <ion-row style="text-align: center;" (click)="gotoDetails()" *ngFor="let item of workouts">
     <ion-col col-12 >
         <div class="workoutname-list">{{item.work_name}}</div>
@@ -6,4 +7,5 @@
     </ion-col>
 
   </ion-row>
+</div>
 </ion-grid>

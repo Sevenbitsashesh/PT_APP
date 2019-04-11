@@ -13,5 +13,7 @@ export class WorkoutProvider {
   getMyWorkouts(myid): Observable<any> {
     return this.http.post(API_URL+'workout/myworkouts',{userid: myid});
   }
-
+  addWorkout(body): Observable<any> {
+    return this.http.post(API_URL+ 'workout/addworkout',body);
+  }
 }

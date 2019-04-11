@@ -47,6 +47,8 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { LocationProvider } from '../providers/location/location';
 import { ExerciseProvider } from '../providers/exercise/exercise';
 import { WorkoutProvider } from '../providers/workout/workout';
+import { MealProvider } from '../providers/meal/meal';
+import { ClientProvider } from '../providers/client/client';
 
 
 @NgModule({
@@ -67,7 +69,7 @@ import { WorkoutProvider } from '../providers/workout/workout';
     RouterModule,
     FormsModule,
     AngularFireStorageModule,
-    // BrowserAnimationsModule,
+    BrowserAnimationsModule,
   // AnimationModule,
 
   ],
@@ -104,6 +106,8 @@ import { WorkoutProvider } from '../providers/workout/workout';
     LoadingController,
     ExerciseProvider,
     WorkoutProvider,
+    MealProvider,
+    ClientProvider,
     // AnimationProvider
   ]
   
