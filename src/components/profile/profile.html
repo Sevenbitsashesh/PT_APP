@@ -57,6 +57,7 @@
   <div class="profile-segment" [ngSwitch]="profileSegment">
       
           <div *ngSwitchCase="'feeds'" checked>
+            No Feeds 
             <!-- <feeds [tweetModel]=userModel.tweets></feeds> -->
             </div>
             <div *ngSwitchCase="'profile'">
@@ -83,12 +84,12 @@
             </ion-item>
             <ion-item>
               
-                <ion-input type="Date" formControlName="dob" name="dob"  placeholder="Date of birth"></ion-input>
+                <ion-input type="text" formControlName="dob" name="dob"  placeholder="DD-MM-YYYY"></ion-input>
               </ion-item>
-            <ion-item>
+            <!-- <ion-item>
                 
                   <ion-input type="Email" formControlName="email" name="email"></ion-input>
-                </ion-item>
+                </ion-item> -->
                     
                     
                           <ion-item>

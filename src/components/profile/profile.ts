@@ -69,17 +69,17 @@ export class ProfileComponent {
   constructor(private formBuilder: FormBuilder, private imageService: ImageProvider, private dataService: DataProvider,private authService: AuthProvider, private userService: UserProvider, private cd: ChangeDetectorRef, private modal: ModalController) {
     // document.addEventListener('touchstart', this.handler, {capture: true});
     this.userModel =  dataService.u;
-    console.log(this.userModel);
+    
    
     this.myForm = formBuilder.group({
-      username: new FormControl('', Validators.compose([
+      username: new FormControl(this.userModel.user_name, Validators.compose([
         Validators.maxLength(25),
         Validators.minLength(5),
         Validators.pattern('^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]+$'),
         Validators.required
       ])
       ),
-      mobile: new FormControl('', Validators.compose([
+      mobile: new FormControl(this.userModel.mobile, Validators.compose([
         Validators.maxLength(12),
         Validators.minLength(10),
         Validators.pattern('^(0|[1-9][0-9]*)$'),

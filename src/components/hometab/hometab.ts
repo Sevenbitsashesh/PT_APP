@@ -1,5 +1,6 @@
-import { Component, NgZone } from '@angular/core';
+import { Component, NgZone, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserInfo } from '../../Models/users_info';
 
 
 @Component({

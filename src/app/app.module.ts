@@ -108,6 +108,7 @@ import { ClientProvider } from '../providers/client/client';
     WorkoutProvider,
     MealProvider,
     ClientProvider,
+    ClientProvider,
     // AnimationProvider
   ]
   

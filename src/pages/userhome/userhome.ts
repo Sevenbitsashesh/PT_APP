@@ -3,6 +3,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { SharedProvider } from '../../providers/shared/shared';
 
 import { AuthProvider } from '../../providers/auth/auth';
+import { Subscription } from 'rxjs';
+import { DataProvider } from '../../providers/data/data';
+import { UserProvider } from '../../providers/user/user';
 
 
 
@@ -13,12 +16,12 @@ import { AuthProvider } from '../../providers/auth/auth';
   templateUrl: 'userhome.html'
 })
 export class UserhomePage {
-  
-  constructor(private authService: AuthProvider) {    
-  
+  currentUserSubscription: Subscription; 
+  constructor(private authService: AuthProvider) {      
     // sharedService.getCred();  
     // sharedService.checkLogin();       
     authService.checkLogin();
+    
   }
   
 

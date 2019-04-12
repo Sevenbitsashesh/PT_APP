@@ -21,6 +21,7 @@ export class UserDetails  {
   user_name?: string;
   fname?: string;
   lname?: string;  
+  role?: string;
 };
 export interface TokenResponse {
 token: string;

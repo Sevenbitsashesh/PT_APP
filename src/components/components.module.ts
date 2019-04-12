@@ -36,8 +36,10 @@ import { NewexerciseComponent } from './newexercise/newexercise';
 import { ExeSetsComponent } from './exe-sets/exe-sets';
 import { WorkoutdetailsComponent } from './workoutdetails/workoutdetails';
 import { ViewscheduleComponent } from './viewschedule/viewschedule';
-import { IgxDatePickerModule } from 'igniteui-angular/date-picker/date-picker.component';
+
 import { BrowserModule } from '@angular/platform-browser';
+import { TrainertabsComponent } from './trainertabs/trainertabs';
+import { ClienttabsComponent } from './clienttabs/clienttabs';
 
 
 
@@ -70,8 +72,10 @@ import { BrowserModule } from '@angular/platform-browser';
     NewexerciseComponent,
     ExeSetsComponent,
     WorkoutdetailsComponent,
-    ViewscheduleComponent    ],
-	imports: [ IonicModule, CommonModule, RouterModule, VerificationPageModule, MatStepperModule, MatFormFieldModule,IgxDatePickerModule	],
+    ViewscheduleComponent,
+    TrainertabsComponent,
+    ClienttabsComponent    ],
+	imports: [ IonicModule, CommonModule, RouterModule, VerificationPageModule, MatStepperModule, MatFormFieldModule	],
 	exports: [FirstComponent,
 	LoginComponent,
     HometabComponent,
@@ -97,7 +101,9 @@ import { BrowserModule } from '@angular/platform-browser';
     NewexerciseComponent,
     ExeSetsComponent,
     WorkoutdetailsComponent,
-    ViewscheduleComponent],
+    ViewscheduleComponent,
+    TrainertabsComponent,
+    ClienttabsComponent],
     entryComponents: [LoginComponent, FirstComponent, ProfileComponent, ExeSetsComponent],
     
 })

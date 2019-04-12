@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "my-social-a5d83"
+    "default": "my-social-a5d83",
+    "staging": "my-social-a5d83",
+    "PT-Fitz-Life": "pt-fits-life",
+    "PT-Fitz-Life-Profile": "pt-fits-life"
   }
 }

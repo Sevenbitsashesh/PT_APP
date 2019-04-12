@@ -26,7 +26,7 @@ export function getScheduleModule() { return TabschedulePageModule }
 const routes: Routes = [
     {
         path: '',
-        loadChildren: () => TabexercisesPageModule
+        loadChildren: getExercisesModule
 },
 {
     path: 'tab_exercises',

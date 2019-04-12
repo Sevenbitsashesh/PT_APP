@@ -1,8 +1,10 @@
-import { Component, Injectable, AfterViewInit, ElementRef } from '@angular/core';
+import { Component, Injectable, AfterViewInit, ElementRef, Input } from '@angular/core';
 import { HometabComponent } from '../../components/hometab/hometab';
 import { Router } from '@angular/router';
 import { SharedProvider } from '../../providers/shared/shared';
 import { DataProvider } from '../../providers/data/data';
+
+import { UserInfo } from '../../Models/users_info';
 declare var Swiper: any;
 
 @Component({
@@ -11,12 +13,14 @@ declare var Swiper: any;
 })
 @Injectable()
 export class UsertabsComponent implements AfterViewInit {
+  
   constructor(private dataService: DataProvider, private elementRef: ElementRef) {
     // console.log('Hello UsertabsComponent Component');          
     //  dataService.changeUserID(localStorage.getItem('swaGuid'));
-    
+  
   }
   ngAfterViewInit(){
+    
     // const swiper = new Swiper('.swiper-container', {
     //   pagination: {
     //     el: '.swiper-pagination',
