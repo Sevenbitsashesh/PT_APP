@@ -16,6 +16,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class TabmealplansPage {
 
   constructor() {
+    console.log('contructor')
   }
 
   ionViewDidLoad() {

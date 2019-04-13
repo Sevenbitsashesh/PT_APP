@@ -5,6 +5,9 @@ import { DataProvider } from '../../providers/data/data';
 import { Observable } from 'rxjs';
 import { MealProvider } from '../../providers/meal/meal';
 import { ClientProvider } from '../../providers/client/client';
+import { ModalController } from 'ionic-angular';
+import { PaymentComponent } from '../../components/payment/payment';
+
 
 
 @Component({
@@ -23,12 +26,18 @@ export class NewclientComponent {
   secondFormGroup: FormGroup;
   work_plans;
   meal_plans;
-  constructor(private formBuilder: FormBuilder, private workService: WorkoutProvider, private dataService: DataProvider, private mealService: MealProvider, private clientService: ClientProvider) {
+  client_goal;
+  client_level;
+  constructor(private formBuilder: FormBuilder, private workService: WorkoutProvider, private dataService: DataProvider, private mealService: MealProvider, private clientService: ClientProvider, private modal: ModalController) {
     this.firstFormGroup = formBuilder.group({
-      firstCtrl:[Validators.required ]
+      first_name: ['', Validators.pattern('[a-z]')],
+    
+      last_name:['', Validators.required],
+      email: ['', Validators.required],
     });
     this.secondFormGroup = formBuilder.group({
-      secondCtrl: [Validators.required]
+      client_goal: ['',Validators.required],
+      client_level: ['', Validators.required]
     });
     // this.work_plans 
     
@@ -45,9 +54,12 @@ export class NewclientComponent {
     console.log('drop');  
   }
   addClient() {
-    const clientModel = {trainerid: ""};
+    const clientModel = {first_name: "", last_name: ""};    
     this.clientService.addClient(clientModel).subscribe(data => {
-      console.log(data);
-    });
+      this.openModal();
+    });    
+  }
+  openModal() {
+        return this.modal.create(PaymentComponent).present();
   }
 }

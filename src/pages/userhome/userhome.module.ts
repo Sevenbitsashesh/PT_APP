@@ -40,7 +40,7 @@ import { TabschedulePageModule } from '../../pages/tabschedule/tabschedule.modul
     TabexercisesPageModule,
     TabworkoutsPageModule,
     TabmealplansPageModule,
-    TabschedulePageModule
+    TabschedulePageModule,
   ],
   bootstrap: [],
   entryComponents: [ ],

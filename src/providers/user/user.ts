@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { UserDetails, TokenPayload } from '../../providers/auth/auth'
 // import { Observable, BehaviorSubject } from 'rxjs';
 import { API_URL, LOCAL_API_URL } from '../../Models/api_url';
-import { UserInfo } from 'Models/users_info';
+import { UserInfo } from '../../Models/users_info';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/delay';
 import 'rxjs/add/operator/filter';

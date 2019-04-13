@@ -26,7 +26,7 @@ import { NewworkoutComponent } from './newworkout/newworkout';
 import { NewmealplansComponent } from './newmealplans/newmealplans';
 import { DropdownComponent } from './dropdown/dropdown';
 import { StepperComponent } from './stepper/stepper';
-import { MatStepperModule, MatFormFieldModule } from '@angular/material';
+import { MatStepperModule, MatFormFieldModule, MatSidenavModule, MatTabsModule, MatFormFieldControl, MatInputModule } from '@angular/material';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ListworkoutsComponent } from './listworkouts/listworkouts';
@@ -40,6 +40,7 @@ import { ViewscheduleComponent } from './viewschedule/viewschedule';
 import { BrowserModule } from '@angular/platform-browser';
 import { TrainertabsComponent } from './trainertabs/trainertabs';
 import { ClienttabsComponent } from './clienttabs/clienttabs';
+import { PaymentComponent } from './payment/payment';
 
 
 
@@ -74,8 +75,10 @@ import { ClienttabsComponent } from './clienttabs/clienttabs';
     WorkoutdetailsComponent,
     ViewscheduleComponent,
     TrainertabsComponent,
-    ClienttabsComponent    ],
-	imports: [ IonicModule, CommonModule, RouterModule, VerificationPageModule, MatStepperModule, MatFormFieldModule	],
+    ClienttabsComponent,
+    PaymentComponent,
+        ],
+	imports: [ IonicModule, CommonModule, RouterModule, VerificationPageModule, MatStepperModule, MatInputModule, MatTabsModule, MatFormFieldModule	],
 	exports: [FirstComponent,
 	LoginComponent,
     HometabComponent,
@@ -103,8 +106,10 @@ import { ClienttabsComponent } from './clienttabs/clienttabs';
     WorkoutdetailsComponent,
     ViewscheduleComponent,
     TrainertabsComponent,
-    ClienttabsComponent],
-    entryComponents: [LoginComponent, FirstComponent, ProfileComponent, ExeSetsComponent],
+    ClienttabsComponent,
+    PaymentComponent
+],
+    entryComponents: [LoginComponent, FirstComponent, ProfileComponent, ExeSetsComponent, PaymentComponent],
     
 })
 export class ComponentsModule {}

@@ -51,6 +51,7 @@ import { MealProvider } from '../providers/meal/meal';
 import { ClientProvider } from '../providers/client/client';
 
 
+
 @NgModule({
   declarations: [
     MyApp,
@@ -108,7 +109,7 @@ import { ClientProvider } from '../providers/client/client';
     WorkoutProvider,
     MealProvider,
     ClientProvider,
-    ClientProvider,
+    ClientProvider
     // AnimationProvider
   ]
   

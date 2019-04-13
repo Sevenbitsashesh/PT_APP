@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { TweetModel, LikeModel } from '../../Models/tweet_model';
 import { TweetProvider } from '../../providers/tweet/tweet';
-import { LOCAL_API_URL } from 'Models/api_url';
+
  
 @Component({
   selector: 'tweetslist',

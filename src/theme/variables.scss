@@ -110,5 +110,17 @@ ion-select {
 }
 .text-input::-webkit-input-placeholder {
   text-indent: 0;
-  color: #293d74;
+  color: #293d74 !important;
+}
+.ion-input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: red !important;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: red !important;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: red !important;
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: red !important;
 }
