@@ -194,7 +194,7 @@ export class NewworkoutComponent  implements AfterViewInit{
     this.workService.addWorkout(newWork).subscribe(workItems => {
       console.log(workItems);
       if(workItems) {
-        this.nativeService.generateToast('New Workout Created','css');
+        this.nativeService.generateToast('New Workout Created','css','bottom');
     window.history.back();
       }
     })

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -7,10 +8,11 @@ import { Component } from '@angular/core';
 })
 export class SidemenuComponent {
 
-  constructor() {
+  constructor(private router: Router) {
 
   }
   navHome() {
+    this.router.navigate(['tab_exercises/myclients']);
     document.getElementById("mySidenav").style.width = '0%';
   }
 }

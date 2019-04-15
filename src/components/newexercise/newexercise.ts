@@ -71,7 +71,7 @@ export class NewexerciseComponent {
     this.exeService.addExercise(newExe).subscribe(data => {
       if(!data.error) {
         console.log(data);
-        this.nativeSrevice.generateToast('New Exercise Create','nothing');
+        this.nativeSrevice.generateToast('New Exercise Create','nothing', "bottom");
       }
     });
     

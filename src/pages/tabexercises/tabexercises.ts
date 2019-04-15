@@ -21,18 +21,20 @@ export class TabexercisesPage {
   authDetails: TokenPayload;
     currentUserSubscription: Subscription;  
   constructor(private authService: AuthProvider, private userService: UserProvider, private dataService: DataProvider, private adMob: AdMobFree) {
+    this.currentUserSubscription = this.authService.currentUser.subscribe(user => {
+      
+      this.currentUser = user;      
+      // this.authDetails = this.authService.getUserDetails();
+      
+     this.dataService.getUserData(user);
+  });
   }
   ngOnDestroy() {
     // this.currentUserSubscription.unsubscribe();
   }
   ngOnInit() {
-    this.currentUserSubscription = this.authService.currentUser.subscribe(user => {
-      
-      // this.currentUser = user;
-      // this.authDetails = this.authService.getUserDetails();
-      // console.log(user); 
-     this.dataService.getUserData(user);
-  });
+    
+ 
 }
 
 checkVerification() {

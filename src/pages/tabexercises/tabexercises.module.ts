@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ComponentsModule } from '../../components/components.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NewclientComponent } from '../../components/newclient/newclient';
+import { MyclientsComponent } from '../../components/myclients/myclients';
 
 
 const routes: Routes = [
@@ -15,6 +16,10 @@ const routes: Routes = [
   {
     path: 'newclient',
     component: NewclientComponent
+  },
+  {
+    path: 'myclients',
+    component: MyclientsComponent
   }
         
 ]

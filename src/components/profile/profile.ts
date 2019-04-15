@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectorRef, OnInit, OnChanges } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { SharedProvider } from '../../providers/shared/shared';
 import { ImageProvider } from '../../providers/image/image';
@@ -15,7 +15,7 @@ import { ExeSetsComponent } from '../../components/exe-sets/exe-sets';
   selector: 'profile',
   templateUrl: 'profile.html'
 })
-export class ProfileComponent {
+export class ProfileComponent{
   // userid: string;
   // username: string;
   // email: string;
@@ -69,7 +69,7 @@ export class ProfileComponent {
   constructor(private formBuilder: FormBuilder, private imageService: ImageProvider, private dataService: DataProvider,private authService: AuthProvider, private userService: UserProvider, private cd: ChangeDetectorRef, private modal: ModalController) {
     // document.addEventListener('touchstart', this.handler, {capture: true});
     this.userModel =  dataService.u;
-    
+    console.log(this.userModel.userid);
    
     this.myForm = formBuilder.group({
       username: new FormControl(this.userModel.user_name, Validators.compose([

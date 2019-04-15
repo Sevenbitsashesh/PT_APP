@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { Platform, LoadingController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -27,5 +27,7 @@ export class MyApp {
       // loadingController.create({content: 'name',duration: 2000,}).present()
     });
   }
+  
+  
 }
 

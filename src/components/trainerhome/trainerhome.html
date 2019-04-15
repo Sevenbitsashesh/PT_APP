@@ -1,11 +1,36 @@
 
     <div class="trainer-home-main newclient">
         <div class="trainer-home-top">
-        <ion-label class="label-activity">New Client</ion-label>
+        <ion-label class="label-activity">Clients</ion-label>
         </div>
-        <newclient></newclient>
+        <div >
+            <ion-segment [(ngModel)]="client" color="primary" color="danger">
+              <ion-segment-button value="listclients">
+                My Clients
+              </ion-segment-button>
+              <ion-segment-button value="newclient">
+                New Client
+              </ion-segment-button>
+            </ion-segment>
+            <div [ngSwitch]="client">
+                <div *ngSwitchCase="'listclients'"> 
+                    
+                        <myclients [currentUser]=currentUser></myclients>
+                </div>
+                <div *ngSwitchCase="'newclient'"> 
+                        <newclient [currentUser]=currentUser></newclient>
+                </div>
+            </div>
+           
+
+            </div>
+
+            </div>
+       
+          
         
-        </div>
+        
+       
         
         <div class="trainer-home-main newclient">
             <div class="trainer-home-top">

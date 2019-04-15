@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnChanges, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { WorkoutProvider } from '../../providers/workout/workout';
 import { DataProvider } from '../../providers/data/data';
@@ -7,6 +7,7 @@ import { MealProvider } from '../../providers/meal/meal';
 import { ClientProvider } from '../../providers/client/client';
 import { ModalController } from 'ionic-angular';
 import { PaymentComponent } from '../../components/payment/payment';
+import { NativeProvider } from '../../providers/native/native';
 
 
 
@@ -14,7 +15,8 @@ import { PaymentComponent } from '../../components/payment/payment';
   selector: 'newclient',
   templateUrl: 'newclient.html'
 })
-export class NewclientComponent {
+export class NewclientComponent implements OnChanges, OnInit  {
+  @Input() currentUser;
   selectOptions = {
     title: 'Pizza Toppings',
     subTitle: 'Select your toppings'
@@ -24,13 +26,14 @@ export class NewclientComponent {
   secondCtrl;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
+  thirdFormGroup: FormGroup;
   work_plans;
   meal_plans;
   client_goal;
   client_level;
-  constructor(private formBuilder: FormBuilder, private workService: WorkoutProvider, private dataService: DataProvider, private mealService: MealProvider, private clientService: ClientProvider, private modal: ModalController) {
+  constructor(private formBuilder: FormBuilder, private workService: WorkoutProvider, private dataService: DataProvider, private mealService: MealProvider, private clientService: ClientProvider, private modal: ModalController, private nativeService: NativeProvider) {
     this.firstFormGroup = formBuilder.group({
-      first_name: ['', Validators.pattern('[a-z]')],
+      first_name: ['', Validators.pattern("^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$")],
     
       last_name:['', Validators.required],
       email: ['', Validators.required],
@@ -38,6 +41,10 @@ export class NewclientComponent {
     this.secondFormGroup = formBuilder.group({
       client_goal: ['',Validators.required],
       client_level: ['', Validators.required]
+    });
+    this.thirdFormGroup = formBuilder.group({
+      workout_plan: ['', Validators.required],
+      meal_plan: ['', Validators.required]
     });
     // this.work_plans 
     
@@ -54,12 +61,26 @@ export class NewclientComponent {
     console.log('drop');  
   }
   addClient() {
-    const clientModel = {first_name: "", last_name: ""};    
-    this.clientService.addClient(clientModel).subscribe(data => {
-      this.openModal();
-    });    
+    
+    if(this.firstFormGroup.valid == true && this.secondFormGroup.valid == true && this.thirdFormGroup.valid == true) {
+      const clientModel = {first_name: this.firstFormGroup.get('first_name').value,email: this.firstFormGroup.get('email').value, last_name: this.firstFormGroup.get('last_name').value,client_level: this.secondFormGroup.get('client_level').value,client_goal: this.secondFormGroup.get('client_goal').value,client_workplan: this.thirdFormGroup.get('workout_plan').value,client_mealplan: this.thirdFormGroup.get('meal_plan').value  , "trainerid": this.dataService.u.userid};    
+      this.clientService.addClient(clientModel).subscribe(data => {
+        // this.openModal();
+        console.log(data);
+      });    
+    }
+    else {
+        this.nativeService.generateToast('Please Fill the details Correctly','toast-error',"middle");
+    }
+    
   }
-  openModal() {
-        return this.modal.create(PaymentComponent).present();
+  ngOnChanges() {
+    console.log('changing');
+  }
+  // openModal() {
+  //       return this.modal.create(PaymentComponent).present();
+  // }
+  ngOnInit() {
+    console.log('init client')
   }
 }

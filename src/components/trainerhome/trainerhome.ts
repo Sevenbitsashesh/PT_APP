@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { MyclientsComponent } from '../../components/myclients/myclients';
+import { NewclientComponent } from '../../components/newclient/newclient';
 
 
 @Component({
@@ -6,8 +8,12 @@ import { Component } from '@angular/core';
   templateUrl: 'trainerhome.html'
 })
 export class TrainerhomeComponent {
-  constructor() {
+  @Input() currentUser;
+  client;
 
+  constructor() {
+    
+    this.client = "listclients";
   }
   swipeEvent($event) {
     console.log($event.deltaX+", "+$event.deltaY);
@@ -35,4 +41,4 @@ swipe(e: TouchEvent, when: string) {
     }
   }
 }
-}
+} 

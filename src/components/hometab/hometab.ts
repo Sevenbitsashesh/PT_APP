@@ -16,7 +16,7 @@ export class HometabComponent {
   goto(event) {
     
     const routeTo = event.target.id;
-console.log(routeTo);
+// console.log(routeTo);
     if(routeTo === "exercise") {
       this.router.navigate(['userhome/tab_exercises']);
     }

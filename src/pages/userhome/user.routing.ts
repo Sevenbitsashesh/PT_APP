@@ -17,9 +17,9 @@ import { TabschedulePageModule } from '../../pages/tabschedule/tabschedule.modul
 
 export function getHomeModule() { return TabHomePageModule; }
 export function getSearchModule() { return TabSearchPageModule; }
-export function getProfileModule() { console.log('profile'); return TabProfilePageModule; }
+export function getProfileModule() {  return TabProfilePageModule; }
 export function getViewModule() { return TabViewsPageModule; }
-export function getExercisesModule() { console.log('as'); return TabexercisesPageModule; }
+export function getExercisesModule() {  return TabexercisesPageModule; }
 export function getWorkoutsModule() { return TabworkoutsPageModule; }
 export function getMealplansModule() { return TabmealplansPageModule; }
 export function getScheduleModule() { return TabschedulePageModule }

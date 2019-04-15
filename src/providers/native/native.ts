@@ -11,10 +11,10 @@ export class NativeProvider {
   constructor(public http: HttpClient, private toast: ToastController, private notification: LocalNotifications, private platform: Platform, private loading: LoadingController, private actionsheet: ActionSheetController, private imageService: ImageProvider) {
     
   }
-  generateToast(msg: string, cssToast: string) {
+  generateToast(msg: string, cssToast: string, pos: string) {
     const toast = this.toast.create({
       duration: 2000,
-      position: 'bottom',
+      position: pos,
       cssClass: cssToast,
       message: msg,
       closeButtonText: 'Close',

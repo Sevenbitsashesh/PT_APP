@@ -32,7 +32,8 @@ export class DataProvider {
   }
   getUserData(currentUser: UserDetails) {
     
-    this.userService.getUserData(currentUser, this.authService.getUserDetails()).subscribe(u => {
+    this.userService.getUserData(currentUser, this.authService.getUserDetails())
+    .subscribe(u => {
       this.user = [];
       // console.log(u,currentUser, this.authDetails);
       this.user.push(u);

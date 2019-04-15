@@ -142,7 +142,7 @@ export class SigninComponent implements OnInit {
       })
     }
    else {
-     this.nativeService.generateToast('Please Connect to Internet','');
+     this.nativeService.generateToast('Please Connect to Internet','','bottom');
    }
     }
     getSignup() {
@@ -162,10 +162,10 @@ export class SigninComponent implements OnInit {
 
           if(!user.error) {                      
             
-            this.nativeService.generateToast("Account Created","toast-success");
+            this.nativeService.generateToast("Account Created","toast-success",'bottom');
           }
           else {
-            this.nativeService.generateToast("Account Already Created","toast-error");
+            this.nativeService.generateToast("Account Already Created","toast-error","bottom");
           }
           // this.saved = true;
           document.getElementById('btn-signup').classList.remove('btn-login-click');
