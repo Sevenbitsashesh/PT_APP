@@ -1,11 +1,9 @@
 import { NgModule } from '@angular/core';
 import {Routes, RouterModule } from '@angular/router';
-import { UserhomePageModule } from './userhome.module';
-import { UserhomePage } from './userhome';
+// import { UserhomePageModule } from './userhome.module';
+// import { UserhomePage } from './userhome';
 import { TabHomePageModule } from '../tab-home/tab-home.module';
-import { TabHomePage } from '../tab-home/tab-home';
-import { LoginComponent } from '../../components/login/login';
-import { HometabComponent } from '../../components/hometab/hometab';
+
 import { TabSearchPageModule } from '../tab-search/tab-search.module';
 import { TabProfilePageModule } from '../tab-profile/tab-profile.module';
 import { TabViewsPageModule } from '../tab-views/tab-views.module';
@@ -16,9 +14,10 @@ import { TabmealplansPageModule } from '../../pages/tabmealplans/tabmealplans.mo
 import { TabschedulePageModule } from '../../pages/tabschedule/tabschedule.module';
 import { TrainerhomePageModule } from '../../pages/trainerhome/trainerhome.module';
 
+
+import { ClienthomePageModule } from '../../pages/clienthome/clienthome.module';
 import { RoleguardProvider } from '../../providers/roleguard/roleguard';
 import { Roles } from '../../Models/roles';
-import { ClienthomePageModule } from '../../pages/clienthome/clienthome.module';
 
 
 export function getHomeModule() { return TabHomePageModule; }
@@ -34,7 +33,7 @@ export function getClienthomeModule() { console.log('on clienthome'); return Cli
 const routes: Routes = [
 {
         path: '',
-        loadChildren: getTrainerhomeModule,
+        loadChildren: getExercisesModule,
         // canActivate: [RoleguardProvider],
         //        data: {roles: [Roles]}
 },
@@ -58,22 +57,10 @@ const routes: Routes = [
     path: 'tab_profile',
     //  component: TabHomePage,
     loadChildren: getProfileModule
-},
-        //    {
-        //        path: 'trainerhome',
-        //        loadChildren: getTrainerhomeModule,
-        //     //    canActivate: [RoleguardProvider],
-        //     //    data: {roles: [Roles.Trainer]}
-        //    },
-        //    {
-        //     path: 'clienthome',
-        //     loadChildren: getClienthomeModule,
-        //     // canActivate: [RoleguardProvider],
-        //     // data: {roles:  Roles.Client}
-        // }
+}
 ];
 @NgModule({
     imports: [ RouterModule.forChild(routes) ],
     exports: [RouterModule]
 })
-export class UserRoutingModule { }
+export class TrainerRoutingModule { }

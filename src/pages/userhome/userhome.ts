@@ -17,6 +17,7 @@ import { UserProvider } from '../../providers/user/user';
 })
 export class UserhomePage {
   currentUserSubscription: Subscription; 
+  // 
   constructor(private authService: AuthProvider) {      
     // sharedService.getCred();  
     // sharedService.checkLogin();       

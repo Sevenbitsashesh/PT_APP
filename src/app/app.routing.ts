@@ -8,6 +8,8 @@ import { UserhomePageModule } from '../pages/userhome/userhome.module';
 // import { UserhomePageModule } from 'src/pages/userhome/userhome.module';
 // import {  } from '@auth0/angular-jwt';
 import { AuthguardProvider } from '../providers/authguard/authguard';
+import { RoleguardProvider } from '../providers/roleguard/roleguard';
+import { Roles } from '../Models/roles';
 
 
 
@@ -22,6 +24,7 @@ const appRoutes: Routes = [
    
    { 
     path: 'userhome', component: UserhomePage, canActivate: [AuthguardProvider],
+    // 
     loadChildren: getTestModule
     },
     { path: '', pathMatch: 'full', component: LoginComponent},
