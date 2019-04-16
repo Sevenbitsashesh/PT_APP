@@ -17,7 +17,7 @@ export class UsertabsComponent implements AfterViewInit {
   constructor(private dataService: DataProvider, private elementRef: ElementRef) {
     // console.log('Hello UsertabsComponent Component');          
     //  dataService.changeUserID(localStorage.getItem('swaGuid'));
-  
+    
   }
   ngAfterViewInit(){
     

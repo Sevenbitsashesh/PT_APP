@@ -9,7 +9,10 @@ import { UserhomePageModule } from '../pages/userhome/userhome.module';
 // import {  } from '@auth0/angular-jwt';
 import { AuthguardProvider } from '../providers/authguard/authguard';
 
+
+
 export function getTestModule() { return UserhomePageModule; }
+
 
 const appRoutes: Routes = [
     {path: 'login', component: LoginComponent},
@@ -17,10 +20,9 @@ const appRoutes: Routes = [
    { path: 'first', component: FirstComponent },
    { path: 'home', pathMatch: 'full', component: HomePage},
    
-   { path: 'userhome', component: UserhomePage, canActivate: [AuthguardProvider]  ,
-   
-//    loadChildren: () => UserhomePageModule 
-loadChildren: getTestModule
+   { 
+    path: 'userhome', component: UserhomePage, canActivate: [AuthguardProvider],
+    loadChildren: getTestModule
     },
     { path: '', pathMatch: 'full', component: LoginComponent},
     ];

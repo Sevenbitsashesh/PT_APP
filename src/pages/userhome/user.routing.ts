@@ -24,7 +24,7 @@ export function getWorkoutsModule() { return TabworkoutsPageModule; }
 export function getMealplansModule() { return TabmealplansPageModule; }
 export function getScheduleModule() { return TabschedulePageModule }
 const routes: Routes = [
-    {
+{
         path: '',
         loadChildren: getExercisesModule
 },
@@ -44,33 +44,12 @@ const routes: Routes = [
     path: 'tab_schedule',
     loadChildren: getScheduleModule
 },
-            {
-                path: 'tab_home',
-                //  component: TabHomePage,
-                loadChildren:  getHomeModule
-            },
-            {
-                path: 'tab_search',
-                //  component: TabHomePage,
-                loadChildren: getSearchModule
-            },
-            {
-                path: 'tab_profile',
-                //  component: TabHomePage,
-                loadChildren: getProfileModule
-            },
-            {
-                path: 'tab_views',
-                loadChildren: getViewModule
-            }
-            
-    // {  
-    //         path: 'tab_home',
-    //         outlet: 'tab_home',
-    //          component: HometabComponent,
-    //         // loadChildren: '../tab-home/tab-home.module#TabHomePageModule'
-        
-    //   },  
+{
+    path: 'tab_profile',
+    //  component: TabHomePage,
+    loadChildren: getProfileModule
+},
+           
 ];
 @NgModule({
     imports: [ RouterModule.forChild(routes) ],

@@ -66,7 +66,7 @@ export class NewclientComponent implements OnChanges, OnInit  {
       const clientModel = {first_name: this.firstFormGroup.get('first_name').value,email: this.firstFormGroup.get('email').value, last_name: this.firstFormGroup.get('last_name').value,client_level: this.secondFormGroup.get('client_level').value,client_goal: this.secondFormGroup.get('client_goal').value,client_workplan: this.thirdFormGroup.get('workout_plan').value,client_mealplan: this.thirdFormGroup.get('meal_plan').value  , "trainerid": this.dataService.u.userid};    
       this.clientService.addClient(clientModel).subscribe(data => {
         // this.openModal();
-        console.log(data);
+        // console.log(data);
       });    
     }
     else {
@@ -75,7 +75,7 @@ export class NewclientComponent implements OnChanges, OnInit  {
     
   }
   ngOnChanges() {
-    console.log('changing');
+    // console.log('changing');
   }
   // openModal() {
   //       return this.modal.create(PaymentComponent).present();

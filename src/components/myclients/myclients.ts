@@ -18,9 +18,9 @@ export class MyclientsComponent implements AfterViewInit {
   getMyClients() {
 
     this.dataService.userInfoObs.subscribe(da => {
-      console.log(da);
+      // console.log(da);
       this.clientService.getMyClients(da).subscribe(clientsData => {
-        console.log(clientsData);
+        // console.log(clientsData);
       })
     })
   
