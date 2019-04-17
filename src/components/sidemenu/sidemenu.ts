@@ -11,8 +11,30 @@ export class SidemenuComponent {
   constructor(private router: Router) {
     
   }
-  navHome() {
-    this.router.navigate(['tab_exercises/myclients']);
+  navClients() {
+    this.router.navigate(['userhome/tab_clients']);
     document.getElementById("mySidenav").style.width = '0%';
   }
+  navExercises() {
+    this.router.navigate(['userhome/tab_exercises']);
+    document.getElementById("mySidenav").style.width = '0%';
+  }
+  navWorkouts() {
+    this.router.navigate(['userhome/tab_workouts']);
+    document.getElementById("mySidenav").style.width = '0%';
+  }
+  navMealplans() {
+    this.router.navigate(['userhome/tab_mealplans']);
+    document.getElementById("mySidenav").style.width = '0%';
+  }
+  navSchedules() {
+    this.router.navigate(['userhome/tab_schedule']);
+    document.getElementById("mySidenav").style.width = '0%';
+  }
+  navProfile() {
+    this.router.navigate(['userhome/tab_profile']);
+    document.getElementById("mySidenav").style.width = '0%';
+  }
+  
+  
 }

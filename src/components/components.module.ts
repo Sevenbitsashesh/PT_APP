@@ -38,10 +38,11 @@ import { WorkoutdetailsComponent } from './workoutdetails/workoutdetails';
 import { ViewscheduleComponent } from './viewschedule/viewschedule';
 
 import { BrowserModule } from '@angular/platform-browser';
-import { TrainertabsComponent } from './trainertabs/trainertabs';
-import { ClienttabsComponent } from './clienttabs/clienttabs';
+
+
 import { PaymentComponent } from './payment/payment';
 import { MyclientsComponent } from './myclients/myclients';
+
 
 
 
@@ -75,10 +76,11 @@ import { MyclientsComponent } from './myclients/myclients';
     ExeSetsComponent,
     WorkoutdetailsComponent,
     ViewscheduleComponent,
-    TrainertabsComponent,
-    ClienttabsComponent,
+    
+    
     PaymentComponent,
     MyclientsComponent,
+    
         ],
 	imports: [ IonicModule, CommonModule, RouterModule, VerificationPageModule, MatStepperModule, MatInputModule, MatTabsModule, MatFormFieldModule	],
 	exports: [FirstComponent,
@@ -107,10 +109,11 @@ import { MyclientsComponent } from './myclients/myclients';
     ExeSetsComponent,
     WorkoutdetailsComponent,
     ViewscheduleComponent,
-    TrainertabsComponent,
-    ClienttabsComponent,
+    
+        
     PaymentComponent,
-    MyclientsComponent
+    MyclientsComponent,
+
 ],
     entryComponents: [LoginComponent, FirstComponent, ProfileComponent, ExeSetsComponent, PaymentComponent],
     

@@ -2,23 +2,24 @@ import { NgModule } from '@angular/core';
 import {Routes, RouterModule } from '@angular/router';
 import { UserhomePageModule } from './userhome.module';
 import { UserhomePage } from './userhome';
-import { TabHomePageModule } from '../tab-home/tab-home.module';
-import { TabHomePage } from '../tab-home/tab-home';
+import { TabHomePageModule } from '../clienttabs/tab-home/tab-home.module';
+import { TabHomePage } from '../clienttabs/tab-home/tab-home';
 import { LoginComponent } from '../../components/login/login';
 import { HometabComponent } from '../../components/hometab/hometab';
-import { TabSearchPageModule } from '../tab-search/tab-search.module';
-import { TabProfilePageModule } from '../tab-profile/tab-profile.module';
-import { TabViewsPageModule } from '../tab-views/tab-views.module';
-import { TabexercisesPageModule } from '../../pages/tabexercises/tabexercises.module';
-import { TabworkoutsPageModule } from '../../pages/tabworkouts/tabworkouts.module';
-import { TabmealplansPageModule } from '../../pages/tabmealplans/tabmealplans.module';
+import { TabSearchPageModule } from '../clienttabs/tab-search/tab-search.module';
+import { TabProfilePageModule } from '../trainertabs/tab-profile/tab-profile.module';
+import { TabViewsPageModule } from '../clienttabs/tab-views/tab-views.module';
+import { TabexercisesPageModule } from '../../pages/trainertabs/tabexercises/tabexercises.module';
+import { TabworkoutsPageModule } from '../../pages/trainertabs/tabworkouts/tabworkouts.module';
+import { TabmealplansPageModule } from '../../pages/trainertabs/tabmealplans/tabmealplans.module';
 
-import { TabschedulePageModule } from '../../pages/tabschedule/tabschedule.module';
-import { TrainerhomePageModule } from '../../pages/trainerhome/trainerhome.module';
+import { TabschedulePageModule } from '../../pages/trainertabs/tabschedule/tabschedule.module';
+
 
 import { RoleguardProvider } from '../../providers/roleguard/roleguard';
 import { Roles } from '../../Models/roles';
-import { ClienthomePageModule } from '../../pages/clienthome/clienthome.module';
+import { TabClientsPageModule } from '../../pages/trainertabs/tab-clients/tab-clients.module';
+
 
 
 export function getHomeModule() { return TabHomePageModule; }
@@ -29,13 +30,13 @@ export function getExercisesModule() {  return TabexercisesPageModule; }
 export function getWorkoutsModule() { return TabworkoutsPageModule; }
 export function getMealplansModule() { return TabmealplansPageModule; }
 export function getScheduleModule() { return TabschedulePageModule }
-export function getTrainerhomeModule() { return TrainerhomePageModule }
-export function getClienthomeModule() { console.log('on clienthome'); return ClienthomePageModule }
+export function getClientsModule() { return TabClientsPageModule }
+
 const routes: Routes = [
 {
         path: '',
-        loadChildren: getTrainerhomeModule,
-        // canActivate: [RoleguardProvider],
+        loadChildren: getExercisesModule,
+        canActivate: [RoleguardProvider],
         //        data: {roles: [Roles]}
 },
 {
@@ -58,6 +59,11 @@ const routes: Routes = [
     path: 'tab_profile',
     //  component: TabHomePage,
     loadChildren: getProfileModule
+},
+{
+    path: 'tab_clients',
+    //  component: TabHomePage,
+    loadChildren: getClientsModule
 },
         //    {
         //        path: 'trainerhome',

@@ -16,19 +16,14 @@ export class RoleguardProvider implements CanActivate{
     if (currentUser) {
         // check if route is restricted by role
         if(currentUser.role === 'Trainer') {
-          this.router.navigate(['/trainerhome']);
+          this.router.navigate(['/userhome/tab_exercises']);
           return true;
         }
         else if(currentUser.role === 'Client') {
-          this.router.navigate(['/clienthome']);
+          this.router.navigate(['/userhome/tab_clients']);
           return true;
         }
-        // if (route.data.roles && route.data.roles.indexOf(currentUser.role) === -1) {
-        //     // role not authorised so redirect to home page
-        //     console.log('authrized trainer')
-        //     this.router.navigate(['/trainerhome']);
-        //     return false;
-        // }
+        
 
         // authorised so return true
         return false;

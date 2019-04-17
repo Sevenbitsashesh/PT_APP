@@ -1,0 +1,31 @@
+.btnTab {
+    height: 100%;
+    width: 100%;
+    border: 20px;
+    background: #15452A;
+    // margin: 5px 5px 5px 5px;
+  }
+  .iconTab {
+    color: #AA9C6F;
+    zoom: 0.8;
+  }
+  .btnTab:active {
+    // background-color: rgb(138, 207, 155);
+    color: white;
+    color: orange;
+    font-size: 20px;
+  }
+  .link {
+    padding: 30px 30px 15px 30px;
+    // background: rebeccapurple;
+  }
+  .tab-icon {
+    height: 25%;
+    width: 25%;
+    filter: saturate(9);
+  }
+  .spanTabClient {
+    height: 100%;
+    width: 24%;
+    display: inline-block;
+  }

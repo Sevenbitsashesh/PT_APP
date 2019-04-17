@@ -6,17 +6,21 @@ import { UserRoutingModule } from './user.routing';
 import { UsertabsComponent } from './usertabs'
 import { RouterModule } from '@angular/router';
 import { ComponentsModule } from '../../components/components.module';
-import { TabHomePageModule } from '../tab-home/tab-home.module';
-import { TabSearchPageModule } from '../tab-search/tab-search.module';
-import { TabProfilePageModule } from '../tab-profile/tab-profile.module';
+import { TabHomePageModule } from '../clienttabs/tab-home/tab-home.module';
+import { TabSearchPageModule } from '../clienttabs/tab-search/tab-search.module';
+import { TabProfilePageModule } from '../trainertabs/tab-profile/tab-profile.module';
 
 
-import { TabViewsPageModule } from '../tab-views/tab-views.module';
-import { TabexercisesPageModule } from '../../pages/tabexercises/tabexercises.module';
-import { TabworkoutsPageModule } from '../../pages/tabworkouts/tabworkouts.module';
-import { TabmealplansPageModule } from '../../pages/tabmealplans/tabmealplans.module';
+import { TabViewsPageModule } from '../clienttabs/tab-views/tab-views.module';
+import { TabexercisesPageModule } from '../../pages/trainertabs/tabexercises/tabexercises.module';
+import { TabworkoutsPageModule } from '../../pages/trainertabs/tabworkouts/tabworkouts.module';
+import { TabmealplansPageModule } from '../../pages/trainertabs/tabmealplans/tabmealplans.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TabschedulePageModule } from '../../pages/tabschedule/tabschedule.module';
+import { TabschedulePageModule } from '../../pages/trainertabs/tabschedule/tabschedule.module';
+import { TrainertabsComponent } from './trainertabs';
+import { TrainerTab } from '../../components/trainertab/trainertab';
+import { ClienttabsComponenet } from './clienttabs';
+import { ClientTab } from '../../components/clienttab/clienttab';
 
 
 
@@ -24,7 +28,10 @@ import { TabschedulePageModule } from '../../pages/tabschedule/tabschedule.modul
 @NgModule({
   declarations: [
     UserhomePage,
-    UsertabsComponent
+    TrainertabsComponent,
+    TrainerTab,
+    ClienttabsComponenet,
+    ClientTab
   ],
   imports: [
     IonicModule,
@@ -41,6 +48,8 @@ import { TabschedulePageModule } from '../../pages/tabschedule/tabschedule.modul
     TabworkoutsPageModule,
     TabmealplansPageModule,
     TabschedulePageModule,
+    
+    
   ],
   bootstrap: [],
   entryComponents: [ ],

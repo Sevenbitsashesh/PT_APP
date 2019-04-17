@@ -18,10 +18,19 @@ import { UserProvider } from '../../providers/user/user';
 export class UserhomePage {
   currentUserSubscription: Subscription; 
   // 
+  isClient: boolean;
+  isTrainer: boolean;
   constructor(private authService: AuthProvider) {      
     // sharedService.getCred();  
     // sharedService.checkLogin();       
     authService.checkLogin();
+    if(authService.currentUserValue.role === "Trainer") {
+      this.isTrainer = true;
+    }
+    else if(authService.currentUserValue.role === "Client") {
+      this.isClient = true;
+    }
+    
     
   }
   
