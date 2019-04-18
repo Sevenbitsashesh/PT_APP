@@ -33,9 +33,9 @@ export class NewclientComponent implements OnChanges, OnInit  {
   client_level;
   constructor(private formBuilder: FormBuilder, private workService: WorkoutProvider, private dataService: DataProvider, private mealService: MealProvider, private clientService: ClientProvider, private modal: ModalController, private nativeService: NativeProvider) {
     this.firstFormGroup = formBuilder.group({
-      first_name: ['', Validators.pattern("^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$")],
+      fname: ['', Validators.pattern("^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$")],
     
-      last_name:['', Validators.required],
+      lname:['', Validators.required],
       email: ['', Validators.required],
     });
     this.secondFormGroup = formBuilder.group({
@@ -63,11 +63,16 @@ export class NewclientComponent implements OnChanges, OnInit  {
   addClient() {
     
     if(this.firstFormGroup.valid == true && this.secondFormGroup.valid == true && this.thirdFormGroup.valid == true) {
-      const clientModel = {first_name: this.firstFormGroup.get('first_name').value,email: this.firstFormGroup.get('email').value, last_name: this.firstFormGroup.get('last_name').value,client_level: this.secondFormGroup.get('client_level').value,client_goal: this.secondFormGroup.get('client_goal').value,client_workplan: this.thirdFormGroup.get('workout_plan').value,client_mealplan: this.thirdFormGroup.get('meal_plan').value  , "trainerid": this.dataService.u.userid};    
-      this.clientService.addClient(clientModel).subscribe(data => {
+      const clientModel = {fname: this.firstFormGroup.get('fname').value,email: this.firstFormGroup.get('email').value, lname: this.firstFormGroup.get('lname').value,client_level: this.secondFormGroup.get('client_level').value,client_goal: this.secondFormGroup.get('client_goal').value,client_workplan: this.thirdFormGroup.get('workout_plan').value,client_mealplan: this.thirdFormGroup.get('meal_plan').value  , "trainerid": this.dataService.u.userid};    
+      this.clientService.addClient(clientModel).subscribe((data) => {
         // this.openModal();
-        // console.log(data);
-      });    
+        console.log(data);
+        this.nativeService.generateToast('Client Added',"","bottom");
+        
+      },(error) => {      
+      this.nativeService.generateToast('Error Adding Client',"","bottom");
+      }
+      );    
     }
     else {
         this.nativeService.generateToast('Please Fill the details Correctly','toast-error',"middle");

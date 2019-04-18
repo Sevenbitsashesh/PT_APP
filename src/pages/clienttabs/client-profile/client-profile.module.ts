@@ -27,4 +27,4 @@ const routes: Routes = [
   ],
   providers: [Camera]
 })
-export class TabProfilePageModule {}
+export class ClientProfileModule {}

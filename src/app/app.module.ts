@@ -50,6 +50,8 @@ import { WorkoutProvider } from '../providers/workout/workout';
 import { MealProvider } from '../providers/meal/meal';
 import { ClientProvider } from '../providers/client/client';
 import { RoleguardProvider } from '../providers/roleguard/roleguard';
+import { ClientroleguardProvider } from '../providers/clientroleguard/clientroleguard';
+import { TrainerroleguardProvider } from '../providers/trainerroleguard/trainerroleguard';
 
 
 
@@ -113,7 +115,9 @@ import { RoleguardProvider } from '../providers/roleguard/roleguard';
     MealProvider,
     ClientProvider,
     ClientProvider,
-    RoleguardProvider
+    RoleguardProvider,
+    ClientroleguardProvider,
+    TrainerroleguardProvider
     // AnimationProvider
   ]
   
