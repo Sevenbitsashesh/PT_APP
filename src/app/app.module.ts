@@ -52,6 +52,7 @@ import { ClientProvider } from '../providers/client/client';
 import { RoleguardProvider } from '../providers/roleguard/roleguard';
 import { ClientroleguardProvider } from '../providers/clientroleguard/clientroleguard';
 import { TrainerroleguardProvider } from '../providers/trainerroleguard/trainerroleguard';
+import { MailProvider } from '../providers/mail/mail';
 
 
 
@@ -117,7 +118,8 @@ import { TrainerroleguardProvider } from '../providers/trainerroleguard/trainerr
     ClientProvider,
     RoleguardProvider,
     ClientroleguardProvider,
-    TrainerroleguardProvider
+    TrainerroleguardProvider,
+    MailProvider
     // AnimationProvider
   ]
   

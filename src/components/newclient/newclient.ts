@@ -8,6 +8,8 @@ import { ClientProvider } from '../../providers/client/client';
 import { ModalController } from 'ionic-angular';
 import { PaymentComponent } from '../../components/payment/payment';
 import { NativeProvider } from '../../providers/native/native';
+import { MailProvider } from '../../providers/mail/mail';
+import { AuthProvider } from '../../providers/auth/auth';
 
 
 
@@ -31,7 +33,7 @@ export class NewclientComponent implements OnChanges, OnInit  {
   meal_plans;
   client_goal;
   client_level;
-  constructor(private formBuilder: FormBuilder, private workService: WorkoutProvider, private dataService: DataProvider, private mealService: MealProvider, private clientService: ClientProvider, private modal: ModalController, private nativeService: NativeProvider) {
+  constructor(private formBuilder: FormBuilder, private workService: WorkoutProvider, private dataService: DataProvider, private mealService: MealProvider, private clientService: ClientProvider, private modal: ModalController, private nativeService: NativeProvider, private mailService: MailProvider, private authService: AuthProvider) {
     this.firstFormGroup = formBuilder.group({
       fname: ['', Validators.pattern("^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$")],
     
@@ -61,22 +63,31 @@ export class NewclientComponent implements OnChanges, OnInit  {
     console.log('drop');  
   }
   addClient() {
-    
-    if(this.firstFormGroup.valid == true && this.secondFormGroup.valid == true && this.thirdFormGroup.valid == true) {
-      const clientModel = {fname: this.firstFormGroup.get('fname').value,email: this.firstFormGroup.get('email').value, lname: this.firstFormGroup.get('lname').value,client_level: this.secondFormGroup.get('client_level').value,client_goal: this.secondFormGroup.get('client_goal').value,client_workplan: this.thirdFormGroup.get('workout_plan').value,client_mealplan: this.thirdFormGroup.get('meal_plan').value  , "trainerid": this.dataService.u.userid};    
-      this.clientService.addClient(clientModel).subscribe((data) => {
+    const email = this.firstFormGroup.get('email').value;
+    // if(this.firstFormGroup.valid == true && this.secondFormGroup.valid == true && this.thirdFormGroup.valid == true) {
+    //   const clientModel = {fname: this.firstFormGroup.get('fname').value,email: email, lname: this.firstFormGroup.get('lname').value,client_level: this.secondFormGroup.get('client_level').value,client_goal: this.secondFormGroup.get('client_goal').value,client_workplan: this.thirdFormGroup.get('workout_plan').value,client_mealplan: this.thirdFormGroup.get('meal_plan').value  , "trainerid": this.dataService.u.userid};    
+    //   this.clientService.addClient(clientModel).subscribe((data) => {
         // this.openModal();
-        console.log(data);
-        this.nativeService.generateToast('Client Added',"","bottom");
+        if(email) {
+          this.nativeService.generateToast('Client Added',"","bottom");
+          
+          this.mailService.sendMail({message: 'Your email is : '+email+' and password is :'+'example'+' '+'Login in to https://pt-fits-life.firebaseapp.com'},{sender: 'Ashesh'},{email},{token: this.authService.currentUserValue.token}).subscribe(mailData => {
+            console.log(mailData);
+          })
+        }
+        else {
+          this.nativeService.generateToast('Error Adding Client',"","bottom");
+        }
         
-      },(error) => {      
-      this.nativeService.generateToast('Error Adding Client',"","bottom");
-      }
-      );    
-    }
-    else {
-        this.nativeService.generateToast('Please Fill the details Correctly','toast-error',"middle");
-    }
+        
+    //   },(error) => {      
+    //   this.nativeService.generateToast('Error Adding Client',"","bottom");
+    //   }
+    //   );    
+    // }
+    // else {
+    //     this.nativeService.generateToast('Please Fill the details Correctly','toast-error',"middle");
+    // }
     
   }
   ngOnChanges() {
