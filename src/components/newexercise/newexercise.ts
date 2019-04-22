@@ -68,12 +68,12 @@ export class NewexerciseComponent {
       exe_desc: this.exe_desc,
       userid: this.dataService.u.id
     };
-    this.exeService.addExercise(newExe).subscribe(data => {
-      if(!data.error) {
-        console.log(data);
-        this.nativeSrevice.generateToast('New Exercise Create','nothing', "bottom");
-      }
-    });
+    // this.exeService.addExercise(newExe).subscribe(data => {
+    //   if(!data.error) {
+    //     console.log(data);
+    //     this.nativeSrevice.generateToast('New Exercise Create','nothing', "bottom");
+    //   }
+    // });
     
    
   }

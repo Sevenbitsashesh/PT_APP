@@ -6,6 +6,7 @@ import { ComponentsModule } from '../../../components/components.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NewclientComponent } from '../../../components/newclient/newclient';
 import { MyclientsComponent } from '../../../components/myclients/myclients';
+import { ClientdetailsComponent } from '../../../components/clientdetails/clientdetails';
 
 
 const routes: Routes = [
@@ -13,6 +14,10 @@ const routes: Routes = [
     path: '',
     component: TabexercisesPage
   },
+  {
+    path: 'clientdetails',
+    component: ClientdetailsComponent
+  }
   // {
   //   path: 'newclient',
   //   component: NewclientComponent

@@ -119,7 +119,8 @@ import { MailProvider } from '../providers/mail/mail';
     RoleguardProvider,
     ClientroleguardProvider,
     TrainerroleguardProvider,
-    MailProvider
+    MailProvider,
+    ExerciseProvider
     // AnimationProvider
   ]
   

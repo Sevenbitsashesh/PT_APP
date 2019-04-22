@@ -1,29 +1,25 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { API_URL } from '../../Models/api_url';
-export class ExerciseModel {
-  exe_name: string;
-  userid: string;
-  exe_type: string;
-  exe_muscle: string;
-  exe_pic: string;
-  exe_desc: string;
+export class ExerciseModel  {
+  exe_name: String;
+      exe_pic: String
+      exe_muscle: String
+      exe_type: String
+      exe_desc: String
+      userid: String
 }
-
 @Injectable()
 export class ExerciseProvider {
-
+  header= new HttpHeaders();
   constructor(public http: HttpClient) {
 
   }
-  getExercises() : Observable<any> {
-     return this.http.get(API_URL+'exercise');
+  getMyWorkouts(myid): Observable<any> {
+    return this.http.post(API_URL+'exercise/myexercises',{userid: myid},{headers: this.header});
   }
-  addExercise(exeModel: ExerciseModel): Observable<any> {
-    return this.http.post(API_URL + 'exercise/addexercise',exeModel);
-  }
-  getMyExercises(cred) : Observable<any> {
-    return this.http.post(API_URL+ 'exercise/myexercises',{userid: cred});
+  addWorkout(body): Observable<any> {
+    return this.http.post(API_URL+ 'workout/addworkout',body);
   }
 }

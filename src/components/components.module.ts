@@ -42,6 +42,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { PaymentComponent } from './payment/payment';
 import { MyclientsComponent } from './myclients/myclients';
+import { ClientdetailsComponent } from './clientdetails/clientdetails';
 
 
 
@@ -80,6 +81,7 @@ import { MyclientsComponent } from './myclients/myclients';
     
     PaymentComponent,
     MyclientsComponent,
+    ClientdetailsComponent,
     
         ],
 	imports: [ IonicModule, CommonModule, RouterModule, VerificationPageModule, MatStepperModule, MatInputModule, MatTabsModule, MatFormFieldModule	],
@@ -113,6 +115,7 @@ import { MyclientsComponent } from './myclients/myclients';
         
     PaymentComponent,
     MyclientsComponent,
+    ClientdetailsComponent,
 
 ],
     entryComponents: [LoginComponent, FirstComponent, ProfileComponent, ExeSetsComponent, PaymentComponent],

@@ -7,6 +7,7 @@ import { WorkoutProvider } from '../../providers/workout/workout';
 import { DataProvider } from '../../providers/data/data';
 import { ActionSheetController } from 'ionic-angular';
 import { ImageProvider } from '../../providers/image/image';
+import { AuthProvider } from '../../providers/auth/auth';
 declare var Swiper: any;
 @Component({
   selector: 'newworkout',
@@ -31,7 +32,7 @@ export class NewworkoutComponent  implements AfterViewInit{
   Sun = [];
   listExer = ['Chest','Leg','Thigh','Shoulder','Back','Biceps'];
   selectedDay;
-  constructor(private nativeService: NativeProvider, private workService: WorkoutProvider, private dataService: DataProvider, private actionsheet: ActionSheetController, private imageService: ImageProvider) {
+  constructor(private nativeService: NativeProvider, private workService: WorkoutProvider, private dataService: DataProvider, private actionsheet: ActionSheetController, private imageService: ImageProvider, private auth: AuthProvider) {
    
   }
    ngAfterViewInit() {
@@ -191,7 +192,8 @@ export class NewworkoutComponent  implements AfterViewInit{
         }
     ]
     }
-    this.workService.addWorkout(newWork).subscribe(workItems => {
+    this.workService.addWorkout(newWork,this.auth.currentUserValue).subscribe(workItems => {
+      
       console.log(workItems);
       if(workItems) {
         this.nativeService.generateToast('New Workout Created','css','bottom');

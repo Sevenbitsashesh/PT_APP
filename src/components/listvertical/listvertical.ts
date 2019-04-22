@@ -11,6 +11,6 @@ export class ListverticalComponent {
   
   }
   gotoDetails() {
-    this.router.navigate(['/workoutdetails']);
+    this.router.navigate(['/tab_workouts/workoutdetails']);
   }
 }

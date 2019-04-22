@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { DataProvider } from '../../providers/data/data';
 import { WorkoutProvider } from '../../providers/workout/workout';
+import { AuthProvider } from '../../providers/auth/auth';
 
 export class WorkoutDetails  {
   work_name: string;
@@ -33,9 +34,9 @@ class ExeSet {
 export class ListworkoutsComponent {
 
   workouts: WorkoutDetails[];
-  constructor(private dataService: DataProvider, private workService: WorkoutProvider) {
-    console.log(dataService.u);
-    workService.getMyWorkouts(dataService.u).subscribe((data) => {
+  constructor(private dataService: DataProvider, private workService: WorkoutProvider, private auth: AuthProvider) {
+    
+    workService.getMyWorkouts(dataService.u,this.auth.currentUserValue).subscribe((data) => {
       if(!data.message) {
         console.log(data);
         this.workouts = data;

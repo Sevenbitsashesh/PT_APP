@@ -1,10 +1,39 @@
 
 <ion-grid>
   <ion-row>
+  
     <ion-col>
-        <div>
-{{currentUser.email}}
-          </div>
-    </ion-col>
+        <ion-searchbar (ionInput)="getItems($event)" placeholder="Client Search"></ion-searchbar>
+
+     
+   </ion-col>
   </ion-row>
+  
+      <ion-row *ngFor="let item of myclients; let i = index">  
+          <ion-col col-2>{{i+1}}</ion-col>
+          <ion-col>
+             {{item.client_name}}
+            
+          </ion-col>
+          <ion-col>
+              {{item.client_goal}}
+          </ion-col>
+          <ion-col>
+      {{item.client_level}}
+          </ion-col>
+          <ion-col col-1 >
+            <div class="arrow-class" (click)="gotoDetails()"> 
+                <i class="fas fa-arrow-alt-circle-right"></i>
+
+            </div>
+          </ion-col>
+        </ion-row>
+        <div *ngIf="myclients.length < 1">
+          <ion-row>
+            <ion-col>NO CLIENTS</ion-col>
+          </ion-row>
+        </div>
+  
+  
+  
 </ion-grid>

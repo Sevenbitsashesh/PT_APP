@@ -9,8 +9,10 @@ export class MealProvider {
   constructor(public http: HttpClient) {
 
   }
-  getMyMeals(myid): Observable<any> {
-    return this.http.post(API_URL+'meal/mymeals',{userid: myid});
+  getMyMeals(myid,user): Observable<any> {
+    console.log(myid);
+    return this.http.post(API_URL+'meal/mymeals',{userid: myid},{headers : {  'Accept' : 'application/json',
+    'Content-Type' : 'application/json','Authorization': 'Bearer '+ user.token}});
   }
   addMeal(body): Observable<any> {
     return this.http.post(API_URL+ 'meal/addmeal',body);

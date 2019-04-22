@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthProvider } from '../../providers/auth/auth';
 
 
 @Component({
@@ -8,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class SidemenuComponent {
   @Input() currentUser;
-  constructor(private router: Router) {
+  constructor(private router: Router, private authService: AuthProvider) {
     
   }
   navClients() {
@@ -35,6 +36,10 @@ export class SidemenuComponent {
     this.router.navigate(['userhome/tab_profile']);
     document.getElementById("mySidenav").style.width = '0%';
   }
-  
+  logout() {
+    this.authService.logout().then(status => {
+      location.reload();
+    })
+  }  
   
 }
