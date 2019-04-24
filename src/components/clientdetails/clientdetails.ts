@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NavigationExtras, Router, ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -7,11 +8,12 @@ import { Component } from '@angular/core';
 })
 export class ClientdetailsComponent {
 
-  text: string;
+  
 
-  constructor() {
-    console.log('Hello ClientdetailsComponent Component');
-    this.text = 'Hello World';
+  constructor(private route: ActivatedRoute) {
+    route.queryParams.subscribe(d => { 
+      console.log(d);
+    })
   }
 
 }

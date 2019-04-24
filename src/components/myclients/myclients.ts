@@ -45,9 +45,10 @@ export class MyclientsComponent implements AfterViewInit {
       console.log(searchItem);
     }
   }
-  gotoDetails() {
+  gotoDetails(client) {
     console.log('call')
-    this.router.navigate(['/userhome/tab_exercises/clientdetails']);
+    
+    this.router.navigate(['/userhome/tab_exercises/clientdetails'],{queryParams: {client: client}});
   }
   ngAfterViewInit() {
     this.getMyClients();

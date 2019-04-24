@@ -23,7 +23,7 @@ export class NewclientComponent implements OnChanges, OnInit  {
     title: 'Pizza Toppings',
     subTitle: 'Select your toppings'
   };
-  
+  workoutTime: boolean;
   
   secondCtrl;
   firstFormGroup: FormGroup;
@@ -39,6 +39,8 @@ export class NewclientComponent implements OnChanges, OnInit  {
     
       lname:['', Validators.required],
       email: ['', Validators.required],
+      gender: ['', Validators.required],
+      dob: ['', Validators.required]
     });
     this.secondFormGroup = formBuilder.group({
       client_goal: ['',Validators.required],

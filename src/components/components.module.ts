@@ -26,8 +26,8 @@ import { NewworkoutComponent } from './newworkout/newworkout';
 import { NewmealplansComponent } from './newmealplans/newmealplans';
 import { DropdownComponent } from './dropdown/dropdown';
 import { StepperComponent } from './stepper/stepper';
-import { MatStepperModule, MatFormFieldModule, MatSidenavModule, MatTabsModule, MatFormFieldControl, MatInputModule } from '@angular/material';
-
+import { MatStepperModule, MatFormFieldModule, MatSidenavModule, MatTabsModule, MatFormFieldControl, MatInputModule, MatExpansionModule } from '@angular/material';
+import {} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ListworkoutsComponent } from './listworkouts/listworkouts';
 import { ListverticalComponent } from './listvertical/listvertical';
@@ -43,6 +43,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { PaymentComponent } from './payment/payment';
 import { MyclientsComponent } from './myclients/myclients';
 import { ClientdetailsComponent } from './clientdetails/clientdetails';
+import { MealplanslistComponent } from './mealplanslist/mealplanslist';
+import { DaypplansComponent } from './daypplans/daypplans';
 
 
 
@@ -82,9 +84,11 @@ import { ClientdetailsComponent } from './clientdetails/clientdetails';
     PaymentComponent,
     MyclientsComponent,
     ClientdetailsComponent,
+    MealplanslistComponent,
+    DaypplansComponent,
     
         ],
-	imports: [ IonicModule, CommonModule, RouterModule, VerificationPageModule, MatStepperModule, MatInputModule, MatTabsModule, MatFormFieldModule	],
+	imports: [ IonicModule, CommonModule, RouterModule, VerificationPageModule, MatStepperModule, MatInputModule, MatTabsModule, MatFormFieldModule, MatExpansionModule	],
 	exports: [FirstComponent,
 	LoginComponent,
     HometabComponent,
@@ -116,6 +120,8 @@ import { ClientdetailsComponent } from './clientdetails/clientdetails';
     PaymentComponent,
     MyclientsComponent,
     ClientdetailsComponent,
+    MealplanslistComponent,
+    DaypplansComponent,
 
 ],
     entryComponents: [LoginComponent, FirstComponent, ProfileComponent, ExeSetsComponent, PaymentComponent],

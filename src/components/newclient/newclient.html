@@ -33,11 +33,25 @@
                 
                 
                 <ion-row>
-                  <ion-col>
-                    <!-- <div class="trainer-home-bottom" class="animated fadeInUp delay-3s">
-                        <button class="label-activity">Create Client</button>
-                    </div> -->
-                </ion-col>
+                    <ion-col>
+                  <ion-item class="animated fadeInLeft delay-3s"> 
+                    <ion-label>Gender</ion-label>
+                      <ion-select formControlName="gender">
+                        <ion-option value="Male">Male</ion-option>
+                        <ion-option value="Female">Female</ion-option>
+                      </ion-select>
+                     
+                  </ion-item>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                  <ion-item class="animated fadeInLeft delay-3s"> 
+                    <ion-label>Date of Birth</ion-label>
+                     <ion-datetime displayFormat="MM:DD:YYYY" formControlName="dob"></ion-datetime>
+                     
+                  </ion-item>
+                  </ion-col>
                 </ion-row>
               </ion-grid>
             <div>
@@ -107,6 +121,9 @@
                       {{category.work_name}}
                   </ion-option>
               </ion-select>
+        </ion-item>
+        <ion-item *ngIf="thirdFormGroup.get('workout_plan').value">
+          <ion-input type="number" placeholder="How many weeks?" min="1"></ion-input>
         </ion-item>
         </div>
         <div>

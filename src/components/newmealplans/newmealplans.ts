@@ -12,5 +12,10 @@ export class NewmealplansComponent {
   constructor() {
 
   }
-
+  createMeal() {
+    window.location.reload();
+  }
+  newMealBack() {
+    window.history.back();
+  }
 }

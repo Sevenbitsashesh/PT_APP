@@ -53,6 +53,7 @@ import { RoleguardProvider } from '../providers/roleguard/roleguard';
 import { ClientroleguardProvider } from '../providers/clientroleguard/clientroleguard';
 import { TrainerroleguardProvider } from '../providers/trainerroleguard/trainerroleguard';
 import { MailProvider } from '../providers/mail/mail';
+import { FoodProvider } from '../providers/food/food';
 
 
 
@@ -78,6 +79,7 @@ import { MailProvider } from '../providers/mail/mail';
     AngularFireStorageModule,
     BrowserAnimationsModule,
   // AnimationModule,
+  
 
   ],
   bootstrap: [IonicApp],
@@ -120,7 +122,8 @@ import { MailProvider } from '../providers/mail/mail';
     ClientroleguardProvider,
     TrainerroleguardProvider,
     MailProvider,
-    ExerciseProvider
+    ExerciseProvider,
+    FoodProvider
     // AnimationProvider
   ]
   
