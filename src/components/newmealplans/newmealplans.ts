@@ -13,7 +13,7 @@ export class NewmealplansComponent {
 
   }
   createMeal() {
-    window.location.reload();
+    
   }
   newMealBack() {
     window.history.back();

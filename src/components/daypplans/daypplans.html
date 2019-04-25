@@ -3,80 +3,184 @@
     <mat-step [stepControl]="firstFormGroup" [completed]="false" >
         <ng-template matStepLabel>Breakfast</ng-template>
         <ion-grid>
+          <ion-row>
+            <ion-col>
+                
+              
+              <!-- <ion-item *ngFor="let item of foodBreakfast">
+                  <ion-label><div (click)="removefoodBreakfast(item)"><img src="../../assets/icon/close.svg"></div></ion-label>
+                                   <ion-label>{{item.name.split(' ')[0]+' '+item.name.split(' ')[1]}} </ion-label>
+                </ion-item> -->
+              
+            </ion-col>
+          </ion-row>
+          <ion-row *ngIf="foodBreakfast">
+              <ion-label>{{foodBreakfast.name}}</ion-label>
+          </ion-row>
             <ion-row class="row-text">
               <ion-col col-12>
-              <ion-searchbar (ionInput)="getItems($event)" placeholder="Food Search"></ion-searchbar>
+              <ion-searchbar (ionInput)="getItems($event)" placeholder="banana apple"></ion-searchbar>
+              <button ion-button mat-button matStepperNext>Next</button>
               </ion-col>
             </ion-row>
             
-            
             <ion-row>
-              <ion-col col-12>                                           
-                 <ion-list>
-                  <ion-item><ion-label>Fish & seafood </ion-label><ion-checkbox ></ion-checkbox></ion-item>
-                  <ion-item><ion-label>eggs </ion-label><ion-checkbox ></ion-checkbox></ion-item>
-                  <ion-item><ion-label>vegeatables </ion-label><ion-checkbox></ion-checkbox></ion-item>                      
-                 </ion-list>                    
-              </ion-col>                                      
-            </ion-row>
-          
-    
-            
-           
-          
-            <!-- <ion-row>
-             <ion-col>
-              Breakfast
-             </ion-col>
-          
-           </ion-row>
-           <ion-row>
               <ion-col>
-              Morning Snack
-              </ion-col>    
+                  
+                  <mat-paginator [length]="searchItems.length" [pageSize]="10"
+               (page)="pageEvent = $event">
+                         
+            </mat-paginator>
+            <ion-list *ngFor="let item of searchItems  | slice:0:10; let i = index;"> 
+                <ion-item>
+                  <ion-label (click)="addfoodBreakfast(item.ndbno)">{{i}}</ion-label>  
+                  
+                </ion-item>                
+        </ion-list>   
+            <!-- let high = (pageEvent.pageSize * pageEvent.pageIndex); let low = (high - pageEvent.pageSize); -->
+             
+          <ion-item>
+              <div (click)="clicked(pageEvent)">MYpage</div>                            
+          </ion-item>
+                      
+                    
+                  
+                      
+                      
+                
+              </ion-col>
             </ion-row>
           
-            <ion-row>
-                <ion-col>
-                  Lunch
-                </ion-col>      
-              </ion-row>
-          
-          <ion-row>
-              <ion-col>
-                Afternoon Snake (3:00 To 4:00)
-              </ion-col>      
-            </ion-row>
-          
-            <ion-row>
-                <ion-col>
-                  Dinner
-                </ion-col>      
-              </ion-row>
-          
-          
-            <ion-row>
-                <ion-col>
-                  Before Sleep
-                </ion-col>      
-              </ion-row> -->
           </ion-grid>
       
     </mat-step>
     <mat-step [stepControl]="secondFormGroup" [completed]="false">
         <ng-template matStepLabel>Morning Snacks</ng-template>  
+        <ion-grid>
+            <ion-row>
+              <ion-col>
+                <ion-item *ngFor="let item of foodMorningSnacks">
+                  <ion-label>{{item.name}}</ion-label>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row *ngIf="foodMorningSnacks">
+                <ion-label>{{foodMorningSnacks.name}}</ion-label>
+            </ion-row>
+              <ion-row class="row-text">
+                <ion-col col-12>
+                <ion-searchbar (ionInput)="getItems($event)" placeholder="Food Search"></ion-searchbar>
+                <button ion-button mat-button matStepperNext>Next</button>
+                </ion-col>
+              </ion-row>
+              
+              <ion-row>
+                <ion-col>
+                    
+                    
+                        <ion-list *ngFor="let item of searchItems">                                             
+                              <ion-item>
+                                <ion-label (click)="addfoodMorningSnacks(item.ndbno)">{{item.name}}</ion-label>                              
+                              </ion-item>
+                              
+                             
+                        
+                      </ion-list> 
+                      
+                    
+                        
+                        
+                  
+                </ion-col>
+              </ion-row>
+            
+              <!-- <ion-row>
+                <ion-col col-12>                                           
+                   <ion-list>
+                    <ion-item><ion-label>Fish & seafood </ion-label><ion-checkbox ></ion-checkbox></ion-item>
+                    <ion-item><ion-label>eggs </ion-label><ion-checkbox ></ion-checkbox></ion-item>
+                    <ion-item><ion-label>vegeatables </ion-label><ion-checkbox></ion-checkbox></ion-item>                      
+                   </ion-list>                    
+                </ion-col>                                      
+              </ion-row> -->
+            
+      
+              
+             
+            
+              
+            </ion-grid>
     </mat-step>
     <mat-step [stepControl]="thirdFormGroup" [completed]="false">
         <ng-template matStepLabel>Lunch Snacks</ng-template>  
+        <ion-grid>
+            <ion-row>
+              <ion-col>
+                <ion-item *ngFor="let item of foodLunch">
+                  <ion-label>{{item.name}}</ion-label>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            
+              <ion-row class="row-text">
+                <ion-col col-12>
+                <ion-searchbar (ionInput)="getItems($event)" placeholder="Food Search"></ion-searchbar>
+                <button ion-button mat-button matStepperNext>Next</button>
+                </ion-col>
+              </ion-row>              
+              <ion-row>
+                <ion-col>
+                        <ion-list *ngFor="let item of searchItems">                                             
+                              <ion-item>
+                                <ion-label (click)="addfoodMorningSnacks(item.ndbno)">{{item.name}}</ion-label>                              
+                              </ion-item>
+                      </ion-list>                                       
+                </ion-col>
+              </ion-row>
+            </ion-grid>
     </mat-step>
     <mat-step [stepControl]="secondFormGroup" [completed]="false">
-        <ng-template matStepLabel>Afternoon Snacks</ng-template>  
+        <ng-template matStepLabel>Afternoon Snacks</ng-template>
+        <ion-grid>
+            <ion-row>
+              <ion-col>
+                <ion-item *ngFor="let item of foodMorningSnacks">
+                  <ion-label>{{item.name}}</ion-label>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row *ngIf="foodMorningSnacks">
+                <ion-label>{{foodMorningSnacks.name}}</ion-label>
+            </ion-row>
+              <ion-row class="row-text">
+                <ion-col col-12>
+                <ion-searchbar (ionInput)="getItems($event)" placeholder="Food Search"></ion-searchbar>
+                <button ion-button mat-button matStepperNext>Next</button>
+                </ion-col>
+              </ion-row>              
+              <ion-row>
+                <ion-col>
+                        <ion-list *ngFor="let item of searchItems">                                             
+                              <ion-item>
+                                <ion-label (click)="addfoodMorningSnacks(item.ndbno)">{{item.name}}</ion-label>                              
+                              </ion-item>
+                      </ion-list>                                       
+                </ion-col>
+              </ion-row>
+            </ion-grid>  
     </mat-step>
     <mat-step [stepControl]="secondFormGroup" [completed]="false">
         <ng-template matStepLabel>Evening Snacks</ng-template>  
     </mat-step>
     <mat-step [stepControl]="secondFormGroup" [completed]="false">
         <ng-template matStepLabel>Dinner</ng-template>  
+        <mat-form-field>
+            <mat-chip-list #chipList>
+              <mat-chip>Chip 1</mat-chip>
+              <mat-chip>Chip 2</mat-chip>
+            </mat-chip-list>
+            <input [matChipInputFor]="chipList">
+          </mat-form-field>
     </mat-step>
     <mat-step [stepControl]="secondFormGroup" [completed]="false">
         <ng-template matStepLabel>Before Sleeps</ng-template>  

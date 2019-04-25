@@ -15,31 +15,81 @@
   <ion-item>
       <ion-input placeholder="Meal Plan name"></ion-input>
   </ion-item>
-  <mat-accordion>
+  <!-- <mat-accordion multi="true">
 
       <mat-expansion-panel>
         <mat-expansion-panel-header>
           Monday
         </mat-expansion-panel-header>
-    <daypplans></daypplans>            
-      </mat-expansion-panel>
+        <ng-template matExpansionPanelContent>
+            <daypplans></daypplans>            
+          </ng-template>
     
+      </mat-expansion-panel>
+
       <mat-expansion-panel>
         <mat-expansion-panel-header>
           Tuesday
         </mat-expansion-panel-header>
     
-        <daypplans></daypplans>
+        
     
       </mat-expansion-panel>
+
       <mat-expansion-panel>
           <mat-expansion-panel-header>
             Wednesday
           </mat-expansion-panel-header>      
-          <daypplans></daypplans>      
+        
         </mat-expansion-panel>
-    </mat-accordion>
+
+    </mat-accordion> -->
     
+    <mat-tab-group>
+        <mat-tab>
+          <ng-template mat-tab-label>
+            Monday
+          </ng-template>
+          <daypplans></daypplans>  
+          
+        </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label>
+             Tuesday
+          </ng-template>
+          <daypplans></daypplans>  
+        </mat-tab>
+        <mat-tab>
+            <ng-template mat-tab-label>
+               Wednesday
+            </ng-template>
+            <daypplans></daypplans>  
+          </mat-tab>
+          <mat-tab>
+              <ng-template mat-tab-label>
+                 Thursday
+              </ng-template>
+              <daypplans></daypplans>  
+            </mat-tab>
+            <mat-tab>
+                <ng-template mat-tab-label>
+                   Friday
+                </ng-template>
+                <daypplans></daypplans>  
+              </mat-tab>
+              <mat-tab>
+                  <ng-template mat-tab-label>
+                     Saturday
+                  </ng-template>
+                  <daypplans></daypplans>  
+                </mat-tab>
+                <mat-tab>
+                    <ng-template mat-tab-label>
+                       Sunday
+                    </ng-template>
+                    <daypplans></daypplans>  
+                  </mat-tab>
+      </mat-tab-group>
         <button class="add-exe-btn" (click)="createMeal()">Create Meal</button>
     
         

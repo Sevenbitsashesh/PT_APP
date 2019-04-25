@@ -26,8 +26,8 @@ import { NewworkoutComponent } from './newworkout/newworkout';
 import { NewmealplansComponent } from './newmealplans/newmealplans';
 import { DropdownComponent } from './dropdown/dropdown';
 import { StepperComponent } from './stepper/stepper';
-import { MatStepperModule, MatFormFieldModule, MatSidenavModule, MatTabsModule, MatFormFieldControl, MatInputModule, MatExpansionModule } from '@angular/material';
-import {} from '@angular/material';
+import { MatStepperModule, MatFormFieldModule, MatSidenavModule, MatTabsModule, MatFormFieldControl, MatInputModule, MatExpansionModule, MatChipsModule, MatPaginatorModule } from '@angular/material';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ListworkoutsComponent } from './listworkouts/listworkouts';
 import { ListverticalComponent } from './listvertical/listvertical';
@@ -88,8 +88,7 @@ import { DaypplansComponent } from './daypplans/daypplans';
     DaypplansComponent,
     
         ],
-	imports: [ IonicModule, CommonModule, RouterModule, VerificationPageModule, MatStepperModule, MatInputModule, MatTabsModule, MatFormFieldModule, MatExpansionModule	],
-	exports: [FirstComponent,
+	imports: [ IonicModule, CommonModule, RouterModule, VerificationPageModule, MatStepperModule, MatInputModule, MatTabsModule, MatFormFieldModule, MatExpansionModule, MatChipsModule, MatPaginatorModule	],	exports: [FirstComponent,
 	LoginComponent,
     HometabComponent,
     ProfileComponent,
