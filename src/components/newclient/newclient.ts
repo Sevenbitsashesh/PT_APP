@@ -53,16 +53,18 @@ export class NewclientComponent implements OnChanges, OnInit  {
     // this.work_plans 
     console.log(authService.currentUserValue);
     this.workService.getMyWorkouts(dataService.u.id,authService.currentUserValue).subscribe(workData => {
-      if(workData.length > 0) {        
+      
+      if(Object.keys(workData).length > 0) {    
+        console.log('woklength'+workData.lenght)     
         this.work_plans = workData;
       }
       
       
     });
     this.mealService.getMyMeals(dataService.u.id,authService.currentUserValue).subscribe(mealData => {
-      console.log(mealData)
-      if(mealData.lenght > 0) {
-        
+      
+      if(Object.keys(mealData).length > 0) {
+      
         this.meal_plans = mealData;
       }
       

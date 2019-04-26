@@ -129,10 +129,10 @@
         <div>
             <ion-item>
                 <ion-label>Meal Plan</ion-label>
-                <ion-select formControlName="meal_plan" name="category">
+                <ion-select formControlName="meal_plan" name="category2">
                     
-                    <ion-option *ngFor="let category of meal_plans" [value]="category.meal_name">
-                        {{category.meal_name}}
+                    <ion-option *ngFor="let meal of meal_plans" [value]="meal.meal_name">
+                        {{meal.meal_name}}
                     </ion-option>
                 </ion-select>
           </ion-item>

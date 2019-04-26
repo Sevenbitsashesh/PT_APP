@@ -19,37 +19,46 @@
           </ion-row>
             <ion-row class="row-text">
               <ion-col col-12>
-              <ion-searchbar (ionInput)="getItems($event)" placeholder="banana apple"></ion-searchbar>
-              <button ion-button mat-button matStepperNext>Next</button>
+              <!-- <ion-searchbar (ionInput)="getItems($event)" placeholder="banana apple"></ion-searchbar> -->
+              <ion-input  placeholder="e.g. banana, apple" id="searchInput"></ion-input>
               </ion-col>
             </ion-row>
             
+            
             <ion-row>
               <ion-col>
-                  
-                  <mat-paginator [length]="searchItems.length" [pageSize]="10"
-               (page)="pageEvent = $event">
-                         
-            </mat-paginator>
-            <ion-list *ngFor="let item of searchItems  | slice:0:10; let i = index;"> 
-                <ion-item>
-                  <ion-label (click)="addfoodBreakfast(item.ndbno)">{{i}}</ion-label>  
-                  
-                </ion-item>                
-        </ion-list>   
-            <!-- let high = (pageEvent.pageSize * pageEvent.pageIndex); let low = (high - pageEvent.pageSize); -->
-             
-          <ion-item>
-              <div (click)="clicked(pageEvent)">MYpage</div>                            
-          </ion-item>
-                      
+                <!-- <ion-list *ngFor="let item of searchItems  | slice:0:10; let i = index;"> 
+                  <ion-item>
+                    <ion-label (click)="addfoodBreakfast(item.ndbno)">{{item.name}}</ion-label>  
                     
-                  
-                      
-                      
-                
+                  </ion-item>                
+          </ion-list>  -->
+          <ion-list *ngFor="let item of searchItems"> 
+              <ion-item>
+                <ion-label (click)="addfoodBreakfast(item.ndbno)">{{item.food.label.split(' ')[0]+' '+item.food.label.split(' ')[1]}}</ion-label>                  
+              </ion-item>                
+              <ion-item>
+                 <ion-label>Calories: {{item.food.nutrients.ENERC_KCAL}}</ion-label>
+              </ion-item>
+              <ion-item><ion-label>Protien: {{item.food.nutrients.PROCNT}}</ion-label></ion-item>
+              <ion-item><ion-label>FAT: {{item.food.nutrients.FAT}}</ion-label></ion-item>
+              <ion-item><ion-label>Carbo Hydrates: {{item.food.nutrients.CHOCDF}}</ion-label></ion-item>
+              <ion-item><ion-label>Fiber: {{item.food.nutrients.FIBTG}}</ion-label>   </ion-item>
+      </ion-list> 
               </ion-col>
             </ion-row>
+            <ion-row>
+              <ion-col>
+                  <button ion-button mat-button matStepperNext>Next</button>
+              </ion-col>
+            </ion-row>
+                    <!-- <mat-paginator [length]="searchItems.length" [pageSize]="10"
+                    (page)="pageEvent = $event">
+                              
+                 </mat-paginator> -->
+            <!-- let high = (pageEvent.pageSize * pageEvent.pageIndex); let low = (high - pageEvent.pageSize); -->
+            
+           
           
           </ion-grid>
       

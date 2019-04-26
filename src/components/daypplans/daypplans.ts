@@ -1,11 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, Input, AfterViewInit } from '@angular/core';
 import { FoodProvider } from '../../providers/food/food';
+import { debounce } from 'ionic-angular/umd/util/util';
+import { debounceTime } from 'rxjs/operators/debounceTime';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'daypplans',
   templateUrl: 'daypplans.html'
 })
-export class DaypplansComponent {
+export class DaypplansComponent implements AfterViewInit {
 
 
   searchItems = [];
@@ -19,19 +22,35 @@ export class DaypplansComponent {
   constructor(private foodService: FoodProvider) {
     
   }
+  ngAfterViewInit() {
+    const tar = document.getElementById('searchInput');
+    
+    const inptSearch =  Observable.fromEvent(tar,'keyup').map(x => x).debounceTime(1000).take(1);
+        inptSearch.subscribe(data => this.getItem(data));
+  }
+  doInfinite(infiniteScroll) {
+
+  }
   getItems(name) {
     // name = "45242685";
-    if(name.target.value) {
-      this.foodService.getFoodByName(name).subscribe(data => {
-        
-        this.searchItems = data['list']['item'];
-        this.searchItems.slice()
+    
+    
+    // if(name.target.value) {
       
-    })
-    }
 
-      
+        // }    
   }
+  getItem(name) {
+    
+    this.foodService.getFoodByName(name).subscribe(data => {
+    
+      // this.searchItems = data['list']['item'];
+      // this.searchItems.slice()
+      this.searchItems = data['parsed'];
+      console.log(this.searchItems);
+  })
+  }
+
   clicked(event) {
     console.log(event);
   }

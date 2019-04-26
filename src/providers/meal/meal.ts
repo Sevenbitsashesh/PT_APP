@@ -11,6 +11,7 @@ export class MealProvider {
   }
   getMyMeals(myid,user): Observable<any> {
     console.log(myid);
+    
     return this.http.post(API_URL+'meal/mymeals',{userid: myid},{headers : {  'Accept' : 'application/json',
     'Content-Type' : 'application/json','Authorization': 'Bearer '+ user.token}});
   }
