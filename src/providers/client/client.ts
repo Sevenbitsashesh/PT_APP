@@ -14,13 +14,17 @@ export class ClientProvider {
   }
   addClient(clientModel,user): Observable<any> {
     
-    
-    return this.http.post(API_URL+'client/addclient',clientModel, {headers: {"Content-Type": "application/x-www-form-urlencoded","Accept": "application/json","Authorization": "Bearer "+user.token}});
+    console.log(clientModel);
+    return this.http.post(API_URL+'client/addclient',clientModel, {headers: {"Content-Type": "application/json","Accept": "application/json","Authorization": "Bearer "+user.token}});
   }
   getMyClients(authdetail,user): Observable<any> {
 
     
     return this.http.post(API_URL+'client/myclients',{trainerid: authdetail[0].userid},{headers : {  'Accept' : 'application/json',
     'Content-Type' : 'application/json','Authorization': 'Bearer '+ user.token}});
+  } 
+  getClient(authdetail,user,uid) {
+    
+         return this.http.post(API_URL+'client/getclient',{clientid: uid, trainerid: authdetail.userid},{headers: {"Authorization": 'Bearer '+user.token}});
   }
 }

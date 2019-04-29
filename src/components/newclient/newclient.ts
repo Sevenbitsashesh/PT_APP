@@ -12,7 +12,16 @@ import { MailProvider } from '../../providers/mail/mail';
 import { AuthProvider } from '../../providers/auth/auth';
 
 
-
+export class ClientMeasure {
+  height: String;
+  weight: String;
+  chest: String;
+  biceps: String;  
+  forearm: String;
+  neck: String;
+  shoulder: String;
+  thigh: String;
+}
 @Component({
   selector: 'newclient',
   templateUrl: 'newclient.html'
@@ -33,6 +42,7 @@ export class NewclientComponent implements OnChanges, OnInit  {
   meal_plans;
   client_goal;
   client_level;
+  client_measurement =new ClientMeasure();
   constructor(private formBuilder: FormBuilder, private workService: WorkoutProvider, private dataService: DataProvider, private mealService: MealProvider, private clientService: ClientProvider, private modal: ModalController, private nativeService: NativeProvider, private mailService: MailProvider, private authService: AuthProvider) {
     this.firstFormGroup = formBuilder.group({
       fname: ['', Validators.pattern("^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$")],
@@ -76,8 +86,19 @@ export class NewclientComponent implements OnChanges, OnInit  {
   }
   addClient() {
     const email = this.firstFormGroup.get('email').value;
+    this.client_measurement.biceps = "";
+    this.client_measurement.chest = "";
+    this.client_measurement.forearm = "";
+    this.client_measurement.height = "";
+    this.client_measurement.neck = "";
+    this.client_measurement.shoulder = "";
+    this.client_measurement.thigh = "";
+    this.client_measurement.weight = "";
+    
+
     if(this.firstFormGroup.valid == true && this.secondFormGroup.valid == true && this.thirdFormGroup.valid == true) {
-      const clientModel = {fname: this.firstFormGroup.get('fname').value,email: email, lname: this.firstFormGroup.get('lname').value,client_level: this.secondFormGroup.get('client_level').value,client_goal: this.secondFormGroup.get('client_goal').value,client_workplan: this.thirdFormGroup.get('workout_plan').value,client_mealplan: this.thirdFormGroup.get('meal_plan').value  , "trainerid": this.dataService.u.userid};    
+      const clientModel = {fname: this.firstFormGroup.get('fname').value,email: email, lname: this.firstFormGroup.get('lname').value,client_level: this.secondFormGroup.get('client_level').value,client_goal: this.secondFormGroup.get('client_goal').value,client_workplan: this.thirdFormGroup.get('workout_plan').value,client_mealplan: this.thirdFormGroup.get('meal_plan').value  , "trainerid": this.dataService.u.userid, "client_measurement": this.client_measurement};    
+      console.log(clientModel);
       this.clientService.addClient(clientModel,this.authService.currentUserValue).subscribe((data) => {
         // this.openModal();
         if(email) {
