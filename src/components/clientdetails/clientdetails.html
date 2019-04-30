@@ -43,22 +43,22 @@
                         </ion-item>
                         <ion-item>
                                 <ion-label>Forearm</ion-label>
-                                <ion-input type="number" placeholder="Left" [(ngModel)]="userMeasure.forearm.split(',')[0]"></ion-input> 
-                                <ion-input type="number" placeholder="Right" [(ngModel)]="userMeasure.forearm.split(',')[1]"></ion-input> 
+                                <ion-input type="number" placeholder="Left" [(ngModel)]="userMeasure.forearm"></ion-input> 
+                                <!-- <ion-input type="number" placeholder="Right" [(ngModel)]="userMeasure.forearm.split(',')[1]"></ion-input>  -->
                         </ion-item>
                        
                         <ion-item>
                                 <ion-label>Neck</ion-label>
-                                <ion-input type="number" placeholder="inch"></ion-input> 
+                                <ion-input type="number" placeholder="inch" [(ngModel)]="userMeasure.neck"></ion-input> 
                         </ion-item>
                         <ion-item>
                                 <ion-label>Shoulders</ion-label>
-                                <ion-input type="number" placeholder="inch"></ion-input> 
+                                <ion-input type="number" placeholder="inch" [(ngModel)]="userMeasure.shoulder"></ion-input> 
                         </ion-item>
                         <ion-item>
                                 <ion-label>Thigh</ion-label>
-                                <ion-input type="number" placeholder="Left"></ion-input> 
-                                <ion-input type="number" placeholder="Right"></ion-input> 
+                                <ion-input type="number" placeholder="Left" [(ngModel)]="userMeasure.thigh"></ion-input> 
+                                <!-- <ion-input type="number" placeholder="Right"></ion-input>  -->
                         </ion-item>
                        
                     </ion-list>

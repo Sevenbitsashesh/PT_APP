@@ -8,26 +8,38 @@
      
    </ion-col>
   </ion-row>
-  
-      <ion-row *ngFor="let item of myclients; let i = index">  
-          <ion-col col-2>{{i+1}}</ion-col>
-          <ion-col>
-             {{item.client_name}}
-            
-          </ion-col>
-          <ion-col>
-              {{item.client_goal}}
-          </ion-col>
-          <ion-col>
-      {{item.client_level}}
-          </ion-col>
-          <ion-col col-1 >
-            <div class="arrow-class" (click)="gotoDetails(item.id)"> 
-                <i class="fas fa-arrow-alt-circle-right"></i>
+  <div *ngFor="let item of myclients; let i = index" (click)="selectClient(item)">
+    <ion-row>  
+      <ion-col col-2>{{i+1}}</ion-col>
+      <ion-col>
+         {{item.client_name}}
+        
+      </ion-col>
+      <ion-col>
+          {{item.client_goal}}
+      </ion-col>
+      <ion-col>
+  {{item.client_level}}
+      </ion-col>
+      <ion-col col-1 >
+        <div class="arrow-class" (click)="gotoDetails(item.id)"> 
+            <i class="fas fa-arrow-alt-circle-right"></i>
 
-            </div>
-          </ion-col>
-        </ion-row>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="item.id == selectedClient">
+      <ion-col col-2></ion-col>
+      <ion-col col-3>
+        <button ion-button (click)="clickSchedule(item.id)">Schedule Assessment</button>
+      </ion-col>
+      
+
+    </ion-row>
+  </div>
+    
+  
+      
         <div *ngIf="myclients.length < 1">
           <ion-row>
             <ion-col>NO CLIENTS</ion-col>

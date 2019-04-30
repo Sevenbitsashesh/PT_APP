@@ -1,12 +1,13 @@
 
 
 <div>
+  <form [formGroup]="exerciseForm">
   <ion-grid>
     <ion-row>
       
       <ion-col col-4><img class="attachImg" [src]=exe_image (click)="imageAction()"></ion-col>
       <ion-col>
-        <input placeholder="Exercise name" class="newionInput" [(ngModel)]="exe_name">
+        <input placeholder="Exercise name" class="newionInput" formControlName="exe_name">
       </ion-col>
       
     </ion-row>
@@ -16,10 +17,10 @@
           
               <ion-label class="content">Muscle</ion-label>
 
-              <ion-select class="selector" [(ngModel)]="exe_muscle">
-                  <ion-option>Shoulders</ion-option>
-                  <ion-option>Chest</ion-option>
-                  <ion-option>Abs</ion-option>
+              <ion-select class="selector" formControlName="muscle_type">
+                
+                  <ion-option *ngFor="let item of exe_muscle_types" >{{item.muscle_type}}</ion-option>
+                  
                 </ion-select>
           
       </ion-col>
@@ -28,10 +29,27 @@
       
     </ion-row>
     <ion-row>
+        <ion-col>
+            
+            
+                <ion-label class="content">Secondary Muscle</ion-label>
+  
+                <ion-select class="selector" formControlName="sec_muscle_type" multiple="true">
+                  
+                    <ion-option *ngFor="let item of exe_muscle_types" [value]="item.id +' '+ item.muscle_type"> {{item.muscle_type}}</ion-option>
+                    
+                  </ion-select>
+            
+        </ion-col>
+        
+          
+        
+      </ion-row>
+    <ion-row>
       <ion-col>
         
             <ion-label class="content">Level</ion-label>
-            <ion-select class="selector">
+            <ion-select class="selector" formControlName="exe_level">
               <ion-option>Beginner</ion-option>
               <ion-option>Intermediate</ion-option>
               <ion-option>Advanced</ion-option>
@@ -50,13 +68,15 @@
         <div class="single-exe-type" id="exeTypeWeight"  (click)="changeType($event)">Weight & Reps</div>
         <div class="single-exe-type" id="exeTypeRepe" (click)="changeType($event)">Repetitions</div>
         <div class="single-exe-type" id="exeTypeDura" (click)="changeType($event)">Duration  </div>
-        <div class="side-example-message">
-            Example: {{exeTypes[selectExeType]}}
-        </div>
+        
         
           </ion-col>          
     </ion-row>
-    
+    <ion-row>
+      <ion-col><div class="side-example-message">
+          Example: {{exeTypes[selectExeType]}}
+      </div></ion-col>
+    </ion-row>
     <ion-row>
       <ion-col>
           <ion-label>Exercise Description</ion-label>
@@ -65,7 +85,7 @@
     <ion-row>
         <ion-col>
          <ion-item>
-           <textarea type="textarea" placeholder="Exercise Description" class="newionInput" [(ngModel)]="exe_desc"></textarea>
+           <textarea type="textarea" placeholder="Exercise Description" class="newionInput" formControlName="exe_desc"></textarea>
            
          </ion-item>
         </ion-col>
@@ -76,4 +96,5 @@
         </div>
       </ion-row>
   </ion-grid>
+</form>
 </div>

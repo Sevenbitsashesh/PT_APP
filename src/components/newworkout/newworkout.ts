@@ -8,6 +8,7 @@ import { DataProvider } from '../../providers/data/data';
 import { ActionSheetController } from 'ionic-angular';
 import { ImageProvider } from '../../providers/image/image';
 import { AuthProvider } from '../../providers/auth/auth';
+import { ExerciseProvider } from '../../providers/exercise/exercise';
 declare var Swiper: any;
 @Component({
   selector: 'newworkout',
@@ -32,8 +33,10 @@ export class NewworkoutComponent  implements AfterViewInit{
   Sun = [];
   listExer = ['Chest','Leg','Thigh','Shoulder','Back','Biceps'];
   selectedDay;
-  constructor(private nativeService: NativeProvider, private workService: WorkoutProvider, private dataService: DataProvider, private actionsheet: ActionSheetController, private imageService: ImageProvider, private auth: AuthProvider) {
-   
+  constructor(private nativeService: NativeProvider, private workService: WorkoutProvider, private dataService: DataProvider, private actionsheet: ActionSheetController, private imageService: ImageProvider, private auth: AuthProvider, private exeService: ExerciseProvider) {
+   this.exeService.getExercises(auth.currentUserValue).subscribe(data => {
+     console.log(data);
+   })
   }
    ngAfterViewInit() {
     //  console.log(swiper.Swiper);

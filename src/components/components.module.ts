@@ -46,6 +46,7 @@ import { ClientdetailsComponent } from './clientdetails/clientdetails';
 import { MealplanslistComponent } from './mealplanslist/mealplanslist';
 import { DaypplansComponent } from './daypplans/daypplans';
 import { CustomMatPaginatorIntl } from '../providers/custom.paginator';
+import { ScheduleassessComponent } from './scheduleassess/scheduleassess';
 
 
 
@@ -87,6 +88,7 @@ import { CustomMatPaginatorIntl } from '../providers/custom.paginator';
     ClientdetailsComponent,
     MealplanslistComponent,
     DaypplansComponent,
+    ScheduleassessComponent,
     
         ],
 	imports: [ IonicModule, CommonModule, RouterModule, VerificationPageModule, MatStepperModule, MatInputModule, MatTabsModule, MatFormFieldModule, MatExpansionModule, MatChipsModule, MatPaginatorModule, CdkStepperModule	],	exports: [FirstComponent,
@@ -122,9 +124,10 @@ import { CustomMatPaginatorIntl } from '../providers/custom.paginator';
     ClientdetailsComponent,
     MealplanslistComponent,
     DaypplansComponent,
+    ScheduleassessComponent,
 
 ],
-    entryComponents: [LoginComponent, FirstComponent, ProfileComponent, ExeSetsComponent, PaymentComponent],
+    entryComponents: [LoginComponent, FirstComponent, ProfileComponent, ExeSetsComponent, PaymentComponent, ScheduleassessComponent],
     providers: [
         {provide: MatPaginatorIntl, useClass: CustomMatPaginatorIntl}
     ]

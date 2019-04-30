@@ -5,9 +5,11 @@ import { AuthProvider } from '../../providers/auth/auth';
 import { UserProvider } from '../../providers/user/user';
 import { delay } from 'rxjs/operators';
 import { ClientModel } from '../../Models/client.model';
-import { NavController } from 'ionic-angular';
+import { NavController, ModalController } from 'ionic-angular';
 import { ClientdetailsComponent } from '../../components/clientdetails/clientdetails';
 import { Router } from '@angular/router';
+import { ScheduleassessComponent } from '../../components/scheduleassess/scheduleassess';
+
 
 @Component({
   selector: 'myclients',
@@ -17,8 +19,8 @@ export class MyclientsComponent implements AfterViewInit {
 
 @Input() currentUser;
   myclients = [];
-  
-  constructor(private dataService: DataProvider,private userService: UserProvider, private clientService: ClientProvider, private authService: AuthProvider, private router: Router) {
+  selectedClient: boolean;
+  constructor(private dataService: DataProvider,private userService: UserProvider, private clientService: ClientProvider, private authService: AuthProvider, private router: Router, private modal:ModalController) {
     // this.getMyClients();
     
   }
@@ -62,5 +64,11 @@ export class MyclientsComponent implements AfterViewInit {
       return false;
     }
   }
-  
+  selectClient(event) {
+    this.selectedClient = event.id;
+  }
+  clickSchedule(userid) {
+    console.log('inside scheduleassess');
+    this.modal.create(ScheduleassessComponent,{userid: userid}).present({direction: 'middle',duration: 5000,keyboardClose: true}); 
+  }
 }
