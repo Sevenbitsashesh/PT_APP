@@ -30,4 +30,7 @@ export class ExerciseProvider {
   getMuscles(myid,auth): Observable<any> {
     return this.http.post(API_URL+'exercise/getmuscles',{userid: myid},{headers: {"Content-Type": "application/json","Accept": "application/json","Authorization": 'Bearer '+ auth.token}})
   }
+  getExercise(auth,data) : Observable<any> {
+    return this.http.post(API_URL+'exercise/getexercise',data,{headers: {"Content-Type": "application/json", "Accept": "application/json", "Authorization": "Bearer "+auth.token}});
+ }
 }

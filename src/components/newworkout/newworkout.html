@@ -87,23 +87,50 @@
               <ion-row>
                   <ion-slides pager="true" size=100 >
                       <ion-slide id="slide1">
-                          <div class="row-form" *ngFor="let item of item1">
-                              {{item}} <i class="fas fa-minus-circle" id="sel_{{item}}" (click)="removeItem($event)"></i>
-                            </div> 
-                      </ion-slide>
-                    
-                      <ion-slide id="slide2">
-                          <div class="exercise-bpart" (click)="selectExe($event)" id="exe_chest" *ngFor="let item of listExer">{{item}}</div>
-                          <!-- <div class="exercise-bpart" (click)="selectExe($event)" id="exe_leg">Leg</div>
-                          <div class="exercise-bpart" (click)="selectExe($event)" id="exe_thigh">Thigh</div>
-                          <div class="exercise-bpart" (click)="selectExe($event)" id="exe_shoulder">Shoulder</div>
-                          <div class="exercise-bpart" (click)="selectExe($event)" id="exe_back">Back</div>
-                          <div class="exercise-bpart" (click)="selectExe($event)" id="exe_biceps">Biceps</div>   -->
+                        <div *ngFor="let item of exercisesDays"> 
+                            <div class="row-form" >
+                            
+                                {{item['MON'].exe_name}}
+                                <!-- <div *ngFor="let setOf of item.sets">
+                                  {{setOf['MON']}}
+                                </div> -->
+                          <!-- {{item[0]}}  -->
+                          <i class="fas fa-minus-circle" id="sel_{{item}}" (click)="removeItem($event)"></i>
+                        </div> 
+                        </div>
+                          
+                            <div class="exercise" *ngFor="let item of exercises" (click)="modalExerciseSelection(item)">
+                                <ion-grid>
+                                  <ion-row>
+                                    <ion-col>
+                                        {{item.exe_name}}
+                                    </ion-col>
+                                    
+                                  </ion-row>
+                                </ion-grid>
+                            </div>
+                            <div class="exercise-bpart" *ngFor="let item of listExer" (click)="clickBodyMuscle(item)">
+                                {{item.muscle_type}}
+                                </div>
+                            
                       </ion-slide>
                     
                       
+                    
+                      
                     </ion-slides>
-                  <!-- <div class="swipe-data-grid" >
+                  
+              </ion-row>
+
+
+        </ion-grid>  
+
+  
+
+</ion-content>
+
+
+         <!-- <div class="swipe-data-grid" >
             <div class="swiper-container" style="height: 400px">
               <div class="swiper-wrapper">
                 <div class="swiper-slide"> 
@@ -131,14 +158,3 @@
 
             </div>
             </div> -->
-              </ion-row>
-
-
-        </ion-grid>  
-
-  
-
-</ion-content>
-
-
-         

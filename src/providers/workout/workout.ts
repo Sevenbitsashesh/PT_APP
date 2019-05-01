@@ -16,6 +16,7 @@ export class WorkoutProvider {
   }
   addWorkout(body,auth): Observable<any> {
     this.header.append("Authorization","Bearer "+auth.token);
-    return this.http.post(API_URL+ 'workout/addworkout',body,{headers: this.header});
+    return this.http.post(API_URL+ 'workout/addworkout',body,{headers : {  'Accept' : 'application/json',
+    'Content-Type' : 'application/json','Authorization': 'Bearer '+ auth.token}});
   }
 }

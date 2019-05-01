@@ -1,14 +1,16 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, Output, ViewChild, ElementRef } from '@angular/core';
 import { delay } from 'rxjs/operator/delay';
 import { Observable } from 'rxjs';
 import * as anime from 'animejs'; 
 import { NativeProvider } from '../../providers/native/native';
 import { WorkoutProvider } from '../../providers/workout/workout';
 import { DataProvider } from '../../providers/data/data';
-import { ActionSheetController } from 'ionic-angular';
+import { ActionSheetController, ModalController } from 'ionic-angular';
 import { ImageProvider } from '../../providers/image/image';
 import { AuthProvider } from '../../providers/auth/auth';
 import { ExerciseProvider } from '../../providers/exercise/exercise';
+import { ExeSelectionComponent } from '../../components/exe-selection/exe-selection';
+
 declare var Swiper: any;
 @Component({
   selector: 'newworkout',
@@ -31,12 +33,20 @@ export class NewworkoutComponent  implements AfterViewInit{
   Fri = [];
   Sat = [];
   Sun = [];
-  listExer = ['Chest','Leg','Thigh','Shoulder','Back','Biceps'];
+  listExer = [];
   selectedDay;
-  constructor(private nativeService: NativeProvider, private workService: WorkoutProvider, private dataService: DataProvider, private actionsheet: ActionSheetController, private imageService: ImageProvider, private auth: AuthProvider, private exeService: ExerciseProvider) {
+  exercises = [];
+  @ViewChild(ExeSelectionComponent) exeSelectionCom: ExeSelectionComponent;
+  exercisesDays = [];
+  constructor(private nativeService: NativeProvider, private workService: WorkoutProvider, private dataService: DataProvider, private actionsheet: ActionSheetController, private imageService: ImageProvider, private auth: AuthProvider, private exeService: ExerciseProvider, private modal: ModalController) {
    this.exeService.getExercises(auth.currentUserValue).subscribe(data => {
      console.log(data);
    })
+   
+   this.exeService.getMuscles(dataService.u.id,auth.currentUserValue).subscribe(exeMuscles => {
+    this.listExer = exeMuscles;
+   })
+   
   }
    ngAfterViewInit() {
     //  console.log(swiper.Swiper);
@@ -45,8 +55,7 @@ export class NewworkoutComponent  implements AfterViewInit{
     //     nextEl: '.swiper-button-next',
     //     prevEl: '.swiper-button-prev',
     //   }
-    // }); 
-   
+    // });     
    }
   newWorkoutBack() {
     window.history.back();
@@ -265,5 +274,55 @@ export class NewworkoutComponent  implements AfterViewInit{
      }
      
    }
+   clickBodyMuscle(exeItem) {
+    this.exeService.getExercise(this.auth.currentUserValue,{exe_muscle: exeItem.muscle_type, userid: this.dataService.u.userid}).subscribe(exeData => {
+      if(exeData.length > 0) {
+        this.exercises = exeData;
+      }
+      else {
+        this.exercises = [];
+      }
+      
 
+    });
+    
+  }
+   modalExerciseSelection(exercise) {
+     
+     const modal = this.modal.create(ExeSelectionComponent,{exercise: exercise});
+     modal.present();
+     const day = this.selectedDay;
+     console.log(day);
+     modal.onDidDismiss(data => {
+       console.log(data);       
+       if(data.length > 0) {
+        exercise['sets'] = data;
+        if(day === "Mon") {
+          this.exercisesDays.push({MON: exercise});  
+        }
+        else if(day === "Tue") {
+          this.exercisesDays.push({TUE: exercise});
+        }
+        else if(day === "Wed") {
+          this.exercisesDays.push({WED: exercise});
+        }
+        else if(day === "Thur") {
+          this.exercisesDays.push({THUR: exercise});
+        }
+        else if(day === "Fri") {
+          this.exercisesDays.push({FRI: exercise});
+        }
+        else if(day === "Sat") {
+          this.exercisesDays.push({SAT: exercise});
+        }
+        else if(day === "Sun") {
+          this.exercisesDays.push({SUN: exercise});
+        }
+        
+        
+       }
+      
+     })
+     
+   }
 }

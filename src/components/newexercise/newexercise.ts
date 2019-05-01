@@ -87,7 +87,7 @@ export class NewexerciseComponent {
       sec_exe_muscle: secMuscles,
       exe_type: this.exe_type,
       exe_desc: this.exerciseForm.get('exe_desc').value,
-      userid: this.dataService.u.id
+      userid: this.dataService.u.userid
     };
     
     
