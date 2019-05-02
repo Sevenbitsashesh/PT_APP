@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { IonicPageModule, IonicModule } from 'ionic-angular';
 import { ClientSchedulePage } from './client-schedule';
 import { Routes, RouterModule } from '@angular/router';
+import { ComponentsModule } from '../../../components/components.module';
 const routes: Routes = [
   {
     path: '',
@@ -23,7 +24,8 @@ const routes: Routes = [
   ],
   imports: [
     IonicModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    ComponentsModule
   ],
 })
 export class ClientSchedulePageModule {}

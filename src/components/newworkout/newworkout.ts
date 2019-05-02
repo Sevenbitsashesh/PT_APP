@@ -81,44 +81,44 @@ export class NewworkoutComponent  implements AfterViewInit{
   }
   clickDay(dayControl) {
     var idDay = dayControl.target.id;
-    console.log(this.item1);
-    if(idDay.split('_')[1] === "MON") {
+    console.log(idDay);
+    if(idDay.split('_')[1] === "Mon") {
       // this.item1 = ['SQUAT','LEG Extention'];
           this.exerciseSelect = true;
           this.selectedDay = "Mon";
           this.item1 = this.Mon;
     }
-    else if(idDay.split('_')[1] === "TUE") {
+    else if(idDay.split('_')[1] === "Tue") {
       // this.item1 = ['Dumbbell Lunges','Burpee', 'Barbel Lunge'];
       this.exerciseSelect = true;
       this.selectedDay = "Tue";
       this.item1 = this.Tue;
     }
-    else if(idDay.split('_')[1] === "WED") {
+    else if(idDay.split('_')[1] === "Wed") {
       // this.item1 = ['Abs Scrunch','Trap Bar Deadlift', 'Barbel Push Up'];
       this.exerciseSelect = true;
       this.selectedDay = "Wed";
       this.item1 = this.Wed;
     }
-    else if(idDay.split('_')[1] === "THUR") {
+    else if(idDay.split('_')[1] === "Thur") {
       // this.item1 = ['Abs Scrunch','Trap Bar Deadlift'];
       this.exerciseSelect = true;
       this.selectedDay = "Thur";
       this.item1 = this.Thur;
     }
-    else if(idDay.split('_')[1] === "FRI") {
+    else if(idDay.split('_')[1] === "Fri") {
       // this.item1 = ['Trap Bar Deadlift'];
       this.exerciseSelect = true;
       this.selectedDay = "Fri";
       this.item1 = this.Fri;
     }
-    else if(idDay.split('_')[1] === "SAT") {
+    else if(idDay.split('_')[1] === "Sat") {
       // this.item1 = ['Barbel Push Up'];
       this.exerciseSelect = true;
       this.selectedDay = "Sat";
       this.item1 = this.Sat;
     }
-    else if(idDay.split('_')[1] === "SUN") {
+    else if(idDay.split('_')[1] === "Sun") {
       // this.item1 = [];
       this.exerciseSelect = true;
       this.selectedDay = "Sun";
@@ -172,46 +172,22 @@ export class NewworkoutComponent  implements AfterViewInit{
       userid: this.dataService.u.id,
       work_level: this.work_level,
       work_pic: this.work_image,      
-      work_days: [
-        {
-            "mon": {
-                "Shoulders": {
-                    "type": "reps",
-                    "set": "3",
-                    "repetitions": "15",
-                    "weight": "15lbs",
-                    "muscle": "chest"
-                }
-            },
-            "tue": {
-                "InclinePresses": {
-                    "type": "reps",
-                    "set": "3",
-                    "repetitions": "15",
-                    "weight": "15lbs",
-                    "muscle": "chest"
-                }
-            },
-            "wed": {
-                "InclinePresses": {
-                    "type": "reps",
-                    "set": "3",
-                    "repetitions": "15",
-                    "weight": "15lbs",
-                    "muscle": "chest"
-                }
-            }
-        }
-    ]
+      work_days: this.exercisesDays
     }
-    this.workService.addWorkout(newWork,this.auth.currentUserValue).subscribe(workItems => {
+    if(this.exercisesDays.length > 6 && this.work_name && this.work_level) {
+      this.workService.addWorkout(newWork,this.auth.currentUserValue).subscribe(workItems => {
       
-      console.log(workItems);
-      if(workItems) {
-        this.nativeService.generateToast('New Workout Created','css','bottom');
-    window.history.back();
-      }
-    })
+        console.log(workItems);
+        if(workItems) {
+          this.nativeService.generateToast('New Workout Created','css','bottom');
+          window.history.back();
+        }
+      })
+    }
+    else {
+      this.nativeService.generateToast('Please fill details correctly!','css','bottom');
+    }
+    
   }
   removeItem(event) {
     
@@ -277,6 +253,7 @@ export class NewworkoutComponent  implements AfterViewInit{
    clickBodyMuscle(exeItem) {
     this.exeService.getExercise(this.auth.currentUserValue,{exe_muscle: exeItem.muscle_type, userid: this.dataService.u.userid}).subscribe(exeData => {
       if(exeData.length > 0) {
+        console.log(exeData);
         this.exercises = exeData;
       }
       else {
@@ -321,6 +298,7 @@ export class NewworkoutComponent  implements AfterViewInit{
         
         
        }
+       console.log(this.exercisesDays);
       
      })
      

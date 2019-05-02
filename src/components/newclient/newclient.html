@@ -117,14 +117,17 @@
               <ion-label>Workout Plan</ion-label>
               <ion-select name="category" formControlName="workout_plan">
                   
-                  <ion-option *ngFor="let category of work_plans" [value]="category.work_name">
+                  <ion-option *ngFor="let category of work_plans" [value]="category.id">
                       {{category.work_name}}
                   </ion-option>
               </ion-select>
         </ion-item>
-        <ion-item *ngIf="thirdFormGroup.get('workout_plan').value">
-          <ion-input type="number" placeholder="How many weeks?" min="1"></ion-input>
-        </ion-item>
+        
+        </div>
+        <div>
+            <ion-item>
+                <ion-input placeholder="How many weeks?" formControlName="weeks" matInput></ion-input>
+              </ion-item>
         </div>
         <div>
             <ion-item>

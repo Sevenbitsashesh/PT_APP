@@ -43,6 +43,7 @@ export class NewclientComponent implements OnChanges, OnInit  {
   client_goal;
   client_level;
   client_measurement =new ClientMeasure();
+  
   constructor(private formBuilder: FormBuilder, private workService: WorkoutProvider, private dataService: DataProvider, private mealService: MealProvider, private clientService: ClientProvider, private modal: ModalController, private nativeService: NativeProvider, private mailService: MailProvider, private authService: AuthProvider) {
     this.firstFormGroup = formBuilder.group({
       fname: ['', Validators.pattern("^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$")],
@@ -50,7 +51,7 @@ export class NewclientComponent implements OnChanges, OnInit  {
       lname:['', Validators.required],
       email: ['', Validators.required],
       gender: ['', Validators.required],
-      dob: ['', Validators.required]
+      dob: ['01:01:2000', Validators.required]
     });
     this.secondFormGroup = formBuilder.group({
       client_goal: ['',Validators.required],
@@ -58,7 +59,8 @@ export class NewclientComponent implements OnChanges, OnInit  {
     });
     this.thirdFormGroup = formBuilder.group({
       workout_plan: ['', Validators.required],
-      meal_plan: ['', Validators.required]
+      meal_plan: ['', Validators.required],
+      weeks: ['8', Validators.required]
     });
     // this.work_plans 
     console.log(authService.currentUserValue);
@@ -95,13 +97,14 @@ export class NewclientComponent implements OnChanges, OnInit  {
     this.client_measurement.thigh = "";
     this.client_measurement.weight = "";
     
-
+    const weeks = this.thirdFormGroup.get('weeks').value;
     if(this.firstFormGroup.valid == true && this.secondFormGroup.valid == true && this.thirdFormGroup.valid == true) {
-      const clientModel = {fname: this.firstFormGroup.get('fname').value,email: email, lname: this.firstFormGroup.get('lname').value,client_level: this.secondFormGroup.get('client_level').value,client_goal: this.secondFormGroup.get('client_goal').value,client_workplan: this.thirdFormGroup.get('workout_plan').value,client_mealplan: this.thirdFormGroup.get('meal_plan').value  , "trainerid": this.dataService.u.userid, "client_measurement": this.client_measurement};    
+      const clientModel = {fname: this.firstFormGroup.get('fname').value,email: email, lname: this.firstFormGroup.get('lname').value,client_level: this.secondFormGroup.get('client_level').value,"client_goal": this.secondFormGroup.get('client_goal').value,workout_planid: this.thirdFormGroup.get('workout_plan').value ,weeks: weeks ,client_mealplan: this.thirdFormGroup.get('meal_plan').value  , "trainerid": this.dataService.u.userid, "client_measurement": this.client_measurement, "dob": this.firstFormGroup.get('dob').value, "gender": this.firstFormGroup.get('gender').value};    
       console.log(clientModel);
       this.clientService.addClient(clientModel,this.authService.currentUserValue).subscribe((data) => {
         // this.openModal();
-        if(email) {
+        console.log(data);
+        if(!data.error) {
           this.nativeService.generateToast('Client Added',"","bottom");
           
           // this.mailService.sendMail({message: 'Your email is : '+email+' and password is :'+'example'+' '+'Login in to https://pt-fits-life.firebaseapp.com'},{sender: 'Ashesh'},{email},{token: this.authService.currentUserValue.token}).subscribe(mailData => {
@@ -109,11 +112,12 @@ export class NewclientComponent implements OnChanges, OnInit  {
           // })
         }
         else {
-          this.nativeService.generateToast('Error Adding Client',"","bottom");
+          this.nativeService.generateToast(data.error,"","bottom");
         }
         
         
-      },(error) => {      
+      },(error) => {    
+          
       this.nativeService.generateToast('Error Adding Client',"","bottom");
       }
       );    

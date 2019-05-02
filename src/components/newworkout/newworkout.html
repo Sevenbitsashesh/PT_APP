@@ -74,10 +74,30 @@
               <ion-row>
                 <ion-col>
                   <div class="row-form">
-                    <div class="single-day" id="select_{{i}}" *ngFor="let i of days" (click)="clickDay($event)">
+                    <!-- <div class="single-day" id="select_{{i}}" *ngFor="let i of days" (click)="clickDay($event)">
                       {{i}}
+                    </div> -->
+                    <div class="single-day" id="select_Mon" (click)="clickDay($event)">
+                      Mon
                     </div>
-                   
+                    <div class="single-day" id="select_Tue" (click)="clickDay($event)">
+                      Tue
+                    </div>
+                    <div class="single-day" id="select_Wed" (click)="clickDay($event)">
+                      Wed
+                    </div>
+                    <div class="single-day" id="select_Thur" (click)="clickDay($event)">
+                      Thur
+                    </div>
+                    <div class="single-day" id="select_Fri" (click)="clickDay($event)">
+                      Fri
+                    </div>
+                    <div class="single-day" id="select_Sat" (click)="clickDay($event)">
+                      Sat
+                    </div>
+                    <div class="single-day" id="select_Sun" (click)="clickDay($event)">
+                      Sun
+                    </div>
                   </div>
                 </ion-col>
               </ion-row>
@@ -87,8 +107,9 @@
               <ion-row>
                   <ion-slides pager="true" size=100 >
                       <ion-slide id="slide1">
+                        <!-- Selected Exercises -->
                         <div *ngFor="let item of exercisesDays"> 
-                            <div class="row-form" >
+                            <div class="row-form" *ngIf="selectedDay === 'Mon' && item['MON']">
                             
                                 {{item['MON'].exe_name}}
                                 <!-- <div *ngFor="let setOf of item.sets">
@@ -97,6 +118,60 @@
                           <!-- {{item[0]}}  -->
                           <i class="fas fa-minus-circle" id="sel_{{item}}" (click)="removeItem($event)"></i>
                         </div> 
+                        <div class="row-form" *ngIf="selectedDay === 'Tue' && item['TUE']">
+                            
+                            {{item['TUE'].exe_name}}
+                            <!-- <div *ngFor="let setOf of item.sets">
+                              {{setOf['MON']}}
+                            </div> -->
+                      <!-- {{item[0]}}  -->
+                      <i class="fas fa-minus-circle" id="sel_{{item}}" (click)="removeItem($event)"></i>
+                    </div> 
+                    <div class="row-form" *ngIf="selectedDay === 'Wed' && item['WED']">
+                            
+                        {{item['WED'].exe_name}}
+                        <!-- <div *ngFor="let setOf of item.sets">
+                          {{setOf['MON']}}
+                        </div> -->
+                  <!-- {{item[0]}}  -->
+                  <i class="fas fa-minus-circle" id="sel_{{item}}" (click)="removeItem($event)"></i>
+                </div> 
+                <div class="row-form" *ngIf="selectedDay === 'Thur' && item['THUR']">
+                            
+                    {{item['THUR'].exe_name}}
+                    <!-- <div *ngFor="let setOf of item.sets">
+                      {{setOf['MON']}}
+                    </div> -->
+              <!-- {{item[0]}}  -->
+              <i class="fas fa-minus-circle" id="sel_{{item}}" (click)="removeItem($event)"></i>
+            </div> 
+            <div class="row-form" *ngIf="selectedDay === 'Fri' && item['FRI']">
+                            
+                {{item['FRI'].exe_name}}
+                <!-- <div *ngFor="let setOf of item.sets">
+                  {{setOf['MON']}}
+                </div> -->
+          <!-- {{item[0]}}  -->
+          <i class="fas fa-minus-circle" id="sel_{{item}}" (click)="removeItem($event)"></i>
+        </div> 
+        <div class="row-form" *ngIf="selectedDay === 'Sat' && item['SAT']">
+                            
+            {{item['SAT'].exe_name}}
+            <!-- <div *ngFor="let setOf of item.sets">
+              {{setOf['MON']}}
+            </div> -->
+      <!-- {{item[0]}}  -->
+      <i class="fas fa-minus-circle" id="sel_{{item}}" (click)="removeItem($event)"></i>
+    </div>
+    <div class="row-form" *ngIf="selectedDay === 'Sun' && item['SUN']">
+                            
+        {{item['SUN'].exe_name}}
+        <!-- <div *ngFor="let setOf of item.sets">
+          {{setOf['MON']}}
+        </div> -->
+  <!-- {{item[0]}}  -->
+  <i class="fas fa-minus-circle" id="sel_{{item}}" (click)="removeItem($event)"></i>
+</div>
                         </div>
                           
                             <div class="exercise" *ngFor="let item of exercises" (click)="modalExerciseSelection(item)">
