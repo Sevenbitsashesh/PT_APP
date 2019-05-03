@@ -13,7 +13,7 @@ export class ClientTab {
   goto(event) {
     
     const routeTo = event.target.id;
-console.log(routeTo);
+    console.log(routeTo);
     if(routeTo === "client_progress") {
       this.router.navigate(['userhome/client_progress']);
     }

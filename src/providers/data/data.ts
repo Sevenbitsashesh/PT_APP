@@ -7,6 +7,7 @@ import { AuthProvider, UserDetails, TokenPayload } from '../../providers/auth/au
 import { Subscription, BehaviorSubject } from 'rxjs';
 import { UserInfo } from '../../Models/users_info';
 import { take } from 'rxjs/operators';
+import { ClientProvider } from '../../providers/client/client';
 
 
 export class User {
@@ -20,7 +21,10 @@ export class DataProvider {
   userInfo = new BehaviorSubject<UserInfo[]>([]);
   userInfoObs = this.userInfo.asObservable();
   u: UserInfo;
-  constructor(private userService: UserProvider, private authService: AuthProvider) {
+  clientInfo = new BehaviorSubject<UserInfo[]>([]);
+  clientInfoObs = this.userInfo.asObservable();
+  
+  constructor(private userService: UserProvider, private authService: AuthProvider, private clientService: ClientProvider) {
     
     this.userInfoObs.subscribe(d => {      
       this.u = d[0];
@@ -30,6 +34,7 @@ export class DataProvider {
   changeUserModel(user: UserInfo[]) {
     this.userInfo.next(user);
   }
+
   getUserData(currentUser: UserDetails) {
     
     this.userService.getUserData(currentUser, this.authService.getUserDetails())
@@ -39,5 +44,15 @@ export class DataProvider {
       this.user.push(u);
       this.userInfo.next(this.user);
     });
+  }
+
+  // Client Data 
+
+  getClientData(userinfoid, authDetails) {
+   
+    // this.clientService.getMyData(userinfoid, this.authService.getUserDetails()).subscribe(c => {
+    //   console.log(c)
+    // })
+    
   }
 }

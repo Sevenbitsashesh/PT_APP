@@ -26,9 +26,9 @@ export class ClientProgressPage {
       this.currentUser = user;      
       // this.authDetails = this.authService.getUserDetails();
       
-     this.dataService.getUserData(user);
-  });
-  
+     this.dataService.getUserData(user);     
+  }); 
+  // this.getMyData();
 }
-
+  
 }

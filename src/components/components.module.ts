@@ -55,6 +55,7 @@ import { ExeSelectionComponent } from './exe-selection/exe-selection';
 
 
 
+
 @NgModule({
 	declarations: [FirstComponent,
     LoginComponent,
@@ -91,6 +92,7 @@ import { ExeSelectionComponent } from './exe-selection/exe-selection';
     DaypplansComponent,
     ScheduleassessComponent,
     ExeSelectionComponent,
+
     
         ],
 	imports: [ IonicModule, CommonModule, RouterModule, VerificationPageModule, MatStepperModule, MatInputModule, MatTabsModule, MatFormFieldModule, MatExpansionModule, MatChipsModule, MatPaginatorModule, CdkStepperModule	],	exports: [FirstComponent,
@@ -128,6 +130,7 @@ import { ExeSelectionComponent } from './exe-selection/exe-selection';
     DaypplansComponent,
     ScheduleassessComponent,
     ExeSelectionComponent,
+
 
 ],
     entryComponents: [LoginComponent, FirstComponent, ProfileComponent, ExeSetsComponent, PaymentComponent, ScheduleassessComponent, ExeSelectionComponent],

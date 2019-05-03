@@ -27,7 +27,8 @@ export class ViewscheduleComponent implements OnInit, OnChanges {
   @Output() onSelectDate = new EventEmitter<CalendarDate>();
   constructor(private workoutService: WorkoutProvider, private dataService: DataProvider, private authService: AuthProvider) {
     this.currentDate = moment();
-    this.workoutService.getMyWorkoutPlan(dataService.u.userid,authService.currentUserValue).subscribe(myWorkout => {
+    
+    this.workoutService.getMyWorkoutPlan(dataService.u.userid,authService.currentUserValue,dataService.u.userid).subscribe(myWorkout => {
 
     })
   }
