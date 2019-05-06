@@ -1,7 +1,77 @@
 
-<div>
-My Assesments
-</div>
-<div>
-    <!-- Height : <span>{{clientinfo.client_measurement[0].height}}</span> -->
+<div class="container-progress">
+    
+    <ion-grid *ngFor="let item of clientinfo.client_measurement">
+        <ion-row style="text-align: center">
+            <ion-col col-6>
+                    Height  
+            </ion-col>
+            <ion-col col-6>
+                    {{item.height}}
+                </ion-col>
+                
+        </ion-row>
+        <ion-row style="text-align: center">
+                <ion-col col-6>
+                        Weight  
+                </ion-col>
+                <ion-col col-6>
+                        {{item.weight}}
+                    </ion-col>
+                    
+            </ion-row>
+            <ion-row style="text-align: center">
+                    <ion-col col-6>
+                            Biceps  
+                    </ion-col>
+                    <ion-col col-6>
+                            {{item.biceps}}
+                        </ion-col>
+                        
+                </ion-row>
+                <ion-row style="text-align: center">
+                        <ion-col col-6>
+                                Chest  
+                        </ion-col>
+                        <ion-col col-6>
+                                {{item.chest}}
+                            </ion-col>                            
+                    </ion-row>
+                    <ion-row style="text-align: center">
+                            <ion-col col-6>
+                                    Forearm  
+                            </ion-col>
+                            <ion-col col-6>
+                                    {{item.forearm}}
+                                </ion-col>                            
+                        </ion-row>
+                        <ion-row style="text-align: center">
+                                <ion-col col-6>
+                                        Neck  
+                                </ion-col>
+                                <ion-col col-6>
+                                        {{item.neck}}
+                                    </ion-col>                            
+                            </ion-row>
+                            <ion-row style="text-align: center">
+                                    <ion-col col-6>
+                                            Shoulder  
+                                    </ion-col>
+                                    <ion-col col-6>
+                                            {{item.shoulder}}
+                                        </ion-col>                            
+                                </ion-row>
+                                <ion-row style="text-align: center">
+                                        <ion-col col-6>
+                                                Thigh  
+                                        </ion-col>
+                                        <ion-col col-6>
+                                                {{item.thigh}}
+                                            </ion-col>                            
+                                    </ion-row>
+    </ion-grid>
+                   
+    
+    
+    
 </div>

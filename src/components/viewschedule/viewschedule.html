@@ -12,39 +12,25 @@
                   <h1>Year <div (click)="prevYear()"><img src="../../assets/icon/arrow-left.png" class="arrow-date"></div>{{ currentDate.format('YYYY') }}<div (click)="nextYear()"><img src="../../assets/icon/arrow-right.png" class="arrow-date"> </div></h1>
                   
                   
-                </div>
-      
+                </div>      
                 <div class="current-month">
                   <ul class="week-days"> 
-                    <li *ngFor="let name of dayNames">{{name}}</li>
-                    
-                  </ul>
-      
+                    <li *ngFor="let name of dayNames">{{name}}</li>                    
+                  </ul>      
                   <div class="weeks">
                     <div class="first" *ngFor="let week of weeks">
-
-                      
-                          <div *ngFor="let day of week" >
-                                <span class="last-month" *ngIf="!isSelectedMonth(day.mDate)"> 
+                          <div *ngFor="let day of week" (click)="selectDate(day)">
+                                <span class="last-month" *ngIf="!isSelectedMonth(day.mDate)" > 
                                     {{day.mDate.date()}}
                                     </span>
-                                    <span  *ngIf="isSelectedMonth(day.mDate)"> 
+                                    <span *ngIf="isSelectedMonth(day.mDate)"> 
                                             {{day.mDate.date()}}
                                             </span>
                           </div>
-                          
-                     
-                      
-                      
                     </div>
-      
-
                   </div>
                 </div>
-              </div>
-      
-            
-      
+              </div> 
             </div>
           </div>
         

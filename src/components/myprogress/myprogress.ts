@@ -1,4 +1,4 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, OnInit } from '@angular/core';
 import { DataProvider } from '../../providers/data/data';
 import { AuthProvider } from '../../providers/auth/auth';
 import { ClientProvider } from '../../providers/client/client';
@@ -25,7 +25,9 @@ export class MyprogressComponent implements AfterViewInit {
     
   }
   getMyData(client) {
+
    
+
     this.clientService.getMyData(this.authService.currentUserValue,client[0].id)
     
     .subscribe(dataClient => {
@@ -33,7 +35,7 @@ export class MyprogressComponent implements AfterViewInit {
       if(dataClient) {
         
         this.clientinfo = dataClient[0];
-        
+        console.log(this.clientinfo);
       }
        
       

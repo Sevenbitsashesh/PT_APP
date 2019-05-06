@@ -30,8 +30,8 @@ export class ClientProvider {
 
   // Client Services
 
-  getMyData(authdetail, userinfoid) {
-    
-    return this.http.post(API_URL+'client/getmydata',{userinfoid: userinfoid},{headers: {"Content-Type": "application/json", "Accept": "application", "Authorization": "Bearer "+authdetail.token}})
+  getMyData(authdetail, clientinfoid) {
+    console.log(clientinfoid)
+    return this.http.post(API_URL+'client/getmydata',{clientinfoid: clientinfoid},{headers: {"Content-Type": "application/json", "Accept": "application", "Authorization": "Bearer "+authdetail.token}})
   }
 }

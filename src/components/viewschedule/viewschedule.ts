@@ -5,6 +5,8 @@ import * as  moment from 'moment/moment';
 import { WorkoutProvider } from '../../providers/workout/workout';
 import { DataProvider } from '../../providers/data/data';
 import { AuthProvider } from '../../providers/auth/auth';
+import { ClientProvider } from '../../providers/client/client';
+import { Observable } from 'rxjs';
 
 export interface CalendarDate {
   mDate: moment.Moment;
@@ -21,15 +23,48 @@ export class ViewscheduleComponent implements OnInit, OnChanges {
   currentDate = moment();
   dayNames = ['SUN', 'MON', 'TUE', 'WED', 'THUR', 'FRI', 'SAT'];
   weeks: CalendarDate[][] = [];
-  sortedDates: CalendarDate[] = [];
-
+  sortedDates: CalendarDate[] = [];  
   @Input() selectedDates: CalendarDate[] = [];
   @Output() onSelectDate = new EventEmitter<CalendarDate>();
-  constructor(private workoutService: WorkoutProvider, private dataService: DataProvider, private authService: AuthProvider) {
+  clientinfo = [];
+  schedules: Observable<any>;
+  scheduleWork = [];
+  constructor(private workoutService: WorkoutProvider, private dataService: DataProvider, private authService: AuthProvider, private clientService: ClientProvider) {
     this.currentDate = moment();
     
-    this.workoutService.getMyWorkoutPlan(dataService.u.userid,authService.currentUserValue,dataService.u.userid).subscribe(myWorkout => {
+    
+    this.dataService.userInfo.subscribe(client => {
+      if(client.length > 0) {
+        // console.log(client)
+      this.getMyData(client);
+      }
+        
+    })
+  }
+  getMyData(client) {
+   
+    this.clientService.getMyData(this.authService.currentUserValue,client[0].id)
+    
+    .subscribe(dataClient => {
+      
+      if(dataClient) {
+        
+        this.clientinfo = dataClient[0];
+        
+    this.workoutService.getMyWorkoutPlan(this.dataService.u.userid,this.authService.currentUserValue,dataClient[0].client_workplan[0].workout_planid).subscribe(myWorkout => {
+      // dataClient[0].startFrom
+      
+    
+    this.schedules = new Observable(observer => {
+      observer.next({myWorkout, clientinfo: this.clientinfo});
+      
+      observer.complete();  
+    });
+     
+    
 
+    })
+      }
     })
   }
   ngOnInit(): void {
@@ -47,7 +82,7 @@ export class ViewscheduleComponent implements OnInit, OnChanges {
   // generate the calendar grid
 
   generateCalendar(): void {
-    const dates = this.fillDates(this.currentDate);
+    const dates = this.fillDates(this.currentDate);    
     const weeks: CalendarDate[][] = [];
     while (dates.length > 0) {
       weeks.push(dates.splice(0, 7));
@@ -79,8 +114,20 @@ export class ViewscheduleComponent implements OnInit, OnChanges {
   }
   isSelectedMonth(date: moment.Moment): boolean {
     return moment(date).isSame(this.currentDate, 'month');
+    
   }
   selectDate(date: CalendarDate): void {
+
+    this.schedules.subscribe(data => {
+      console.log(data)
+       
+    // console.log(data.clientinfo.client_workplan[0].weeks * 7)  ;
+      for(let i = 0; i < data.clientinfo.client_workplan[0].weeks * 7; i++) {
+        let start = moment(data.clientinfo.startFrom.split('T')[0]);
+        console.log(start.add(i,'days').format('YYYY-MM-DD'));        
+      }
+    })
+    
     this.onSelectDate.emit(date);
   }
   prevMonth(): void {
@@ -111,4 +158,8 @@ export class ViewscheduleComponent implements OnInit, OnChanges {
     this.currentDate = moment(this.currentDate).add(1, 'year');
     this.generateCalendar();
   }
+  clickDate(schedules) {
+    console.log(schedules.date())
+  }
+  
 }
