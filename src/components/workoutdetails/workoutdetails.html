@@ -5,7 +5,7 @@
       <ion-row></ion-row>
       <ion-row style="text-align: center;">
         <ion-col col-2><div (click)="newWorkoutBack()"><i class="fas fa-th-list"></i></div></ion-col>
-        <ion-col col-8>NEW WORKOUT PLAN</ion-col>
+        <ion-col col-8>EDIT WORKOUT</ion-col>
         <ion-col col-2>  <div (click)="newWorkoutCreate()"><i class="fas fa-check"></i></div></ion-col>
       </ion-row>
     </ion-grid>
@@ -46,22 +46,22 @@
                   </ion-label>
                   <div class="row-form">
                     <div class="color-tag-single">
-                        <div id="color1" class="color-tag color1" (click)="tagClick1($event)"></div>
+                        <div #color1 id="color1" class="color-tag color1" (click)="tagClick1($event)"></div>
                     </div>
                     <div class="color-tag-single">
-                        <div id="color2" class="color-tag color2" (click)="tagClick1($event)"></div>
+                        <div #color2 id="color2" class="color-tag color2" (click)="tagClick1($event)"></div>
                     </div>
                     <div class="color-tag-single">
-                        <div id="color3" class="color-tag color3" (click)="tagClick1($event)"></div>
+                        <div #color3 id="color3" class="color-tag color3" (click)="tagClick1($event)"></div>
                     </div>
                     <div class="color-tag-single">
-                        <div id="color4" class="color-tag color4" (click)="tagClick1($event)"></div>
+                        <div #color4 id="color4" class="color-tag color4" (click)="tagClick1($event)"></div>
                     </div>
                     <div class="color-tag-single">
-                        <div id="color5" class="color-tag color5" (click)="tagClick1($event)"></div>
+                        <div #color5 id="color5" class="color-tag color5" (click)="tagClick1($event)"></div>
                     </div>
                     <div class="color-tag-single">
-                        <div id="color6" class="color-tag color6" (click)="tagClick1($event)"></div>
+                        <div #color6 id="color6" class="color-tag color6" (click)="tagClick1($event)"></div>
                     </div>
                   </div>
                 </ion-col>                
@@ -116,7 +116,7 @@
                                   {{setOf['MON']}}
                                 </div> -->
                           <!-- {{item[0]}}  -->
-                          <i class="fas fa-minus-circle" id="sel_{{item}}" (click)="removeItem($event)"></i>
+                          <i class="fas fa-minus-circle" id="sel_{{item}}" (click)="removeItem(item)"></i>
                         </div> 
                         <div class="row-form" *ngIf="selectedDay === 'Tue' && item['TUE']">
                             
@@ -173,7 +173,9 @@
   <i class="fas fa-minus-circle" id="sel_{{item}}" (click)="removeItem($event)"></i>
 </div>
                         </div>
-                          
+                          <div *ngIf="exercises.length < 1">
+                            No record
+                          </div>
                             <div class="exercise" *ngFor="let item of exercises" (click)="modalExerciseSelection(item)">
                                 <ion-grid>
                                   <ion-row>

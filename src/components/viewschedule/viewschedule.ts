@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit, OnChanges, SimpleChanges, ViewChild, ElementRef } from '@angular/core';
 import * as _ from 'lodash';
 import $ from 'jquery';
 import * as  moment from 'moment/moment';
@@ -30,6 +30,7 @@ export class ViewscheduleComponent implements OnInit, OnChanges {
   schedules: Observable<any>;
   scheduleWork = [];
   selectedWorkout;
+  
   constructor(private workoutService: WorkoutProvider, private dataService: DataProvider, private authService: AuthProvider, private clientService: ClientProvider) {
     this.currentDate = moment();
     
@@ -122,6 +123,7 @@ export class ViewscheduleComponent implements OnInit, OnChanges {
            data: data.myWorkout.work_days[6].SUN
          })      
        }
+       
      }
      console.log(this.scheduleWork);
    }) 
@@ -184,8 +186,8 @@ export class ViewscheduleComponent implements OnInit, OnChanges {
 
      this.selectedWorkout = workItem;
     
-    this.onSelectDate.emit(date);
-    document.querySelectorAll('.active').forEach(i => {
+    // this.onSelectDate.emit(date);
+    Array.from(document.querySelectorAll('.active')).forEach(i => {
       i.classList.remove('active');
     })
     event.target.classList.add('active')

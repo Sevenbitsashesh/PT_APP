@@ -20,15 +20,19 @@
                   <div class="weeks">
                     <div class="first" *ngFor="let week of weeks">
                           <div *ngFor="let day of week;" >
-                                <!-- <span class="last-month" *ngIf="!isSelectedMonth(day.mDate)"  > 
+                                <span class="last-month" *ngIf="!isSelectedMonth(day.mDate)"  > 
                                     {{ day.mDate.date()}}
-                                    </span> -->
+                                    </span>
                                     
                                     <span *ngIf="isSelectedMonth(day.mDate)">                                             
+                                      
                                             <h6 *ngFor="let item of scheduleWork" >
-                                             <h6 *ngIf="item.date === day.mDate.format('YYYY-MM-DD')" (click)="selectDate(day, item,$event)">
+                                             <h6 *ngIf="item.date === day.mDate.format('YYYY-MM-DD')" (click)="selectDate(day, item,$event)" #date>
                                               {{day.mDate.date()}}
-                                             </h6>                                              
+                                             </h6>   
+                                             <!-- <h6 *ngIf="item.date !== day.mDate.format('YYYY-MM-DD')">
+                                              {{day.mDate.date()}}
+                                             </h6>                                             -->
                                             </h6>
                                            
                                             </span>
@@ -41,12 +45,19 @@
             </div>
           </div>
           <div class="container">
-            <ion-grid *ngIf="selectedWorkout">
-              <ion-row>
-                <ion-col>Selected Workouts</ion-col>
+            <ion-grid *ngIf="selectedWorkout"  class="grid-items-list">
+              <ion-row style="text-align: center">
+                <ion-col col-12>Exercises</ion-col>
               </ion-row>
-              <ion-row>
-                {{selectedWorkout.data.exe_name}}
+              <ion-row >
+                
+                <ion-col>
+                    {{selectedWorkout.data.exe_name}}
+                </ion-col>
+              </ion-row>
+              <ion-row *ngFor="let item of selectedWorkout.data.sets; let i = index;">
+                  <ion-col col-6>Set {{i+1}}</ion-col>
+                  <ion-col col-6>{{item.reps}}</ion-col>
               </ion-row>
             </ion-grid>
           </div>

@@ -10,7 +10,8 @@ export class ListverticalComponent {
   constructor(private router: Router) {
   
   }
-  gotoDetails() {
-    this.router.navigate(['/tab_workouts/workoutdetails']);
+  gotoDetails(item) {
+    console.log(item);
+    this.router.navigate(['/tab_workouts/workoutdetails'],{queryParams: {workid: item.id}});
   }
 }

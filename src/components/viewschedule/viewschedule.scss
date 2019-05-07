@@ -104,8 +104,8 @@ viewschedule {
   }
   
   .weeks span.active {
-    //   background: #f78536;
-    color: #f78536;
+      background: #f78536;
+    // color: #f78536;
       border-radius: 50%;
   }
   
@@ -226,4 +226,8 @@ viewschedule {
   
   .arrow-date {
       height: 20px;
+  }
+  .grid-items-list {
+    background: rgb(21, 20, 52);
+    color: rgb(216, 158, 81);
   }

@@ -88,14 +88,14 @@ export class NewclientComponent implements OnChanges, OnInit  {
   }
   addClient() {
     const email = this.firstFormGroup.get('email').value;
-    this.client_measurement.biceps = "";
-    this.client_measurement.chest = "";
-    this.client_measurement.forearm = "";
-    this.client_measurement.height = "";
-    this.client_measurement.neck = "";
-    this.client_measurement.shoulder = "";
-    this.client_measurement.thigh = "";
-    this.client_measurement.weight = "";
+    this.client_measurement.biceps = "0";
+    this.client_measurement.chest = "0";
+    this.client_measurement.forearm = "0";
+    this.client_measurement.height = "0";
+    this.client_measurement.neck = "0";
+    this.client_measurement.shoulder = "0";
+    this.client_measurement.thigh = "0";
+    this.client_measurement.weight = "0";
     
     const weeks = this.thirdFormGroup.get('weeks').value;
     if(this.firstFormGroup.valid == true && this.secondFormGroup.valid == true && this.thirdFormGroup.valid == true) {

@@ -173,7 +173,9 @@
   <i class="fas fa-minus-circle" id="sel_{{item}}" (click)="removeItem($event)"></i>
 </div>
                         </div>
-                          
+                            <div *ngIf="exercises.length < 1">
+                                No record
+                            </div>
                             <div class="exercise" *ngFor="let item of exercises" (click)="modalExerciseSelection(item)">
                                 <ion-grid>
                                   <ion-row>

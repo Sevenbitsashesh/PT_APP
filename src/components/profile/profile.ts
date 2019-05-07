@@ -7,8 +7,9 @@ import { DataProvider } from '../../providers/data/data';
 import { UserProvider } from '../../providers/user/user';
 import { AuthProvider, UserDetails } from '../../providers/auth/auth';
 import { UserInfo } from '../../Models/users_info';
-import { ModalController } from 'ionic-angular';
+import { ModalController, ActionSheetController } from 'ionic-angular';
 import { ExeSetsComponent } from '../../components/exe-sets/exe-sets';
+import { NativeProvider } from '../../providers/native/native';
 
 
 @Component({
@@ -55,18 +56,23 @@ export class ProfileComponent{
     saveProfile() {
       // this.userModel.userid = this.myForm.get('username').value;
       const model = {
-        'userid': this.myForm.get('username').value,
-        'email': this.myForm.get('email').value,
+        'user_name': this.myForm.get('username').value,
         'address': this.myForm.get('address').value,
         'mobile': this.myForm.get('mobile').value,
-         'gender': this.myForm.get('gender').value,        
-        'dob': this.myForm.get('dob').value
+        //  'gender': this.myForm.get('gender').value,        
+        'dob': this.myForm.get('dob').value,
+        'id': this.userModel.id
       };
+      console.log(model);
+      this.userService.updateProfile(model,this.authService.currentUserValue).subscribe(dataProfile => {
+        if(dataProfile) {
+          this.nativeService.generateToast('Profile Updated','','bottom');
+        }
+      })
 
-      // this.uactivity.addInfo(model);
     }
   
-  constructor(private formBuilder: FormBuilder, private imageService: ImageProvider, private dataService: DataProvider,private authService: AuthProvider, private userService: UserProvider, private cd: ChangeDetectorRef, private modal: ModalController) {
+  constructor(private formBuilder: FormBuilder, private imageService: ImageProvider, private dataService: DataProvider,private authService: AuthProvider, private userService: UserProvider, private cd: ChangeDetectorRef, private modal: ModalController, private actionsheet: ActionSheetController, private nativeService: NativeProvider) {
     // document.addEventListener('touchstart', this.handler, {capture: true});
 
     this.userModel =  dataService.u;
@@ -80,7 +86,7 @@ export class ProfileComponent{
         Validators.required
       ])
       ),
-      mobile: new FormControl('', Validators.compose([
+      mobile: new FormControl(this.userModel.mobile, Validators.compose([
         Validators.maxLength(12),
         Validators.minLength(10),
         Validators.pattern('^(0|[1-9][0-9]*)$'),
@@ -91,12 +97,12 @@ export class ProfileComponent{
         Validators.required,
         // Validators.pattern('^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$')
       ])),
-      address: new FormControl('', Validators.compose([
+      address: new FormControl(this.userModel.address, Validators.compose([
         Validators.pattern('^[a-z]{1,100}$')
       ])),
       hobbies: new FormControl('', Validators.compose([
       ])),
-      dob: new FormControl('', Validators.compose([
+      dob: new FormControl(this.userModel.dob, Validators.compose([
       ])),
       gender: new FormControl('', Validators.compose([
       ]))
@@ -110,21 +116,54 @@ export class ProfileComponent{
   
 
   //* Profile Image  *//
-  actionForProfile() {
-    // this.sharedService.present([
-    //   {
-    //     text: 'Camera',
-    //     handler: () => {
-    //       // this.captureImage();
-    //     }
-    //   },
-    //   {
-    //     text: 'Choose from gallery',
-    //     handler: () => {
-    //       // this.selectPhoto();
-    //     }
-    //   },
-    // ]);
+  actionForProfile(forThe) {
+    
+    
+      const action = this.actionsheet.create({
+         title: 'Select Image From',
+         buttons: [
+           {
+             text: 'Select from Gallary',
+             role: 'destructive',
+             handler: () => {
+               this.imageService.selectPhoto().then(data => {
+                 console.log(data);
+                 this.imageService.uploadPhoto(data,'exercise').
+                 then(snap => {
+                   const progress = ((snap.bytesTransferred*100)/snap.totalBytes);
+                   snap.ref.getDownloadURL().then(url => {
+                     this.userModel.profile_pic = url;
+                     console.log(url);
+                     // this.imageUrl.next(url);
+                   })
+                 }).catch(err => {
+                   console.log('Error',err);
+                 })
+                 
+               })
+             }
+           },{
+             text: 'Capture Image',
+             handler: () => {
+               this.imageService.capturePhoto().then(data => {
+                 this.imageService.uploadPhoto(data,'exercise').
+                 then(snap => {
+                   const progress = ((snap.bytesTransferred*100)/snap.totalBytes);
+                   snap.ref.getDownloadURL().then(url => {
+                    this.userModel.profile_pic = url;
+                     console.log(url);
+                     // this.imageUrl.next(url);
+                   })
+                 }).catch(err => {
+                   console.log('Error',err);
+                 })
+               })
+             }
+           }
+         ]
+       });
+       return action.present();
+     
     }
   //   captureImage() {
   //  console.log('capture photo');

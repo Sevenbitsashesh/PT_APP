@@ -20,6 +20,10 @@ export class WorkoutProvider {
     return this.http.post(API_URL+ 'workout/addworkout',body,{headers : {  'Accept' : 'application/json',
     'Content-Type' : 'application/json','Authorization': 'Bearer '+ auth.token}});
   }
+  getMyWorkout(user, workoutid): Observable<any> {
+    return this.http.post(API_URL+ 'workout/myworkout',{workoutid: workoutid},{headers : {  'Accept' : 'application/json',
+    'Content-Type' : 'application/json','Authorization': 'Bearer '+ user.token}});
+  }
 
 
 

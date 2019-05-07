@@ -1,12 +1,13 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { ExeSelectionComponent } from '../../components/exe-selection/exe-selection';
 import { NativeProvider } from '../../providers/native/native';
 import { WorkoutProvider } from '../../providers/workout/workout';
 import { DataProvider } from '../../providers/data/data';
-import { ActionSheetController, ModalController } from 'ionic-angular';
+import { ActionSheetController, ModalController, NavParams } from 'ionic-angular';
 import { ImageProvider } from '../../providers/image/image';
 import { AuthProvider } from '../../providers/auth/auth';
 import { ExerciseProvider } from '../../providers/exercise/exercise';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'workoutdetails',
@@ -34,7 +35,46 @@ export class WorkoutdetailsComponent {
   exercises = [];
   @ViewChild(ExeSelectionComponent) exeSelectionCom: ExeSelectionComponent;
   exercisesDays = [];
-  constructor(private nativeService: NativeProvider, private workService: WorkoutProvider, private dataService: DataProvider, private actionsheet: ActionSheetController, private imageService: ImageProvider, private auth: AuthProvider, private exeService: ExerciseProvider, private modal: ModalController) {
+
+  @ViewChild('color1') myColor1: ElementRef;
+  @ViewChild('color2') myColor2: ElementRef;
+  @ViewChild('color3') myColor3: ElementRef;
+  @ViewChild('color4') myColor4: ElementRef;
+  @ViewChild('color5') myColor5: ElementRef;
+  @ViewChild('color6') myColor6: ElementRef;
+  
+  
+  constructor(private nativeService: NativeProvider, private workService: WorkoutProvider, private dataService: DataProvider, private actionsheet: ActionSheetController, private imageService: ImageProvider, private auth: AuthProvider, private exeService: ExerciseProvider, private modal: ModalController, private activatedRoute: ActivatedRoute) {
+    this.activatedRoute.queryParams.subscribe(workParam => {
+      workService.getMyWorkout(auth.currentUserValue,workParam.workid).subscribe(data => {
+
+        // Setting Workout Tag Color
+        if(data.work_colortag === "color1") {
+          this.myColor1.nativeElement.click();
+        }
+        else if(data.work_colortag === "color2") {
+          this.myColor2.nativeElement.click();
+        }
+        else if(data.work_colortag === "color3") {
+          this.myColor3.nativeElement.click();
+        }
+        else if(data.work_colortag === "color4") {
+          this.myColor4.nativeElement.click();
+        }
+        else if(data.work_colortag === "color5") {
+          this.myColor5.nativeElement.click();
+        }
+        else if(data.work_colortag === "color6") {
+          this.myColor6.nativeElement.click();
+        }
+        //Setting Workday
+        this.exercisesDays = data.work_days;
+        // Setting Workout Name
+        this.work_name = data.work_name;
+        this.work_level = data.work_level;
+
+      })
+    })
     this.exeService.getExercises(auth.currentUserValue).subscribe(data => {
       console.log(data);
     })
@@ -42,6 +82,8 @@ export class WorkoutdetailsComponent {
     this.exeService.getMuscles(dataService.u.id,auth.currentUserValue).subscribe(exeMuscles => {
      this.listExer = exeMuscles;
     })
+
+  
   }
   tagClick1(event) {
     var items = Array.from(document.querySelectorAll('.color-tag')).forEach(items => {
@@ -201,5 +243,10 @@ export class WorkoutdetailsComponent {
      
     })
     
+  }
+  removeItem(item) {
+    let i = this.exercisesDays.indexOf(item);
+    console.log(i)
+    this.exercisesDays.splice(i,1);
   }
 }

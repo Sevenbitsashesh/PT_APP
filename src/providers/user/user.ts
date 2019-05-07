@@ -36,6 +36,9 @@ export class UserProvider {
   getSocialUserById(userid): Observable<any> {
     return this.http.post(API_URL + 'users/getsocialuserbyid',{'id': userid},{headers: {'Content-Type': 'application/json','Accept': 'application/json','Authorization': 'Basic Og=='}})
   }
+  updateProfile(userModel,user): Observable<any> {
+    return this.http.post(API_URL + 'users/updateuserinfo',userModel,{headers: {'Content-Type': 'application/json','Accept': 'application/json','Authorization': 'Bearer '+user.token}})
+  }
   // registerUserInfo(model): Observable<any> {
   //   // return this.http.post()
   // }

@@ -19,7 +19,8 @@ const routes: Routes = [
   },
   {
     path: 'workoutdetails',
-    component: WorkoutdetailsComponent
+    component: WorkoutdetailsComponent,
+    
   }
         
 ]
