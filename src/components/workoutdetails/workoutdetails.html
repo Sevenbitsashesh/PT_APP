@@ -1,11 +1,235 @@
 <ion-header>
-    <ion-navbar>
-      <img src="../../assets/icon/arrow-left.svg">
-    </ion-navbar>
-  </ion-header>
-<ion-content>
-  <div>
-    Workout 1
+  <div class="top-bar top-text">
+    
+    <ion-grid>
+      <ion-row></ion-row>
+      <ion-row style="text-align: center;">
+        <ion-col col-2><div (click)="newWorkoutBack()"><i class="fas fa-th-list"></i></div></ion-col>
+        <ion-col col-8>NEW WORKOUT PLAN</ion-col>
+        <ion-col col-2>  <div (click)="newWorkoutCreate()"><i class="fas fa-check"></i></div></ion-col>
+      </ion-row>
+    </ion-grid>
   </div>
-  <div></div>
+</ion-header>
+<ion-content class="new-workout-content"> 
+ 
+      <ion-grid class="workout-grid text-decorations">
+          <ion-row class="full-width">
+              <ion-col col-4><img class="attachImg" [src]=work_image (click)="imageAction()"></ion-col>
+            <ion-col col-8 class="workout-col">
+            <ion-label class="text-decorations">NAME YOU PLAN</ion-label>
+            </ion-col>
+          </ion-row>     
+          <ion-row>
+            <ion-col>
+              <div class="content">
+              
+                <ion-select [(ngModel)]="work_level" class="selector" >
+                    <ion-label>Workout Level</ion-label>
+                  <ion-option>Beginner</ion-option>
+                  <ion-option>Intermediate</ion-option>
+                  <ion-option>Advanced</ion-option>
+                </ion-select>
+              
+            </div>
+            </ion-col>
+          </ion-row>     
+            <ion-row class="full-width">
+                <ion-col col-12 class="workout-col">
+                <ion-input placeholder="Workout Name" [(ngModel)]="work_name"></ion-input>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <ion-label>
+                    COLOR TAG
+                  </ion-label>
+                  <div class="row-form">
+                    <div class="color-tag-single">
+                        <div id="color1" class="color-tag color1" (click)="tagClick1($event)"></div>
+                    </div>
+                    <div class="color-tag-single">
+                        <div id="color2" class="color-tag color2" (click)="tagClick1($event)"></div>
+                    </div>
+                    <div class="color-tag-single">
+                        <div id="color3" class="color-tag color3" (click)="tagClick1($event)"></div>
+                    </div>
+                    <div class="color-tag-single">
+                        <div id="color4" class="color-tag color4" (click)="tagClick1($event)"></div>
+                    </div>
+                    <div class="color-tag-single">
+                        <div id="color5" class="color-tag color5" (click)="tagClick1($event)"></div>
+                    </div>
+                    <div class="color-tag-single">
+                        <div id="color6" class="color-tag color6" (click)="tagClick1($event)"></div>
+                    </div>
+                  </div>
+                </ion-col>                
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  SELECT WORKOUT DAY
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <div class="row-form">
+                    <!-- <div class="single-day" id="select_{{i}}" *ngFor="let i of days" (click)="clickDay($event)">
+                      {{i}}
+                    </div> -->
+                    <div class="single-day" id="select_Mon" (click)="clickDay($event)">
+                      Mon
+                    </div>
+                    <div class="single-day" id="select_Tue" (click)="clickDay($event)">
+                      Tue
+                    </div>
+                    <div class="single-day" id="select_Wed" (click)="clickDay($event)">
+                      Wed
+                    </div>
+                    <div class="single-day" id="select_Thur" (click)="clickDay($event)">
+                      Thur
+                    </div>
+                    <div class="single-day" id="select_Fri" (click)="clickDay($event)">
+                      Fri
+                    </div>
+                    <div class="single-day" id="select_Sat" (click)="clickDay($event)">
+                      Sat
+                    </div>
+                    <div class="single-day" id="select_Sun" (click)="clickDay($event)">
+                      Sun
+                    </div>
+                  </div>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                  <ion-label>EXERCISES</ion-label>
+              </ion-row>
+              <ion-row>
+                  <ion-slides pager="true" size=100 >
+                      <ion-slide id="slide1">
+                        <!-- Selected Exercises -->
+                        <div *ngFor="let item of exercisesDays"> 
+                            <div class="row-form" *ngIf="selectedDay === 'Mon' && item['MON']">
+                            
+                                {{item['MON'].exe_name}}
+                                <!-- <div *ngFor="let setOf of item.sets">
+                                  {{setOf['MON']}}
+                                </div> -->
+                          <!-- {{item[0]}}  -->
+                          <i class="fas fa-minus-circle" id="sel_{{item}}" (click)="removeItem($event)"></i>
+                        </div> 
+                        <div class="row-form" *ngIf="selectedDay === 'Tue' && item['TUE']">
+                            
+                            {{item['TUE'].exe_name}}
+                            <!-- <div *ngFor="let setOf of item.sets">
+                              {{setOf['MON']}}
+                            </div> -->
+                      <!-- {{item[0]}}  -->
+                      <i class="fas fa-minus-circle" id="sel_{{item}}" (click)="removeItem($event)"></i>
+                    </div> 
+                    <div class="row-form" *ngIf="selectedDay === 'Wed' && item['WED']">
+                            
+                        {{item['WED'].exe_name}}
+                        <!-- <div *ngFor="let setOf of item.sets">
+                          {{setOf['MON']}}
+                        </div> -->
+                  <!-- {{item[0]}}  -->
+                  <i class="fas fa-minus-circle" id="sel_{{item}}" (click)="removeItem($event)"></i>
+                </div> 
+                <div class="row-form" *ngIf="selectedDay === 'Thur' && item['THUR']">
+                            
+                    {{item['THUR'].exe_name}}
+                    <!-- <div *ngFor="let setOf of item.sets">
+                      {{setOf['MON']}}
+                    </div> -->
+              <!-- {{item[0]}}  -->
+              <i class="fas fa-minus-circle" id="sel_{{item}}" (click)="removeItem($event)"></i>
+            </div> 
+            <div class="row-form" *ngIf="selectedDay === 'Fri' && item['FRI']">
+                            
+                {{item['FRI'].exe_name}}
+                <!-- <div *ngFor="let setOf of item.sets">
+                  {{setOf['MON']}}
+                </div> -->
+          <!-- {{item[0]}}  -->
+          <i class="fas fa-minus-circle" id="sel_{{item}}" (click)="removeItem($event)"></i>
+        </div> 
+        <div class="row-form" *ngIf="selectedDay === 'Sat' && item['SAT']">
+                            
+            {{item['SAT'].exe_name}}
+            <!-- <div *ngFor="let setOf of item.sets">
+              {{setOf['MON']}}
+            </div> -->
+      <!-- {{item[0]}}  -->
+      <i class="fas fa-minus-circle" id="sel_{{item}}" (click)="removeItem($event)"></i>
+    </div>
+    <div class="row-form" *ngIf="selectedDay === 'Sun' && item['SUN']">
+                            
+        {{item['SUN'].exe_name}}
+        <!-- <div *ngFor="let setOf of item.sets">
+          {{setOf['MON']}}
+        </div> -->
+  <!-- {{item[0]}}  -->
+  <i class="fas fa-minus-circle" id="sel_{{item}}" (click)="removeItem($event)"></i>
+</div>
+                        </div>
+                          
+                            <div class="exercise" *ngFor="let item of exercises" (click)="modalExerciseSelection(item)">
+                                <ion-grid>
+                                  <ion-row>
+                                    <ion-col>
+                                        {{item.exe_name}}
+                                    </ion-col>
+                                    
+                                  </ion-row>
+                                </ion-grid>
+                            </div>
+                            <div class="exercise-bpart" *ngFor="let item of listExer" (click)="clickBodyMuscle(item)">
+                                {{item.muscle_type}}
+                                </div>
+                            
+                      </ion-slide>
+                    
+                      
+                    
+                      
+                    </ion-slides>
+                  
+              </ion-row>
+
+
+        </ion-grid>  
+
+  
+
 </ion-content>
+
+
+         <!-- <div class="swipe-data-grid" >
+            <div class="swiper-container" style="height: 400px">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide"> 
+                    <div class="swipe-data-grid">
+                      <div class="row-form" *ngFor="let item of item1">
+                          {{item}}
+                        </div> 
+                  </div>
+                         
+                </div>
+                <div class="swiper-slide">
+                    <div class="exercise-bpart" (click)="selectExe($event)" id="exe_chest">Chest</div>
+                    <div class="exercise-bpart" (click)="selectExe($event)" id="exe_leg">Leg</div>
+                    <div class="exercise-bpart" (click)="selectExe($event)" id="exe_thigh">Thigh</div>
+                    <div class="exercise-bpart" (click)="selectExe($event)" id="exe_shoulder">Shoulder</div>
+                    <div class="exercise-bpart" (click)="selectExe($event)" id="exe_back">Back</div>
+                    <div class="exercise-bpart" (click)="selectExe($event)" id="exe_biceps">Biceps</div>  
+                </div>
+                
+              </div>
+              
+              <div class="swiper-button-next"></div>
+              <div class="swiper-button-prev"></div>
+              <div class="swiper-scrollbar"></div>
+
+            </div>
+            </div> -->

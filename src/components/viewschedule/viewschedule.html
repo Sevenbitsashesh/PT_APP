@@ -19,18 +19,35 @@
                   </ul>      
                   <div class="weeks">
                     <div class="first" *ngFor="let week of weeks">
-                          <div *ngFor="let day of week" (click)="selectDate(day)">
-                                <span class="last-month" *ngIf="!isSelectedMonth(day.mDate)" > 
-                                    {{day.mDate.date()}}
-                                    </span>
-                                    <span *ngIf="isSelectedMonth(day.mDate)"> 
-                                            {{day.mDate.date()}}
+                          <div *ngFor="let day of week;" >
+                                <!-- <span class="last-month" *ngIf="!isSelectedMonth(day.mDate)"  > 
+                                    {{ day.mDate.date()}}
+                                    </span> -->
+                                    
+                                    <span *ngIf="isSelectedMonth(day.mDate)">                                             
+                                            <h6 *ngFor="let item of scheduleWork" >
+                                             <h6 *ngIf="item.date === day.mDate.format('YYYY-MM-DD')" (click)="selectDate(day, item,$event)">
+                                              {{day.mDate.date()}}
+                                             </h6>                                              
+                                            </h6>
+                                           
                                             </span>
+                                            
                           </div>
                     </div>
                   </div>
                 </div>
               </div> 
             </div>
+          </div>
+          <div class="container">
+            <ion-grid *ngIf="selectedWorkout">
+              <ion-row>
+                <ion-col>Selected Workouts</ion-col>
+              </ion-row>
+              <ion-row>
+                {{selectedWorkout.data.exe_name}}
+              </ion-row>
+            </ion-grid>
           </div>
         

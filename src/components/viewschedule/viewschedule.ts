@@ -29,6 +29,7 @@ export class ViewscheduleComponent implements OnInit, OnChanges {
   clientinfo = [];
   schedules: Observable<any>;
   scheduleWork = [];
+  selectedWorkout;
   constructor(private workoutService: WorkoutProvider, private dataService: DataProvider, private authService: AuthProvider, private clientService: ClientProvider) {
     this.currentDate = moment();
     
@@ -55,12 +56,75 @@ export class ViewscheduleComponent implements OnInit, OnChanges {
       // dataClient[0].startFrom
       
     
-    this.schedules = new Observable(observer => {
+   this.schedules =  new Observable(observer => {
       observer.next({myWorkout, clientinfo: this.clientinfo});
       
       observer.complete();  
     });
-     
+    this.schedules.subscribe(data => {
+      
+      this.scheduleWork = [];
+   // console.log(data.clientinfo.client_workplan[0].weeks * 7)  ;
+      let exe;
+      
+
+     for(let i = 0; i < data.clientinfo.client_workplan[0].weeks * 7; i++) {
+       let start = moment(data.clientinfo.startFrom.split('T')[0]);        
+       let nextDay = start.add(i,'days').format('dddd');        
+       let nextDate = start.format('YYYY-MM-DD')
+       
+       if(nextDay === 'Monday') {
+         
+        this.scheduleWork.push({
+          date: nextDate,
+          data: data.myWorkout.work_days[0].MON
+        })    
+       }
+       else if(nextDay === 'Tuesday') {
+         
+         this.scheduleWork.push({
+           date: nextDate,
+           data: data.myWorkout.work_days[1].TUE
+         })      
+       }
+       else if(nextDay === 'Wednesday') {
+         
+         this.scheduleWork.push({
+           date: nextDate,
+           data: data.myWorkout.work_days[2].WED
+         })      
+       }
+       else if(nextDay === 'Thursday') {
+         
+         this.scheduleWork.push({
+           date: nextDate,
+           data: data.myWorkout.work_days[3].THUR
+         })      
+       }
+       else if(nextDay === 'Friday') {
+         
+         this.scheduleWork.push({
+           date: nextDate,
+           data: data.myWorkout.work_days[4].FRI
+         })      
+       }
+       else if(nextDay === 'Saturday') {
+         
+         this.scheduleWork.push({
+           date: nextDate,
+           data: data.myWorkout.work_days[5].SAT
+         })      
+       }
+       else if(nextDay === 'Sunday') {
+         
+         this.scheduleWork.push({
+           date: nextDate,
+           data: data.myWorkout.work_days[6].SUN
+         })      
+       }
+     }
+     console.log(this.scheduleWork);
+   }) 
     
 
     })
@@ -116,19 +180,15 @@ export class ViewscheduleComponent implements OnInit, OnChanges {
     return moment(date).isSame(this.currentDate, 'month');
     
   }
-  selectDate(date: CalendarDate): void {
+  selectDate(date: CalendarDate, workItem, event): void {
 
-    this.schedules.subscribe(data => {
-      console.log(data)
-       
-    // console.log(data.clientinfo.client_workplan[0].weeks * 7)  ;
-      for(let i = 0; i < data.clientinfo.client_workplan[0].weeks * 7; i++) {
-        let start = moment(data.clientinfo.startFrom.split('T')[0]);
-        console.log(start.add(i,'days').format('YYYY-MM-DD'));        
-      }
-    })
+     this.selectedWorkout = workItem;
     
     this.onSelectDate.emit(date);
+    document.querySelectorAll('.active').forEach(i => {
+      i.classList.remove('active');
+    })
+    event.target.classList.add('active')
   }
   prevMonth(): void {
     console.log(this.currentDate);

@@ -11,7 +11,7 @@ import { AuthProvider } from '../../providers/auth/auth';
 import { ExerciseProvider } from '../../providers/exercise/exercise';
 import { ExeSelectionComponent } from '../../components/exe-selection/exe-selection';
 
-declare var Swiper: any;
+
 @Component({
   selector: 'newworkout',
   templateUrl: 'newworkout.html'
@@ -21,7 +21,7 @@ export class NewworkoutComponent  implements AfterViewInit{
   days = ['MON','TUE','WED','THUR','FRI','SAT','SUN'];
   exerciseSelect: boolean;
   item1 = [];
-  swiper;
+  
   work_image = "https://firebasestorage.googleapis.com/v0/b/my-social-a5d83.appspot.com/o/workout%2Fimages%20(2).jpeg?alt=media&token=cfaeab59-cf31-4904-957f-b97761d63ed4";
   work_level;
   work_tagcolor;

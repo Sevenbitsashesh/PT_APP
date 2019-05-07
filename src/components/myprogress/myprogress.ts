@@ -35,7 +35,7 @@ export class MyprogressComponent implements AfterViewInit {
       if(dataClient) {
         
         this.clientinfo = dataClient[0];
-        console.log(this.clientinfo);
+        // console.log(this.clientinfo);
       }
        
       

@@ -104,7 +104,8 @@ viewschedule {
   }
   
   .weeks span.active {
-      background: #f78536;
+    //   background: #f78536;
+    color: #f78536;
       border-radius: 50%;
   }
   
@@ -112,7 +113,10 @@ viewschedule {
       cursor: pointer;
       font-weight: 600;
   }
-  
+  .active {
+    color: #f78536;
+    transition: 1s;
+  }
   .event {
       position: relative;
   }
