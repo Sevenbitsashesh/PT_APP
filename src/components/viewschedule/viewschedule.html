@@ -20,9 +20,9 @@
                   <div class="weeks">
                     <div class="first" *ngFor="let week of weeks">
                           <div *ngFor="let day of week;" >
-                                <span class="last-month" *ngIf="!isSelectedMonth(day.mDate)"  > 
+                                <!-- <span class="last-month" *ngIf="!isSelectedMonth(day.mDate)"  > 
                                     {{ day.mDate.date()}}
-                                    </span>
+                                    </span> -->
                                     
                                     <span *ngIf="isSelectedMonth(day.mDate)">                                             
                                       

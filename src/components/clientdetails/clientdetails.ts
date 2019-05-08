@@ -4,6 +4,7 @@ import { ClientProvider } from '../../providers/client/client';
 import { AuthProvider } from '../../providers/auth/auth';
 import { DataProvider } from '../../providers/data/data';
 import { Observable } from 'rxjs';
+import { NativeProvider } from '../../providers/native/native';
 
 
 @Component({
@@ -14,7 +15,7 @@ export class ClientdetailsComponent implements OnInit {
 
   
   userMeasure = [];
-  constructor(private route: ActivatedRoute,private dataService: DataProvider, private clientService: ClientProvider, private authService: AuthProvider) {
+  constructor(private route: ActivatedRoute,private dataService: DataProvider, private clientService: ClientProvider, private authService: AuthProvider, private nativeService: NativeProvider) {
    
     
   }
@@ -34,5 +35,16 @@ export class ClientdetailsComponent implements OnInit {
       })
     })
   }
-
+  generateAssessment() {
+    console.log(this.userMeasure);
+    this.route.queryParams.subscribe(dataClient => {
+      
+      this.clientService.updateAssessment(this.userMeasure,dataClient.client,this.authService.currentUserValue).subscribe(asseData => {
+        if(asseData['message'] == "success") {
+            this.nativeService.generateToast('Assessment Completed','','bottom');
+        }
+      })
+    })
+    
+  }
 }

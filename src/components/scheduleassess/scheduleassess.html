@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar style="background: paleturquoise">
-    <!-- <ion-title>@{{username}}</ion-title> -->
+    <ion-title>Schedule Assessment</ion-title>
     
     
     <div class="divNoti"  (click)="dismiss()" >
@@ -14,16 +14,36 @@
     
     
 </ion-header>
-<ion-content>
-  <div>
-    Shedule Assessment for {{user}}
-  </div>
-<div>Assessment Date</div>
-<div>
-  <ion-input type="date" placeholder="DD-MM-YYYY">
+<ion-content class="content-schedule-assessment">
+<ion-grid>
+  <ion-row>
+    <ion-col>
+        <div *ngIf="clientData">
+            {{clientData.client_name}}
+          </div>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+        <div>Assessment Date</div>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+      <ion-col>
+          <div>
+              <ion-input type="date" placeholder="DD-MM-YYYY">
+            
+              </ion-input>
+            </div>
+      </ion-col>
+      
+    </ion-row>
+   
+</ion-grid>
 
-  </ion-input>
-</div>
+  
+
+
 <div>
   
 </div>  

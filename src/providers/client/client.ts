@@ -26,6 +26,9 @@ export class ClientProvider {
   getClient(authdetail,user,uid) {
          return this.http.post(API_URL+'client/getclient',{clientid: uid, trainerid: authdetail.userid},{headers: {"Authorization": 'Bearer '+user.token}});
   }
+  updateAssessment(assessModel,clientid,user) {
+    return this.http.post(API_URL+'client/updateassessment',{assessModel, id: clientid},{headers: {"Content-Type": "application/json", "Accept": "application", "Authorization": "Bearer "+user.token}}) 
+  }
 
 
   // Client Services

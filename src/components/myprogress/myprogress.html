@@ -2,6 +2,17 @@
 <div class="container-progress">
     
     <ion-grid *ngFor="let item of clientinfo.client_measurement">
+                <ion-row style="text-align: center" class="row-client-name">
+                                <ion-col>
+                                            {{clientinfo.client_name}}
+                                </ion-col>
+                        </ion-row>
+            <ion-row>
+                    
+                    <ion-col col-12>
+                            {{item.client_name}}
+                    </ion-col>
+            </ion-row>
         <ion-row style="text-align: center">
             <ion-col col-6>
                     Height  
