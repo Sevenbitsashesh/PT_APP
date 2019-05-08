@@ -75,53 +75,79 @@ export class ViewscheduleComponent implements OnInit, OnChanges {
        let nextDate = start.format('YYYY-MM-DD')
        
        if(nextDay === 'Monday') {
-         
-        this.scheduleWork.push({
-          date: nextDate,
-          data: data.myWorkout.work_days[0].MON
-        })    
+         for(let j = 0;j < data.myWorkout.work_days.length ; j++) {
+           if(data.myWorkout.work_days[j].MON) {
+            if(this.scheduleWork.find(works => works.date === nextDate)) {
+              this.scheduleWork.push({
+                date: nextDate,
+                data: data.myWorkout.work_days[j].MON
+              })  
+            }
+              
+           }
+          
+         }
+        
        }
        else if(nextDay === 'Tuesday') {
-         
+        for(let j = 0;j < data.myWorkout.work_days.length ; j++) {
+          if(data.myWorkout.work_days[j].TUE) {
          this.scheduleWork.push({
            date: nextDate,
-           data: data.myWorkout.work_days[1].TUE
-         })      
+           data: data.myWorkout.work_days[j].TUE
+         })  
+        }
+      }    
        }
        else if(nextDay === 'Wednesday') {
-         
+        for(let j = 0;j < data.myWorkout.work_days.length ; j++) {
+          if(data.myWorkout.work_days[j].WED) {
          this.scheduleWork.push({
            date: nextDate,
-           data: data.myWorkout.work_days[2].WED
-         })      
+           data: data.myWorkout.work_days[j].WED
+         })  
+        }
+      }    
        }
        else if(nextDay === 'Thursday') {
-         
+        for(let j = 0;j < data.myWorkout.work_days.length ; j++) {
+          if(data.myWorkout.work_days[j].THUR) {
          this.scheduleWork.push({
            date: nextDate,
-           data: data.myWorkout.work_days[3].THUR
-         })      
+           data: data.myWorkout.work_days[j].THUR
+         })  
+        }
+      }    
        }
        else if(nextDay === 'Friday') {
-         
+        for(let j = 0;j < data.myWorkout.work_days.length ; j++) {
+          if(data.myWorkout.work_days[j].FRI) {
          this.scheduleWork.push({
            date: nextDate,
-           data: data.myWorkout.work_days[4].FRI
+           data: data.myWorkout.work_days[j].FRI
          })      
+        }
+      }
        }
        else if(nextDay === 'Saturday') {
-         
+        for(let j = 0;j < data.myWorkout.work_days.length ; j++) {
+          if(data.myWorkout.work_days[j].SAT) {
          this.scheduleWork.push({
            date: nextDate,
-           data: data.myWorkout.work_days[5].SAT
+           data: data.myWorkout.work_days[j].SAT
          })      
+        }
+      }
        }
        else if(nextDay === 'Sunday') {
-         
+        for(let j = 0;j < data.myWorkout.work_days.length ; j++) {
+          if(data.myWorkout.work_days[j].SUN) {
          this.scheduleWork.push({
            date: nextDate,
-           data: data.myWorkout.work_days[6].SUN
-         })      
+           data: data.myWorkout.work_days[j].SUN
+         })   
+        }
+      }   
        }
        
      }

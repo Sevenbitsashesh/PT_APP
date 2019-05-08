@@ -208,11 +208,11 @@ export class NewworkoutComponent  implements AfterViewInit{
          buttons: [
            {
              text: 'Select from Gallary',
-             role: 'destructive',
+            //  role: 'destructive',
              handler: () => {
                this.imageService.selectPhoto().then(data => {
                  console.log(data);
-                 this.imageService.uploadPhoto(data,'exercise').
+                 this.imageService.uploadPhoto(data,'workout').
                  then(snap => {
                    const progress = ((snap.bytesTransferred*100)/snap.totalBytes);
                    snap.ref.getDownloadURL().then(url => {
