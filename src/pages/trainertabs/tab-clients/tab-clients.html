@@ -1,13 +1,83 @@
 
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>tab-clients</ion-title>
-  </ion-navbar>
-
+  <ion-toolbar style="background: paleturquoise">
+    <!-- <ion-title>@{{username}}</ion-title> -->
+    
+    <span style="font-size:30px;cursor:pointer" (click)="openNav()">&#9776;</span>
+    <div class="divNoti"  (click)="clickNotification()" >
+       
+               <div class="lbl-notification">
+                       1
+               </div>
+       
+       <img class="iconNotification" src="../../assets/icon/noti.svg">
+    </div>
+             
+  </ion-toolbar>
+  
 </ion-header>
-
+<div id="mySidenav" class="sidenav">
+    <div>
+      <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
+    </div>
+   
+   <div class="sidemenu-main">
+    <sidemenu [currentUser]=currentUser></sidemenu>
+   </div>
+    
+    
+    <!-- <button ion-button>Search</button> -->
+    <!-- <button ion-button>Profile</button> -->
+    <!-- <button ion-button>My Sales</button> -->
+    <!-- <button ion-button>NewsFeed</button> -->
+    <!-- <button ion-button>Settings</button> -->
+    <!-- <button ion-button>Logout <img src="../../assets/icon/logout.svg" class="img-logout" (click)="logout()"></button> -->
+   </div>
 
 <ion-content padding>
+ <!-- <ion-fab bottom left >
+        <button ion-fab>New</button>
+        <ion-fab-list side="right">
+          <button ion-fab><img src="../../assets/imgs/workout.svg"></button>          
+          <button ion-fab><img src="../../assets/imgs/schedule.svg"></button>
+        </ion-fab-list>
+        
+      </ion-fab> -->
+      <div class="noti-slider-bar" id="notificationDiv">
+          <ul id="list">
+          <!-- Create a bunch, or not a bunch, of li's to see the timing. -->
+          
+          No Notifications
+          </ul>
+          </div>
 
+
+<div class="trainer-home-main newclient">
+        <div class="trainer-home-top">
+        <ion-label class="label-activity">Clients</ion-label>
+        </div>
+        <div >
+            <ion-segment [(ngModel)]="client" color="primary" color="danger">
+              <ion-segment-button value="listclients">
+                My Clients
+              </ion-segment-button>
+              <ion-segment-button value="newclient">
+                New Client
+              </ion-segment-button>
+            </ion-segment>
+            <div [ngSwitch]="client">
+                <div *ngSwitchCase="'listclients'"> 
+                    
+                        <myclients [currentUser]=currentUser></myclients>
+                </div>
+                <div *ngSwitchCase="'newclient'"> 
+                        <newclient [currentUser]=currentUser></newclient>
+                </div>
+            </div>
+           
+
+            </div>
+
+            </div>
+       
 </ion-content>

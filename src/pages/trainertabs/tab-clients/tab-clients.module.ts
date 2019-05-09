@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { IonicPageModule, IonicModule } from 'ionic-angular';
 import { TabClientsPage } from './tab-clients';
 import { Routes, RouterModule } from '@angular/router';
+import { ComponentsModule } from '../../../components/components.module';
 const routes: Routes = [
   {
     path: '',
@@ -24,7 +25,8 @@ const routes: Routes = [
   imports: [
     // IonicPageModule.forChild(TabClientsPage),
     IonicModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    ComponentsModule
   ],
 })
 export class TabClientsPageModule {}

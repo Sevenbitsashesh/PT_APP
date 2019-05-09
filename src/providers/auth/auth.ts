@@ -92,7 +92,8 @@ this.currentUserSubject = new BehaviorSubject<UserDetails>(JSON.parse(localStora
         if (data.email === user.email) {
           
           this.saveToken(data);
-          window.location.reload();
+          return data;
+          // window.location.reload();
         }
         
         return data;

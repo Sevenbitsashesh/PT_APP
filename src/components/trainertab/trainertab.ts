@@ -29,6 +29,9 @@ console.log(routeTo);
     else if(routeTo === "profile") {
       this.router.navigate(['userhome/tab_profile']);
     }
+    else if(routeTo === "client") {
+      this.router.navigate(['userhome/tab_clients']);
+    }
     var btns = document.getElementsByClassName('active');
     // console.log(btns.length);
     for(let item=0; item < btns.length; item++) {

@@ -32,6 +32,7 @@ export function getMealplansModule() { return TabmealplansPageModule; }
 export function getScheduleModule() { return TabschedulePageModule }
 export function getClientsModule() { return TabClientsPageModule }
 
+
 //ClientsModules
 import { TabClientsPageModule } from '../../pages/trainertabs/tab-clients/tab-clients.module';
 import { ClientProgressPageModule } from '../../pages/clienttabs/client-progress/client-progress.module';
@@ -63,20 +64,26 @@ const routes: Routes = [
     loadChildren: getWorkoutsModule,
     canActivate: [TrainerroleguardProvider],
 },
-{
-    path: 'tab_mealplans',
-    loadChildren: getMealplansModule,
-    canActivate: [TrainerroleguardProvider],
-},
+// {
+//     path: 'tab_mealplans',
+//     loadChildren: getMealplansModule,
+//     canActivate: [TrainerroleguardProvider],
+// },
 {
     path: 'tab_schedule',
     loadChildren: getScheduleModule,
     canActivate: [TrainerroleguardProvider],
 },
+// {
+//     path: 'tab_profile',
+//     //  component: TabHomePage,
+//     loadChildren: getProfileModule,
+//     canActivate: [TrainerroleguardProvider],
+// },
 {
-    path: 'tab_profile',
+    path: 'tab_clients',
     //  component: TabHomePage,
-    loadChildren: getProfileModule,
+    loadChildren: getClientsModule,
     canActivate: [TrainerroleguardProvider],
 },
 // {
@@ -106,6 +113,7 @@ const routes: Routes = [
     loadChildren: getClientScheduleModule,
     canActivate: [ClientroleguardProvider],
 },
+
 ];
 @NgModule({
     imports: [ RouterModule.forChild(routes) ],
