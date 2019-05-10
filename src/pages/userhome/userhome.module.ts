@@ -48,7 +48,7 @@ import { ClientTab } from '../../components/clienttab/clienttab';
     TabworkoutsPageModule,
     TabmealplansPageModule,
     TabschedulePageModule,
-    
+        
     
   ],
   bootstrap: [],
