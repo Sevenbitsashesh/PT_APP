@@ -1,0 +1,56 @@
+<ion-header>
+        <div class="top-bar top-text">
+          
+          <ion-grid>
+            <ion-row></ion-row>
+            <ion-row style="text-align: center;">
+              <ion-col col-2><div (click)="goBack()"><i class="fas fa-chevron-circle-left"></i></div></ion-col>
+              <ion-col col-8>Assign Workout </ion-col>
+              <ion-col col-2>  <div (click)="saveClients()"><i class="fas fa-check"></i></div></ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+      </ion-header>
+        <ion-content class="selectclient">
+                <div>
+
+                        <ion-grid>
+                            
+                                    <ion-row style="text-align: center;" *ngFor="let item of selectedClient">
+                                            <ion-col>
+                                                <ion-chip>
+                                                    <ion-label>{{item.client_name}}</ion-label>
+                                                        <button ion-button clear (click)="unassign(item)">
+                                                                <ion-icon name="close-circle"></ion-icon>
+                                                              </button>
+                                                </ion-chip>
+                                            </ion-col>
+                                        </ion-row>
+                                        
+                        </ion-grid>
+                    </div>
+                   
+                    <div>
+                            <ion-grid>
+                            <ion-row style="text-align: center;" >
+                                    <ion-col>
+                                            Clients Who is Not Following this Workout
+                                    </ion-col>
+                                            
+                                        
+                            </ion-row>
+                                    <ion-row style="text-align: center;" >
+                                            <ion-col *ngFor="let item of unselectedClient">
+                                                <ion-chip>
+                                                    <ion-label>{{item.client_name}}</ion-label>
+                                                        <button ion-button clear (click)="assign(item)">
+                                                                <ion-icon name="add-circle"></ion-icon>
+                                                              </button>
+                                                </ion-chip>
+                                            </ion-col>
+                                        </ion-row>
+                        </ion-grid>
+                    </div>
+        </ion-content>
+
+

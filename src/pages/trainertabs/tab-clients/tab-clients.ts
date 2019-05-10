@@ -1,9 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { AuthProvider } from '../../../providers/auth/auth';
+import { AuthProvider, UserDetails, TokenPayload } from '../../../providers/auth/auth';
 import { UserProvider } from '../../../providers/user/user';
 import { DataProvider } from '../../../providers/data/data';
 import { AdMobFree } from '@ionic-native/admob-free';
+import { UserInfo } from '../../../Models/users_info';
+import { Subscription } from 'rxjs';
 
 
 @IonicPage()
@@ -12,10 +14,22 @@ import { AdMobFree } from '@ionic-native/admob-free';
   templateUrl: 'tab-clients.html',
 })
 export class TabClientsPage {
-  @Input() currentUser;
+  
   client;
+
+  currentUser: UserDetails;
+  userInfo: UserInfo;
+  authDetails: TokenPayload;
+  currentUserSubscription: Subscription;  
   constructor(private authService: AuthProvider, private userService: UserProvider, private dataService: DataProvider, private adMob: AdMobFree) {
-    this.client = 'listclients'
+    this.client = 'listclients';
+    this.currentUserSubscription = this.authService.currentUser.subscribe(user => {
+      
+      this.currentUser = user;      
+      // this.authDetails = this.authService.getUserDetails();
+      
+     this.dataService.getUserData(user);
+  });
   }
   openNav() {
     document.getElementById('notificationDiv').classList.remove('click-not-slider-bar');

@@ -36,12 +36,12 @@ export class WorkoutdetailsComponent {
   @ViewChild(ExeSelectionComponent) exeSelectionCom: ExeSelectionComponent;
   exercisesDays = [];
 
-  @ViewChild('color1') myColor1: ElementRef;
-  @ViewChild('color2') myColor2: ElementRef;
-  @ViewChild('color3') myColor3: ElementRef;
-  @ViewChild('color4') myColor4: ElementRef;
-  @ViewChild('color5') myColor5: ElementRef;
-  @ViewChild('color6') myColor6: ElementRef;
+  // @ViewChild('color1') myColor1: ElementRef;
+  // @ViewChild('color2') myColor2: ElementRef;
+  // @ViewChild('color3') myColor3: ElementRef;
+  // @ViewChild('color4') myColor4: ElementRef;
+  // @ViewChild('color5') myColor5: ElementRef;
+  // @ViewChild('color6') myColor6: ElementRef;
   
   
   constructor(private nativeService: NativeProvider, private workService: WorkoutProvider, private dataService: DataProvider, private actionsheet: ActionSheetController, private imageService: ImageProvider, private auth: AuthProvider, private exeService: ExerciseProvider, private modal: ModalController, private activatedRoute: ActivatedRoute) {
@@ -49,24 +49,24 @@ export class WorkoutdetailsComponent {
       workService.getMyWorkout(auth.currentUserValue,workParam.workid).subscribe(data => {
 
         // Setting Workout Tag Color
-        if(data.work_colortag === "color1") {
-          this.myColor1.nativeElement.click();
-        }
-        else if(data.work_colortag === "color2") {
-          this.myColor2.nativeElement.click();
-        }
-        else if(data.work_colortag === "color3") {
-          this.myColor3.nativeElement.click();
-        }
-        else if(data.work_colortag === "color4") {
-          this.myColor4.nativeElement.click();
-        }
-        else if(data.work_colortag === "color5") {
-          this.myColor5.nativeElement.click();
-        }
-        else if(data.work_colortag === "color6") {
-          this.myColor6.nativeElement.click();
-        }
+        // if(data.work_colortag === "color1") {
+        //   this.myColor1.nativeElement.click();
+        // }
+        // else if(data.work_colortag === "color2") {
+        //   this.myColor2.nativeElement.click();
+        // }
+        // else if(data.work_colortag === "color3") {
+        //   this.myColor3.nativeElement.click();
+        // }
+        // else if(data.work_colortag === "color4") {
+        //   this.myColor4.nativeElement.click();
+        // }
+        // else if(data.work_colortag === "color5") {
+        //   this.myColor5.nativeElement.click();
+        // }
+        // else if(data.work_colortag === "color6") {
+        //   this.myColor6.nativeElement.click();
+        // }
         //Setting Workday
         this.exercisesDays = data.work_days;
         // Setting Workout Name

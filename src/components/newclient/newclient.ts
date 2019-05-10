@@ -55,12 +55,12 @@ export class NewclientComponent implements OnChanges, OnInit  {
     });
     this.secondFormGroup = formBuilder.group({
       client_goal: ['',Validators.required],
-      client_level: ['', Validators.required]
+      // client_level: ['', Validators.required]
     });
     this.thirdFormGroup = formBuilder.group({
-      workout_plan: ['', Validators.required],
-      meal_plan: ['', Validators.required],
-      weeks: ['8', Validators.required]
+      // workout_plan: ['', Validators.required],
+      // meal_plan: ['', Validators.required],
+      // weeks: ['8', Validators.required]
     });
     // this.work_plans 
     console.log(authService.currentUserValue);
@@ -97,9 +97,16 @@ export class NewclientComponent implements OnChanges, OnInit  {
     this.client_measurement.thigh = "0";
     this.client_measurement.weight = "0";
     
-    const weeks = this.thirdFormGroup.get('weeks').value;
-    if(this.firstFormGroup.valid == true && this.secondFormGroup.valid == true && this.thirdFormGroup.valid == true) {
-      const clientModel = {fname: this.firstFormGroup.get('fname').value,email: email, lname: this.firstFormGroup.get('lname').value,client_level: this.secondFormGroup.get('client_level').value,"client_goal": this.secondFormGroup.get('client_goal').value,workout_planid: this.thirdFormGroup.get('workout_plan').value ,weeks: weeks ,client_mealplan: this.thirdFormGroup.get('meal_plan').value  , "trainerid": this.dataService.u.userid, "client_measurement": this.client_measurement, "dob": this.firstFormGroup.get('dob').value, "gender": this.firstFormGroup.get('gender').value, clientinfoid: ''};    
+    // Commented for Removed Form controls
+    // client_level: this.secondFormGroup.get('client_level').value
+    // workout_planid: this.thirdFormGroup.get('workout_plan').value
+    // weeks: weeks 
+    // client_mealplan: this.thirdFormGroup.get('meal_plan').value
+    // const weeks = this.thirdFormGroup.get('weeks').value;
+    
+    // if(this.firstFormGroup.valid == true && this.secondFormGroup.valid == true && this.thirdFormGroup.valid == true) {
+    if(this.firstFormGroup.valid == true && this.secondFormGroup.valid == true) {
+      const clientModel = {fname: this.firstFormGroup.get('fname').value,email: email, lname: this.firstFormGroup.get('lname').value,"client_goal": this.secondFormGroup.get('client_goal').value,"client_level": 'beginner', "trainerid": this.dataService.u.userid, "client_measurement": this.client_measurement, "dob": this.firstFormGroup.get('dob').value, "gender": this.firstFormGroup.get('gender').value, clientinfoid: ''};    
       console.log(clientModel);
       this.clientService.addClient(clientModel,this.authService.currentUserValue).subscribe((data) => {
         // this.openModal();

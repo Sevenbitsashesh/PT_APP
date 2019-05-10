@@ -1,13 +1,13 @@
 
 <ion-grid>
-  <ion-row>
+  <!-- <ion-row>
   
     <ion-col>
         <ion-searchbar (ionInput)="getItems($event)" placeholder="Client Search"></ion-searchbar>
 
      
    </ion-col>
-  </ion-row>
+  </ion-row> -->
   <div *ngFor="let item of myclients; let i = index" (click)="selectClient(item)">
     <ion-row>  
       <ion-col col-2>{{i+1}}</ion-col>

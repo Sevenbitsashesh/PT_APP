@@ -49,7 +49,7 @@ export function getClientMealModule() { return ClientMealPageModule }
 const routes: Routes = [
 {
         path: '',
-        loadChildren: getExercisesModule,
+        loadChildren: getWorkoutsModule,
         canActivate: [RoleguardProvider],
         //        data: {roles: [Roles]}
 },

@@ -15,6 +15,7 @@ export class ClientdetailsComponent implements OnInit {
 
   
   userMeasure = [];
+  clientInfo = [];
   constructor(private route: ActivatedRoute,private dataService: DataProvider, private clientService: ClientProvider, private authService: AuthProvider, private nativeService: NativeProvider) {
    
     
@@ -28,6 +29,7 @@ export class ClientdetailsComponent implements OnInit {
           if(client[0]['client_measurement'].length > 0) {
             console.log('in');
             this.userMeasure = client[0]['client_measurement'][0];
+            this.clientInfo = client[0];
           }
             
             
@@ -46,5 +48,16 @@ export class ClientdetailsComponent implements OnInit {
       })
     })
     
+  }
+  changeClientGoal(clientGoal,clientid) {
+    console.log(clientGoal);
+    this.clientService.updateClientGoal(clientGoal,clientid,this.authService.currentUserValue).subscribe(goalData => {
+      if(goalData['message'] == "success") {
+        this.nativeService.generateToast('Goal Upgraded','','bottom');
+      }
+    })
+  }
+  goBack() {
+    window.history.back();
   }
 }

@@ -45,30 +45,30 @@ export class NewexerciseComponent {
     const modal = this.modalCtrl.create(ExeSetsComponent);
     modal.present();
   }
-  changeType(event) {
-    const targetID = event.target.id;
-    const element = document.getElementById(targetID);
-    const allEle = Array.from(document.querySelectorAll('.single-exe-type')).forEach(item => {
-          item.classList.remove('selected-exe-type')
-    });
-      this.exe_type = targetID;
-      if(targetID === "exeTypeWeight") {
-        this.selectExeType = 1;        
-        element.classList.add('selected-exe-type');
-      }
-      else if(targetID === "exeTypeRepe") {
-        this.selectExeType = 2;
-        element.classList.add('selected-exe-type');
-      }
-      else if(targetID === "exeTypeDura") {
-        this.selectExeType = 3
-        element.classList.add('selected-exe-type');
-      }
-      else {
-        this.selectExeType = 0;
-        element.classList.add('selected-exe-type');
-      }
-  }
+  // changeType(event) {
+  //   const targetID = event.target.id;
+  //   const element = document.getElementById(targetID);
+  //   const allEle = Array.from(document.querySelectorAll('.single-exe-type')).forEach(item => {
+  //         item.classList.remove('selected-exe-type')
+  //   });
+  //     this.exe_type = targetID;
+  //     if(targetID === "exeTypeWeight") {
+  //       this.selectExeType = 1;        
+  //       element.classList.add('selected-exe-type');
+  //     }
+  //     else if(targetID === "exeTypeRepe") {
+  //       this.selectExeType = 2;
+  //       element.classList.add('selected-exe-type');
+  //     }
+  //     else if(targetID === "exeTypeDura") {
+  //       this.selectExeType = 3
+  //       element.classList.add('selected-exe-type');
+  //     }
+  //     else {
+  //       this.selectExeType = 0;
+  //       element.classList.add('selected-exe-type');
+  //     }
+  // }
   addExercise() {
     let secMuscles = {};
     for(let i= 0; i < this.exerciseForm.get('sec_muscle_type').value.length; i++) {
@@ -85,7 +85,7 @@ export class NewexerciseComponent {
       exe_pic: this.exe_image,
       exe_muscle: this.exerciseForm.get('muscle_type').value,
       sec_exe_muscle: secMuscles,
-      exe_type: this.exe_type,
+      // exe_type: this.exe_type,
       exe_desc: this.exerciseForm.get('exe_desc').value,
       userid: this.dataService.u.userid
     };

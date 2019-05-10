@@ -1,3 +1,18 @@
+<!-- <ion-row>
+              <ion-col col-12 class="animated fadeInLeft delay-5s">
+                  <ion-item>
+                      <ion-label>Level</ion-label>
+                      <ion-select formControlName="client_level">
+                        <ion-option  value="beginner">Beginner</ion-option>
+                        <ion-option value="intermediate">Intermediate</ion-option>
+                        <ion-option value="advanced">Advanced</ion-option>
+                      </ion-select>
+                    </ion-item>
+              
+                </ion-col>
+            </ion-row> -->
+
+
 <mat-vertical-stepper [linear]="false" #stepper>
     <mat-step [stepControl]="firstFormGroup" [completed]="false" >
         
@@ -75,41 +90,34 @@
                   <ion-item>
                       <ion-label>Goal</ion-label>
                       <ion-select formControlName="client_goal">
-                        <ion-option ion-option value="muscleBuilding">Muscle Building</ion-option>
-                        <ion-option value="gainStrength">Gain Strength</ion-option>
-                        <ion-option value="massGrowth">Mass Growth</ion-option>
-                        <ion-option value="athleteBody">Athlete Body</ion-option>
-                        <ion-option value="powerLifting">Powerlifting</ion-option>
-                        <ion-option value="fatLoss">Fat Loss</ion-option>
+                        <ion-option ion-option value="Muscle Building">Muscle Building</ion-option>
+                        <ion-option value="Gain Strength">Gain Strength</ion-option>
+                        <ion-option value="Mass Growth">Mass Growth</ion-option>
+                        <ion-option value="Athlete Body">Athlete Body</ion-option>
+                        <ion-option value="Powerlifting">Powerlifting</ion-option>
+                        <ion-option value="Fat Loss">Fat Loss</ion-option>
                       </ion-select>
                     </ion-item>
                 
                 </ion-col>
             </ion-row>
           
-            <ion-row>
-              <ion-col col-12 class="animated fadeInLeft delay-5s">
-                  <ion-item>
-                      <ion-label>Level</ion-label>
-                      <ion-select formControlName="client_level">
-                        <ion-option  value="begginer">Begginer</ion-option>
-                        <ion-option value="intermediate">Intermediate</ion-option>
-                        <ion-option value="advanced">Advanced</ion-option>
-                      </ion-select>
-                    </ion-item>
-              
-                </ion-col>
-            </ion-row>
+            
           </form>
           </ion-grid>
           
           <div>
-            <button ion-button mat-button matStepperPrevious>Back</button>
-            <button ion-button mat-button matStepperNext>Next</button>
+            
+            <div>
+              <button ion-button mat-button matStepperPrevious>Back</button>
+              
+                  <button class="btn-ripple" ion-button (click)="addClient()">Finish</button>
+              
+            </div>
           </div>
         
       </mat-step>
-      <mat-step  [completed]="false">
+      <!-- <mat-step  [completed]="false">
         <ng-template matStepLabel>Done</ng-template>
        <form [formGroup]="thirdFormGroup">
           <div>
@@ -148,7 +156,7 @@
               <button class="btn-ripple" ion-button (click)="addClient()">Finish</button>
           
         </div>
-      </mat-step>
+      </mat-step> -->
 </mat-vertical-stepper>
 
 

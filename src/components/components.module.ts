@@ -48,6 +48,7 @@ import { DaypplansComponent } from './daypplans/daypplans';
 import { CustomMatPaginatorIntl } from '../providers/custom.paginator';
 import { ScheduleassessComponent } from './scheduleassess/scheduleassess';
 import { ExeSelectionComponent } from './exe-selection/exe-selection';
+import { SelectclientComponent } from './selectclient/selectclient';
 
 
 
@@ -92,6 +93,7 @@ import { ExeSelectionComponent } from './exe-selection/exe-selection';
     DaypplansComponent,
     ScheduleassessComponent,
     ExeSelectionComponent,
+    SelectclientComponent,
 
     
         ],
@@ -130,10 +132,11 @@ import { ExeSelectionComponent } from './exe-selection/exe-selection';
     DaypplansComponent,
     ScheduleassessComponent,
     ExeSelectionComponent,
+    SelectclientComponent,
 
 
 ],
-    entryComponents: [LoginComponent, FirstComponent, ProfileComponent, ExeSetsComponent, PaymentComponent, ScheduleassessComponent, ExeSelectionComponent],
+    entryComponents: [LoginComponent, FirstComponent, ProfileComponent, ExeSetsComponent, PaymentComponent, ScheduleassessComponent, ExeSelectionComponent, SelectclientComponent],
     providers: [
         {provide: MatPaginatorIntl, useClass: CustomMatPaginatorIntl}
     ]

@@ -19,7 +19,7 @@ export class ClientProvider {
   }
   getMyClients(authdetail,user): Observable<any> {
 
-    console.log(authdetail)
+    // console.log(authdetail)
     return this.http.post(API_URL+'client/myclients',{trainerid: authdetail[0].userid},{headers : {  'Accept' : 'application/json',
     'Content-Type' : 'application/json','Authorization': 'Bearer '+ user.token}});
   } 
@@ -29,8 +29,12 @@ export class ClientProvider {
   updateAssessment(assessModel,clientid,user) {
     return this.http.post(API_URL+'client/updateassessment',{assessModel, id: clientid},{headers: {"Content-Type": "application/json", "Accept": "application", "Authorization": "Bearer "+user.token}}) 
   }
-
-
+  updateClientGoal(clientGoal, clientid, user) {
+    return this.http.post(API_URL+'client/updategoal',{clientgoal: clientGoal, id: clientid},{headers: {"Content-Type": "application/json", "Accept": "application", "Authorization": "Bearer "+user.token}}) 
+  }
+  updateClientWorkout(workoutid, clientid, user) {
+    return this.http.post(API_URL+'client/updateworkout',{workoutid: workoutid, id: clientid},{headers: {"Content-Type": "application/json", "Accept": "application", "Authorization": "Bearer "+user.token}}) 
+  }
   // Client Services
 
   getMyData(authdetail, clientinfoid) {

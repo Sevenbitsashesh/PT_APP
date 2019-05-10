@@ -23,9 +23,9 @@
           <ion-row>
             <ion-col>
               <div class="content">
-              
+                  <ion-label stacked>Workout Level</ion-label>
                 <ion-select [(ngModel)]="work_level" class="selector" >
-                    <ion-label>Workout Level</ion-label>
+                    
                   <ion-option>Beginner</ion-option>
                   <ion-option>Intermediate</ion-option>
                   <ion-option>Advanced</ion-option>
@@ -39,7 +39,8 @@
                 <ion-input placeholder="Workout Name" [(ngModel)]="work_name"></ion-input>
                 </ion-col>
               </ion-row>
-              <ion-row>
+              <!-- Uncomment for Selecting Color Tag -->
+              <!-- <ion-row>
                 <ion-col>
                   <ion-label>
                     COLOR TAG
@@ -70,7 +71,7 @@
                 <ion-col>
                   SELECT WORKOUT DAY
                 </ion-col>
-              </ion-row>
+              </ion-row> -->
               <ion-row>
                 <ion-col>
                   <div class="row-form">
@@ -173,19 +174,7 @@
   <i class="fas fa-minus-circle" id="sel_{{item}}" (click)="removeItem($event)"></i>
 </div>
                         </div>
-                          <div *ngIf="exercises.length < 1">
-                            No record
-                          </div>
-                            <div class="exercise" *ngFor="let item of exercises" (click)="modalExerciseSelection(item)">
-                                <ion-grid>
-                                  <ion-row>
-                                    <ion-col>
-                                        {{item.exe_name}}
-                                    </ion-col>
-                                    
-                                  </ion-row>
-                                </ion-grid>
-                            </div>
+                          
                             <div class="exercise-bpart" *ngFor="let item of listExer" (click)="clickBodyMuscle(item)">
                                 {{item.muscle_type}}
                                 </div>
@@ -198,7 +187,23 @@
                     </ion-slides>
                   
               </ion-row>
-
+<ion-row>
+  <ion-col>
+      <div *ngIf="exercises.length < 1">
+          No record
+        </div>
+          <div class="exercise" *ngFor="let item of exercises" (click)="modalExerciseSelection(item)">
+              <ion-grid>
+                <ion-row>
+                  <ion-col>
+                      {{item.exe_name}}
+                  </ion-col>
+                  
+                </ion-row>
+              </ion-grid>
+          </div>
+  </ion-col>
+</ion-row>
 
         </ion-grid>  
 

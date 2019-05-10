@@ -1,20 +1,25 @@
 <!--  -->
 <ion-header>
-  <ion-toolbar style="background: paleturquoise">
-    <!-- <ion-title>@{{username}}</ion-title> -->
+  <div class="top-bar top-text">
     
-    <span style="font-size:30px;cursor:pointer" (click)="openNav()">&#9776;</span>
-    <div class="divNoti"  (click)="clickNotification()" >
+    
+      <ion-grid>
        
-               <div class="lbl-notification">
-                       1
-               </div>
+        <ion-row style="text-align: center;">
+          <ion-col><span style="font-size:30px;cursor:pointer" (click)="openNav()">&#9776;</span></ion-col>
+          <ion-col col-8>EXERCISES</ion-col>
+          <ion-col><div class="divNoti"  (click)="clickNotification()" >
        
-       <img class="iconNotification" src="../../assets/icon/noti.svg">
+            <div class="lbl-notification">
+                    1
+            </div>
+    
+    <img class="iconNotification" src="../../assets/icon/noti.svg">
+ </div></ion-col>
+        </ion-row>
+       
+      </ion-grid>
     </div>
-             
-  </ion-toolbar>
-  
 </ion-header>
 
 <div id="mySidenav" class="sidenav">
@@ -35,14 +40,14 @@
  <!-- <button ion-button>Logout <img src="../../assets/icon/logout.svg" class="img-logout" (click)="logout()"></button> -->
 </div>
 <ion-content padding class="contentMain" (click)="clickedContent()" >
-    <!-- <ion-fab bottom left >
-        <button ion-fab>New</button>
+    <ion-fab bottom left >
+        <button ion-fab>List</button>
         <ion-fab-list side="right">
-          <button ion-fab><img src="../../assets/imgs/workout.svg"></button>          
-          <button ion-fab><img src="../../assets/imgs/schedule.svg"></button>
+          <button ion-fab><img src="../../../assets/icon/exercise.svg"></button>          
+          <!-- <button ion-fab><img src="../../assets/imgs/schedule.svg"></button> -->
         </ion-fab-list>
         
-      </ion-fab> -->
+      </ion-fab>
 <div class="noti-slider-bar" id="notificationDiv">
 <ul id="list">
 <!-- Create a bunch, or not a bunch, of li's to see the timing. -->

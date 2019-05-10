@@ -6,7 +6,7 @@ export class ExerciseModel  {
       exe_name: String;
       exe_pic: String
       exe_muscle: String
-      exe_type: String
+      // exe_type: String
       exe_desc: String
       userid: String
       sec_exe_muscle: {}
