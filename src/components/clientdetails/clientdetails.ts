@@ -16,7 +16,7 @@ export class ClientdetailsComponent implements OnInit {
   
   userMeasure = [];
   clientInfo = [];
-  constructor(private route: ActivatedRoute,private dataService: DataProvider, private clientService: ClientProvider, private authService: AuthProvider, private nativeService: NativeProvider) {
+  constructor(private route: ActivatedRoute,private dataService: DataProvider, private clientService: ClientProvider, private authService: AuthProvider, private nativeService: NativeProvider, private router: Router) {
    
     
   }
@@ -59,5 +59,6 @@ export class ClientdetailsComponent implements OnInit {
   }
   goBack() {
     window.history.back();
+    this.router.navigate(['userhome/tab_clients'])
   }
 }

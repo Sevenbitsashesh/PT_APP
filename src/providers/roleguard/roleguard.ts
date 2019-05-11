@@ -16,7 +16,7 @@ export class RoleguardProvider implements CanActivate{
     if (currentUser) {
         // check if route is restricted by role
         if(currentUser.role === 'Trainer') {
-          this.router.navigate(['/userhome/tab_exercises']);
+          this.router.navigate(['/userhome/tab_clients']);
           return true;
         }
         else if(currentUser.role === 'Client') {

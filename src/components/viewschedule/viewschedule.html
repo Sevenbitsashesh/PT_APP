@@ -18,24 +18,24 @@
                     <li *ngFor="let name of dayNames">{{name}}</li>                    
                   </ul>      
                   <div class="weeks">
-                    <div class="first" *ngFor="let week of weeks">
+                      <div class="first" *ngFor="let week of weeks">
                           <div *ngFor="let day of week;" >
-                                <!-- <span class="last-month" *ngIf="!isSelectedMonth(day.mDate)"  > 
+                                <span class="last-month" *ngIf="!isSelectedMonth(day.mDate)"  > 
                                     {{ day.mDate.date()}}
-                                    </span> -->
-                                    
-                                    <span *ngIf="isSelectedMonth(day.mDate)">                                             
+                                    </span>
+                                    <span *ngIf="isSelectedMonth(day.mDate)" (click)="selectDate(day, item,$event)"> 
+                                        {{ day.mDate.date()}}
+                                        </span>
+                                    <!-- <span *ngIf="isSelectedMonth(day.mDate)">                                             
                                       
                                             <h6 *ngFor="let item of scheduleWork" >
                                              <h6 *ngIf="item.date === day.mDate.format('YYYY-MM-DD')" (click)="selectDate(day, item,$event)" #date>
                                               {{day.mDate.date()}}
                                              </h6>   
-                                             <!-- <h6 *ngIf="item.date !== day.mDate.format('YYYY-MM-DD')">
-                                              {{day.mDate.date()}}
-                                             </h6>                                             -->
+                                             
                                             </h6>
                                            
-                                            </span>
+                                            </span> -->
                                             
                           </div>
                     </div>
@@ -58,6 +58,13 @@
               <ion-row *ngFor="let item of selectedWorkout.data.sets; let i = index;">
                   <ion-col col-6>Set {{i+1}}</ion-col>
                   <ion-col col-6>{{item.reps}}</ion-col>
+              </ion-row>
+            </ion-grid>
+            <ion-grid *ngIf="!selectedWorkout"  class="grid-items-list">
+              <ion-row>
+                <ion-col>
+                  NOT SCHEDULE
+                </ion-col>
               </ion-row>
             </ion-grid>
           </div>

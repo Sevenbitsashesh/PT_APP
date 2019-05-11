@@ -10,6 +10,7 @@ import { ImageProvider } from '../../providers/image/image';
 import { AuthProvider } from '../../providers/auth/auth';
 import { ExerciseProvider } from '../../providers/exercise/exercise';
 import { ExeSelectionComponent } from '../../components/exe-selection/exe-selection';
+import { iterateListLike } from '@angular/core/src/change_detection/change_detection_util';
 
 
 @Component({
@@ -168,7 +169,7 @@ export class NewworkoutComponent  implements AfterViewInit{
     console.log(this.work_tagcolor);
     const newWork = {
       work_name: this.work_name,
-      work_colortag: this.work_tagcolor,
+      work_colortag: 'color1',
       userid: this.dataService.u.id,
       work_level: this.work_level,
       work_pic: this.work_image,      
@@ -251,16 +252,32 @@ export class NewworkoutComponent  implements AfterViewInit{
      
    }
    clickBodyMuscle(exeItem) {
-    this.exeService.getExercise(this.auth.currentUserValue,{exe_muscle: exeItem.muscle_type, userid: this.dataService.u.userid}).subscribe(exeData => {
+    // this.exeService.getExercise(this.auth.currentUserValue,{exe_muscle: exeItem.muscle_type, userid: this.dataService.u.userid}).subscribe(exeData => {
+    //   if(exeData.length > 0) {
+    //     console.log(exeData);
+    //     this.exercises = exeData;
+    //   }
+    //   else {
+    //     this.exercises = [];
+    //   }
+    // });
+    this.exeService.getExercises(this.auth.currentUserValue).subscribe(exeData => {
       if(exeData.length > 0) {
         console.log(exeData);
-        this.exercises = exeData;
+        this.exercises = [];
+        for(let i = 0; i < exeData.length; i++) {
+          
+          if(exeData[i].exe_muscle === exeItem.muscle_type) {
+            this.exercises.push(exeData[i]);
+          }
+          
+        }
+        
+        
       }
       else {
         this.exercises = [];
       }
-      
-
     });
     
   }

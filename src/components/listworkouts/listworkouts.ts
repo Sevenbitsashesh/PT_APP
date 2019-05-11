@@ -40,10 +40,12 @@ export class ListworkoutsComponent {
       if(!data.message) {
         console.log(data);
         this.workouts = data;
+        console.log('in')
       }
       else {
         
         this.workouts = undefined;
+        console.log('out')
       }
     })
   }

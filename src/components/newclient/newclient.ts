@@ -10,6 +10,7 @@ import { PaymentComponent } from '../../components/payment/payment';
 import { NativeProvider } from '../../providers/native/native';
 import { MailProvider } from '../../providers/mail/mail';
 import { AuthProvider } from '../../providers/auth/auth';
+import { Router } from '@angular/router';
 
 
 export class ClientMeasure {
@@ -44,9 +45,10 @@ export class NewclientComponent implements OnChanges, OnInit  {
   client_level;
   client_measurement =new ClientMeasure();
   
-  constructor(private formBuilder: FormBuilder, private workService: WorkoutProvider, private dataService: DataProvider, private mealService: MealProvider, private clientService: ClientProvider, private modal: ModalController, private nativeService: NativeProvider, private mailService: MailProvider, private authService: AuthProvider) {
+  constructor(private formBuilder: FormBuilder, private workService: WorkoutProvider, private dataService: DataProvider, private mealService: MealProvider, private clientService: ClientProvider, private modal: ModalController, private nativeService: NativeProvider, private mailService: MailProvider, private authService: AuthProvider, private router: Router) {
     this.firstFormGroup = formBuilder.group({
-      fname: ['', Validators.pattern("^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$")],
+      // fname: ['', Validators.pattern("^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$")],
+      fname: ['', Validators.required],
     
       lname:['', Validators.required],
       email: ['', Validators.required],
@@ -113,7 +115,7 @@ export class NewclientComponent implements OnChanges, OnInit  {
         console.log(data);
         if(!data.error) {
           this.nativeService.generateToast('Client Added',"","bottom");
-          
+          window.location.reload();
           // this.mailService.sendMail({message: 'Your email is : '+email+' and password is :'+'example'+' '+'Login in to https://pt-fits-life.firebaseapp.com'},{sender: 'Ashesh'},{email},{token: this.authService.currentUserValue.token}).subscribe(mailData => {
           //   console.log(mailData);
           // })

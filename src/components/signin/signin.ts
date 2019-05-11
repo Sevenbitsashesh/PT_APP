@@ -60,12 +60,12 @@ export class SigninComponent implements OnInit {
   ngOnInit() {
     this.signupForm = this.formBuilder.group({
       email: new FormControl('', Validators.compose([
-        Validators.pattern('^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$'),
+        // Validators.pattern('^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$'),
         // Validators.pattern('/^([_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,5}))|\d+$/'),
         Validators.required
       ])),
       pass: new FormControl('', Validators.compose([
-          Validators.pattern('(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}'),
+          // Validators.pattern('(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}'),
         Validators.required
       ])),
       cpass: new FormControl('', Validators.compose([
@@ -73,11 +73,11 @@ export class SigninComponent implements OnInit {
       ])),
       fname: new FormControl('', Validators.compose([
         Validators.required,
-        Validators.pattern('[a-zA-Z]+')
+        // Validators.pattern('[a-zA-Z]+')
       ])),
       lname: new FormControl('', Validators.compose([
         Validators.required,
-        Validators.pattern('[a-zA-Z]+')
+        // Validators.pattern('[a-zA-Z]+')
       ])),
       // username: new FormControl('', Validators.compose([
       //   Validators.maxLength(25),

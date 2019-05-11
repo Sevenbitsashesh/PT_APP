@@ -29,6 +29,7 @@ export class SelectclientComponent {
                   console.log(this.selectedClient)
               } else {
                 this.unselectedClient.push(clientData[i])
+                console.log(this.unselectedClient)
               }
             }
           }

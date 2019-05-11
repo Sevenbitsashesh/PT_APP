@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, OnInit, OnChanges, SimpleChanges, ViewChild, ElementRef } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit, OnChanges, SimpleChanges, ViewChild, ElementRef, AfterContentInit, AfterViewInit } from '@angular/core';
 import * as _ from 'lodash';
 import $ from 'jquery';
 import * as  moment from 'moment/moment';
@@ -31,6 +31,7 @@ export class ViewscheduleComponent implements OnInit, OnChanges {
   scheduleWork = [];
   selectedWorkout;
   
+  // @Input() defaultDate: ElementRef;
   constructor(private workoutService: WorkoutProvider, private dataService: DataProvider, private authService: AuthProvider, private clientService: ClientProvider) {
     this.currentDate = moment();
     
@@ -210,8 +211,20 @@ export class ViewscheduleComponent implements OnInit, OnChanges {
   }
   selectDate(date: CalendarDate, workItem, event): void {
 
-     this.selectedWorkout = workItem;
-    
+     this.selectedWorkout = undefined;
+    // this.selectedWorkout = this.scheduleWork
+    for(let j=0;j< this.scheduleWork.length; j++) {
+      // console.log(this.scheduleWork[j]['date'])
+      // console.log(date.mDate.format('YYYY-MM-DD'))
+      
+      if(date.mDate.format('YYYY-MM-DD') === this.scheduleWork[j]['date']) {
+        console.log('in')
+        this.selectedWorkout = this.scheduleWork[j];
+      }
+      
+      
+      
+    }
     // this.onSelectDate.emit(date);
     Array.from(document.querySelectorAll('.active')).forEach(i => {
       i.classList.remove('active');
@@ -249,5 +262,11 @@ export class ViewscheduleComponent implements OnInit, OnChanges {
   clickDate(schedules) {
     console.log(schedules.date())
   }
+ ngAfterViewInit() {
+   let date: CalendarDate;
+    // let scheduleWork = this.scheduleWork[0].data;
+    // console.log(scheduleWork)
+  // console.log(this.defaultDate.nativeElement[0]);
   
+ } 
 }
