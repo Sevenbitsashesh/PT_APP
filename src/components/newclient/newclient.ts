@@ -44,7 +44,8 @@ export class NewclientComponent implements OnChanges, OnInit  {
   client_goal;
   client_level;
   client_measurement =new ClientMeasure();
-  
+  showPassword = false;
+  eyeIcon = "eye";
   constructor(private formBuilder: FormBuilder, private workService: WorkoutProvider, private dataService: DataProvider, private mealService: MealProvider, private clientService: ClientProvider, private modal: ModalController, private nativeService: NativeProvider, private mailService: MailProvider, private authService: AuthProvider, private router: Router) {
     this.firstFormGroup = formBuilder.group({
       // fname: ['', Validators.pattern("^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$")],
@@ -53,7 +54,10 @@ export class NewclientComponent implements OnChanges, OnInit  {
       lname:['', Validators.required],
       email: ['', Validators.required],
       gender: ['', Validators.required],
-      dob: ['01:01:2000', Validators.required]
+      dob: ['01:01:2000', Validators.required],
+      pass: ['', Validators.required],
+      cpass: ['', Validators.required]
+
     });
     this.secondFormGroup = formBuilder.group({
       client_goal: ['',Validators.required],
@@ -107,33 +111,46 @@ export class NewclientComponent implements OnChanges, OnInit  {
     // const weeks = this.thirdFormGroup.get('weeks').value;
     
     // if(this.firstFormGroup.valid == true && this.secondFormGroup.valid == true && this.thirdFormGroup.valid == true) {
-    if(this.firstFormGroup.valid == true && this.secondFormGroup.valid == true) {
-      const clientModel = {fname: this.firstFormGroup.get('fname').value,email: email, lname: this.firstFormGroup.get('lname').value,"client_goal": this.secondFormGroup.get('client_goal').value,"client_level": 'beginner', "trainerid": this.dataService.u.userid, "client_measurement": this.client_measurement, "dob": this.firstFormGroup.get('dob').value, "gender": this.firstFormGroup.get('gender').value, clientinfoid: ''};    
-      console.log(clientModel);
-      this.clientService.addClient(clientModel,this.authService.currentUserValue).subscribe((data) => {
-        // this.openModal();
-        console.log(data);
-        if(!data.error) {
-          this.nativeService.generateToast('Client Added',"","bottom");
-          window.location.reload();
-          // this.mailService.sendMail({message: 'Your email is : '+email+' and password is :'+'example'+' '+'Login in to https://pt-fits-life.firebaseapp.com'},{sender: 'Ashesh'},{email},{token: this.authService.currentUserValue.token}).subscribe(mailData => {
-          //   console.log(mailData);
-          // })
+    
+      
+      // this.mailService.sendMail({message: 'Your email is : '+email+' and password is :'+this.firstFormGroup.get('pass').value+' '+'Login in to PT_APP'},{sender: 'patel.abhishek@tristonsoft.com'},{recepeint: this.firstFormGroup.get('email').value},{token: this.authService.currentUserValue.token}).subscribe(mailData => {
+      //   console.log(mailData);
+      // });
+
+      if(this.firstFormGroup.get('pass').value === this.firstFormGroup.get('cpass').value) {
+        if(this.firstFormGroup.valid == true && this.secondFormGroup.valid == true) {
+          const clientModel = {fname: this.firstFormGroup.get('fname').value,email: email, lname: this.firstFormGroup.get('lname').value,"client_goal": this.secondFormGroup.get('client_goal').value,"client_level": 'beginner', "trainerid": this.dataService.u.userid, "client_measurement": this.client_measurement, "dob": this.firstFormGroup.get('dob').value, "gender": this.firstFormGroup.get('gender').value, clientinfoid: '', password: this.firstFormGroup.get('pass').value };    
+          console.log(clientModel);
+          this.clientService.addClient(clientModel,this.authService.currentUserValue).subscribe((data) => {
+            // this.openModal();
+            console.log(data);
+            if(!data.error) {
+              this.nativeService.generateToast('Client Added',"","bottom");
+              
+              this.mailService.sendMail({message: 'Your email is : '+email+' and password is :'+this.firstFormGroup.get('pass').value+' '+'Login in to PT_APP'},{sender: 'patel.abhishek@tristonsoft.com'},{recepeint: this.firstFormGroup.get('email').value},{token: this.authService.currentUserValue.token}).subscribe(mailData => {
+                window.location.reload();
+              });
+              
+            }
+            else {
+              this.nativeService.generateToast(data.error,"","bottom");
+            }
+            
+            
+          },(error) => {    
+              
+          this.nativeService.generateToast('Error Adding Client',"","bottom");
+          }
+          );    
         }
         else {
-          this.nativeService.generateToast(data.error,"","bottom");
+            this.nativeService.generateToast('Please Fill the details Correctly','toast-error',"middle");
         }
-        
-        
-      },(error) => {    
-          
-      this.nativeService.generateToast('Error Adding Client',"","bottom");
       }
-      );    
-    }
-    else {
-        this.nativeService.generateToast('Please Fill the details Correctly','toast-error',"middle");
-    }
+      else {
+        this.nativeService.generateToast('Password & Confirm Password should Match','','bottom');
+      }
+    
     
   }
   ngOnChanges() {
@@ -144,5 +161,15 @@ export class NewclientComponent implements OnChanges, OnInit  {
   // }
   ngOnInit() {
     console.log('init client')
+  }
+  showHide() {
+    if(this.showPassword) {
+      this.showPassword = false;
+      this.eyeIcon = 'eye-off';
+    }
+    else {
+      this.showPassword = true;
+      this.eyeIcon = 'eye';
+    }
   }
 }

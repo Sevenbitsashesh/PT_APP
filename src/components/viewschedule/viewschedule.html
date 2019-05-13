@@ -14,10 +14,18 @@
                   
                 </div>      
                 <div class="current-month">
-                  <ul class="week-days"> 
+                    
+                        
+
+                  <!-- <ul class="week-days"> 
                     <li *ngFor="let name of dayNames">{{name}}</li>                    
-                  </ul>      
+                  </ul>       -->
                   <div class="weeks">
+                      <div class="first">
+                          <div *ngFor="let name of dayNames" class="weekday">
+                              {{name}}
+                        </div>
+                        </div>
                       <div class="first" *ngFor="let week of weeks">
                           <div *ngFor="let day of week;" >
                                 <span class="last-month" *ngIf="!isSelectedMonth(day.mDate)"  > 

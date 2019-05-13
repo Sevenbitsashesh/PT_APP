@@ -15,7 +15,9 @@ export class MyApp {
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,private route: Router, private loadingController: LoadingController) {
     // AngularFireModule.initializeApp(config);
-    
+    platform.registerBackButtonAction(() => {
+      window.history.back();
+    })
     
     // console.log('main comp');
     AngularFireModule.initializeApp(config);

@@ -11,8 +11,8 @@ export class MailProvider {
     
   }
   sendMail(message, sender, recepeint,auth) {
-    this.header.append('Authorization',auth.token);
+    this.header.append('Authorization', 'Bearer '+auth.token);
     console.log(message, sender, recepeint,auth.token);
-    return this.http.post(API_URL+'mail/sendmail',{message,sender,recepeint},{headers: this.header});
+    return this.http.post(API_URL+'mail/sendmail',{message,sender,recepeint},{headers: {'Authorization': 'Bearer '+auth.token}});
   } 
 }

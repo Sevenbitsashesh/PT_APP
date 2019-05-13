@@ -175,15 +175,21 @@ export class NewworkoutComponent  implements AfterViewInit{
       work_pic: this.work_image,      
       work_days: this.exercisesDays
     }
-    if(this.exercisesDays.length > 6 && this.work_name && this.work_level) {
-      this.workService.addWorkout(newWork,this.auth.currentUserValue).subscribe(workItems => {
+    if(this.work_name && this.work_level) {
+      if(this.exercisesDays.length > 6) {
+        this.workService.addWorkout(newWork,this.auth.currentUserValue).subscribe(workItems => {
       
-        console.log(workItems);
-        if(workItems) {
-          this.nativeService.generateToast('New Workout Created','css','bottom');
-          window.history.back();
-        }
-      })
+          console.log(workItems);
+          if(workItems) {
+            this.nativeService.generateToast('New Workout Created','css','bottom');
+            window.history.back();
+          }
+        })
+      }
+      else {
+        this.nativeService.generateToast('Please Fill Exercise For Each Week.','css','bottom');
+      }
+      
     }
     else {
       this.nativeService.generateToast('Please fill details correctly!','css','bottom');

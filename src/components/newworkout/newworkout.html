@@ -117,7 +117,7 @@
                                   {{setOf['MON']}}
                                 </div> -->
                           <!-- {{item[0]}}  -->
-                          <i class="fas fa-minus-circle" id="sel_{{item}}" (click)="removeItem($event)"></i>
+                          <i class="fas fa-minus-circle" id="sel_{{item}}" (click)="removeItem(item)"></i>
                         </div> 
                         <div class="row-form" *ngIf="selectedDay === 'Tue' && item['TUE']">
                             
@@ -126,7 +126,7 @@
                               {{setOf['MON']}}
                             </div> -->
                       <!-- {{item[0]}}  -->
-                      <i class="fas fa-minus-circle" id="sel_{{item}}" (click)="removeItem($event)"></i>
+                      <i class="fas fa-minus-circle" id="sel_{{item}}" (click)="removeItem(item)"></i>
                     </div> 
                     <div class="row-form" *ngIf="selectedDay === 'Wed' && item['WED']">
                             
@@ -135,7 +135,7 @@
                           {{setOf['MON']}}
                         </div> -->
                   <!-- {{item[0]}}  -->
-                  <i class="fas fa-minus-circle" id="sel_{{item}}" (click)="removeItem($event)"></i>
+                  <i class="fas fa-minus-circle" id="sel_{{item}}" (click)="removeItem(item)"></i>
                 </div> 
                 <div class="row-form" *ngIf="selectedDay === 'Thur' && item['THUR']">
                             
@@ -144,7 +144,7 @@
                       {{setOf['MON']}}
                     </div> -->
               <!-- {{item[0]}}  -->
-              <i class="fas fa-minus-circle" id="sel_{{item}}" (click)="removeItem($event)"></i>
+              <i class="fas fa-minus-circle" id="sel_{{item}}" (click)="removeItem(item)"></i>
             </div> 
             <div class="row-form" *ngIf="selectedDay === 'Fri' && item['FRI']">
                             
@@ -153,7 +153,7 @@
                   {{setOf['MON']}}
                 </div> -->
           <!-- {{item[0]}}  -->
-          <i class="fas fa-minus-circle" id="sel_{{item}}" (click)="removeItem($event)"></i>
+          <i class="fas fa-minus-circle" id="sel_{{item['FRI'].exe_name}}" (click)="removeItem(item)"></i>
         </div> 
         <div class="row-form" *ngIf="selectedDay === 'Sat' && item['SAT']">
                             
@@ -162,7 +162,7 @@
               {{setOf['MON']}}
             </div> -->
       <!-- {{item[0]}}  -->
-      <i class="fas fa-minus-circle" id="sel_{{item}}" (click)="removeItem($event)"></i>
+      <i class="fas fa-minus-circle" id="sel_{{item}}" (click)="removeItem(item)"></i>
     </div>
     <div class="row-form" *ngIf="selectedDay === 'Sun' && item['SUN']">
                             
@@ -171,7 +171,7 @@
           {{setOf['MON']}}
         </div> -->
   <!-- {{item[0]}}  -->
-  <i class="fas fa-minus-circle" id="sel_{{item}}" (click)="removeItem($event)"></i>
+  <i class="fas fa-minus-circle" id="sel_{{item}}" (click)="removeItem(item)"></i>
 </div>
                         </div>
                             

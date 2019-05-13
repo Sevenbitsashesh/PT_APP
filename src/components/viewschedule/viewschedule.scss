@@ -37,7 +37,7 @@ viewschedule {
       background: #2b4450;
       border-radius: 4px;
       box-shadow: 0 5px 20px rgba(0, 0, 0, .3);
-      height: 501px;
+      height: 650px;
     perspective: 1000;
       transition: .9s;
       transform-style: preserve-3d;
@@ -230,4 +230,7 @@ viewschedule {
   .grid-items-list {
     background: rgb(21, 20, 52);
     color: rgb(216, 158, 81);
+  }
+  .weekday {
+      margin-right: 5px;
   }
