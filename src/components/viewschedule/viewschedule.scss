@@ -55,6 +55,7 @@ viewschedule {
       justify-content: space-between;
       padding: 30px 40px;
       width: 100%;
+      height: 50%;
   }
   
   .current-date h1 {
@@ -79,7 +80,7 @@ viewschedule {
   }
   
   .weeks {
-      color: #fff;
+      color: rgb(219, 219, 219);
       display: flex;
       flex-direction: column;
       padding: 0 40px;
@@ -114,7 +115,7 @@ viewschedule {
       font-weight: 600;
   }
   .active {
-    color: #3df736;
+    color: #f78536;
     transition: 1s;
   }
   .event {

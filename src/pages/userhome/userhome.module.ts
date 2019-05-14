@@ -31,7 +31,8 @@ import { ClientTab } from '../../components/clienttab/clienttab';
     TrainertabsComponent,
     TrainerTab,
     ClienttabsComponenet,
-    ClientTab
+    ClientTab,
+    UsertabsComponent
   ],
   imports: [
     IonicModule,

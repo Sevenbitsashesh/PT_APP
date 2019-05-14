@@ -40,7 +40,7 @@ export class DataProvider {
     this.userService.getUserData(currentUser, this.authService.getUserDetails())
     .subscribe(u => {
       this.user = [];
-      // console.log(u,currentUser, this.authDetails);
+      console.log(u,currentUser);
       this.user.push(u);
       this.userInfo.next(this.user);
     });

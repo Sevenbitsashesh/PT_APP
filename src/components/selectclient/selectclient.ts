@@ -21,7 +21,7 @@ export class SelectclientComponent {
           for(let i = 0;i < clientData.length; i++) {
             
             const client = clientData[i].client_workplan;
-            if(client) {
+            if(client[0]) {
               
                 
               if(client[0].workout_planid === this.navParam.get('workoutid')) {
@@ -31,6 +31,10 @@ export class SelectclientComponent {
                 this.unselectedClient.push(clientData[i])
                 console.log(this.unselectedClient)
               }
+              
+            }
+            else {
+              this.unselectedClient.push(clientData[i])
             }
           }
         })
@@ -83,7 +87,7 @@ export class SelectclientComponent {
         }
       })
     }
-    
+    this.goBack();
     
   }
 }
