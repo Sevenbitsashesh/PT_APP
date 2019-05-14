@@ -74,16 +74,16 @@ export class ViewscheduleComponent implements OnInit, OnChanges {
        let start = moment(data.clientinfo.startFrom.split('T')[0]);        
        let nextDay = start.add(i,'days').format('dddd');        
        let nextDate = start.format('YYYY-MM-DD')
-       
+       console.log(nextDay) 
        if(nextDay === 'Monday') {
          for(let j = 0;j < data.myWorkout.work_days.length ; j++) {
            if(data.myWorkout.work_days[j].MON) {
-            if(this.scheduleWork.find(works => works.date === nextDate)) {
+            // if(this.scheduleWork.find(works => works.date === nextDate)) {
               this.scheduleWork.push({
                 date: nextDate,
                 data: data.myWorkout.work_days[j].MON
               })  
-            }
+            // }
               
            }
           
@@ -210,12 +210,12 @@ export class ViewscheduleComponent implements OnInit, OnChanges {
     
   }
   selectDate(date: CalendarDate, workItem, event): void {
-
+console.log(date.mDate.format())
      this.selectedWorkout = undefined;
     // this.selectedWorkout = this.scheduleWork
     for(let j=0;j< this.scheduleWork.length; j++) {
-      // console.log(this.scheduleWork[j]['date'])
-      // console.log(date.mDate.format('YYYY-MM-DD'))
+      console.log(this.scheduleWork[j]['date'])
+      console.log(date.mDate.format('YYYY-MM-DD'))
       
       if(date.mDate.format('YYYY-MM-DD') === this.scheduleWork[j]['date']) {
         console.log('in')
