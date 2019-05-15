@@ -1,8 +1,10 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewChild } from '@angular/core';
 import { AuthProvider } from '../../providers/auth/auth';
 import { ExerciseProvider } from '../../providers/exercise/exercise';
 import { DataProvider } from '../../providers/data/data';
-import { ViewController, NavParams } from 'ionic-angular';
+import { ViewController, NavParams, ModalController } from 'ionic-angular';
+import { ExeSetsComponent } from '../../components/exe-sets/exe-sets';
+import { NativeProvider } from '../../providers/native/native';
 
 export class Sets {
   reps: number;      
@@ -16,14 +18,23 @@ export class ExeSelectionComponent implements OnInit{
   exercise;
   sets = [];
   @Output() emitter: EventEmitter<any[]> = new EventEmitter();
+  @ViewChild(ExeSetsComponent) exeSelectionCom: ExeSetsComponent;
   exeList = [];
-  constructor(private dataService: DataProvider, private auth: AuthProvider, private exeService: ExerciseProvider, private viewController: ViewController, private params: NavParams) {
-    
+  exerciseSelected;
+  constructor(private dataService: DataProvider, private auth: AuthProvider, private exeService: ExerciseProvider, private viewController: ViewController, private params: NavParams, private modal: ModalController, private nativeService: NativeProvider) {
+    this.viewController.onDidDismiss(data => {
+      
+    })
    
   }
   ngOnInit() {
-    if(this.params.get('exercise')) {
-      this.exercise = this.params.get('exercise');
+    if(this.params.get('exerciseMuscle')) {
+      const muscle = this.params.get('exerciseMuscle');
+      console.log(muscle);
+      this.exeService.getExercise(this.auth.currentUserValue,{exe_muscle: muscle.muscle_type}).subscribe(dataExercise => {
+      this.exercise = dataExercise;
+    })
+      
     }
   }
   receiveExercises(data) {
@@ -52,4 +63,23 @@ export class ExeSelectionComponent implements OnInit{
     console.log(this.sets);
    this.viewController.dismiss(this.sets);
   }
+  goBackExercise() {
+    this.viewController.dismiss();
+  }
+  goNextSets() {
+    if(this.exerciseSelected) {
+        this.modal.create(ExeSetsComponent,{exercise: this.exerciseSelected}).present().then(data => {
+          if(data) {
+            this.viewController.dismiss().then(dismiss => {
+              console.log('presenting')
+            });
+          }
+          
+        });
+    }
+    else {
+      this.nativeService.generateToast("Please Choose Exercise!","","bottom");
+    }    
+  }
+
 }

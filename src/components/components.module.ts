@@ -49,6 +49,7 @@ import { CustomMatPaginatorIntl } from '../providers/custom.paginator';
 import { ScheduleassessComponent } from './scheduleassess/scheduleassess';
 import { ExeSelectionComponent } from './exe-selection/exe-selection';
 import { SelectclientComponent } from './selectclient/selectclient';
+import { MuscleSlectionComponent } from './muscle-slection/muscle-slection';
 
 
 
@@ -94,6 +95,7 @@ import { SelectclientComponent } from './selectclient/selectclient';
     ScheduleassessComponent,
     ExeSelectionComponent,
     SelectclientComponent,
+    MuscleSlectionComponent,
 
     
         ],
@@ -133,10 +135,11 @@ import { SelectclientComponent } from './selectclient/selectclient';
     ScheduleassessComponent,
     ExeSelectionComponent,
     SelectclientComponent,
+    MuscleSlectionComponent,
 
 
 ],
-    entryComponents: [LoginComponent, FirstComponent, ProfileComponent, ExeSetsComponent, PaymentComponent, ScheduleassessComponent, ExeSelectionComponent, SelectclientComponent],
+    entryComponents: [LoginComponent, FirstComponent, ProfileComponent, ExeSetsComponent, PaymentComponent, ScheduleassessComponent, ExeSelectionComponent, SelectclientComponent, MuscleSlectionComponent],
     providers: [
         {provide: MatPaginatorIntl, useClass: CustomMatPaginatorIntl}
     ]

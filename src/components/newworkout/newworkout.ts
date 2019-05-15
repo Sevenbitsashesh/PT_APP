@@ -11,6 +11,9 @@ import { AuthProvider } from '../../providers/auth/auth';
 import { ExerciseProvider } from '../../providers/exercise/exercise';
 import { ExeSelectionComponent } from '../../components/exe-selection/exe-selection';
 import { iterateListLike } from '@angular/core/src/change_detection/change_detection_util';
+import { MuscleSlectionComponent } from '../../components/muscle-slection/muscle-slection';
+import { ExeSetsComponent } from '../../components/exe-sets/exe-sets';
+
 
 
 @Component({
@@ -37,7 +40,8 @@ export class NewworkoutComponent  implements AfterViewInit{
   listExer = [];
   selectedDay;
   exercises = [];
-  @ViewChild(ExeSelectionComponent) exeSelectionCom: ExeSelectionComponent;
+  //original
+  @ViewChild(ExeSetsComponent) exeSelectionCom: ExeSetsComponent;
   exercisesDays = [];
   constructor(private nativeService: NativeProvider, private workService: WorkoutProvider, private dataService: DataProvider, private actionsheet: ActionSheetController, private imageService: ImageProvider, private auth: AuthProvider, private exeService: ExerciseProvider, private modal: ModalController) {
    this.exeService.getExercises(auth.currentUserValue).subscribe(data => {
@@ -196,12 +200,12 @@ export class NewworkoutComponent  implements AfterViewInit{
     }
     
   }
-  removeItem(event) {
-    
-    const items = event.target.id.split('_');
-    const index = this.item1.indexOf(items[1]+'_'+items[2]);
-    this.item1.splice(index,index);
-    console.log(index);
+  removeItem(index) {
+   console.log(index);
+    // const items = event.target.id.split('_');
+    // const index = this.item1.indexOf(items[1]+'_'+items[2]);
+    this.exercisesDays.splice(index,1);
+    // console.log(index);
   }
   imageAction() {
     this.openActionsheet("camera").then(() => {
@@ -272,14 +276,10 @@ export class NewworkoutComponent  implements AfterViewInit{
         console.log(exeData);
         this.exercises = [];
         for(let i = 0; i < exeData.length; i++) {
-          
           if(exeData[i].exe_muscle === exeItem.muscle_type) {
             this.exercises.push(exeData[i]);
-          }
-          
-        }
-        
-        
+          } 
+        }       
       }
       else {
         this.exercises = [];
@@ -326,4 +326,8 @@ export class NewworkoutComponent  implements AfterViewInit{
      })
      
    }
+   addExercise() {
+     this.modal.create(MuscleSlectionComponent).present();
+   }
 }
+

@@ -4,26 +4,22 @@
         <ion-grid>
           <ion-row></ion-row>
           <ion-row style="text-align: center;">
-            <ion-col col-2><div (click)="goBackExercise()"><i class="fas fa-arrow-circle-left"></i></div></ion-col>
-            <ion-col col-8>Select Exercise</ion-col>
+            <ion-col col-2><div (click)="goBackMuscle()"><i class="fas fa-arrow-circle-left"></i></div></ion-col>
+            <ion-col col-8>Select Muscle</ion-col>
             
           </ion-row>
         </ion-grid>
       </div>
-  
 </ion-header>
 <ion-content>
-    <div class="exercise"></div>
-  
-       
-          <ion-grid>     
-              <ion-list no-lines radio-group [(ngModel)]="exerciseSelected">
+<ion-grid>     
+              <ion-list no-lines radio-group [(ngModel)]="muscleSelected">
                   
-                      <ion-item *ngFor="let item of exercise">
+                      <ion-item *ngFor="let item of listExer">
                           <ion-avatar item-left>
                             <img [src]=item.url>
                           </ion-avatar>
-                          <ion-label>{{item.exe_name}}</ion-label>
+                          <ion-label>{{item.muscle_type}}</ion-label>
                           <ion-radio item-right sing [value]=item></ion-radio>
                           </ion-item>              
           </ion-list>
@@ -31,12 +27,8 @@
   
 </ion-grid>
 <ion-fab bottom right >
-    <button ion-fab (click)="goNextSets()">Next</button>
+    <button ion-fab (click)="goNextExercise()">NEXT</button>
     
     
   </ion-fab>
-    
-    
-
 </ion-content>
-  
