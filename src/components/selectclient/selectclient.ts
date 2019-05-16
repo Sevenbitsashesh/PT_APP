@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ViewController, NavParams } from 'ionic-angular';
+import { ViewController, NavParams, LoadingController } from 'ionic-angular';
 import { WorkoutProvider } from '../../providers/workout/workout';
 import { AuthProvider } from '../../providers/auth/auth';
 import { DataProvider } from '../../providers/data/data';
@@ -14,10 +14,17 @@ import { NativeProvider } from '../../providers/native/native';
 export class SelectclientComponent {
   selectedClient = [];
   unselectedClient = [];
-  constructor(private viewController: ViewController,private authService: AuthProvider,private dataService: DataProvider ,private workService: WorkoutProvider, private clientSrevice: ClientProvider, private navParam: NavParams, private nativeService: NativeProvider) {
-    this.dataService.clientInfoObs.subscribe(da => {
+  work_name;
+  constructor(private viewController: ViewController,private authService: AuthProvider,private dataService: DataProvider ,private workService: WorkoutProvider, private clientSrevice: ClientProvider, private navParam: NavParams, private nativeService: NativeProvider, private loadingCntrl: LoadingController) {
+    const loading = this.loadingCntrl.create({
+      content: "Loading",
+      spinner: "dots"
+    });
+    this.work_name = this.navParam.get('workoutname')
+    loading.present().then(loadingData => {
+      this.dataService.clientInfoObs.subscribe(da => {
         this.clientSrevice.getMyClients(da,authService.currentUserValue).subscribe(clientData => {
-          
+          loading.dismiss()
           for(let i = 0;i < clientData.length; i++) {
             
             const client = clientData[i].client_workplan;
@@ -39,6 +46,8 @@ export class SelectclientComponent {
           }
         })
     })
+    })
+    
     // this.clientSrevice.getMyClients(dataService.clientInfo.,)
     this.viewController.onDidDismiss(data => {
       // console.log('Dismissing')

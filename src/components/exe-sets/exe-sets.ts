@@ -3,6 +3,7 @@ import { AuthProvider } from '../../providers/auth/auth';
 import { ExerciseProvider } from '../../providers/exercise/exercise';
 import { DataProvider } from '../../providers/data/data';
 import { ViewController, NavParams } from 'ionic-angular';
+import { NativeProvider } from '../../providers/native/native';
 
 export class Sets {
   reps: number;      
@@ -19,10 +20,8 @@ export class ExeSetsComponent implements OnInit{
   @Output() emitter: EventEmitter<any[]> = new EventEmitter();
   exeList = [];
   selected: boolean = false;
-  constructor(private dataService: DataProvider, private auth: AuthProvider, private exeService: ExerciseProvider, private viewController: ViewController, private params: NavParams) {
-    this.viewController.onDidDismiss(data => {
-      console.log(data);
-    })
+  constructor(private dataService: DataProvider, private auth: AuthProvider, private exeService: ExerciseProvider, private viewController: ViewController, private params: NavParams, private nativeService: NativeProvider) {
+    
    
   }
   ngOnInit() {
@@ -34,8 +33,9 @@ export class ExeSetsComponent implements OnInit{
     console.log(data);
   }
   closeView() {
-    this.viewController.dismiss().then(disData => {
-      console.log('Dismissed Data');
+    this.sets = [];
+    this.viewController.dismiss(this.sets).then(disData => {
+      console.log('Dismissed sets');
     })
   }
   newSet() {
@@ -54,8 +54,13 @@ export class ExeSetsComponent implements OnInit{
   }
   setExercise() {
     console.log(this.sets);
-    if(this.sets) {
-      this.viewController.dismiss(this.sets);
+    if(this.sets.length > 0) {
+      this.viewController.dismiss(this.sets).then(dissdata => {
+        console.log('dissmissed sets');
+      });
     } 
+    else {
+    this.nativeService.generateToast("Please Select Sets","","bottom");
+    }
   }
 }

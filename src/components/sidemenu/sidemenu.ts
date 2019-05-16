@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthProvider } from '../../providers/auth/auth';
+import { LoadingController } from 'ionic-angular';
 
 
 @Component({
@@ -9,7 +10,7 @@ import { AuthProvider } from '../../providers/auth/auth';
 })
 export class SidemenuComponent {
   @Input() currentUser;
-  constructor(private router: Router, private authService: AuthProvider) {
+  constructor(private router: Router, private authService: AuthProvider, private loadingCntrl: LoadingController) {
     
   }
   navClients() {
@@ -37,9 +38,11 @@ export class SidemenuComponent {
     document.getElementById("mySidenav").style.width = '0%';
   }
   logout() {
-    this.authService.logout().then(status => {
-      location.reload();
-    })
+      this.authService.logout().subscribe(() => {    
+          location.reload();
+      })
+    
+    
   }  
   
 }

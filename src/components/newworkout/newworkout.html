@@ -193,23 +193,7 @@
                       </ion-slides>
                     
                 </ion-row>
-  <ion-row>
-    <ion-col>
-        <div *ngIf="exercises.length < 1">
-            No record
-        </div>
-        <div class="exercise" *ngFor="let item of exercises" (click)="modalExerciseSelection(item)">
-            <ion-grid>
-              <ion-row>
-                <ion-col>
-                    {{item.exe_name}}
-                </ion-col>
-                
-              </ion-row>
-            </ion-grid>
-        </div>
-    </ion-col>
-  </ion-row>
+ 
   
           </ion-grid>  
   

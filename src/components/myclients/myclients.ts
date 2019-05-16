@@ -5,7 +5,7 @@ import { AuthProvider } from '../../providers/auth/auth';
 import { UserProvider } from '../../providers/user/user';
 import { delay } from 'rxjs/operators';
 import { ClientModel } from '../../Models/client.model';
-import { NavController, ModalController } from 'ionic-angular';
+import { NavController, ModalController, LoadingController } from 'ionic-angular';
 import { ClientdetailsComponent } from '../../components/clientdetails/clientdetails';
 import { Router } from '@angular/router';
 import { ScheduleassessComponent } from '../../components/scheduleassess/scheduleassess';
@@ -20,25 +20,32 @@ export class MyclientsComponent implements AfterViewInit {
 @Input() currentUser;
   myclients = [];
   selectedClient: boolean;
-  constructor(private dataService: DataProvider,private userService: UserProvider, private clientService: ClientProvider, private authService: AuthProvider, private router: Router, private modal:ModalController) {
+  constructor(private dataService: DataProvider,private userService: UserProvider, private clientService: ClientProvider, private authService: AuthProvider, private router: Router, private modal:ModalController, private loadingCntrl: LoadingController) {
     // this.getMyClients();
-    
+   
   }
   getMyClients() {
-    
-    this.dataService.userInfoObs.subscribe(da => {
-      // delay(3000);
-      if(da.length > 0) {
-        this.clientService.getMyClients(da,this.authService.currentUserValue).subscribe(clientsData => {
-          if(clientsData.length > 0) {
-            this.myclients = clientsData;
-            console.log(clientsData);
-          }
-          
-        });
-      }
-      
+    const loading = this.loadingCntrl.create({
+      content: "Loading clients..."
     })
+    loading.present().then(loadingData => {
+      this.dataService.userInfoObs.subscribe(da => {
+        // delay(3000);
+        if(da.length > 0) {
+          this.clientService.getMyClients(da,this.authService.currentUserValue).subscribe(clientsData => {
+            loading.dismiss()
+            if(clientsData.length > 0) {
+              
+              this.myclients = clientsData;
+              console.log(clientsData);
+            }
+            
+          });
+        }
+        
+      })
+    })
+    
   }
   getItems(event) {
     const da = event.target.value;    

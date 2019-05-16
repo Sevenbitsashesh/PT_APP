@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, Nav } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Nav, LoadingController } from 'ionic-angular';
 import { NewworkoutComponent } from '../../../components/newworkout/newworkout';
 import { Router } from '@angular/router';
 import { UserDetails, AuthProvider } from '../../../providers/auth/auth';
@@ -25,8 +25,9 @@ export class TabworkoutsPage  {
   authDetails: TokenPayload;
     currentUserSubscription: Subscription;  
   constructor(private router: Router, private authService: AuthProvider, private userService: UserProvider, private dataService: DataProvider, private adMob: AdMobFree) {
+    
     this.currentUserSubscription = this.authService.currentUser.subscribe(user => {
-      
+    
       this.currentUser = user;      
       // this.authDetails = this.authService.getUserDetails();
       
@@ -51,9 +52,9 @@ export class TabworkoutsPage  {
     document.getElementById('notificationDiv').classList.remove('click-not-slider-bar');
   }
   logout() {
-    this.authService.logout().then(() => {
-      console.log('Logged out Success');
-    });
+    // this.authService.logout().then(() => {
+    //   console.log('Logged out Success');
+    // });
   }
   clickNotification() {
     document.getElementById("mySidenav").style.width = '0%';

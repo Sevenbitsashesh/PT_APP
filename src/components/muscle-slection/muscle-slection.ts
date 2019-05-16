@@ -28,13 +28,23 @@ export class MuscleSlectionComponent {
   }
   goNextExercise() {
     if(this.muscleSelected) {
-      console.log(this.muscleSelected)
-      this.modal.create(ExeSelectionComponent,{exerciseMuscle: this.muscleSelected}).present().then(muscleData => {
+      // console.log(this.muscleSelected)
+     const modal = this.modal.create(ExeSelectionComponent,{exerciseMuscle: this.muscleSelected})
+     modal.present().then(() => {
         
-        this.viewController.dismiss().then(exeData => {
+        
+        modal.onWillDismiss(data => {
+          console.log(data);
+          if(data && data.sets.length > 0 && data.exercise) {
+            console.log(data);
+        this.viewController.dismiss({sets: data.sets, exercise: data.exercise, muscle: this.muscleSelected}).then(exeData => {
             console.log('Exercise Added')
+        })    
+          }
+          
         })
       });
+      
     }
     else {
       this.nativeService.generateToast("Please Select Muscle Type","","bottom");

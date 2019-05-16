@@ -5,7 +5,7 @@ import { API_URL,LOCAL_API_URL } from '../../Models/api_url';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { map, share } from 'rxjs/operators';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
-import { FabButton } from 'ionic-angular';
+import { FabButton, LoadingController } from 'ionic-angular';
 import { SocialUser } from '../../components/login/login';
 
 
@@ -38,7 +38,7 @@ export class AuthProvider {
   private token: string;
   currentUserSubject: BehaviorSubject<UserDetails>;
   public currentUser: Observable<UserDetails>;
-  constructor(private router: Router, private http: HttpClient, private fb: Facebook) {
+  constructor(private router: Router, private http: HttpClient, private fb: Facebook, private loadingCntrl: LoadingController) {
 //new auth    
     if(localStorage.getItem('swaUser')) {
 this.currentUserSubject = new BehaviorSubject<UserDetails>(JSON.parse(localStorage.getItem('swaUser')));
@@ -133,13 +133,24 @@ this.currentUserSubject = new BehaviorSubject<UserDetails>(JSON.parse(localStora
     else
       this.router.navigate(['/login']);
   }
-  logout(): Promise<any> {
+  // logout(): Promise<any> {
+  logout(): Observable<any> {
     // console.log(this.token);
-    return new Promise(() => {
-      this.token = '';
-      window.localStorage.removeItem('swaUser');
-      this.router.navigateByUrl('/login');
-    })    
+    const loading = this.loadingCntrl.create({
+      content: "logging out..."
+    });
+    loading.present();
+    return new Observable(() => {
+      
+     loading.dismiss();
+        this.token = '';
+        window.localStorage.removeItem('swaUser');
+        this.router.navigateByUrl('/login');
+      
+    })
+      
+      
+    
   }
   loginFacebook() : Promise<any> {
     

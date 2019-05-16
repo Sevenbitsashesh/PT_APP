@@ -5,7 +5,7 @@ import { DataProvider } from '../../providers/data/data';
 import { Observable } from 'rxjs';
 import { MealProvider } from '../../providers/meal/meal';
 import { ClientProvider } from '../../providers/client/client';
-import { ModalController } from 'ionic-angular';
+import { ModalController, LoadingController } from 'ionic-angular';
 import { PaymentComponent } from '../../components/payment/payment';
 import { NativeProvider } from '../../providers/native/native';
 import { MailProvider } from '../../providers/mail/mail';
@@ -46,7 +46,7 @@ export class NewclientComponent implements OnChanges, OnInit  {
   client_measurement =new ClientMeasure();
   showPassword = false;
   eyeIcon = "eye";
-  constructor(private formBuilder: FormBuilder, private workService: WorkoutProvider, private dataService: DataProvider, private mealService: MealProvider, private clientService: ClientProvider, private modal: ModalController, private nativeService: NativeProvider, private mailService: MailProvider, private authService: AuthProvider, private router: Router) {
+  constructor(private formBuilder: FormBuilder, private workService: WorkoutProvider, private dataService: DataProvider, private mealService: MealProvider, private clientService: ClientProvider, private modal: ModalController, private nativeService: NativeProvider, private mailService: MailProvider, private authService: AuthProvider, private router: Router, private loadingCntrl: LoadingController) {
     this.firstFormGroup = formBuilder.group({
       // fname: ['', Validators.pattern("^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$")],
       fname: ['', Validators.required],
@@ -116,32 +116,41 @@ export class NewclientComponent implements OnChanges, OnInit  {
       // this.mailService.sendMail({message: 'Your email is : '+email+' and password is :'+this.firstFormGroup.get('pass').value+' '+'Login in to PT_APP'},{sender: 'patel.abhishek@tristonsoft.com'},{recepeint: this.firstFormGroup.get('email').value},{token: this.authService.currentUserValue.token}).subscribe(mailData => {
       //   console.log(mailData);
       // });
-
+    const loading = this.loadingCntrl.create({
+      content: "Please wait..."
+    });
+    
       if(this.firstFormGroup.get('pass').value === this.firstFormGroup.get('cpass').value) {
         if(this.firstFormGroup.valid == true && this.secondFormGroup.valid == true) {
           const clientModel = {fname: this.firstFormGroup.get('fname').value,email: email, lname: this.firstFormGroup.get('lname').value,"client_goal": this.secondFormGroup.get('client_goal').value,"client_level": 'beginner', "trainerid": this.dataService.u.userid, "client_measurement": this.client_measurement, "dob": this.firstFormGroup.get('dob').value, "gender": this.firstFormGroup.get('gender').value, clientinfoid: '', password: this.firstFormGroup.get('pass').value };    
           console.log(clientModel);
+          loading.present().then(loadingData => {
           this.clientService.addClient(clientModel,this.authService.currentUserValue).subscribe((data) => {
+            
             // this.openModal();
             console.log(data);
             if(!data.error) {
               this.nativeService.generateToast('Client Added',"","bottom");
               
               this.mailService.sendMail({message: 'Your email is : '+email+' and password is :'+this.firstFormGroup.get('pass').value+' '+'Login in to PT_APP'},{sender: 'patel.abhishek@tristonsoft.com'},{recepeint: this.firstFormGroup.get('email').value},{token: this.authService.currentUserValue.token}).subscribe(mailData => {
+                loading.dismiss();
                 window.location.reload();
               });
               
             }
             else {
               this.nativeService.generateToast(data.error,"","bottom");
+              loading.dismiss();
             }
             
             
           },(error) => {    
               
           this.nativeService.generateToast('Error Adding Client',"","bottom");
+          loading.dismiss();
           }
           );    
+        });
         }
         else {
             this.nativeService.generateToast('Please Fill the details Correctly','toast-error',"middle");
@@ -150,6 +159,8 @@ export class NewclientComponent implements OnChanges, OnInit  {
       else {
         this.nativeService.generateToast('Password & Confirm Password should Match','','bottom');
       }
+    
+      
     
     
   }

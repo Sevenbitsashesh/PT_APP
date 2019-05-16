@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { AuthProvider, UserDetails, TokenPayload } from '../../../providers/auth/auth';
 import { UserProvider } from '../../../providers/user/user';
 import { DataProvider } from '../../../providers/data/data';
@@ -21,7 +21,7 @@ export class TabClientsPage {
   userInfo: UserInfo;
   authDetails: TokenPayload;
   currentUserSubscription: Subscription;  
-  constructor(private authService: AuthProvider, private userService: UserProvider, private dataService: DataProvider, private adMob: AdMobFree) {
+  constructor(private authService: AuthProvider, private userService: UserProvider, private dataService: DataProvider, private adMob: AdMobFree, private loadingCntrl: LoadingController) {
     this.client = 'listclients';
     this.currentUserSubscription = this.authService.currentUser.subscribe(user => {
       
@@ -49,9 +49,9 @@ export class TabClientsPage {
     document.getElementById('notificationDiv').classList.remove('click-not-slider-bar');
   }
   logout() {
-    this.authService.logout().then(() => {
-      console.log('Logged out Success');
-    });
+    // this.authService.logout().then(() => {   
+    //   console.log('Logged out Success');
+    // });
   }
   clickNotification() {
     document.getElementById("mySidenav").style.width = '0%';

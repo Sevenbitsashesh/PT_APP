@@ -10,6 +10,7 @@ import 'rxjs/add/operator/delay';
 import 'rxjs/add/operator/filter';
 import {  existingUsernameValidator } from '../../directives/existing-userid-validator/existing-userid-validator';
 import { NativeProvider } from '../../providers/native/native';
+import { LoadingController } from 'ionic-angular';
 
 
 
@@ -103,7 +104,7 @@ export class SigninComponent implements OnInit {
   arrow: string = "../../assets/icon/arrowdown.new.png";
   eyeIcon = "eye";
   showPassword: boolean = false;
-  constructor(private authService: AuthProvider, private router: Router, private userService: UserProvider, private nativeService: NativeProvider) {
+  constructor(private authService: AuthProvider, private router: Router, private userService: UserProvider, private nativeService: NativeProvider, private loadingCntrl: LoadingController) {
 
     // authService.checkLogin();
   }
@@ -130,7 +131,10 @@ export class SigninComponent implements OnInit {
   }
   
   getLogin() {        
-
+    const loading = this.loadingCntrl.create({
+      content: "Please wait..."
+    });
+    
     if(navigator.onLine) {
       document.getElementById('btn-login').classList.add('btn-login-click');
       document.getElementById('btn-login').innerHTML = 'Please Wait';
@@ -139,14 +143,16 @@ export class SigninComponent implements OnInit {
         password: this.loginForm.get('pass').value
         
       }
+      loading.present();
       this.authService.signInEmail(credentials).subscribe((data) => {
         if(data.message !== 'failed') {
-          
+          loading.dismiss();
           this.nativeService.generateNoti('Welcome '+credentials.email);
           window.location.reload();
           // this.router.navigate(['/userhome']);          
         }
         else {
+          loading.dismiss();
           this.msg = 'Please enter valid details!';
           document.getElementById('btn-login').classList.remove('btn-login-click');
           document.getElementById('btn-login').innerHTML = 'Login';

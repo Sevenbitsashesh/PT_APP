@@ -14,7 +14,7 @@ export class ListverticalComponent {
   }
   gotoDetails(item) {
     console.log(item);
-    const selectModal = this.modalCtrl.create(SelectclientComponent,{workoutid: item});
+    const selectModal = this.modalCtrl.create(SelectclientComponent,{workoutid: item.id, workoutname: item.work_name});
     selectModal.present()
     // .then(dataClient => {
     //   console.log(dataClient);

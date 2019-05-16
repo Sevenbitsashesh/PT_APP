@@ -68,13 +68,18 @@ export class ExeSelectionComponent implements OnInit{
   }
   goNextSets() {
     if(this.exerciseSelected) {
-        this.modal.create(ExeSetsComponent,{exercise: this.exerciseSelected}).present().then(data => {
-          if(data) {
-            this.viewController.dismiss().then(dismiss => {
-              console.log('presenting')
-            });
-          }
+        const modal = this.modal.create(ExeSetsComponent,{exercise: this.exerciseSelected})
+        modal.present().then(() => {
           
+            
+             modal.onDidDismiss(setsdata => {
+               console.log(setsdata)
+               if(setsdata.length > 0) {
+            this.viewController.dismiss({sets: setsdata, exercise: this.exerciseSelected}).then(dismiss => {
+              console.log('dismissed exercise')
+            });              
+               }
+             })          
         });
     }
     else {

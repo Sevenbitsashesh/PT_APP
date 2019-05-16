@@ -5,7 +5,7 @@ import * as anime from 'animejs';
 import { NativeProvider } from '../../providers/native/native';
 import { WorkoutProvider } from '../../providers/workout/workout';
 import { DataProvider } from '../../providers/data/data';
-import { ActionSheetController, ModalController } from 'ionic-angular';
+import { ActionSheetController, ModalController, LoadingController } from 'ionic-angular';
 import { ImageProvider } from '../../providers/image/image';
 import { AuthProvider } from '../../providers/auth/auth';
 import { ExerciseProvider } from '../../providers/exercise/exercise';
@@ -43,7 +43,7 @@ export class NewworkoutComponent  implements AfterViewInit{
   //original
   @ViewChild(ExeSetsComponent) exeSelectionCom: ExeSetsComponent;
   exercisesDays = [];
-  constructor(private nativeService: NativeProvider, private workService: WorkoutProvider, private dataService: DataProvider, private actionsheet: ActionSheetController, private imageService: ImageProvider, private auth: AuthProvider, private exeService: ExerciseProvider, private modal: ModalController) {
+  constructor(private nativeService: NativeProvider, private workService: WorkoutProvider, private dataService: DataProvider, private actionsheet: ActionSheetController, private imageService: ImageProvider, private auth: AuthProvider, private exeService: ExerciseProvider, private modal: ModalController, private loadingCntrl: LoadingController) {
    this.exeService.getExercises(auth.currentUserValue).subscribe(data => {
      console.log(data);
    })
@@ -169,7 +169,9 @@ export class NewworkoutComponent  implements AfterViewInit{
     }
   }
   newWorkoutCreate() {
-    
+    const loading = this.loadingCntrl.create({
+      content: "Please wait..."
+    });    
     console.log(this.work_tagcolor);
     const newWork = {
       work_name: this.work_name,
@@ -179,25 +181,31 @@ export class NewworkoutComponent  implements AfterViewInit{
       work_pic: this.work_image,      
       work_days: this.exercisesDays
     }
-    if(this.work_name && this.work_level) {
-      if(this.exercisesDays.length > 6) {
-        this.workService.addWorkout(newWork,this.auth.currentUserValue).subscribe(workItems => {
-      
-          console.log(workItems);
-          if(workItems) {
-            this.nativeService.generateToast('New Workout Created','css','bottom');
-            window.history.back();
-          }
+    
+      if(this.work_name && this.work_level) {
+        if(this.exercisesDays.length > 6) {
+          loading.present().then(loadingData => {
+          this.workService.addWorkout(newWork,this.auth.currentUserValue).subscribe(workItems => {
+            loading.dismiss();
+            console.log(workItems);
+            if(workItems) {
+              
+              this.nativeService.generateToast('New Workout Created','css','bottom');
+              window.history.back();
+            }
+          })
         })
+        }
+        else {
+          this.nativeService.generateToast('Please Fill Exercise For Each Week.','css','bottom');
+        }
+        
       }
       else {
-        this.nativeService.generateToast('Please Fill Exercise For Each Week.','css','bottom');
+        this.nativeService.generateToast('Please fill details correctly!','css','bottom');
       }
-      
-    }
-    else {
-      this.nativeService.generateToast('Please fill details correctly!','css','bottom');
-    }
+    
+    
     
   }
   removeItem(index) {
@@ -287,16 +295,15 @@ export class NewworkoutComponent  implements AfterViewInit{
     });
     
   }
-   modalExerciseSelection(exercise) {
+   modalExerciseSelection(exercise,sets) {
      
-     const modal = this.modal.create(ExeSelectionComponent,{exercise: exercise});
-     modal.present();
+    
      const day = this.selectedDay;
      console.log(day);
-     modal.onDidDismiss(data => {
-       console.log(data);       
-       if(data.length > 0) {
-        exercise['sets'] = data;
+    
+       console.log(exercise);       
+       if(exercise) {
+        exercise['sets'] = sets;
         if(day === "Mon") {
           this.exercisesDays.push({MON: exercise});  
         }
@@ -323,11 +330,24 @@ export class NewworkoutComponent  implements AfterViewInit{
        }
        console.log(this.exercisesDays);
       
-     })
+    
      
    }
    addExercise() {
-     this.modal.create(MuscleSlectionComponent).present();
+     if(this.selectedDay) {
+      const modal = this.modal.create(MuscleSlectionComponent)
+      modal.present().then(() => {
+        console.log('Muscle Selection')
+        modal.onDidDismiss(dataStatus => {
+          console.log(dataStatus);
+          this.modalExerciseSelection(dataStatus.exercise, dataStatus.sets)
+        })
+      });
+     }
+     else {
+       this.nativeService.generateToast("Please select Day!","","bottom");
+     }
+     
    }
 }
 

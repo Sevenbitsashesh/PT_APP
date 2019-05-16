@@ -75,9 +75,9 @@ clickedContent() {
   document.getElementById('notificationDiv').classList.remove('click-not-slider-bar');
 }
 logout() {
-  this.authService.logout().then(() => {
-    console.log('Logged out Success');
-  });
+  // this.authService.logout().then(() => {
+  //   console.log('Logged out Success');
+  // });
 }
 clickNotification() {
   document.getElementById("mySidenav").style.width = '0%';

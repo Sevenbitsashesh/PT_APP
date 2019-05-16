@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { DataProvider } from '../../providers/data/data';
 import { WorkoutProvider } from '../../providers/workout/workout';
 import { AuthProvider } from '../../providers/auth/auth';
+import { LoadingController } from 'ionic-angular';
 
 export class WorkoutDetails  {
   work_name: string;
@@ -34,9 +35,13 @@ class ExeSet {
 export class ListworkoutsComponent {
 
   workouts: WorkoutDetails[];
-  constructor(private dataService: DataProvider, private workService: WorkoutProvider, private auth: AuthProvider) {
-    
+  constructor(private dataService: DataProvider, private workService: WorkoutProvider, private auth: AuthProvider, private loadingCntrl: LoadingController) {
+  const loading = this.loadingCntrl.create({
+    content: "Loading workouts..."
+  })  
+  loading.present().then(() => {
     workService.getMyWorkouts(dataService.u,this.auth.currentUserValue).subscribe((data) => {
+      loading.dismiss();
       if(!data.message) {
         console.log(data);
         this.workouts = data;
@@ -48,6 +53,8 @@ export class ListworkoutsComponent {
         console.log('out')
       }
     })
+  })
+    
   }
   
 }

@@ -9,7 +9,7 @@
         <div><img class="img-list" [src]=item.work_pic></div>      
     </ion-col>
   </ion-row> -->
-  <ion-row style="text-align: center;" (click)="gotoDetails(item.id)" *ngFor="let item of workouts">
+  <ion-row style="text-align: center;" (click)="gotoDetails(item)" *ngFor="let item of workouts">
       <ion-col col-12 >
         <div>Assign To Client</div>
           <div class="workoutname-list">{{item.work_name}}</div>
