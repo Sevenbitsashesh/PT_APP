@@ -30,19 +30,10 @@ export class ViewscheduleComponent implements OnInit, OnChanges {
   schedules: Observable<any>;
   scheduleWork = [];
   selectedWorkout;
-  
+  workoutFollow;  
   // @Input() defaultDate: ElementRef;
   constructor(private workoutService: WorkoutProvider, private dataService: DataProvider, private authService: AuthProvider, private clientService: ClientProvider) {
-    this.currentDate = moment();
-    
-    
-    this.dataService.userInfo.subscribe(client => {
-      if(client.length > 0) {
-        // console.log(client)
-      this.getMyData(client);
-      }
-        
-    })
+  
   }
   getMyData(client) {
    
@@ -57,8 +48,9 @@ export class ViewscheduleComponent implements OnInit, OnChanges {
     this.workoutService.getMyWorkoutPlan(this.dataService.u.userid,this.authService.currentUserValue,dataClient[0].client_workplan[0].workout_planid).subscribe(myWorkout => {
       // dataClient[0].startFrom
       
-    
+      
    this.schedules =  new Observable(observer => {
+    
       observer.next({myWorkout, clientinfo: this.clientinfo});
       
       observer.complete();  
@@ -68,7 +60,7 @@ export class ViewscheduleComponent implements OnInit, OnChanges {
       this.scheduleWork = [];
    // console.log(data.clientinfo.client_workplan[0].weeks * 7)  ;
       let exe;
-      
+      console.log(data)
 
      for(let i = 0; i < data.clientinfo.client_workplan[0].weeks * 7; i++) {
        let start = moment(data.clientinfo.startFrom.split('T')[0]);        
@@ -161,6 +153,16 @@ export class ViewscheduleComponent implements OnInit, OnChanges {
   }
   ngOnInit(): void {
     this.generateCalendar();
+    this.currentDate = moment();
+    
+    
+    this.dataService.userInfo.subscribe(client => {
+      if(client.length > 0) {
+        // console.log(client)
+      this.getMyData(client);
+      }
+        
+    })
   }
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.selectedDates &&

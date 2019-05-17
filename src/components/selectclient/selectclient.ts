@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { ViewController, NavParams, LoadingController } from 'ionic-angular';
 import { WorkoutProvider } from '../../providers/workout/workout';
 import { AuthProvider } from '../../providers/auth/auth';
@@ -11,9 +11,11 @@ import { NativeProvider } from '../../providers/native/native';
   selector: 'selectclient',
   templateUrl: 'selectclient.html'
 })
-export class SelectclientComponent {
+export class SelectclientComponent implements OnDestroy {
   selectedClient = [];
   unselectedClient = [];
+  asign = [];
+  unasign = [];
   work_name;
   constructor(private viewController: ViewController,private authService: AuthProvider,private dataService: DataProvider ,private workService: WorkoutProvider, private clientSrevice: ClientProvider, private navParam: NavParams, private nativeService: NativeProvider, private loadingCntrl: LoadingController) {
     const loading = this.loadingCntrl.create({
@@ -58,19 +60,25 @@ export class SelectclientComponent {
       console.log(dismisData)
     })
   }
-  unassign(item) {
-    console.log(item);
-    const arr = this.selectedClient.indexOf(item);
-    console.log(arr)
-     this.selectedClient.splice(arr,1)
-     this.unselectedClient.push(item);
+  unassign(item) {    
+    const arr = this.selectedClient.indexOf(item);    
+    this.selectedClient.splice(arr,1)[0];
+      // this.unasign.push(this.selectedClient.splice(arr,1)[0]);      
+      // this.asign.splice(item,1);    
+       this.unselectedClient.push(item);
+       console.log(this.asign)
+       console.log(this.unasign) 
   }
-  assign(item) {
-    
-    const arr = this.unselectedClient.indexOf(item);
-    
-    this.unselectedClient.splice(arr,1)
+  assign(item) {    
+    const arr = this.unselectedClient.indexOf(item);    
+    this.unselectedClient.splice(arr,1)[0]
+    // this.asign.push(this.unselectedClient.splice(arr,1)[0]);      
     this.selectedClient.push(item);
+    // this.unasign.splice(item,1);
+    console.log(this.asign)
+    console.log(this.unasign) 
+    
+    
   }
   saveClients() {
     // Remove Workout To Client
@@ -80,7 +88,6 @@ export class SelectclientComponent {
       this.clientSrevice.updateClientWorkout('',this.unselectedClient[i].id,this.authService.currentUserValue).take(1).subscribe(data => {
         if(data['message'] === "success") {
           // window.history.back();
-          
         }
       })
     }
@@ -97,6 +104,9 @@ export class SelectclientComponent {
       })
     }
     this.goBack();
+    
+  }
+  ngOnDestroy() {
     
   }
 }

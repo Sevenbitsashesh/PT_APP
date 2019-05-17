@@ -14,9 +14,7 @@ import { Subscription } from 'rxjs';
   templateUrl: 'tab-clients.html',
 })
 export class TabClientsPage {
-  
   client;
-
   currentUser: UserDetails;
   userInfo: UserInfo;
   authDetails: TokenPayload;
@@ -29,6 +27,7 @@ export class TabClientsPage {
       // this.authDetails = this.authService.getUserDetails();
       
      this.dataService.getUserData(user);
+     
   });
   }
   openNav() {
