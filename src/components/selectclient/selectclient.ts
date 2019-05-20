@@ -35,10 +35,10 @@ export class SelectclientComponent implements OnDestroy {
                 
               if(client[0].workout_planid === this.navParam.get('workoutid')) {
                   this.selectedClient.push(clientData[i])
-                  console.log(this.selectedClient)
+                  // console.log(this.selectedClient)
               } else {
                 this.unselectedClient.push(clientData[i])
-                console.log(this.unselectedClient)
+                // console.log(this.unselectedClient)
               }
               
             }
@@ -62,46 +62,50 @@ export class SelectclientComponent implements OnDestroy {
   }
   unassign(item) {    
     const arr = this.selectedClient.indexOf(item);    
+    item.unassign = true;
     this.selectedClient.splice(arr,1)[0];
       // this.unasign.push(this.selectedClient.splice(arr,1)[0]);      
       // this.asign.splice(item,1);    
        this.unselectedClient.push(item);
-       console.log(this.asign)
-       console.log(this.unasign) 
+       
   }
   assign(item) {    
-    const arr = this.unselectedClient.indexOf(item);    
+    // item.client_workplan[0].oldworkout_planid = item.client_workplan[0].workout_planid;
+    
+    const arr = this.unselectedClient.indexOf(item);  
+    item.asign = true;  
     this.unselectedClient.splice(arr,1)[0]
     // this.asign.push(this.unselectedClient.splice(arr,1)[0]);      
     this.selectedClient.push(item);
     // this.unasign.splice(item,1);
-    console.log(this.asign)
-    console.log(this.unasign) 
-    
     
   }
   saveClients() {
     // Remove Workout To Client
     
     for(let i = 0; i < this.unselectedClient.length; i++) {
-      
+     
       this.clientSrevice.updateClientWorkout('',this.unselectedClient[i].id,this.authService.currentUserValue).take(1).subscribe(data => {
         if(data['message'] === "success") {
           // window.history.back();
         }
       })
+     
+      
     }
 
 
     // // Add Workout To Client
     for(let i = 0; i < this.selectedClient.length; i++) {
-      
-      this.clientSrevice.updateClientWorkout(this.navParam.get('workoutid'),this.selectedClient[i].id,this.authService.currentUserValue).take(1).subscribe(data => {
+       
+        this.clientSrevice.updateClientWorkout(this.navParam.get('workoutid'),this.selectedClient[i].id,this.authService.currentUserValue).take(1).subscribe(data => {
         if(data['message'] === "success") {
           // window.history.back();
           this.nativeService.generateToast('Workout Assigned Succesfully','','bottom');
         }
       })
+      
+      
     }
     this.goBack();
     

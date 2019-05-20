@@ -43,6 +43,7 @@ export class NewworkoutComponent  implements AfterViewInit{
   //original
   @ViewChild(ExeSetsComponent) exeSelectionCom: ExeSetsComponent;
   exercisesDays = [];
+
   constructor(private nativeService: NativeProvider, private workService: WorkoutProvider, private dataService: DataProvider, private actionsheet: ActionSheetController, private imageService: ImageProvider, private auth: AuthProvider, private exeService: ExerciseProvider, private modal: ModalController, private loadingCntrl: LoadingController) {
    this.exeService.getExercises(auth.currentUserValue).subscribe(data => {
      console.log(data);
@@ -85,6 +86,8 @@ export class NewworkoutComponent  implements AfterViewInit{
     
   }
   clickDay(dayControl) {
+    
+    
     var idDay = dayControl.target.id;
     console.log(idDay);
     if(idDay.split('_')[1] === "Mon") {

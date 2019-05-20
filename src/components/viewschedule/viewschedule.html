@@ -19,8 +19,8 @@
           </ion-grid>
   </div>
   <div>
-    <ion-grid>
-      <ion-row style="text-align: center">
+    <ion-grid style=" background: #bed8e3; padding: 0px">
+      <ion-row style="text-align: center;">
         <ion-col col-3>
           <div (click)="prevMonth()"><img src="../../assets/icon/arrow-left.png" class="arrow-date"></div>
         </ion-col>
@@ -33,7 +33,7 @@
       </ion-row>
     </ion-grid>
   </div>
-  <div>
+  <!-- <div>
     <ion-grid>
       <ion-row style="text-align: center">
         <ion-col col-3>
@@ -47,7 +47,7 @@
         </ion-col>
       </ion-row>
     </ion-grid>
-  </div>
+  </div> -->
   <!-- <h1>Month <div (click)="prevMonth()"><img src="../../assets/icon/arrow-left.png" class="arrow-date"></div>{{ currentDate.format('MMMM') }}<div (click)="nextMonth()"><img src="../../assets/icon/arrow-right.png" class="arrow-date"> </div></h1>
   <h1>Year <div (click)="prevYear()"><img src="../../assets/icon/arrow-left.png" class="arrow-date"></div>{{ currentDate.format('YYYY') }}<div (click)="nextYear()"><img src="../../assets/icon/arrow-right.png" class="arrow-date"> </div></h1> -->
   
@@ -75,7 +75,7 @@
                                 <span class="last-month" *ngIf="!isSelectedMonth(day.mDate)"  > 
                                     {{ day.mDate.date()}}
                                     </span>
-                                    <span *ngIf="isSelectedMonth(day.mDate)" (click)="selectDate(day, item,$event)"> 
+                                    <span *ngIf="isSelectedMonth(day.mDate)" #eventSchedule id="eventSchedule" (click)="selectDate(day, item,$event)"> 
                                         {{ day.mDate.date()}}
                                         </span>
                                     <!-- <span *ngIf="isSelectedMonth(day.mDate)">                                             

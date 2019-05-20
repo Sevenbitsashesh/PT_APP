@@ -31,6 +31,7 @@ viewschedule {
       margin: 0 auto;
       max-width: 600px;
       width: 100%;
+      
   }
   
   .calendar {
@@ -102,21 +103,25 @@ viewschedule {
   
   .weeks span {
       padding: 10px;
+          
+      font-weight: 600;
   }
   
   .weeks span.active {
-    //   background: #3df736;
+      background: #dfebed;
     // color: #f78536;
       border-radius: 50%;
+      
+      box-shadow: 0 5px 20px #5889a0;
   }
   
   .weeks span:not(.last-month):hover {
-      cursor: pointer;
-      font-weight: 600;
+    //   cursor: pointer;
+    //   font-weight: 600;
   }
   .active {
     color: #f78536;
-    transition: 1s;
+    // transition: 1s;
   }
   .event {
       position: relative;
@@ -235,3 +240,4 @@ viewschedule {
   .weekday {
       margin-right: 5px;
   }
+ 

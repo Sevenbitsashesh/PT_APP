@@ -32,6 +32,7 @@ export class ViewscheduleComponent implements OnInit, OnChanges {
   selectedWorkout;
   workoutFollow;  
   // @Input() defaultDate: ElementRef;
+  @ViewChild('eventSchedule') span: Element;
   constructor(private workoutService: WorkoutProvider, private dataService: DataProvider, private authService: AuthProvider, private clientService: ClientProvider) {
   
   }
@@ -176,6 +177,7 @@ export class ViewscheduleComponent implements OnInit, OnChanges {
   // generate the calendar grid
 
   generateCalendar(): void {
+    
     const dates = this.fillDates(this.currentDate);    
     const weeks: CalendarDate[][] = [];
     while (dates.length > 0) {
@@ -211,6 +213,7 @@ export class ViewscheduleComponent implements OnInit, OnChanges {
     
   }
   selectDate(date: CalendarDate, workItem, event): void {
+    
     this.currentDate = moment(date.mDate)
      this.selectedWorkout = undefined;
     // this.selectedWorkout = this.scheduleWork
