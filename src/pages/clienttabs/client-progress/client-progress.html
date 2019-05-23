@@ -5,16 +5,41 @@
     <ion-grid>
       <ion-row></ion-row>
       <ion-row style="text-align: center;">
-        <ion-col col-2><div></div></ion-col>
-        <ion-col col-8>Body Progress</ion-col>
+        <ion-col col-1><span style="font-size:30px;cursor:pointer" (click)="openNav()">&#9776;</span></ion-col>
+        <ion-col col-10>Body Progress</ion-col>
         <!-- <ion-col col-2>  <div><i class="fas fa-th-list"></i></div></ion-col> -->
       </ion-row>
     </ion-grid>
   </div>
+
+
+
 </ion-header>
+<div id="mySidenav" class="sidenav">
+  <div>
+    <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
+  </div>
+ 
+ <div class="sidemenu-main">
+  <sidemenu-client [currentUser]=currentUser></sidemenu-client>
+ </div>
+  
+  
+  <!-- <button ion-button>Search</button> -->
+  <!-- <button ion-button>Profile</button> -->
+  <!-- <button ion-button>My Sales</button> -->
+  <!-- <button ion-button>NewsFeed</button> -->
+  <!-- <button ion-button>Settings</button> -->
+  <!-- <button ion-button>Logout <img src="../../assets/icon/logout.svg" class="img-logout" (click)="logout()"></button> -->
+ </div>
 
-
-<ion-content >
-
+<ion-content class="contentClientProgress">
+  <div class="noti-slider-bar" id="notificationDiv">
+    <ul id="list">
+    <!-- Create a bunch, or not a bunch, of li's to see the timing. -->
+    
+    No Notifications
+    </ul>
+    </div>
 <myprogress></myprogress>
 </ion-content>

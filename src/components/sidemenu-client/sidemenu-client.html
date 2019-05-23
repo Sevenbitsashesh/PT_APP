@@ -1,0 +1,65 @@
+<div>
+  <div class="sidemenu-profile-div">
+      <div><img src="../../assets/icon/friends.svg" class="sidebar-profileimg"></div><div class="sidebar-profilename">{{currentUser.fname +' '+ currentUser.lname}}</div>  
+  </div>
+</div>
+<div class="menu-main">
+  
+  <!-- <div class="sidebar-menu">
+    <div class="sidebar-menu-icon">
+      <img src="../../assets/icon/exercise.svg" class="sidebar-icon">
+    </div> 
+    <div class="sidebar-menuname"  (click)="navExercises()">
+      my-exercises
+    </div>
+  </div> -->
+  <div class="sidebar-menu">
+    <div class="sidebar-menu-icon">
+      <img src="../../assets/icon/work-plan.svg" class="sidebar-icon">
+    </div> 
+    <div class="sidebar-menuname" (click)="navProgress()">
+      my-progress
+    </div>
+  </div> 
+  <div class="sidebar-menu">
+    <div class="sidebar-menu-icon">
+      <img src="../../assets/icon/client.svg" class="sidebar-icon">
+    </div> 
+    <div class="sidebar-menuname" (click)="navSchedules()">
+      my-schedules
+    </div>
+  </div> 
+  <!-- <div class="sidebar-menu">
+    <div class="sidebar-menu-icon">
+      <img src="../../assets/icon/meal-plan.svg" class="sidebar-icon">
+    </div> 
+    <div class="sidebar-menuname"  (click)="navMealplans()">
+      my-meals
+    </div>
+  </div> -->
+    <!-- <div class="sidebar-menu">
+        <div class="sidebar-menu-icon">
+          <img src="../../assets/icon/schedule.svg" class="sidebar-icon">
+        </div> 
+        <div class="sidebar-menuname"  (click)="navSchedules()">
+          schedules
+        </div>
+      </div> -->
+      
+  <!-- <div class="sidebar-menu">
+    <div class="sidebar-menu-icon">
+      <img src="../../assets/imgs/sidebar-settings.svg" class="sidebar-icon">
+    </div> 
+    <div class="sidebar-menuname"  (click)="navProfile()">
+      settings
+    </div>
+  </div> -->
+  <div class="sidebar-menu">
+      <div class="sidebar-menu-icon">
+        <img src="../../assets/icon/logout.svg" class="sidebar-icon">
+      </div> 
+      <div class="sidebar-menuname"  (click)="logout()">
+        logout
+      </div>
+    </div>
+</div>

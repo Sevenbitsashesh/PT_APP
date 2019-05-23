@@ -3,6 +3,7 @@ import { IonicPageModule, IonicModule } from 'ionic-angular';
 import { ClientProgressPage } from './client-progress';
 import { Routes, RouterModule } from '@angular/router';
 import { MyprogressComponent } from '../../../components/myprogress/myprogress';
+import { ComponentsModule } from '../../../components/components.module';
 const routes: Routes = [
   {
     path: '',
@@ -21,11 +22,13 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     ClientProgressPage,
-    MyprogressComponent
+    MyprogressComponent,
+    
   ],
   imports: [
     IonicModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    ComponentsModule
   ],
 })
 export class ClientProgressPageModule {}

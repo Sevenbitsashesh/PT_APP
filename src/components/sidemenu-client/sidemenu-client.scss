@@ -1,0 +1,49 @@
+.menu-main {
+    height: 100%;
+    width: 60%;
+    // background: lightcyan;
+    justify-content: center;
+}
+.sidebar-menu {
+    font-size: 20px;
+    padding-top:30px;
+    padding-left: 30px;
+    // border-radius: 30px;
+    // border: 30px 30px 30px 30px;
+    // border-color: rebeccapurple;
+}
+.sidemenu-profile-div {
+    padding-top:30px;
+    padding-left: 30px;
+    padding-bottom: 100px;
+}
+.sidebar-profileimg {
+    height: 70px;
+     width: 70px;
+     border-radius: 50%;
+     float: left;
+}
+.sidebar-profilename {
+    float: left;    
+    padding: 20px 20px 20px 10px;    
+    color: white;
+}
+.sidebar-menu-icon {
+    color: rebeccapurple;
+}
+.sidebar-icon {
+    height: 30px;
+    width: 30%;
+    float: left;
+    color: rebeccapurple
+}
+.sidebar-menuname  {
+    
+    padding-top: 5px;
+    color: white;
+    font-weight: 500;
+    // margin: 10px 10px 10px 20px;
+}
+.sidebar-menuname:hover {
+    color: aquamarine;
+}

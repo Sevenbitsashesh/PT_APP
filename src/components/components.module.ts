@@ -51,6 +51,8 @@ import { ExeSelectionComponent } from './exe-selection/exe-selection';
 import { SelectclientComponent } from './selectclient/selectclient';
 import { MuscleSlectionComponent } from './muscle-slection/muscle-slection';
 
+import { SidemenuClientComponent } from './sidemenu-client/sidemenu-client';
+
 
 
 
@@ -96,6 +98,7 @@ import { MuscleSlectionComponent } from './muscle-slection/muscle-slection';
     ExeSelectionComponent,
     SelectclientComponent,
     MuscleSlectionComponent,
+    SidemenuClientComponent,
 
     
         ],
@@ -135,7 +138,8 @@ import { MuscleSlectionComponent } from './muscle-slection/muscle-slection';
     ScheduleassessComponent,
     ExeSelectionComponent,
     SelectclientComponent,
-    MuscleSlectionComponent,
+    MuscleSlectionComponent,    
+    SidemenuClientComponent,
 
 
 ],

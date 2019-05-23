@@ -62,7 +62,7 @@ export class SelectclientComponent implements OnDestroy {
   }
   unassign(item) {    
     const arr = this.selectedClient.indexOf(item);    
-    item.unassign = true;
+    item.assign = false;
     this.selectedClient.splice(arr,1)[0];
       // this.unasign.push(this.selectedClient.splice(arr,1)[0]);      
       // this.asign.splice(item,1);    
@@ -73,7 +73,7 @@ export class SelectclientComponent implements OnDestroy {
     // item.client_workplan[0].oldworkout_planid = item.client_workplan[0].workout_planid;
     
     const arr = this.unselectedClient.indexOf(item);  
-    item.asign = true;  
+    item.assign = true;  
     this.unselectedClient.splice(arr,1)[0]
     // this.asign.push(this.unselectedClient.splice(arr,1)[0]);      
     this.selectedClient.push(item);
@@ -84,12 +84,14 @@ export class SelectclientComponent implements OnDestroy {
     // Remove Workout To Client
     
     for(let i = 0; i < this.unselectedClient.length; i++) {
-     
+     if(this.unselectedClient[i].assign) {
       this.clientSrevice.updateClientWorkout('',this.unselectedClient[i].id,this.authService.currentUserValue).take(1).subscribe(data => {
         if(data['message'] === "success") {
           // window.history.back();
         }
       })
+     }
+      
      
       
     }
@@ -97,13 +99,15 @@ export class SelectclientComponent implements OnDestroy {
 
     // // Add Workout To Client
     for(let i = 0; i < this.selectedClient.length; i++) {
-       
+      if(!this.unselectedClient[i].assign ) {
         this.clientSrevice.updateClientWorkout(this.navParam.get('workoutid'),this.selectedClient[i].id,this.authService.currentUserValue).take(1).subscribe(data => {
-        if(data['message'] === "success") {
-          // window.history.back();
-          this.nativeService.generateToast('Workout Assigned Succesfully','','bottom');
-        }
-      })
+          if(data['message'] === "success") {
+            // window.history.back();
+            this.nativeService.generateToast('Workout Assigned Succesfully','','bottom');
+          }
+        })
+      }
+        
       
       
     }

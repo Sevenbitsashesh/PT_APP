@@ -42,7 +42,7 @@ export class NewworkoutComponent  implements AfterViewInit{
   exercises = [];
   //original
   @ViewChild(ExeSetsComponent) exeSelectionCom: ExeSetsComponent;
-  exercisesDays = [];
+  exercisesDays = {"MON": [],'TUE': [],'WED': [],'THUR': [],'FRI': [],'SAT': [],'SUN': []};
 
   constructor(private nativeService: NativeProvider, private workService: WorkoutProvider, private dataService: DataProvider, private actionsheet: ActionSheetController, private imageService: ImageProvider, private auth: AuthProvider, private exeService: ExerciseProvider, private modal: ModalController, private loadingCntrl: LoadingController) {
    this.exeService.getExercises(auth.currentUserValue).subscribe(data => {
@@ -166,7 +166,7 @@ export class NewworkoutComponent  implements AfterViewInit{
       this.Sat.push(control.target.id);
       this.item1 = this.Sat;
     }
-    else if(this.selectedDay = "Sund") {
+    else if(this.selectedDay = "Sun") {
       this.Sun.push(control.target.id);
       this.item1 = this.Sun;
     }
@@ -184,29 +184,29 @@ export class NewworkoutComponent  implements AfterViewInit{
       work_pic: this.work_image,      
       work_days: this.exercisesDays
     }
-    
-      if(this.work_name && this.work_level) {
-        if(this.exercisesDays.length > 6) {
-          loading.present().then(loadingData => {
-          this.workService.addWorkout(newWork,this.auth.currentUserValue).subscribe(workItems => {
-            loading.dismiss();
-            console.log(workItems);
-            if(workItems) {
+    console.log(this.exercisesDays);
+      // if(this.work_name && this.work_level) {
+      //   if(this.exercisesDays.MON.length > 0) {
+      //     loading.present().then(loadingData => {
+      //     this.workService.addWorkout(newWork,this.auth.currentUserValue).subscribe(workItems => {
+      //       loading.dismiss();
+      //       console.log(workItems);
+      //       if(workItems) {
               
-              this.nativeService.generateToast('New Workout Created','css','bottom');
-              window.history.back();
-            }
-          })
-        })
-        }
-        else {
-          this.nativeService.generateToast('Please Fill Exercise For Each Week.','css','bottom');
-        }
+      //         this.nativeService.generateToast('New Workout Created','css','bottom');
+      //         window.history.back();
+      //       }
+      //     })
+      //   })
+      //   }
+      //   else {
+      //     this.nativeService.generateToast('Please Fill Exercise For Each Week.','css','bottom');
+      //   }
         
-      }
-      else {
-        this.nativeService.generateToast('Please fill details correctly!','css','bottom');
-      }
+      // }
+      // else {
+      //   this.nativeService.generateToast('Please fill details correctly!','css','bottom');
+      // }
     
     
     
@@ -215,7 +215,9 @@ export class NewworkoutComponent  implements AfterViewInit{
    console.log(index);
     // const items = event.target.id.split('_');
     // const index = this.item1.indexOf(items[1]+'_'+items[2]);
-    this.exercisesDays.splice(index,1);
+
+    // this.exercisesDays.splice(index,1);
+
     // console.log(index);
   }
   imageAction() {
@@ -308,25 +310,25 @@ export class NewworkoutComponent  implements AfterViewInit{
        if(exercise) {
         exercise['sets'] = sets;
         if(day === "Mon") {
-          this.exercisesDays.push({MON: exercise});  
+          this.exercisesDays.MON.push(exercise);  
         }
         else if(day === "Tue") {
-          this.exercisesDays.push({TUE: exercise});
+          this.exercisesDays.TUE.push({TUE: exercise});
         }
         else if(day === "Wed") {
-          this.exercisesDays.push({WED: exercise});
+          this.exercisesDays.WED.push({WED: exercise});
         }
         else if(day === "Thur") {
-          this.exercisesDays.push({THUR: exercise});
+          this.exercisesDays.THUR.push({THUR: exercise});
         }
         else if(day === "Fri") {
-          this.exercisesDays.push({FRI: exercise});
+          this.exercisesDays.FRI.push({FRI: exercise});
         }
         else if(day === "Sat") {
-          this.exercisesDays.push({SAT: exercise});
+          this.exercisesDays.SAT.push({SAT: exercise});
         }
         else if(day === "Sun") {
-          this.exercisesDays.push({SUN: exercise});
+          this.exercisesDays.SUN.push({SUN: exercise});
         }
         
         
