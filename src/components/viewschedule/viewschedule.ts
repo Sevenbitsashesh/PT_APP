@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, OnInit, OnChanges, SimpleChanges, ViewChild, ElementRef, AfterContentInit, AfterViewInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit, OnChanges, SimpleChanges, ViewChild, ElementRef, AfterContentInit, AfterViewInit, AfterViewChecked } from '@angular/core';
 import * as _ from 'lodash';
 import $ from 'jquery';
 import * as  moment from 'moment/moment';
@@ -17,7 +17,7 @@ export interface CalendarDate {
   selector: 'viewschedule',
   templateUrl: 'viewschedule.html'
 })
-export class ViewscheduleComponent implements OnInit, OnChanges {
+export class ViewscheduleComponent implements OnInit, OnChanges, AfterViewInit {
 
   
   currentDate = moment();
@@ -68,80 +68,143 @@ export class ViewscheduleComponent implements OnInit, OnChanges {
        let nextDay = start.add(i,'days').format('dddd');        
        let nextDate = start.format('YYYY-MM-DD')
        
-       if(nextDay === 'Monday') {
-         for(let j = 0;j < data.myWorkout.work_days.length ; j++) {
-           if(data.myWorkout.work_days[j].MON) {
-            console.log(data.myWorkout.work_days[j])
+       if(nextDay === 'Monday' && data.myWorkout.work_days[0].MON.length > 0) {
+         for(let j = 0;j < data.myWorkout.work_days[0].MON.length ; j++) {
+           if(data.myWorkout.work_days[0].MON[j]) {
+            console.log(data.myWorkout.work_days[0].MON)
               this.scheduleWork.push({
                 date: nextDate,
-                data: data.myWorkout.work_days[j].MON
-              })  
-                          
+                data: data.myWorkout.work_days[0].MON
+              })         
            }
-          
          }
-        
        }
-       else if(nextDay === 'Tuesday') {
-        for(let j = 0;j < data.myWorkout.work_days.length ; j++) {
-          if(data.myWorkout.work_days[j].TUE) {
-         this.scheduleWork.push({
-           date: nextDate,
-           data: data.myWorkout.work_days[j].TUE
-         })  
-        }
-      }    
-       }
-       else if(nextDay === 'Wednesday') {
-        for(let j = 0;j < data.myWorkout.work_days.length ; j++) {
-          if(data.myWorkout.work_days[j].WED) {
-         this.scheduleWork.push({
-           date: nextDate,
-           data: data.myWorkout.work_days[j].WED
-         })  
-        }
-      }    
-       }
-       else if(nextDay === 'Thursday') {
-        for(let j = 0;j < data.myWorkout.work_days.length ; j++) {
-          if(data.myWorkout.work_days[j].THUR) {
-         this.scheduleWork.push({
-           date: nextDate,
-           data: data.myWorkout.work_days[j].THUR
-         })  
-        }
-      }    
-       }
-       else if(nextDay === 'Friday') {
-        for(let j = 0;j < data.myWorkout.work_days.length ; j++) {
-          if(data.myWorkout.work_days[j].FRI) {
-         this.scheduleWork.push({
-           date: nextDate,
-           data: data.myWorkout.work_days[j].FRI
-         })      
+       else if(nextDay === 'Tuesday' && data.myWorkout.work_days[0].TUE.length > 0) {
+        for(let j = 0;j < data.myWorkout.work_days[0].TUE.length ; j++) {
+          if(data.myWorkout.work_days[0].TUE[j]) {
+           console.log(data.myWorkout.work_days[0].TUE)
+             this.scheduleWork.push({
+               date: nextDate,
+               data: data.myWorkout.work_days[0].TUE
+             })         
+          }
         }
       }
-       }
-       else if(nextDay === 'Saturday') {
-        for(let j = 0;j < data.myWorkout.work_days.length ; j++) {
-          if(data.myWorkout.work_days[j].SAT) {
-         this.scheduleWork.push({
-           date: nextDate,
-           data: data.myWorkout.work_days[j].SAT
-         })      
+      else if(nextDay === 'Wednesday' && data.myWorkout.work_days[0].WED.length > 0) {
+        for(let j = 0;j < data.myWorkout.work_days[0].WED.length ; j++) {
+          if(data.myWorkout.work_days[0].WED[j]) {
+           console.log(data.myWorkout.work_days[0].WED)
+             this.scheduleWork.push({
+               date: nextDate,
+               data: data.myWorkout.work_days[0].WED
+             })         
+          }
         }
       }
-       }
-       else if(nextDay === 'Sunday') {
-        for(let j = 0;j < data.myWorkout.work_days.length ; j++) {
-          if(data.myWorkout.work_days[j].SUN) {
-         this.scheduleWork.push({
-           date: nextDate,
-           data: data.myWorkout.work_days[j].SUN
-         })   
+      else if(nextDay === 'Thursday' && data.myWorkout.work_days[0].THUR.length > 0) {
+        for(let j = 0;j < data.myWorkout.work_days[0].THUR.length ; j++) {
+          if(data.myWorkout.work_days[0].THUR[j]) {
+           console.log(data.myWorkout.work_days[0].THUR)
+             this.scheduleWork.push({
+               date: nextDate,
+               data: data.myWorkout.work_days[0].THUR
+             })         
+          }
         }
-      }   
-       }
+      }
+      else if(nextDay === 'Friday' && data.myWorkout.work_days[0].FRI.length > 0) {
+        for(let j = 0;j < data.myWorkout.work_days[0].FRI.length ; j++) {
+          if(data.myWorkout.work_days[0].FRI[j]) {
+           console.log(data.myWorkout.work_days[0].FRI)
+             this.scheduleWork.push({
+               date: nextDate,
+               data: data.myWorkout.work_days[0].FRI
+             })         
+          }
+        }
+      }
+      else if(nextDay === 'Saturday' && data.myWorkout.work_days[0].SAT.length > 0) {
+        for(let j = 0;j < data.myWorkout.work_days[0].SAT.length ; j++) {
+          if(data.myWorkout.work_days[0].SAT[j]) {
+           console.log(data.myWorkout.work_days[0].SAT)
+             this.scheduleWork.push({
+               date: nextDate,
+               data: data.myWorkout.work_days[0].SAT
+             })         
+          }
+        }
+      }
+      else if(nextDay === 'Sunday' && data.myWorkout.work_days[0].SUN.length > 0) {
+        for(let j = 0;j < data.myWorkout.work_days[0].SUN.length ; j++) {
+          if(data.myWorkout.work_days[0].SUN[j]) {
+           console.log(data.myWorkout.work_days[0].SUN)
+             this.scheduleWork.push({
+               date: nextDate,
+               data: data.myWorkout.work_days[0].SUN
+             })         
+          }
+        }
+      }
+      //  else if(nextDay === 'Tuesday') {
+      //   for(let j = 0;j < data.myWorkout.work_days.length ; j++) {
+      //     if(data.myWorkout.work_days[j].TUE) {
+      //    this.scheduleWork.push({
+      //      date: nextDate,
+      //      data: data.myWorkout.work_days[j].TUE
+      //    })  
+      //   }
+      // }    
+      //  }
+      //  else if(nextDay === 'Wednesday') {
+      //   for(let j = 0;j < data.myWorkout.work_days.length ; j++) {
+      //     if(data.myWorkout.work_days[j].WED) {
+      //    this.scheduleWork.push({
+      //      date: nextDate,
+      //      data: data.myWorkout.work_days[j].WED
+      //    })  
+      //   }
+      // }    
+      //  }
+      //  else if(nextDay === 'Thursday') {
+      //   for(let j = 0;j < data.myWorkout.work_days.length ; j++) {
+      //     if(data.myWorkout.work_days[j].THUR) {
+      //    this.scheduleWork.push({
+      //      date: nextDate,
+      //      data: data.myWorkout.work_days[j].THUR
+      //    })  
+      //   }
+      // }    
+      //  }
+      //  else if(nextDay === 'Friday') {
+      //   for(let j = 0;j < data.myWorkout.work_days.length ; j++) {
+      //     if(data.myWorkout.work_days[j].FRI) {
+      //    this.scheduleWork.push({
+      //      date: nextDate,
+      //      data: data.myWorkout.work_days[j].FRI
+      //    })      
+      //   }
+      // }
+      //  }
+      //  else if(nextDay === 'Saturday') {
+      //   for(let j = 0;j < data.myWorkout.work_days.length ; j++) {
+      //     if(data.myWorkout.work_days[j].SAT) {
+      //    this.scheduleWork.push({
+      //      date: nextDate,
+      //      data: data.myWorkout.work_days[j].SAT
+      //    })      
+      //   }
+      // }
+      //  }
+      //  else if(nextDay === 'Sunday') {
+      //   for(let j = 0;j < data.myWorkout.work_days.length ; j++) {
+      //     if(data.myWorkout.work_days[j].SUN) {
+      //    this.scheduleWork.push({
+      //      date: nextDate,
+      //      data: data.myWorkout.work_days[j].SUN
+      //    })   
+      //   }
+      // }   
+      //  }
        
      }
      console.log(this.scheduleWork);
@@ -212,8 +275,8 @@ export class ViewscheduleComponent implements OnInit, OnChanges {
     return moment(date).isSame(this.currentDate, 'month');
     
   }
-  selectDate(date: CalendarDate, workItem, event): void {
-    
+  selectDate(date: CalendarDate, event): void {
+    console.log('in')
     this.currentDate = moment(date.mDate)
      this.selectedWorkout = undefined;
     // this.selectedWorkout = this.scheduleWork
@@ -222,7 +285,7 @@ export class ViewscheduleComponent implements OnInit, OnChanges {
       // console.log(date.mDate.format('YYYY-MM-DD'))
       
       if(date.mDate.format('YYYY-MM-DD') === this.scheduleWork[j]['date']) {
-        console.log('in')
+        
         this.selectedWorkout = this.scheduleWork[j];
       }
       
@@ -232,7 +295,7 @@ export class ViewscheduleComponent implements OnInit, OnChanges {
     // this.onSelectDate.emit(date);
     Array.from(document.querySelectorAll('.active')).forEach(i => {
       i.classList.remove('active');
-    })
+    })    
     event.target.classList.add('active')
   }
   prevMonth(): void {
@@ -266,11 +329,71 @@ export class ViewscheduleComponent implements OnInit, OnChanges {
   clickDate(schedules) {
     console.log(schedules.date())
   }
- ngAfterViewInit() {
+ ngAfterContentInit() {
+  console.log(document.getElementsByClassName('activeAll').length);
    let date: CalendarDate;
+   Array.from(document.querySelectorAll('.activeAll')).forEach(i => {
+    // i.classList.remove('activeAll');
+    console.log(i.innerHTML);
+  });
+  
     // let scheduleWork = this.scheduleWork[0].data;
     // console.log(scheduleWork)
   // console.log(this.defaultDate.nativeElement[0]);
-  
+  // this.getTodayWorkout();
  } 
+ 
+ getTodayWorkout() {
+ 
+ }
+ ngAfterViewInit() {
+  Array.from(document.querySelectorAll('.active')).forEach(i => {
+        i.classList.remove('active');
+  });
+  let date =moment();
+  this.weeks.forEach(d => {
+    d.forEach(week => {
+      
+      if(week.mDate.date() == date.date()) {
+
+    Array.from(document.querySelectorAll('.activeAll')).forEach(i => {
+      
+    if(i.innerHTML === date.date().toString()) {
+      i.classList.add('active');
+      
+      // i.addEventListener('click',this.selectDate(week,this))
+      
+        
+      // this.currentDate = moment(week.mDate)
+      //   this.selectedWorkout = undefined;
+      //  // this.selectedWorkout = this.scheduleWork
+      //  for(let j=0;j< this.scheduleWork.length; j++) {
+      //    // console.log(this.scheduleWork[j]['date'])
+      //    // console.log(date.mDate.format('YYYY-MM-DD'))
+         
+      //    if(week.mDate.format('YYYY-MM-DD') === this.scheduleWork[j]['date']) {
+      //      console.log('in')
+      //      this.selectedWorkout = this.scheduleWork[j];
+      //    }
+      //    i.classList.add('active');
+         
+         
+      //  }
+      //  // this.onSelectDate.emit(date);
+
+
+      
+      
+    }
+
+ });      
+      } 
+
+    })
+  })
+
+ }
+ selectingDate() {
+  return Event;
+ }
 }

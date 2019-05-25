@@ -185,28 +185,29 @@ export class NewworkoutComponent  implements AfterViewInit{
       work_days: this.exercisesDays
     }
     console.log(this.exercisesDays);
-      // if(this.work_name && this.work_level) {
-      //   if(this.exercisesDays.MON.length > 0) {
-      //     loading.present().then(loadingData => {
-      //     this.workService.addWorkout(newWork,this.auth.currentUserValue).subscribe(workItems => {
-      //       loading.dismiss();
-      //       console.log(workItems);
-      //       if(workItems) {
+    
+      if(this.work_name && this.work_level) {
+        if(this.checkExerciseData() > 2) {
+          loading.present().then(loadingData => {
+          this.workService.addWorkout(newWork,this.auth.currentUserValue).subscribe(workItems => {
+            loading.dismiss();
+            console.log(workItems);
+            if(workItems) {
               
-      //         this.nativeService.generateToast('New Workout Created','css','bottom');
-      //         window.history.back();
-      //       }
-      //     })
-      //   })
-      //   }
-      //   else {
-      //     this.nativeService.generateToast('Please Fill Exercise For Each Week.','css','bottom');
-      //   }
+              this.nativeService.generateToast('New Workout Created','css','bottom');
+              window.history.back();
+            }
+          })
+        })
+        }
+        else {
+          this.nativeService.generateToast('Please Fill Exercise For at least 3 Weekday.','css','bottom');
+        }
         
-      // }
-      // else {
-      //   this.nativeService.generateToast('Please fill details correctly!','css','bottom');
-      // }
+      }
+      else {
+        this.nativeService.generateToast('Please fill details correctly!','css','bottom');
+      }
     
     
     
@@ -313,22 +314,22 @@ export class NewworkoutComponent  implements AfterViewInit{
           this.exercisesDays.MON.push(exercise);  
         }
         else if(day === "Tue") {
-          this.exercisesDays.TUE.push({TUE: exercise});
+          this.exercisesDays.TUE.push(exercise);
         }
         else if(day === "Wed") {
-          this.exercisesDays.WED.push({WED: exercise});
+          this.exercisesDays.WED.push(exercise);
         }
         else if(day === "Thur") {
-          this.exercisesDays.THUR.push({THUR: exercise});
+          this.exercisesDays.THUR.push(exercise);
         }
         else if(day === "Fri") {
-          this.exercisesDays.FRI.push({FRI: exercise});
+          this.exercisesDays.FRI.push(exercise);
         }
         else if(day === "Sat") {
-          this.exercisesDays.SAT.push({SAT: exercise});
+          this.exercisesDays.SAT.push(exercise);
         }
         else if(day === "Sun") {
-          this.exercisesDays.SUN.push({SUN: exercise});
+          this.exercisesDays.SUN.push(exercise);
         }
         
         
@@ -344,14 +345,43 @@ export class NewworkoutComponent  implements AfterViewInit{
       modal.present().then(() => {
         console.log('Muscle Selection')
         modal.onDidDismiss(dataStatus => {
-          console.log(dataStatus);
-          this.modalExerciseSelection(dataStatus.exercise, dataStatus.sets)
+          // console.log(dataStatus); 
+          if(dataStatus) {
+            this.modalExerciseSelection(dataStatus.exercise, dataStatus.sets)
+          }
+          
         })
       });
      }
      else {
        this.nativeService.generateToast("Please select Day!","","bottom");
      }
+     
+   }
+   checkExerciseData() {
+     let dataItem: number = 0;
+     if(this.exercisesDays.MON.length > 0) {
+      dataItem = dataItem + 1;
+     }
+     if(this.exercisesDays.TUE.length > 0) {
+      dataItem = dataItem + 1;
+     }
+     if(this.exercisesDays.WED.length > 0) {
+      dataItem = dataItem + 1;
+     }
+     if(this.exercisesDays.THUR.length > 0) {
+      dataItem = dataItem + 1;
+     }
+     if(this.exercisesDays.FRI.length > 0) {
+      dataItem = dataItem + 1;
+     }
+     if(this.exercisesDays.SAT.length > 0) {
+      dataItem = dataItem + 1;
+     }
+     if(this.exercisesDays.SUN.length > 0) {
+      dataItem = dataItem + 1;
+     }
+     return dataItem;
      
    }
 }

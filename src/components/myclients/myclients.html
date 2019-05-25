@@ -45,7 +45,9 @@
             <ion-col>NO CLIENTS</ion-col>
           </ion-row>
         </div>
-  
+  <div *ngIf="showLoader">
+    <loader></loader>
+  </div>
   
   
 </ion-grid>

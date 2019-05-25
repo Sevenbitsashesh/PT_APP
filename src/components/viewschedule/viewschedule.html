@@ -72,12 +72,10 @@
                         </div>
                       <div class="first" *ngFor="let week of weeks">
                           <div *ngFor="let day of week;" >
-                                <span class="last-month" *ngIf="!isSelectedMonth(day.mDate)"  > 
+                                <span class="last-month" *ngIf="!isSelectedMonth(day.mDate)"> 
                                     {{ day.mDate.date()}}
                                     </span>
-                                    <span *ngIf="isSelectedMonth(day.mDate)" #eventSchedule id="eventSchedule" (click)="selectDate(day, item,$event)"> 
-                                        {{ day.mDate.date()}}
-                                        </span>
+                                    <span *ngIf="isSelectedMonth(day.mDate)" class="activeAll" #eventSchedule><i class="activeAll" (click)="selectDate(day,$event)">{{ day.mDate.date()}}</i> </span>
                                     <!-- <span *ngIf="isSelectedMonth(day.mDate)">                                             
                                       
                                             <h6 *ngFor="let item of scheduleWork" >
@@ -101,16 +99,21 @@
               <ion-row style="text-align: center">
                 <ion-col col-12>Exercises</ion-col>
               </ion-row>
-              <ion-row >
-                
-                <ion-col>
-                    {{selectedWorkout.data.exe_name}}
-                </ion-col>
-              </ion-row>
-              <ion-row *ngFor="let item of selectedWorkout.data.sets; let i = index;">
-                  <ion-col col-6>Set {{i+1}}</ion-col>
-                  <ion-col col-6>{{item.reps}}</ion-col>
-              </ion-row>
+              <div *ngFor="let exeData of selectedWorkout.data">
+                <ion-row style="text-align: center">
+                    <ion-col>
+                        {{exeData.exe_name}}
+                    </ion-col>
+                </ion-row>
+                  <ion-row *ngFor="let item of exeData.sets; let i = index;">
+                  <ion-col col-4>Set {{i+1}}</ion-col>
+                  <ion-col col-2>{{item.reps}}</ion-col>
+                      
+                        
+                    </ion-row>
+              </div>
+              
+              
             </ion-grid>
             <ion-grid *ngIf="!selectedWorkout"  class="grid-items-list">
               <ion-row>

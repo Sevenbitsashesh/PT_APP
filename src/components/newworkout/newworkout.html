@@ -114,49 +114,45 @@
                               <div *ngFor="let workItem of exercisesDays['MON']">
                                   <span>{{workItem.exe_name}}</span>
                                   <span><i class="fas fa-minus-circle" id="sel_{{item}}" (click)="removeItem(i)"></i></span> 
-                              </div>
-                                  
-                                 
-                            
+                              </div>  
                           </div> 
-                         
-                          <div class="row-form" *ngIf="selectedDay === 'Tue' && item['TUE']">
-                              
-                              {{item['TUE'].exe_name}}
-                              
-                        <i class="fas fa-minus-circle" id="sel_{{item}}" (click)="removeItem(i)"></i>
+                          <div *ngIf="selectedDay === 'Tue' && exercisesDays.TUE.length > 0">
+                            <div *ngFor="let workItem of exercisesDays['TUE']">
+                                <span>{{workItem.exe_name}}</span>
+                                <span><i class="fas fa-minus-circle" id="sel_{{item}}" (click)="removeItem(i)"></i></span> 
+                            </div>  
+                        </div> 
+                        <div *ngIf="selectedDay === 'Wed' && exercisesDays.WED.length > 0">
+                          <div *ngFor="let workItem of exercisesDays['WED']">
+                              <span>{{workItem.exe_name}}</span>
+                              <span><i class="fas fa-minus-circle" id="sel_{{item}}" (click)="removeItem(i)"></i></span> 
+                          </div>  
                       </div> 
-                      <div class="row-form" *ngIf="selectedDay === 'Wed' && item['WED']">
-                              
-                          {{item['WED'].exe_name}}
-                          
-                    <i class="fas fa-minus-circle" id="sel_{{item}}" (click)="removeItem(i)"></i>
+                      <div *ngIf="selectedDay === 'Thur' && exercisesDays.THUR.length > 0">
+                        <div *ngFor="let workItem of exercisesDays['THUR']">
+                            <span>{{workItem.exe_name}}</span>
+                            <span><i class="fas fa-minus-circle" id="sel_{{item}}" (click)="removeItem(i)"></i></span> 
+                        </div>  
+                    </div> 
+                    <div *ngIf="selectedDay === 'Fri' && exercisesDays.FRI.length > 0">
+                      <div *ngFor="let workItem of exercisesDays['FRI']">
+                          <span>{{workItem.exe_name}}</span>
+                          <span><i class="fas fa-minus-circle" id="sel_{{item}}" (click)="removeItem(i)"></i></span> 
+                      </div>  
                   </div> 
-                  <div class="row-form" *ngIf="selectedDay === 'Thur' && item['THUR']">
-                              
-                      {{item['THUR'].exe_name}}
-                      
-                <i class="fas fa-minus-circle" id="sel_{{item}}" (click)="removeItem(i)"></i>
+                  <div *ngIf="selectedDay === 'Sat' && exercisesDays.SAT.length > 0">
+                    <div *ngFor="let workItem of exercisesDays['SAT']">
+                        <span>{{workItem.exe_name}}</span>
+                        <span><i class="fas fa-minus-circle" id="sel_{{item}}" (click)="removeItem(i)"></i></span> 
+                    </div>  
+                </div> 
+                <div *ngIf="selectedDay === 'Sun' && exercisesDays.SUN.length > 0">
+                  <div *ngFor="let workItem of exercisesDays['SUN']">
+                      <span>{{workItem.exe_name}}</span>
+                      <span><i class="fas fa-minus-circle" id="sel_{{item}}" (click)="removeItem(i)"></i></span> 
+                  </div>  
               </div> 
-              <div class="row-form" *ngIf="selectedDay === 'Fri' && item['FRI']">
-                              
-                  {{item['FRI'].exe_name}}
-                  
-            <i class="fas fa-minus-circle" id="sel_{{item['FRI'].exe_name}}" (click)="removeItem(i)"></i>
-          </div> 
-          <div class="row-form" *ngIf="selectedDay === 'Sat' && item['SAT']">
-                              
-              {{item['SAT'].exe_name}}
-              
-        <i class="fas fa-minus-circle" id="sel_{{item}}" (click)="removeItem(i)"></i>
-      </div>
-      <div class="row-form" *ngIf="selectedDay === 'Sun' && item['SUN']">
-                              
-          {{item['SUN'].exe_name}}
-          
-    <i class="fas fa-minus-circle" id="sel_{{item}}" (click)="removeItem(i)"></i>
-
-  </div>
+                          
   
                           <!-- </div> -->
                           <div class="row-form add-exe">

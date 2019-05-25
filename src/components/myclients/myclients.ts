@@ -20,20 +20,23 @@ export class MyclientsComponent implements AfterViewInit {
 @Input() currentUser;
   myclients = [];
   selectedClient: boolean;
+  showLoader: boolean;
   constructor(private dataService: DataProvider,private userService: UserProvider, private clientService: ClientProvider, private authService: AuthProvider, private router: Router, private modal:ModalController, private loadingCntrl: LoadingController) {
     // this.getMyClients();
    
   }
   getMyClients() {
+    this.showLoader = true;
     const loading = this.loadingCntrl.create({
       content: "Loading clients..."
     })
-    loading.present().then(loadingData => {
+    // loading.present().then(loadingData => {
       this.dataService.userInfoObs.subscribe(da => {
         // delay(3000);
         if(da.length > 0) {
           this.clientService.getMyClients(da,this.authService.currentUserValue).subscribe(clientsData => {
-            loading.dismiss()
+            this.showLoader = false;
+            // loading.dismiss()
             if(clientsData.length > 0) {
               
               this.myclients = clientsData;
@@ -44,7 +47,7 @@ export class MyclientsComponent implements AfterViewInit {
         }
         
       })
-    })
+    // })
     
   }
   getItems(event) {
