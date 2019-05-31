@@ -212,8 +212,29 @@ export class NewworkoutComponent  implements AfterViewInit{
     
     
   }
-  removeItem(index) {
-   console.log(index);
+  removeItem(index) {   
+   if(this.selectedDay === 'Mon') {
+    console.log(this.exercisesDays.MON.splice(index,1));
+   }
+   else if(this.selectedDay === 'Tue') {
+    this.exercisesDays.TUE.splice(index,1); 
+   }
+   else if(this.selectedDay === 'Wed') {
+    this.exercisesDays.WED.splice(index,1); 
+   }
+   else if(this.selectedDay === 'Thur') {
+    this.exercisesDays.THUR.splice(index,1); 
+   }
+   else if(this.selectedDay === 'Fri') {
+    this.exercisesDays.FRI.splice(index,1); 
+   }
+   else if(this.selectedDay === 'Sat') {
+    this.exercisesDays.SAT.splice(index,1); 
+   }
+   else if(this.selectedDay === 'Sun') {
+    console.log(this.exercisesDays.SUN.splice(index,1));
+   }
+
     // const items = event.target.id.split('_');
     // const index = this.item1.indexOf(items[1]+'_'+items[2]);
 

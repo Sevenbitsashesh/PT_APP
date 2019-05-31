@@ -15,7 +15,7 @@ import { ScheduleassessComponent } from '../../components/scheduleassess/schedul
   selector: 'myclients',
   templateUrl: 'myclients.html'
 })
-export class MyclientsComponent implements AfterViewInit {
+export class MyclientsComponent implements AfterContentInit {
 
 @Input() currentUser;
   myclients = [];
@@ -40,7 +40,7 @@ export class MyclientsComponent implements AfterViewInit {
             if(clientsData.length > 0) {
               
               this.myclients = clientsData;
-              console.log(clientsData);
+              
             }
             
           });
@@ -63,7 +63,7 @@ export class MyclientsComponent implements AfterViewInit {
     this.router.navigate(['/userhome/tab_exercises/clientdetails'],{queryParams: {client: client}});
   }
   ngAfterViewInit() {
-    this.getMyClients();
+    // this.getMyClients();
     // console.log(this.currentUser);
   }
   setBack(event,index) {
@@ -80,5 +80,8 @@ export class MyclientsComponent implements AfterViewInit {
   clickSchedule(userid) {
     console.log('inside scheduleassess');
     this.modal.create(ScheduleassessComponent,{userid: userid}).present({direction: 'middle',duration: 5000,keyboardClose: true}); 
+  }
+  ngAfterContentInit() {
+    this.getMyClients();
   }
 }

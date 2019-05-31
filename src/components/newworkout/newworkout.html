@@ -111,43 +111,43 @@
                           <!-- Selected Exercises -->
                           <!-- <div *ngFor="let item of exercisesDays; let i = index;">  -->
                               <div *ngIf="selectedDay === 'Mon' && exercisesDays.MON.length > 0">
-                              <div *ngFor="let workItem of exercisesDays['MON']">
+                              <div *ngFor="let workItem of exercisesDays['MON']; let i = index">
                                   <span>{{workItem.exe_name}}</span>
                                   <span><i class="fas fa-minus-circle" id="sel_{{item}}" (click)="removeItem(i)"></i></span> 
                               </div>  
                           </div> 
                           <div *ngIf="selectedDay === 'Tue' && exercisesDays.TUE.length > 0">
-                            <div *ngFor="let workItem of exercisesDays['TUE']">
+                            <div *ngFor="let workItem of exercisesDays['TUE']; let i = index">
                                 <span>{{workItem.exe_name}}</span>
                                 <span><i class="fas fa-minus-circle" id="sel_{{item}}" (click)="removeItem(i)"></i></span> 
                             </div>  
                         </div> 
                         <div *ngIf="selectedDay === 'Wed' && exercisesDays.WED.length > 0">
-                          <div *ngFor="let workItem of exercisesDays['WED']">
+                          <div *ngFor="let workItem of exercisesDays['WED']; let i = index">
                               <span>{{workItem.exe_name}}</span>
                               <span><i class="fas fa-minus-circle" id="sel_{{item}}" (click)="removeItem(i)"></i></span> 
                           </div>  
                       </div> 
                       <div *ngIf="selectedDay === 'Thur' && exercisesDays.THUR.length > 0">
-                        <div *ngFor="let workItem of exercisesDays['THUR']">
+                        <div *ngFor="let workItem of exercisesDays['THUR']; let i = index">
                             <span>{{workItem.exe_name}}</span>
                             <span><i class="fas fa-minus-circle" id="sel_{{item}}" (click)="removeItem(i)"></i></span> 
                         </div>  
                     </div> 
                     <div *ngIf="selectedDay === 'Fri' && exercisesDays.FRI.length > 0">
-                      <div *ngFor="let workItem of exercisesDays['FRI']">
+                      <div *ngFor="let workItem of exercisesDays['FRI']; let i = index">
                           <span>{{workItem.exe_name}}</span>
                           <span><i class="fas fa-minus-circle" id="sel_{{item}}" (click)="removeItem(i)"></i></span> 
                       </div>  
                   </div> 
                   <div *ngIf="selectedDay === 'Sat' && exercisesDays.SAT.length > 0">
-                    <div *ngFor="let workItem of exercisesDays['SAT']">
+                    <div *ngFor="let workItem of exercisesDays['SAT']; let i = index">
                         <span>{{workItem.exe_name}}</span>
                         <span><i class="fas fa-minus-circle" id="sel_{{item}}" (click)="removeItem(i)"></i></span> 
                     </div>  
                 </div> 
                 <div *ngIf="selectedDay === 'Sun' && exercisesDays.SUN.length > 0">
-                  <div *ngFor="let workItem of exercisesDays['SUN']">
+                  <div *ngFor="let workItem of exercisesDays['SUN']; let i = index">
                       <span>{{workItem.exe_name}}</span>
                       <span><i class="fas fa-minus-circle" id="sel_{{item}}" (click)="removeItem(i)"></i></span> 
                   </div>  

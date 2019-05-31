@@ -3,9 +3,9 @@
     <ion-grid align="center">
 
         
-            <ion-row>
+            <ion-row style="height: 30%">
                     <ion-col>
-                        <img src="../../assets/imgs/swa-logo.png" height="200px" width="100%" style="border-radius: 20px">
+                        <img src="../../assets/imgs/swa-logo.png" height="200px" width="50%" style="border-radius: 20px">
                 </ion-col>
             </ion-row> 
             
@@ -68,8 +68,8 @@
                                 <ion-col col-12>
                                     <ion-item class="newionInput">
                                         <ion-input type="{{showPassword ? 'text' : 'Password'}}" formControlName="pass" name="pass" placeholder="Password" id="passwordInput"> </ion-input>
-                                        <button ion-button clear item-end (click)='showHide()' style="height:32px;">
-                                            <ion-icon [name]="eyeIcon" style="font-size:32px;" id="eyeIcon"></ion-icon>
+                                        <button ion-button clear item-end (click)='showHide()' style="height:20px;">
+                                            <ion-icon [name]="eyeIcon" style="font-size:20px;" id="eyeIcon"></ion-icon>
                                         </button>
 
                                     </ion-item>                           
@@ -100,7 +100,9 @@
                                             <ion-col col-12>
                                                 
                                                     <ion-item class="newionInput" >
-                                                            <ion-input type="name" formControlName="fname"  placeholder="Firstname" class="loginEmail"> </ion-input>
+                                                            
+                                                                <ion-input type="name" formControlName="fname"  placeholder="Firstname" class="loginEmail"> </ion-input>
+                                                            
                                                             
                                                         </ion-item>  
                                                 
@@ -164,8 +166,8 @@
                                                     <ion-col col-12>
                                                         <ion-item class="newionInput">
                                                             <ion-input type="{{showPassword ? 'text' : 'Password'}}" formControlName="pass" name="pass" placeholder="Password" id="passwordInput"> </ion-input>
-                                                            <button ion-button clear item-end (click)='showHide()' style="height:32px;">
-                                                                <ion-icon [name]="eyeIcon" style="font-size:32px;" id="eyeIcon"></ion-icon>
+                                                            <button ion-button clear item-end (click)='showHide()' style="height:20px;">
+                                                                <ion-icon [name]="eyeIcon" style="font-size:20px;" id="eyeIcon"></ion-icon>
                                                             </button>
                     
                                                         </ion-item>                           
@@ -187,8 +189,8 @@
                                                             <ion-col col-12>
                                                                 <ion-item class="newionInput">
                                                                     <ion-input type="{{showPassword ? 'text' : 'Password'}}" formControlName="cpass" name="pass" placeholder="Confirm Password" id="passwordInput"> </ion-input>
-                                                                    <button ion-button clear item-end (click)='showHide()' style="height:32px;">
-                                                                        <ion-icon [name]="eyeIcon" style="font-size:32px;" id="eyeIcon"></ion-icon>
+                                                                    <button ion-button clear item-end (click)='showHide()' style="height:20px;">
+                                                                        <ion-icon [name]="eyeIcon" style="font-size:20px;" id="eyeIcon"></ion-icon>
                                                                     </button>
                             
                                                                 </ion-item>                           
@@ -210,33 +212,34 @@
                                         {{msg}}
                                     </ion-label></ion-col>
                                 </ion-row>
+                                <ion-row>
+                                    <ion-col>
+                                        <div class="login-button-bottom" [hidden]="!show">
+                                            <button ion-button (click)="getSignup()" id="btn-signup" class="btn-login">
+                                            Signup
+                                            </button>
+                           </div>
+                           <div class="login-button-bottom" [hidden]="show">
+                                <button ion-button (click)="getLogin()" id="btn-login" class="btn-login" >
+                                Login
+                                
+                                </button>
+                            </div>
+                           <div (click)="showSign()">
+                           
+                           <div [hidden]="!show" class="login-button-bottom">
+                               <button ion-button class="btn-login">Login</button>
+                           </div>
+                           <div [hidden]="show" class="login-button-bottom">
+                                <button ion-button class="btn-login">Create Account</button>
+                            </div>
+                        </div>
+                                    </ion-col>
+                                </ion-row>
                                 </ion-grid>
 
                        
-               <div class="login-button-bottom" [hidden]="!show">
-                                <button ion-button (click)="getSignup()" id="btn-signup" class="btn-login">
-                                Signup
-                                
-                                </button>
-               </div>
-               <div class="login-button-bottom" [hidden]="show">
-                    <button ion-button (click)="getLogin()" id="btn-login" class="btn-login" >
-                    Login
-                    
-                    </button>
-                </div>
-               <div (click)="showSign()">
-               <div>
-                    <img [src]=arrow height="30px" width="30px">
-                
-               </div>
-               <div [hidden]="!show">
-                   <button ion-button class="login-button-bottom">Login</button>
-               </div>
-               <div [hidden]="show">
-                    <button ion-button class="login-button-bottom">Create Account</button>
-                </div>
-            </div>
+               
             
         
         

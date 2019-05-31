@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, trigger, transition, style, animate } from '@angular/core';
 import { SharedProvider } from '../../providers/shared/shared';
 import { FormGroup, FormBuilder, FormControl, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
 import { LoginProvider } from '../../providers/login/login';
@@ -18,6 +18,22 @@ import { LoadingController } from 'ionic-angular';
   selector: 'signin',
   templateUrl: 'signin.html',
   animations: [
+    trigger(
+      'myAnimation',
+      [
+        transition(
+        ':enter', [
+          style({transform: 'translateX(100%)', opacity: 0}),
+          animate('500ms', style({transform: 'translateX(0)', 'opacity': 1}))
+        ]
+      ),
+      transition(
+        ':leave', [
+          style({transform: 'translateX(0)', 'opacity': 1}),
+          animate('500ms', style({transform: 'translateX(100%)', 'opacity': 0})          
+          )]
+      )]
+    )
   ]
 })
 
@@ -157,8 +173,6 @@ export class SigninComponent implements OnInit {
           document.getElementById('btn-login').classList.remove('btn-login-click');
           document.getElementById('btn-login').innerHTML = 'Login';
         }
-        
-
       }, (err) => {
         if(err) {
           console.log(err);

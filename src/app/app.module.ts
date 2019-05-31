@@ -79,7 +79,6 @@ import { FoodProvider } from '../providers/food/food';
     AngularFireStorageModule,
     BrowserAnimationsModule,
   // AnimationModule,
-  
 
   ],
   bootstrap: [IonicApp],
