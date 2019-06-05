@@ -33,11 +33,11 @@ export class TabClientsPage {
   openNav() {
     document.getElementById('notificationDiv').classList.remove('click-not-slider-bar');
     let width = document.getElementById("mySidenav").style.width;
-    if(width === '100%') {
+    if(width === '60%') {
       document.getElementById("mySidenav").style.width = '0%';
     }
     else {
-      document.getElementById("mySidenav").style.width = '100%';
+      document.getElementById("mySidenav").style.width = '60%';
     }  
   }
   closeNav() {

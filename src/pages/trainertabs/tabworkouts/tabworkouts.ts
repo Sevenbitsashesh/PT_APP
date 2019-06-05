@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, Nav, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Nav, LoadingController, ModalController } from 'ionic-angular';
 import { NewworkoutComponent } from '../../../components/newworkout/newworkout';
 import { Router } from '@angular/router';
 import { UserDetails, AuthProvider } from '../../../providers/auth/auth';
@@ -9,6 +9,7 @@ import { Subscription } from 'rxjs';
 import { UserProvider } from '../../../providers/user/user';
 import { DataProvider } from '../../../providers/data/data';
 import { AdMobFree } from '@ionic-native/admob-free';
+import { SelectclientComponent } from '../../../components/selectclient/selectclient';
 
 
 
@@ -23,9 +24,19 @@ export class TabworkoutsPage  {
   currentUser: UserDetails;
   userInfo: UserInfo;
   authDetails: TokenPayload;
-    currentUserSubscription: Subscription;  
-  constructor(private router: Router, private authService: AuthProvider, private userService: UserProvider, private dataService: DataProvider, private adMob: AdMobFree) {
-    
+  currentUserSubscription: Subscription;  
+  workout;
+  // Bottom Drawer Slider
+drawerOptions: any;
+
+  constructor(private router: Router, private authService: AuthProvider, private userService: UserProvider, private dataService: DataProvider, private adMob: AdMobFree, private modalCtrl: ModalController) {
+    this.drawerOptions = {
+      handleHeight: 50,
+      thresholdFromBottom: 0,
+      thresholdFromTop: 0,
+      bounceBack: false
+  };
+
     this.currentUserSubscription = this.authService.currentUser.subscribe(user => {
     
       this.currentUser = user;      
@@ -37,11 +48,11 @@ export class TabworkoutsPage  {
   openNav() {
     document.getElementById('notificationDiv').classList.remove('click-not-slider-bar');
     let width = document.getElementById("mySidenav").style.width;
-    if(width === '100%') {
+    if(width === '60%') {
       document.getElementById("mySidenav").style.width = '0%';
     }
     else {
-      document.getElementById("mySidenav").style.width = '100%';
+      document.getElementById("mySidenav").style.width = '60%';
     }  
   }
   closeNav() {
@@ -71,7 +82,20 @@ export class TabworkoutsPage  {
 
   }
   newWorkout() {
-    this.router.navigate(['/tab_workouts/newworkout']);
+    this.router.navigate(['/tab_workouts/newworkout']);   
   }  
-
+  changeWorkout(event) {
+    console.log('change',event)
+    this.workout = event;
+  }
+  gotoDetails(item) {
+    console.log(item);
+    const selectModal = this.modalCtrl.create(SelectclientComponent,{workoutid: item.id, workoutname: item.work_name});
+    selectModal.present();
+    
+    // .then(dataClient => {
+    //   console.log(dataClient);
+    // })
+    // this.router.navigate(['/tab_workouts/workoutdetails'],{queryParams: {workid: item.id}});
+  }
 }

@@ -14,8 +14,9 @@
     width: 100%;
     height: 40px;
     transition: width 1.5s;
-    border-radius: 10px;
+    border-radius: 40px;
     margin-bottom: 30px;
+    background-color: #2abb9c;
 }
 .btn-login-click {
 width: 29%;
@@ -42,4 +43,6 @@ width: 29%;
     top: 22px !important;
     margin: 0 auto !important;
  }
- 
+  ion-col {
+    position: initial;
+ }

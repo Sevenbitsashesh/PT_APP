@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { DataProvider } from '../../providers/data/data';
 import { WorkoutProvider } from '../../providers/workout/workout';
 import { AuthProvider } from '../../providers/auth/auth';
@@ -35,17 +35,23 @@ class ExeSet {
 export class ListworkoutsComponent {
 
   workouts: WorkoutDetails[];
+  workoutSelect;
+  @Output() workout = new EventEmitter();
+  showLoader;;
   constructor(private dataService: DataProvider, private workService: WorkoutProvider, private auth: AuthProvider, private loadingCntrl: LoadingController) {
+    
   const loading = this.loadingCntrl.create({
     content: "Loading workouts..."
   })  
-  loading.present().then(() => {
+  this.showLoader = true;
+  // loading.present().then(() => {
     workService.getMyWorkouts(dataService.u,this.auth.currentUserValue).subscribe((data) => {
       loading.dismiss();
       if(!data.message) {
         console.log(data);
         this.workouts = data;
-        console.log('in')
+        console.log('in');
+        this.showLoader = false;
       }
       else {
         
@@ -53,8 +59,10 @@ export class ListworkoutsComponent {
         console.log('out')
       }
     })
-  })
+  // })
     
   }
-  
+  changeWorkout(event) {
+    this.workout.emit(event);
+  }
 }

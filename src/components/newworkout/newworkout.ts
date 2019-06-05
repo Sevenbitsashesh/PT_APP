@@ -362,7 +362,14 @@ export class NewworkoutComponent  implements AfterViewInit{
    }
    addExercise() {
      if(this.selectedDay) {
-      const modal = this.modal.create(MuscleSlectionComponent)
+      const modal = this.modal.create(MuscleSlectionComponent,'',
+      {
+        showBackdrop: false,
+    enableBackdropDismiss: false,
+    cssClass: 'add-to-cart-modal',
+    enterAnimation: 'modal-translate-up-enter',
+    leaveAnimation: 'modal-translate-up-leave'
+      })
       modal.present().then(() => {
         console.log('Muscle Selection')
         modal.onDidDismiss(dataStatus => {

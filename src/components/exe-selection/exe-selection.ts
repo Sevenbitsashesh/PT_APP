@@ -68,7 +68,14 @@ export class ExeSelectionComponent implements OnInit{
   }
   goNextSets() {
     if(this.exerciseSelected) {
-        const modal = this.modal.create(ExeSetsComponent,{exercise: this.exerciseSelected})
+        const modal = this.modal.create(ExeSetsComponent,{exercise: this.exerciseSelected},
+        {
+          showBackdrop: false,
+      enableBackdropDismiss: false,
+      cssClass: 'add-to-cart-modal',
+      enterAnimation: 'modal-translate-up-enter',
+      leaveAnimation: 'modal-translate-up-leave'
+        })
         modal.present().then(() => {
           
             

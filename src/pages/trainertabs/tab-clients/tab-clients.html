@@ -7,8 +7,8 @@
       <ion-grid>
        
         <ion-row style="text-align: center;">
-          <ion-col col-1><span style="font-size:30px;cursor:pointer" (click)="openNav()">&#9776;</span></ion-col>
-          <ion-col col-10>CLIENTS</ion-col>
+            <ion-col col-1><span style="font-size:20px;cursor:pointer" (click)="openNav()"><img src="../../../assets/icon/menu.png"></span></ion-col>
+          <ion-col col-10 class="mytop-text">Clients</ion-col>
           <!-- <ion-col><div class="divNoti"  (click)="clickNotification()" >
        
             <div class="lbl-notification">
@@ -58,7 +58,7 @@
 
 <div class="trainer-home-main newclient">
         <div class="trainer-home-top">
-        <ion-label class="label-activity">Clients</ion-label>
+        <!-- <ion-label class="label-activity">Clients</ion-label> -->
         </div>
         <div >
             <ion-segment [(ngModel)]="client" color="primary" color="danger">

@@ -6,8 +6,11 @@
         <ion-grid>
          
           <ion-row style="text-align: center;">
-            <ion-col col-1><span style="font-size:30px;cursor:pointer" (click)="openNav()">&#9776;</span></ion-col>
-            <ion-col col-10>MY WORKOUTS</ion-col>
+            <ion-col col-1><span style="font-size:20px;cursor:pointer" (click)="openNav()"><img src="../../../assets/icon/menu.png"></span></ion-col>
+            <ion-col *ngIf="!workout" col-10 class="mytop-text">My Workouts</ion-col>
+            <ion-col col-10 *ngIf="workout" class="mytop-text">{{workout.work_name}}</ion-col>
+            <!-- <ion-col col-1 *ngIf="workout"><span style="font-size:20px;cursor:pointer" (click)="gotoDetails(workout)"><img src="../../../assets/icon/list-simple.png"> </span></ion-col>
+            <ion-col col-1 *ngIf="workout"><span style="font-size:20px;cursor:pointer" (click)="gotoDetails(workout)"><img src="../../../assets/icon/list-grid.png"> </span></ion-col> -->
             <!-- <ion-col><div class="divNoti"  (click)="clickNotification()" >
          
               <div class="lbl-notification">
@@ -55,9 +58,17 @@
         No Notifications
         </ul>
         </div>
+        <!-- <div>
+          <ion-col col-10></ion-col>
+          <ion-col col-1><span style="font-size:20px;cursor:pointer"><img src="../../../assets/icon/list-simple.png"> </span></ion-col>
+            <ion-col col-1><span style="font-size:20px;cursor:pointer"><img src="../../../assets/icon/list-grid.png"> </span></ion-col>
+        </div> -->
   <div class="list-view-vertical">
-      <listworkouts></listworkouts>
+      <listworkouts (workout)="changeWorkout($event)"></listworkouts>
       <router-outlet></router-outlet>
   </div>
   
 </ion-content>
+<!-- <selectclient [options]="drawerOptions">
+
+</selectclient> -->

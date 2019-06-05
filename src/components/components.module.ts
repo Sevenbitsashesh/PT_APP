@@ -52,6 +52,8 @@ import { SelectclientComponent } from './selectclient/selectclient';
 import { MuscleSlectionComponent } from './muscle-slection/muscle-slection';
 
 import { SidemenuClientComponent } from './sidemenu-client/sidemenu-client';
+import { Loader2Component } from './loader2/loader2';
+import { SliderDrawerComponent } from './slider-drawer/slider-drawer';
 
 
 
@@ -99,6 +101,8 @@ import { SidemenuClientComponent } from './sidemenu-client/sidemenu-client';
     SelectclientComponent,
     MuscleSlectionComponent,
     SidemenuClientComponent,
+    Loader2Component,
+    SliderDrawerComponent,
 
     
         ],
@@ -140,6 +144,8 @@ import { SidemenuClientComponent } from './sidemenu-client/sidemenu-client';
     SelectclientComponent,
     MuscleSlectionComponent,    
     SidemenuClientComponent,
+    Loader2Component,
+    SliderDrawerComponent,
 
 
 ],

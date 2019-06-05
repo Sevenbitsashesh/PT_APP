@@ -40,13 +40,16 @@
     
   
       
-        <div *ngIf="myclients.length < 1">
-          <ion-row>
-            <ion-col>NO CLIENTS</ion-col>
-          </ion-row>
+        <div *ngIf="myclients.length < 1 && !showLoader" style="text-align: center;">
+          <div class="blank-page">
+        
+        
+          </div>
+          <img src="../../assets/icon/push-ups.png" height="50px" width="50px">
+          <h6>Your List Of Clients Will Appear Here</h6>
         </div>
   <div *ngIf="showLoader">
-    <loader></loader>
+    <loader2></loader2>
   </div>
   
   

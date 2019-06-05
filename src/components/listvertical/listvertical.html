@@ -9,19 +9,27 @@
         <div><img class="img-list" [src]=item.work_pic></div>      
     </ion-col>
   </ion-row> -->
-  <ion-row style="text-align: center;" (click)="gotoDetails(item)" *ngFor="let item of workouts">
+  <ion-row style="text-align: center;" *ngFor="let item of workouts">
       <ion-col col-12 >
-        <div>Assign To Client</div>
+        
+
           <div class="workoutname-list">{{item.work_name}}</div>
           
-           <div><img class="img-list" [src]=item.work_pic></div>      
+           <div ion-long-press (click)="gotoDetails(item)" style="border: 10px;"><img class="img-list" [src]=item.work_pic></div> 
+             <!-- <div *ngIf="item.menuOpen" class="menu-open-main" (click)="gotoDetails(item)">Assign To Client</div>    -->
+             
       </ion-col>
- 
+      
     </ion-row>
-    <ion-row *ngIf="workouts.message === null" style="text-align: center;">
-      <ion-col col-12>
-          No Workouts
-      </ion-col>
-    </ion-row>
+    
+    <div *ngIf="workouts.message === null" style="text-align: center;">
+      <div class="blank-page">
+        
+        
+      </div>
+      <img src="../../assets/icon/push-ups.png" height="50px" width="50px">
+      <h5>Your List Of Workouts Will Appear Here</h5>
+    </div>
 </div>
+
 </ion-grid>

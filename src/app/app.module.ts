@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ErrorHandler, NgModule } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule, NavController, NavControllerBase, LoadingController, Nav, NavParams } from 'ionic-angular';
+import { IonicApp, IonicErrorHandler, IonicModule, NavController, NavControllerBase, LoadingController, Nav, NavParams, Config } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
@@ -54,6 +54,8 @@ import { ClientroleguardProvider } from '../providers/clientroleguard/clientrole
 import { TrainerroleguardProvider } from '../providers/trainerroleguard/trainerroleguard';
 import { MailProvider } from '../providers/mail/mail';
 import { FoodProvider } from '../providers/food/food';
+import { ModalTranslateEnterTransition } from '../components/Custom/on-enter-translate.transition';
+import { ModalTranslateLeaveTransition } from '../components/Custom/on-leave-translate.transition';
 
 
 
@@ -127,4 +129,9 @@ import { FoodProvider } from '../providers/food/food';
   ]
   
 })
-export class AppModule {}
+export class AppModule {
+  constructor(private config: Config) {
+this.config.setTransition('modal-translate-up-enter', ModalTranslateEnterTransition);
+this.config.setTransition('modal-translate-up-leave', ModalTranslateLeaveTransition);
+  }
+}

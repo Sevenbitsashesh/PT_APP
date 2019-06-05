@@ -6,6 +6,7 @@ import {  AngularFireModule } from 'angularfire2/';
 import { config } from '../Configs/firebase_config';
 import { HomePage } from '../pages/home/home';
 import { Router } from '@angular/router'; 
+import { timer } from 'rxjs/observable/timer';
 @Component({
   selector: 'ion-app',
   templateUrl: 'app.html'
@@ -13,7 +14,8 @@ import { Router } from '@angular/router';
 export class MyApp {
   // rootPage:any = HomePage;
   nav: NavController;
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,private route: Router, private loadingController: LoadingController, private app: IonicApp) {
+  
+  constructor(platform: Platform, statusBar: StatusBar,private splashScreen: SplashScreen,private route: Router, private loadingController: LoadingController, private app: IonicApp) {
     // AngularFireModule.initializeApp(config);
     const overlay = this.app._overlayPortal.getActive();
     const nav = this.app._getActivePortal();
@@ -36,13 +38,22 @@ export class MyApp {
     AngularFireModule.initializeApp(config);
     this.route.navigate(['/home']);
     platform.ready().then(() => {
+
       statusBar.show();
        statusBar.backgroundColorByHexString('#2abb9c');
-      splashScreen.hide();
+      this.hideSplashScreen();
+      
       // loadingController.create({content: 'name',duration: 2000,}).present()
     });
+    
   }
   
-  
+  hideSplashScreen() {
+    if (this.splashScreen) {
+      setTimeout(() => {
+        this.splashScreen.hide();
+      }, 500);
+     }
+    }
 }
 

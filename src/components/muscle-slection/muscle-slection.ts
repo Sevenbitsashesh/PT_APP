@@ -29,7 +29,14 @@ export class MuscleSlectionComponent {
   goNextExercise() {
     if(this.muscleSelected) {
       // console.log(this.muscleSelected)
-     const modal = this.modal.create(ExeSelectionComponent,{exerciseMuscle: this.muscleSelected})
+     const modal = this.modal.create(ExeSelectionComponent,{exerciseMuscle: this.muscleSelected},
+     {
+       showBackdrop: false,
+   enableBackdropDismiss: false,
+   cssClass: 'add-to-cart-modal',
+   enterAnimation: 'modal-translate-up-enter',
+   leaveAnimation: 'modal-translate-up-leave'
+     })
      modal.present().then(() => {
         
         

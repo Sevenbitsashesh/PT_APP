@@ -1,1 +1,4 @@
-<listvertical [workouts]=workouts></listvertical>
+<listvertical [workouts]=workouts (openM)="changeWorkout($event)"></listvertical>
+<div *ngIf="showLoader">
+        <loader2></loader2>
+      </div>
