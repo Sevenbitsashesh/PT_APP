@@ -2,9 +2,9 @@
   <img class="iconTab" src="../../assets/icon/dumbell.png" id="exercise" (click)="goto($event)" >                
 </button></span> -->
 
-<span class="spanTab" ><button class="btnTab" href="#/userhome/tab_exercises" >
+<!-- <span class="spanTab" ><div class="btnTab" href="#/userhome/tab_exercises" ion-tab-button>
   <img class="iconTab" src="../../assets/icon/list.png" id="workout"  (click)="goto($event)">                
-</button></span>
+</div></span> -->
 
 <!-- <span class="spanTab" ><button  class="btnTab"  href="#/userhome/tab_exercises"> 
   <img class="iconTab" id="schedule" (click)="goto($event)" src="../../assets/icon/alarm-clock.png">              
@@ -14,10 +14,48 @@
   <img class="iconTab" id="mealplans" href="#/userhome/tab_exercises" src="../../assets/icon/diet.png">                
 </button></span> -->
 
-<span class="spanTab" ><button  class="btnTab" (click)="goto($event)" >
-  <img class="iconTab" id="client" href="#/userhome/tab_exercises" src="../../assets/icon/abs.png">                
-</button></span>  
+<!-- <span class="spanTab" ><button class="btnTab" (click)="goto($event)" ion-tab-button>
+  <img class="iconTab" id="client" href="#/userhome/tab_exercises" src="../../assets/icon/abs.png" (click)="goto($event)">                
+</button></span>   -->
 
 <!-- <span class="spanTab" ><button  class="btnTab"  href="#/userhome/tab_exercises"> 
   <img class="iconTab" id="profile" (click)="goto($event)" src="../../assets/icon/user.png">                
 </button></span> -->
+
+<!-- <ion-segment class="segment-tab" >
+   <ion-segment-button value="friends" class="btnTab" id="workout"  (click)="goto($event)">
+      Workout  
+  </ion-segment-button>
+  <ion-segment-button value="enemies" class="btnTab" id="client" (click)="goto($event)">
+      Client
+  </ion-segment-button>  
+</ion-segment> -->
+
+
+<ion-tabs>
+ 
+  <!-- <ion-tab-bar slot="bottom"> -->
+
+    <button ion-tab-button tab="films" class="btnTab">
+      <ion-icon name="home" id="client" (click)="goto($event)"></ion-icon>
+      
+    </button >
+ 
+    <button ion-tab-button tab="people" class="btnTab">
+        <ion-icon name="list-box" id="workout" (click)="goto($event)"></ion-icon>
+      
+    </button>
+    
+    <button ion-tab-button tab="planets" class="btnTab">
+      <ion-icon name="options"></ion-icon>
+      
+    </button>
+    <button ion-tab-button tab="planets" class="btnTab">
+        <ion-icon name="person"></ion-icon>
+        
+      </button>
+  <!-- </ion-tab-bar> -->
+ 
+</ion-tabs>
+
+

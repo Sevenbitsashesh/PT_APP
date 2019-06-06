@@ -19,7 +19,11 @@ export class TabClientsPage {
   userInfo: UserInfo;
   authDetails: TokenPayload;
   currentUserSubscription: Subscription;  
+  content;
+  rootPage: 'TabClientsPage'
   constructor(private authService: AuthProvider, private userService: UserProvider, private dataService: DataProvider, private adMob: AdMobFree, private loadingCntrl: LoadingController) {
+
+    
     this.client = 'listclients';
     this.currentUserSubscription = this.authService.currentUser.subscribe(user => {
       

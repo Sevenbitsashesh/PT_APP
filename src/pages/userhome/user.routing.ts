@@ -57,12 +57,12 @@ const routes: Routes = [
 {
     path: 'tab_exercises',
     loadChildren: getExercisesModule,
-    canActivate: [TrainerroleguardProvider],
+    canActivate: [TrainerroleguardProvider]
 },
 {
     path: 'tab_workouts',
     loadChildren: getWorkoutsModule,
-    canActivate: [TrainerroleguardProvider],
+    canActivate: [TrainerroleguardProvider]
 },
 // {
 //     path: 'tab_mealplans',
@@ -85,6 +85,7 @@ const routes: Routes = [
     //  component: TabHomePage,
     loadChildren: getClientsModule,
     canActivate: [TrainerroleguardProvider],
+    // outlet: 'tab_clients'
 },
 // {
 //     path: 'tab_clients',

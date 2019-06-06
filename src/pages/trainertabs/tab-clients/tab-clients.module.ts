@@ -3,6 +3,7 @@ import { IonicPageModule, IonicModule } from 'ionic-angular';
 import { TabClientsPage } from './tab-clients';
 import { Routes, RouterModule } from '@angular/router';
 import { ComponentsModule } from '../../../components/components.module';
+import { SuperTabsModule } from 'ionic2-super-tabs';
 const routes: Routes = [
   {
     path: '',
@@ -26,7 +27,8 @@ const routes: Routes = [
     // IonicPageModule.forChild(TabClientsPage),
     IonicModule,
     RouterModule.forChild(routes),
-    ComponentsModule
+    ComponentsModule,
+    SuperTabsModule
   ],
 })
 export class TabClientsPageModule {}

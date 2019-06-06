@@ -13,8 +13,8 @@ declare var Swiper: any;
 })
 @Injectable()
 export class TrainertabsComponent implements AfterViewInit {
-  
-  constructor(private dataService: DataProvider, private elementRef: ElementRef) {
+  workoutRoute = 'TabworkoutsPage';
+  constructor(private elementRef: ElementRef) {
     // console.log('Hello UsertabsComponent Component');          
     //  dataService.changeUserID(localStorage.getItem('swaGuid'));
     

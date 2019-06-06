@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'trainer-tab',
@@ -7,20 +7,24 @@ import { Router } from '@angular/router';
 })
 export class TrainerTab {
 
-  constructor(private router: Router) {
-
+  constructor(private router: Router, private activeRouter: ActivatedRoute) {
+    // router.on
+    
   }
   goto(event) {
     
     const routeTo = event.target.id;
-console.log(routeTo);
+    console.log(routeTo);
     if(routeTo === "exercise") {
+      
       this.router.navigate(['userhome/tab_exercises']);
     }
     else if(routeTo === "workout") {
+      document.getElementById('workout').classList.add('active');
       this.router.navigate(['userhome/tab_workouts']);
     }
     else if(routeTo === "mealplans") {
+      
       this.router.navigate(['userhome/tab_mealplans']);
     }
     else if(routeTo === "schedule") {
@@ -30,6 +34,8 @@ console.log(routeTo);
       this.router.navigate(['userhome/tab_profile']);
     }
     else if(routeTo === "client") {
+      
+      document.getElementById('client').classList.add('active');
       this.router.navigate(['userhome/tab_clients']);
     }
     var btns = document.getElementsByClassName('active');

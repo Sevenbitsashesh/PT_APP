@@ -1,3 +1,23 @@
 trainertabs {
 
 }
+
+.btnTab
+{
+    // display: inline-table;
+    --color: #c3ff48;
+    // box-shadow: 0px 1px 13px 1px rgba(0,0,0,0.77);
+    width: 24%;
+}
+.segment-tab {
+    transition: 2s;
+}
+.btnTab ion-icon {
+    color: #616163;
+    zoom: 1.3;
+}
+// ion-icon#client
+.activeTab {
+    zoom: 1.6;
+    background: #c3ff48;
+}

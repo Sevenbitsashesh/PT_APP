@@ -56,7 +56,7 @@ import { MailProvider } from '../providers/mail/mail';
 import { FoodProvider } from '../providers/food/food';
 import { ModalTranslateEnterTransition } from '../components/Custom/on-enter-translate.transition';
 import { ModalTranslateLeaveTransition } from '../components/Custom/on-leave-translate.transition';
-
+import { SuperTabsModule } from 'ionic2-super-tabs';
 
 
 
@@ -80,6 +80,8 @@ import { ModalTranslateLeaveTransition } from '../components/Custom/on-leave-tra
     FormsModule,
     AngularFireStorageModule,
     BrowserAnimationsModule,
+    SuperTabsModule
+    
   // AnimationModule,
 
   ],
