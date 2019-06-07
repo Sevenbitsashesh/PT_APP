@@ -36,24 +36,35 @@
  
   <!-- <ion-tab-bar slot="bottom"> -->
 
-    <button ion-tab-button tab="films" class="btnTab">
-      <ion-icon name="home" id="client" (click)="goto($event)"></ion-icon>
+    <button ion-tab-button class="btnTab" id="btnClient">
       
-    </button >
+          <ion-icon class="custom-client-icon" id="client" (click)="goto($event)"></ion-icon>
+          <!-- <div *ngIf="currentTab == 'tab_clients'">
+              <ion-icon name="arrow-dropup" ></ion-icon>
+          </div> -->
+          
+    </button>
  
-    <button ion-tab-button tab="people" class="btnTab">
-        <ion-icon name="list-box" id="workout" (click)="goto($event)"></ion-icon>
-      
+    <button ion-tab-button class="btnTab" id="btnWorkout">
+        <ion-icon class="custom-workout-icon" id="workout" (click)="goto($event)"></ion-icon>
+        <!-- <div *ngIf="currentTab == 'tab_workouts'">
+            <ion-icon name="arrow-dropup"></ion-icon>
+        </div> -->
     </button>
     
-    <button ion-tab-button tab="planets" class="btnTab">
+    <!-- <button ion-tab-button class="btnTab">
       <ion-icon name="options"></ion-icon>
-      
+      <div *ngIf="currentTab === 'tab_workouts'">
+          <ion-icon name="arrow-dropdown"></ion-icon>
+      </div>
     </button>
-    <button ion-tab-button tab="planets" class="btnTab">
+    <button ion-tab-button class="btnTab">
+      
         <ion-icon name="person"></ion-icon>
-        
-      </button>
+        <div *ngIf="currentTab === 'tab_workouts'">
+            <ion-icon name="arrow-dropup"></ion-icon>
+        </div>
+      </button> -->
   <!-- </ion-tab-bar> -->
  
 </ion-tabs>

@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, Nav, LoadingController, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Nav, LoadingController, ModalController, FabContainer } from 'ionic-angular';
 import { NewworkoutComponent } from '../../../components/newworkout/newworkout';
 import { Router } from '@angular/router';
 import { UserDetails, AuthProvider } from '../../../providers/auth/auth';
@@ -81,8 +81,14 @@ drawerOptions: any;
     // this.nav.push(NewworkoutComponent);
 
   }
-  newWorkout() {
-    this.router.navigate(['/tab_workouts/newworkout']);   
+  newWorkout(fab: FabContainer) {
+    let modalWorkout = this.modalCtrl.create(NewworkoutComponent);
+    modalWorkout.onDidDismiss(data => {
+      
+    });
+    modalWorkout.present();
+    fab.close();
+    // this.router.navigate(['/tab_workouts/newworkout']);   
   }  
   changeWorkout(event) {
     console.log('change',event)

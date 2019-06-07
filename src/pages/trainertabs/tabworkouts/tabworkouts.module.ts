@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { IonicPageModule, NavController, IonicModule } from 'ionic-angular';
+import { IonicPageModule, NavController, IonicModule, FabContainer } from 'ionic-angular';
 import { TabworkoutsPage } from './tabworkouts';
 import { Routes, RouterModule } from '@angular/router';
 import { ComponentsModule } from '../../../components/components.module';
@@ -33,8 +33,7 @@ const routes: Routes = [
   imports: [
     IonicModule,
     RouterModule.forChild(routes),
-    ComponentsModule,
-    
+    ComponentsModule
   ],
   entryComponents: [NewworkoutComponent]
 })

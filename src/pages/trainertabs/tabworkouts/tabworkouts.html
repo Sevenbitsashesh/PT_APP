@@ -43,10 +43,10 @@
  </div>
 
 <ion-content class="contentWorkout">
-     <ion-fab bottom left >
+     <ion-fab bottom left #fabWorkout>
         <button ion-fab>New</button>
         <ion-fab-list side="right">
-          <button ion-fab (click)="newWorkout()"><img src="../../assets/imgs/workout.svg"></button>          
+          <button ion-fab (click)="newWorkout(fabWorkout)"><img src="../../assets/imgs/workout.svg"></button>          
           <!-- <button ion-fab (click)="gotoNewWork()"><img src="../../assets/imgs/schedule.svg"></button> -->
         </ion-fab-list>
         

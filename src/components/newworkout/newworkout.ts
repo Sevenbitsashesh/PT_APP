@@ -13,6 +13,8 @@ import { ExeSelectionComponent } from '../../components/exe-selection/exe-select
 import { iterateListLike } from '@angular/core/src/change_detection/change_detection_util';
 import { MuscleSlectionComponent } from '../../components/muscle-slection/muscle-slection';
 import { ExeSetsComponent } from '../../components/exe-sets/exe-sets';
+import { Router } from '@angular/router';
+import { ViewController } from 'ionic-angular/navigation/view-controller';
 
 
 
@@ -44,7 +46,7 @@ export class NewworkoutComponent  implements AfterViewInit{
   @ViewChild(ExeSetsComponent) exeSelectionCom: ExeSetsComponent;
   exercisesDays = {"MON": [],'TUE': [],'WED': [],'THUR': [],'FRI': [],'SAT': [],'SUN': []};
 
-  constructor(private nativeService: NativeProvider, private workService: WorkoutProvider, private dataService: DataProvider, private actionsheet: ActionSheetController, private imageService: ImageProvider, private auth: AuthProvider, private exeService: ExerciseProvider, private modal: ModalController, private loadingCntrl: LoadingController) {
+  constructor(private nativeService: NativeProvider, private workService: WorkoutProvider, private dataService: DataProvider, private actionsheet: ActionSheetController, private imageService: ImageProvider, private auth: AuthProvider, private exeService: ExerciseProvider, private modal: ModalController, private loadingCntrl: LoadingController, private router: Router, private viewCtrl: ViewController) {
    this.exeService.getExercises(auth.currentUserValue).subscribe(data => {
      console.log(data);
    })
@@ -64,7 +66,7 @@ export class NewworkoutComponent  implements AfterViewInit{
     // });     
    }
   newWorkoutBack() {
-    window.history.back();
+    this.viewCtrl.dismiss();
   }
   tagClick1(event) {
     var items = Array.from(document.querySelectorAll('.color-tag')).forEach(items => {

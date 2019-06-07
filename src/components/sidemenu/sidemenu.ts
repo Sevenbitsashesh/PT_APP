@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthProvider } from '../../providers/auth/auth';
 import { LoadingController } from 'ionic-angular';
@@ -8,10 +8,11 @@ import { LoadingController } from 'ionic-angular';
   selector: 'sidemenu',
   templateUrl: 'sidemenu.html'
 })
-export class SidemenuComponent {
+export class SidemenuComponent implements AfterViewInit {
   @Input() currentUser;
   constructor(private router: Router, private authService: AuthProvider, private loadingCntrl: LoadingController) {
     
+
   }
   navClients() {
     this.router.navigate(['userhome/tab_clients']);
@@ -44,5 +45,7 @@ export class SidemenuComponent {
     
     
   }  
-  
+  ngAfterViewInit() {
+    document.getElementById('menuWorkout').classList.add('activeMenu');
+  }  
 }

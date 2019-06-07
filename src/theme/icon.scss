@@ -1,0 +1,19 @@
+ion-icon {
+    &[class*="custom-"] {
+       mask-size: contain;
+       mask-position: 50% 50%;
+       mask-repeat: no-repeat;
+       background: currentColor;
+       width: 1em;
+       height: 1em;
+    }
+    &[class*="custom-workout-icon"] {
+       mask-image: url(../assets/icon/work-plan.svg);
+    }
+    &[class*="custom-client-icon"] {
+        mask-image: url(../assets/icon/client.svg);
+     }
+    // &[class*="custom-search-icon"] {
+    //    mask-image: url/assets/img/icons/search-icon.svg);
+    // }
+ }
